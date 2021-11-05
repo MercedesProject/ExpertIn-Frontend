@@ -14,21 +14,26 @@
         </a>
       </li>
     </b-navbar-nav>
-    <b-navbar-nav class="align-items-center ml-auto ml-md-0">
-        <b-form class="navbar-search form-inline mr-sm-3"
-            :class="{'navbar-search-dark': type === 'default', 'navbar-search-light': type === 'light'}"
-            id="navbar-search-main">
-        <b-form-group class="mb-0">
-          <!-- SearchBar -->
-          <!-- <b-input-group class="input-group-alternative input-group-merge">
-            <b-form-input placeholder="Search" type="text"> </b-form-input> 
 
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-search"></i></span>
-            </div>
-          </b-input-group> -->
-        </b-form-group>
-      </b-form>
+    <b-navbar-nav  class="align-items-lg-center ml-lg-auto">
+           <b-nav-item to="/dashboard">
+               <i class="ni ni-planet"></i>
+               <span class="nav-link-inner--text">Anasayfa</span>
+           </b-nav-item>
+           <b-nav-item to="/tables">
+               <i class="ni ni-briefcase-24"></i>
+               <span class="nav-link-inner--text">İlanlar</span>
+           </b-nav-item>
+           <b-nav-item to="/profile">
+               <i class="ni ni-key-25"></i>
+               <span class="nav-link-inner--text">Başvurularım</span>
+           </b-nav-item>
+            <b-nav-item to="/icons">
+               <i class="ni ni-email-83"></i>
+               <span class="nav-link-inner--text">Mesajlar</span>
+           </b-nav-item>
+       </b-navbar-nav>
+    <b-navbar-nav class="align-items-center ml-auto ml-md-0">
       <base-dropdown menu-on-right
                      class="nav-item"
                      tag="li"
@@ -37,39 +42,39 @@
         <a href="#" class="nav-link pr-0" @click.prevent slot="title-container">
           <b-media no-body class="align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="img/theme/team-4.jpg">
+                    <img alt="Image placeholder" src="img/theme/profil.jpg">
                   </span>
             <b-media-body class="ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+              <span class="mb-0 text-sm  font-weight-bold">Büsra Sarı</span>
             </b-media-body>
           </b-media>
         </a>
 
         <template>
 
-          <b-dropdown-header class="noti-title">
+          <!-- <b-dropdown-header class="noti-title">
             <h6 class="text-overflow m-0">Welcome!</h6>
-          </b-dropdown-header>
+          </b-dropdown-header> -->
           <b-dropdown-item href="#!">
             <i class="ni ni-single-02"></i>
-            <span>My profile</span>
+            <span>Profil</span>
           </b-dropdown-item>
           <b-dropdown-item href="#!">
             <i class="ni ni-settings-gear-65"></i>
-            <span>Settings</span>
+            <span>Ayarlar</span>
           </b-dropdown-item>
-          <b-dropdown-item href="#!">
+          <!-- <b-dropdown-item href="#!">
             <i class="ni ni-calendar-grid-58"></i>
             <span>Activity</span>
           </b-dropdown-item>
           <b-dropdown-item href="#!">
             <i class="ni ni-support-16"></i>
             <span>Support</span>
-          </b-dropdown-item>
+          </b-dropdown-item> -->
           <div class="dropdown-divider"></div>
           <b-dropdown-item href="#!">
             <i class="ni ni-user-run"></i>
-            <span>Logout</span>
+            <span>Çıkış</span>
           </b-dropdown-item>
 
         </template>

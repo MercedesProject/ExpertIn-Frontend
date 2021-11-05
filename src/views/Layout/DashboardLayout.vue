@@ -3,7 +3,7 @@
     <notifications></notifications>
     <side-bar>
       <template slot="links">
-        <sidebar-item
+        <!-- <sidebar-item
           :link="{
             name: 'Anasayfa',
             path: '/dashboard',
@@ -21,13 +21,13 @@
             >
         </sidebar-item>
 
-        <!-- <sidebar-item
+        <sidebar-item
               :link="{
                 name: 'Maps',
                 path: '/maps',
                 icon: 'ni ni-pin-3 text-orange'
               }">
-        </sidebar-item> -->
+        </sidebar-item> 
 
         <sidebar-item
               :link="{
@@ -43,7 +43,7 @@
                   path: '/tables',
                   icon: 'ni ni-bullet-list-67 text-red'
                 }">
-        </sidebar-item>
+        </sidebar-item> -->
 
         <sidebar-item
                   :link="{

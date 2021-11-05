@@ -1,5 +1,6 @@
 <template>
-      <h6 class="heading-small text-muted mb-4">Contact information</h6>
+      <!-- <h6 class="heading-small text-muted mb-4">Contact information</h6> -->
+      <h1>s</h1>
 </template>
 <script>
 export default {
