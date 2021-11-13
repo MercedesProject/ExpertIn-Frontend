@@ -23,6 +23,7 @@
         @click.stop="toggleMenu">
       </b-navbar-toggle>
 
+      
       <b-collapse
         is-nav
         id="nav-text-collapse"

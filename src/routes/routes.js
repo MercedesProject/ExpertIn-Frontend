@@ -26,12 +26,6 @@ const routes = [{
                     import ('../views/Pages/UserProfile.vue')
             },
             {
-                path: '/maps',
-                name: 'maps',
-                component: () =>
-                    import ('../views/GoogleMaps.vue')
-            },
-            {
                 path: '/tables',
                 name: 'İlanlar',
                 component: () =>

@@ -1,14 +1,11 @@
 <template>
      <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
        <div class="container-fluid">
-
             <navbar-toggle-button @click.native="showSidebar">
-                
             </navbar-toggle-button>
             <router-link class="navbar-brand" to="/">
                  <img :src="logo" class="navbar-brand-img" alt="...">
              </router-link> 
-            
             <slot name="mobile-right">
                 <ul class="nav align-items-center d-md-none">
                     <base-dropdown class="nav-item" menu-on-right tag="li" title-tag="a">
@@ -30,11 +27,6 @@
                               </span>
                             </div>
                         </a>
-
-                        <div class=" dropdown-header noti-title">
-                            <h6 class="text-overflow m-0">Welcome!</h6>
-                        </div>
-                        
                         <router-link to="/profile" class="dropdown-item">
                             <i class="ni ni-single-02"></i>
                             <span>My profile</span>

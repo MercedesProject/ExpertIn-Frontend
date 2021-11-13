@@ -4,7 +4,10 @@
     class="navbar-top navbar-expand"
     :class="{'navbar-dark': type === 'default'}"
   >
-    <a href="#" aria-current="page" class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block active router-link-active"> {{$route.name}} </a>
+    <div style="max-width:20%; max-height:20%"><img src="img/brand/logo.png" style="max-width:30%; max-height:20%">
+    <a href="#" aria-current="page" class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block active router-link-active"> {{$route.name}} </a></div>
+             
+    
     <!-- Navbar links -->
     <b-navbar-nav class="align-items-center ml-md-auto">
       <!-- This item dont have <b-nav-item> because item have data-action/data-target on tag <a>, wich we cant add -->
@@ -32,6 +35,15 @@
                <i class="ni ni-email-83"></i>
                <span class="nav-link-inner--text">Mesajlar</span>
            </b-nav-item>
+               <b-nav-item to="/login">
+               <i class="ni ni-key-25 text-info"></i>
+               <span class="nav-link-inner--text">Login</span>
+           </b-nav-item>
+            <b-nav-item to="/register">
+               <i class="ni ni-circle-08 text-pink"></i>
+               <span class="nav-link-inner--text">Register</span>
+           </b-nav-item>
+
        </b-navbar-nav>
     <b-navbar-nav class="align-items-center ml-auto ml-md-0">
       <base-dropdown menu-on-right
@@ -52,9 +64,6 @@
 
         <template>
 
-          <!-- <b-dropdown-header class="noti-title">
-            <h6 class="text-overflow m-0">Welcome!</h6>
-          </b-dropdown-header> -->
           <b-dropdown-item href="#!">
             <i class="ni ni-single-02"></i>
             <span>Profil</span>
@@ -63,20 +72,11 @@
             <i class="ni ni-settings-gear-65"></i>
             <span>Ayarlar</span>
           </b-dropdown-item>
-          <!-- <b-dropdown-item href="#!">
-            <i class="ni ni-calendar-grid-58"></i>
-            <span>Activity</span>
-          </b-dropdown-item>
-          <b-dropdown-item href="#!">
-            <i class="ni ni-support-16"></i>
-            <span>Support</span>
-          </b-dropdown-item> -->
           <div class="dropdown-divider"></div>
           <b-dropdown-item href="#!">
             <i class="ni ni-user-run"></i>
             <span>Çıkış</span>
           </b-dropdown-item>
-
         </template>
       </base-dropdown>
     </b-navbar-nav>
