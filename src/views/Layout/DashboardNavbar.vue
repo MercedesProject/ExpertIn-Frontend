@@ -5,7 +5,7 @@
     :class="{'navbar-dark': type === 'default'}"
   >
     <div style="max-width:20%; max-height:20%"><img src="img/brand/logo.png" style="max-width:30%; max-height:20%">
-    <a href="#" aria-current="page" class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block active router-link-active"> {{$route.name}} </a></div>
+    </div>
              
     
     <!-- Navbar links -->
@@ -97,12 +97,47 @@ export default {
       type: String,
       default: 'default', // default|light
       description: 'Look of the dashboard navbar. Default (Green) or light (gray)'
-    }
+    },
+    show: {
+      type: Boolean,
+      default: false,
+      description:
+        'Whether navbar menu is shown (valid for viewports < specified by `expand` prop)'
+    },
+     transparent: {
+      type: Boolean,
+      default: false,
+      description: 'Whether navbar is transparent'
+    },
+    expand: {
+      type: String,
+      default: 'lg',
+      description: 'Breakpoint where nav should expand'
+    },
+    menuClasses: {
+      type: [String, Object, Array],
+      default: '',
+      description:
+        'Navbar menu (items) classes. Can be used to align menu items to the right/left'
+    },
+    containerClasses: {
+      type: [String, Object, Array],
+      default: 'container',
+      description:
+        'Container classes. Can be used to control container classes (contains both navbar brand and menu items)'
+    },
+  },
+  model: {
+    prop: 'show',
+    event: 'change'
   },
   computed: {
     routeName() {
       const { name } = this.$route;
       return this.capitalizeFirstLetter(name);
+    },
+    hasMenu() {
+      return this.$slots.default;
     }
   },
   data() {
@@ -122,6 +157,15 @@ export default {
     },
     closeDropDown() {
       this.activeNotifications = false;
+    },
+    toggleMenu() {
+      this.$emit('change', !this.show);
+    },
+    closeMenu() {
+      this.$emit('change', false);
+    },
+    closeNavbar(){
+      
     }
   }
 };

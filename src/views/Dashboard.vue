@@ -6,71 +6,16 @@
     </base-header>
 
     <b-container fluid class="mt--7">
-      <b-row>
-        <b-col xl="8" class="mb-5 mb-xl-0">
-          <card type="default" header-classes="bg-transparent">
-            <b-row align-v="center" slot="header">
-              <b-col>
-                <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                <h5 class="h3 text-white mb-0">Sales value</h5>
-              </b-col>
-              <b-col>
-                <b-nav class="nav-pills justify-content-end">
-                  <b-nav-item
-                       class="mr-2 mr-md-0"
-                       :active="bigLineChart.activeIndex === 0"
-                       link-classes="py-2 px-3"
-                       @click.prevent="initBigChart(0)">
-                      <span class="d-none d-md-block">Month</span>
-                      <span class="d-md-none">M</span>
-                  </b-nav-item>
-                  <b-nav-item
-                    link-classes="py-2 px-3"
-                    :active="bigLineChart.activeIndex === 1"
-                    @click.prevent="initBigChart(1)"
-                  >
-                    <span class="d-none d-md-block">Week</span>
-                    <span class="d-md-none">W</span>
-                  </b-nav-item>
-                </b-nav>
-              </b-col>
-            </b-row>
-            <line-chart
-              :height="350"
-              ref="bigChart"
-              :chart-data="bigLineChart.chartData"
-              :extra-options="bigLineChart.extraOptions"
-            >
-            </line-chart>
-          </card>
-        </b-col>
-
-        <b-col xl="4" class="mb-5 mb-xl-0">
-          <card header-classes="bg-transparent">
-            <b-row align-v="center" slot="header">
-              <b-col>
-                <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                <h5 class="h3 mb-0">Total orders</h5>
-              </b-col>
-            </b-row>
-
-            <bar-chart
-              :height="350"
-              ref="barChart"
-              :chart-data="redBarChart.chartData"
-            >
-            </bar-chart>
-          </card>
-        </b-col> 
-      </b-row> 
        <b-row class="mt-5">
-        <b-col xl="8" class="mb-5 mb-xl-0">
+        <!-- <b-col xl="8" class="mb-5 mb-xl-0">
           <page-visits-table></page-visits-table>
-        </b-col>
-        <b-col xl="4" class="mb-5 mb-xl-0">
-          <social-traffic-table></social-traffic-table>
+        </b-col> -->
+        
+        <b-col xl="8" class="mb-5 mb-xl-0">
+          <job-table></job-table>
         </b-col>
       </b-row>
+
      
      </b-container>
 
@@ -86,9 +31,9 @@
   import BaseProgress from '@/components/BaseProgress';
   import StatsCard from '@/components/Cards/StatsCard';
 
-  // Tables
-  //import SocialTrafficTable from './Dashboard/SocialTrafficTable';
- // import PageVisitsTable from './Dashboard/PageVisitsTable';
+  import SocialTrafficTable from './Dashboard/SocialTrafficTable';
+ import PageVisitsTable from './Dashboard/PageVisitsTable';
+ import JobTable from './Dashboard/JobTable.vue';
 
   export default {
     components: {
@@ -96,8 +41,9 @@
       BarChart,
       BaseProgress,
       StatsCard,
-     // PageVisitsTable,
-     // SocialTrafficTable
+     PageVisitsTable,
+     SocialTrafficTable,
+     JobTable
     },
     data() {
       return {

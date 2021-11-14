@@ -19,6 +19,7 @@
   import users from './Tables/users'
   import LightTable from "./Tables/RegularTables/LightTable";
 
+ 
   export default {
     components: {
       LightTable,
