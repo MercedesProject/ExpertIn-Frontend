@@ -7,10 +7,11 @@
     <b-container class="mt--8">
        &nbsp;
       <b-row class="justify-content-center">
-          <b-col md="6">
+          <b-col md="5">
             <b-img src="img/theme/signin.png" fluid />
-          </b-col>  
-        <b-col xl="5" class="mb-5 mb-xl-0">
+          </b-col>
+          <b-col md="2"></b-col>  
+        <b-col md="5" class="mb-5 mb-xl-0">
           <b-card no-body class="bg-secondary border-0 mb-0">
             <b-card-header class="bg-transparent"  >
                &nbsp;
