@@ -4,7 +4,7 @@
     class="navbar-top navbar-expand"
     :class="{'navbar-dark': type === 'default'}"
   >
-    <div style="max-width:20%; max-height:20%"><img src="img/brand/logo.png" style="max-width:30%; max-height:20%">
+    <div class="d-flex justify-content-center " style="max-width:20%; max-height:20%"><img src="img/brand/logo.png" style="max-width:30%; max-height:20%">
     </div>
              
     

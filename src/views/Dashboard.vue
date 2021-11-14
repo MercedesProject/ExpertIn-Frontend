@@ -1,17 +1,61 @@
 <template>
   <div>
-    <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-success">
-      <b-row>
+    <base-header class="pb-4 pt-5 pt-md-8 bg-gradient-success">
+       <!-- Card stats -->
+      <b-row class="justify-content-center">
+        
+        <b-col xl="3" md="6">
+          <stats-card title="İlan Sayısı"
+                      type="gradient-orange"
+                      sub-title="2,356"
+                      icon="ni ni-single-copy-04"
+                      class="mb-4">
+
+            <template slot="footer">
+            </template>
+          </stats-card>
+        </b-col>
+        <b-col xl="3" md="6">
+          <stats-card title="Başvurularım"
+                      type="gradient-green"
+                      sub-title="3"
+                      icon="ni ni-active-40"
+                      class="mb-4">
+
+            <template slot="footer">
+            
+            </template>
+          </stats-card>
+
+        </b-col>
+        <b-col xl="3" md="6">
+          <stats-card title="Mesajlar"
+                      type="gradient-info"
+                      sub-title="5"
+                      icon="ni ni-chat-round"
+                      class="mb-4">
+
+            <template slot="footer">
+            </template>
+          </stats-card>
+        </b-col>
+        <b-col xl="3" md="6">
+          <stats-card title="Profil Görüntülenme"
+                      type="gradient-red"
+                      sub-title="4"
+                      icon="ni ni-badge"
+                      class="mb-4">
+
+            <template slot="footer">
+            </template>
+          </stats-card>
+        </b-col>
       </b-row>
     </base-header>
 
-    <b-container fluid class="mt--7">
-       <b-row class="mt-5">
-        <!-- <b-col xl="8" class="mb-5 mb-xl-0">
-          <page-visits-table></page-visits-table>
-        </b-col> -->
-        
-        <b-col xl="8" class="mb-5 mb-xl-0">
+    <b-container fluid class="bg-white">
+       <b-row class="mt-2">
+        <b-col xl="8" class="mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
           <job-table></job-table>
         </b-col>
       </b-row>

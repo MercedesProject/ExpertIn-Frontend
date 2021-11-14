@@ -1,13 +1,33 @@
 <template>
-  <b-container fluid>
-      
+  <b-container fluid class="bv-example-row">
     <!-- User Interface controls -->
-    <b-row>
-      <b-col lg="6" class="my-1">
+    <b-row class="lg-6">
+        <b-col  md="6" class="my-1">
         <b-form-group
-          label="Sort"
-          label-for="sort-by-select"
+          
+          label-for="filter-input"
           label-cols-sm="3"
+          label-align-sm="right"
+          label-size="sm"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              id="filter-input"
+              v-model="filter"
+              type="search"
+              placeholder="Type to Search"
+            ></b-form-input>
+
+            <b-input-group-append>
+              <b-button  :disabled="!filter" @click="filter = ''" class="btn-info">Clear</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+      </b-col>
+      <b-col  offset-md="2" md="2" class="my-1" >
+        <b-form-group
+          
           label-align-sm="right"
           label-size="sm"
           class="mb-0"
@@ -23,11 +43,11 @@
               class="w-75"
             >
               <template #first>
-                <option value="">-- none --</option>
+                <option value="">Sort</option>
               </template>
             </b-form-select>
 
-            <b-form-select
+            <!-- <b-form-select
               v-model="sortDesc"
               :disabled="!sortBy"
               :aria-describedby="ariaDescribedby"
@@ -36,7 +56,7 @@
             >
               <option :value="false">Asc</option>
               <option :value="true">Desc</option>
-            </b-form-select>
+            </b-form-select> -->
           </b-input-group>
         </b-form-group>
       </b-col>
@@ -59,29 +79,7 @@
         </b-form-group>
       </b-col> -->
 
-      <!-- <b-col lg="6" class="my-1">
-        <b-form-group
-          label="Filter"
-          label-for="filter-input"
-          label-cols-sm="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-        >
-          <b-input-group size="sm">
-            <b-form-input
-              id="filter-input"
-              v-model="filter"
-              type="search"
-              placeholder="Type to Search"
-            ></b-form-input>
-
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
-      </b-col> -->
+    
 
       <!-- <b-col lg="6" class="my-1">
         <b-form-group
@@ -106,8 +104,11 @@
         </b-form-group>
       </b-col> -->
     </b-row>
+    <b-row class="lg-6">
+
+    </b-row>
     <!-- Main table element -->
-    <b-table 
+    <b-table
       :items="items"
       :fields="fields"
       sort-icon-left
@@ -121,10 +122,9 @@
       :filter-included-fields="filterOn"
       responsive="sm"
       show-empty
-      
       small
       @filtered="onFiltered"
-      class="table b-table table-hover table-sticky-header"
+      class="table b-table table-hover table-sticky-header table-bordered thead-dark"
     >
       <template #cell(name)="row">
         {{ row.value.first }} {{ row.value.last }}
@@ -132,11 +132,22 @@
 
       <template #cell(actions)="row">
         <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-          ilana git
+         <i class="ni ni-active-40"></i>
         </b-button>
         <b-button size="sm" @click="row.toggleDetails">
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
         </b-button>
+      </template>
+
+      <template #cell(favourites)="row">
+        <b-form-checkbox 
+      id=v-model
+      v-model="row.id"
+      name="checkbox"
+      value="accepted"
+      unchecked-value="not_accepted"
+    >
+    </b-form-checkbox>      
       </template>
 
       <template #row-details="row">
@@ -196,12 +207,11 @@
         },
         items: [
           { isActive: true, age: 40, name: { first: 'Dickerson', last: 'Macdonald' } },
-          { isActive: false, age: 21, name: { first: 'Larsen', last: 'Shaw' } },
+          { isActive: false, age: 21, name: { first: 'Larsen', last: 'Shaw' },},
           {
             isActive: false,
             age: 9,
             name: { first: 'Mini', last: 'Navarro' },
-            _rowVariant: 'success'
           },
           { isActive: false, age: 89, name: { first: 'Geneva', last: 'Wilson' } },
           { isActive: true, age: 38, name: { first: 'Jami', last: 'Carney' } },
@@ -219,21 +229,23 @@
           { isActive: false, age: 29, name: { first: 'Dick', last: 'Dunlap' } }
         ],
         fields: [
-          { key: 'name', label: 'Firma', sortable: true, sortDirection: 'desc' },
+           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center", },
+          { key: 'name', label: 'Firma', sortable: true, sortDirection: 'desc',class:"text-center" },
           { key: 'age', label: 'İş Tanımı', sortable: true, class: 'text-center' },
           { key: 'position', label: 'Pozisyon', sortable: true, class: 'text-center' },
           { key: 'kontenjan', label: 'Kontenjan', sortable: true, class: 'text-center' },
+          { key: 'actions', label: 'Actions', class:"text-center", },
           {
             key: 'isActive',
-            label: 'Is Active',
+            label: 'Status',
             formatter: (value, key, item) => {
               return value ? 'Yes' : 'No'
             },
             sortable: true,
             sortByFormatted: true,
-            filterByFormatted: true
+            filterByFormatted: true,
+            class:"text-center"
           },
-          { key: 'actions', label: 'Actions' }
         ],
         totalRows: 1,
         currentPage: 1,
@@ -266,15 +278,21 @@
       formartedItems () {
     if (!this.requests) return []
     return this.requests.map(item => {
-      item._rowVariant  = this.getVariant(item.Status)
+      item._rowVariant  = this.getVariant(item.Status);
+      item.add
       return item
     })
         },
   changeBgWithStatus(){
+        // this.items.forEach(function(obj)
+        // { if(obj.isActive ===true){ obj._rowVariant = "success"; }
+        // if(obj.isActive === false){ obj._rowVariant = "danger"; } });
         this.items.forEach(function(obj)
-        { if(obj.isActive ===true){ obj._rowVariant = "success"; }
-        if(obj.isActive === false){ obj._rowVariant = "danger"; } });
+        { if(obj.isActive ===true){ obj._cellVariants = { isActive: 'success' } }
+        if(obj.isActive === false){ obj._cellVariants = { isActive: 'danger'} } });
+      
     }
+   
     },
     mounted() {
       // Set the initial number of items
@@ -304,7 +322,7 @@
         this.totalRows = filteredItems.length
         this.currentPage = 1
       },
-      getVariant (status) {
+      getVariant(status) {
     switch (status) {
       case 1:
         return 'success'
@@ -312,8 +330,9 @@
         return 'danger'
       default:
         return 'active'
-    }
-  }
+      }
+    },
+     
     }
   }
 </script>
