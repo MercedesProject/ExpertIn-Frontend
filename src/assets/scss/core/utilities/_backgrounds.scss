@@ -15,6 +15,16 @@
 	@include bg-gradient-variant(".bg-gradient-#{$color}", $value, $ignore-warning: true);
 }
 
+@each $color, $value in $theme-colors {
+	@include bg-gradient-busra(".bg-gradient-busra", $value, $ignore-warning: true);
+}
+
+
+@each $color, $value in $colors {
+	@include bg-gradient-busra(".bg-gradient-busra", $value, $ignore-warning: true);
+}
+
+
 
 // Background colors with transparency
 

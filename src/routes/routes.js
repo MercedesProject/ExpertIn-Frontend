@@ -9,7 +9,7 @@ const routes = [{
         component: DashboardLayout,
         children: [{
                 path: '/dashboard',
-                name: 'Anasayfa',
+                name: '',
                 component: () =>
                     import ('../views/Dashboard.vue')
             },

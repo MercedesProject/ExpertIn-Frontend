@@ -99,7 +99,7 @@
         this.showMenu = false;
       },
       setBackgroundColor() {
-        document.body.classList.add('bg-gradient-success');
+        document.body.classList.add('bg-gradient-secondary');
       },
       removeBackgroundColor() {
         document.body.classList.remove('bg-default');

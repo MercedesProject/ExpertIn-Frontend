@@ -47,3 +47,4 @@
 @each $color, $value in $colors {
 	@include text-emphasis-variant(".text-#{$color}", $value);
 }
+
