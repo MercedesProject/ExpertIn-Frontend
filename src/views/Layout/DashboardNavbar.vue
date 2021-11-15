@@ -4,44 +4,35 @@
     class="navbar-top navbar-expand"
     :class="{'navbar-dark': type === 'default'}"
   >
-    <div class="d-flex justify-content-center " style="max-width:20%; max-height:20%"><img src="img/brand/logo.png" style="max-width:30%; max-height:20%">
+    <div class="d-flex justify-content-left ml-3 mr-n8" style="width:15%; height:20%"><img src="img/brand/logo.png" style="max-width:30%; max-height:20%">
     </div>
-             
-    
-    <!-- Navbar links -->
-    <b-navbar-nav class="align-items-center ml-md-auto">
-      <!-- This item dont have <b-nav-item> because item have data-action/data-target on tag <a>, wich we cant add -->
-      <li class="nav-item d-sm-none">
-        <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
-          <i class="ni ni-zoom-split-in"></i>
-        </a>
-      </li>
-    </b-navbar-nav>
 
-    <b-navbar-nav  class="align-items-lg-center ml-lg-auto">
+    <b-navbar-nav  class="align-items-lg-center mr-lg-auto">
            <b-nav-item to="/dashboard">
                <i class="ni ni-planet"></i>
-               <span class="nav-link-inner--text">Anasayfa</span>
+               <span class="nav-link-inner--text"> Anasayfa </span>
            </b-nav-item>
            <b-nav-item to="/tables">
                <i class="ni ni-briefcase-24"></i>
-               <span class="nav-link-inner--text">İlanlar</span>
+               <span class="nav-link-inner--text"> İlanlar </span>
            </b-nav-item>
            <b-nav-item to="/profile">
                <i class="ni ni-key-25"></i>
-               <span class="nav-link-inner--text">Başvurularım</span>
+               <span class="nav-link-inner--text"> Başvurularım </span>
            </b-nav-item>
             <b-nav-item to="/icons">
                <i class="ni ni-email-83"></i>
-               <span class="nav-link-inner--text">Mesajlar</span>
+               <span class="nav-link-inner--text"> Mesajlar </span>
            </b-nav-item>
+       </b-navbar-nav>
+       <b-navbar-nav  class="align-items-lg-center ml-lg-auto">
                <b-nav-item to="/login">
                <i class="ni ni-key-25 text-info"></i>
-               <span class="nav-link-inner--text">Login</span>
+               <span class="nav-link-inner--text"> Login </span>
            </b-nav-item>
             <b-nav-item to="/register">
                <i class="ni ni-circle-08 text-pink"></i>
-               <span class="nav-link-inner--text">Register</span>
+               <span class="nav-link-inner--text"> Register </span>
            </b-nav-item>
 
        </b-navbar-nav>
