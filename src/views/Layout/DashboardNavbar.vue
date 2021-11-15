@@ -18,7 +18,7 @@
            </b-nav-item>
            <b-nav-item to="/profile">
                <i class="ni ni-key-25"></i>
-               <span class="nav-link-inner--text"> Başvurularım </span>
+               <span class="nav-link-inner--text"> My Profile </span>
            </b-nav-item>
             <b-nav-item to="/icons">
                <i class="ni ni-email-83"></i>
