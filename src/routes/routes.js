@@ -50,7 +50,6 @@ const routes = [{
                 component: () =>
                     import ('../views/Pages/Register.vue')
             },
-            { path: '*', component: NotFound }
         ]
     }, 
     {
