@@ -2,44 +2,20 @@
   <div class =bg-gradient-busra>
     <!-- Header -->
     <div class="header py-7 py-lg-8">
-      
-      <!-- <b-container class="container">
-        <div class="header-body text-center mb-7">
-          <b-row class="justify-content-center">
-            <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-white">Create an account</h1>
-              <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for
-                free.</p>
-            </b-col>
-          </b-row>
-        </div>
-      </b-container> -->
-      <!-- <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
-             xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div> -->
     </div>
     <!-- Page content -->
-    <b-container class="mt--8 pb-5">
+    <b-container class="mt--8">
       <!-- Table -->
       <b-row class="justify-content-center">
-        <b-col lg="6" md="8" >
+        <b-col md="5">
           <b-card no-body class="bg-secondary border-0">
-            <!-- <b-card-header class="bg-transparent pb-5">
-              
-            </b-card-header> -->
-            <b-card-body class="px-lg-5 py-lg-5">
-              <!-- <div class="text-center text-muted mb-4">
-                <small>Or sign up with credentials</small>
-              </div> -->
+            <b-card-body class="px-lg-5 py-lg-5" style="background-color: white;">
               <validation-observer v-slot="{handleSubmit}" ref="formValidator">
                 <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
                   <base-input alternative
                               class="mb-3"
                               prepend-icon="ni ni-hat-3"
-                              placeholder="Name"
+                              placeholder="  Name"
                               name="Name"
                               :rules="{required: true}"
                               v-model="model.name">
@@ -48,7 +24,7 @@
                   <base-input alternative
                               class="mb-3"
                               prepend-icon="ni ni-email-83"
-                              placeholder="Email"
+                              placeholder="  Email"
                               name="Email"
                               :rules="{required: true, email: true}"
                               v-model="model.email">
@@ -57,26 +33,22 @@
                   <base-input alternative
                               class="mb-3"
                               prepend-icon="ni ni-lock-circle-open"
-                              placeholder="password"
+                              placeholder="  Password"
                               type="password"
                               name="Password"
                               :rules="{required: true, min: 6}"
-                              v-model="model.password">
+                              v-model="model.password" >
                   </base-input>
                   <!-- <div class="text-muted font-italic"><small>password strength: <span
                     class="text-success font-weight-700">strong</span></small></div> -->
                   <b-row class=" my-4">
                     <b-col cols="12">
-                      <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
+                      <div class="text-muted text-center mt-2 mb-4"></div>
                         <div class="text-center">
-                          <a href="#" class="btn btn-neutral btn-icon mr-4">
-                            <span class="btn-inner--icon"><img src="img/icons/common/github.svg"></span>
-                            <span class="btn-inner--text">Github</span>
-                          </a>
                           <a href="#" class="btn btn-neutral btn-icon">
-                            <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
-                            <span class="btn-inner--text">Google</span>
-                          </a>
+                           <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
+                           <span class="btn-inner--text"> Sign up with Google</span>
+                         </a>
                         </div>
                       <div class="mt-4 mb-4">
                         <base-input :rules="{ required: { allowFalse: false } }" name=Privacy Policy>
@@ -85,7 +57,7 @@
                           </b-form-checkbox>
                         </base-input>
                         <div class="text-center">
-                         <b-button type="submit" variant="primary" class="mt-4">Create account</b-button>
+                         <b-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" type="submit" variant="primary" class="mt-4">Create account</b-button>
                         </div>
                       </div>
                     </b-col>
@@ -96,6 +68,10 @@
             </b-card-body>
           </b-card>
         </b-col>
+            <b-col md="2"></b-col>    
+         <b-col md="5">
+            <b-img src="img/theme/register.png" fluid />
+          </b-col>
       </b-row>
     </b-container>
   </div>

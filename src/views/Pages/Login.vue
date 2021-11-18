@@ -1,11 +1,11 @@
 <template>
   <div>
     <!-- Header -->
-    <div class="header bg-gradient-busra py-7  ">      
+    <div class="header bg-gradient-busra py-7">      
     </div>
     <div class="body bg-gradient-busra">
       <!-- Page content -->
-    <b-container class="mt--8 bg-gradient-busra">
+    <b-container class="mt--8 ">
        &nbsp;
       <b-row class="justify-content-center ">
           <b-col md="5">
@@ -14,7 +14,7 @@
           <b-col md="2"></b-col>  
         <b-col md="5" class="mb-5 mb-xl-0 ">
           <b-card no-body class="bg-secondary border-0 mb-0">
-            <b-card-header class="bg-transparent "  >
+            <b-card-header >
                &nbsp;
               <div class="btn-wrapper text-center ">
                 <a href="#" class="btn btn-neutral btn-icon">
@@ -23,7 +23,7 @@
                 </a>
               </div>
             </b-card-header>
-            <b-card-body class="px-lg-5 py-lg-5 ">
+            <b-card-body class="px-lg-5 py-lg-5" style="background-color: white;">
               
               <validation-observer v-slot="{handleSubmit}" ref="formValidator">
                 <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
@@ -32,7 +32,7 @@
                               name="Email"
                               :rules="{required: true, email: true}"
                               prepend-icon="ni ni-email-83"
-                              placeholder="Email"
+                              placeholder="  Email"
                               v-model="model.email">
                   </base-input>
 
@@ -41,11 +41,11 @@
                               name="Password"
                               :rules="{required: true, min: 6}"
                               prepend-icon="ni ni-lock-circle-open"
-                              type="password"
-                              placeholder="Password"
-                              v-model="model.password">
+                              type="Password"
+                              placeholder="  Password"
+                              v-model="model.password" style="background-color: #87960;"> 
                   </base-input>
-                  <b-form-checkbox style= "color" v-model="model.rememberMe">Remember me</b-form-checkbox>
+                  <b-form-checkbox v-model="model.rememberMe">Remember me</b-form-checkbox>
                   <div class="text-center">
                     <base-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
                   </div>
@@ -66,7 +66,7 @@
     </b-container>
     <div class="footer bg-gradient-busra"></div>
     </div>
-    
+     <div class="footer bg-gradient-busra"></div>
   </div>
   
 </template>
