@@ -1,28 +1,29 @@
 <template>
   <div>
     <!-- Header -->
-    <div class="header bg-gradient-success py-7  ">      
+    <div class="header bg-gradient-busra py-7  ">      
     </div>
-    <!-- Page content -->
-    <b-container class="mt--8">
+    <div class="body bg-gradient-busra">
+      <!-- Page content -->
+    <b-container class="mt--8 bg-gradient-busra">
        &nbsp;
-      <b-row class="justify-content-center">
+      <b-row class="justify-content-center ">
           <b-col md="5">
             <b-img src="img/theme/signin.png" fluid />
           </b-col>
           <b-col md="2"></b-col>  
-        <b-col md="5" class="mb-5 mb-xl-0">
+        <b-col md="5" class="mb-5 mb-xl-0 ">
           <b-card no-body class="bg-secondary border-0 mb-0">
-            <b-card-header class="bg-transparent"  >
+            <b-card-header class="bg-transparent "  >
                &nbsp;
-              <div class="btn-wrapper text-center">
+              <div class="btn-wrapper text-center ">
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
                   <span class="btn-inner--text"> Sign in with Google</span>
                 </a>
               </div>
             </b-card-header>
-            <b-card-body class="px-lg-5 py-lg-5">
+            <b-card-body class="px-lg-5 py-lg-5 ">
               
               <validation-observer v-slot="{handleSubmit}" ref="formValidator">
                 <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
@@ -44,7 +45,7 @@
                               placeholder="Password"
                               v-model="model.password">
                   </base-input>
-                  <b-form-checkbox style= "color"v-model="model.rememberMe">Remember me</b-form-checkbox>
+                  <b-form-checkbox style= "color" v-model="model.rememberMe">Remember me</b-form-checkbox>
                   <div class="text-center">
                     <base-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
                   </div>
@@ -63,7 +64,11 @@
         </b-col>
       </b-row>
     </b-container>
+    <div class="footer bg-gradient-busra"></div>
+    </div>
+    
   </div>
+  
 </template>
 <script>
   export default {

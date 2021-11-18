@@ -1,7 +1,8 @@
 <template>
-  <div class =bg-gradient-success>
+  <div class =bg-gradient-busra>
     <!-- Header -->
-    <div class="header py-7 py-lg-8 ">
+    <div class="header py-7 py-lg-8">
+      
       <!-- <b-container class="container">
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
