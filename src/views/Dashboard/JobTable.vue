@@ -283,7 +283,7 @@
       return item
     })
         },
-  changeBgWithStatus(){
+  changeBgWithStatus() {
         // this.items.forEach(function(obj)
         // { if(obj.isActive ===true){ obj._rowVariant = "success"; }
         // if(obj.isActive === false){ obj._rowVariant = "danger"; } });
