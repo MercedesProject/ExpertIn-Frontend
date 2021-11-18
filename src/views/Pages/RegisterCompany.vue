@@ -15,7 +15,7 @@
                   <base-input alternative
                               class="mb-3"
                               prepend-icon="ni ni-hat-3"
-                              placeholder="  Name"
+                              placeholder="  Company Name"
                               name="Name"
                               :rules="{required: true}"
                               v-model="model.name">
@@ -24,7 +24,7 @@
                   <base-input alternative
                               class="mb-3"
                               prepend-icon="ni ni-email-83"
-                              placeholder="  Email"
+                              placeholder="  Company Email"
                               name="Email"
                               :rules="{required: true, email: true}"
                               v-model="model.email">
@@ -74,7 +74,6 @@
           </b-col>
       </b-row>
     </b-container>
-    <div class="footer bg-gradient-busra"></div>
   </div>
 </template>
 <script>

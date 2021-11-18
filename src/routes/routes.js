@@ -1,5 +1,6 @@
 import DashboardLayout from '@/views/Layout/DashboardLayout.vue';
 import AuthLayout from '@/views/Pages/AuthLayout.vue';
+import AuthLayoutForCompany from '@/views/Pages/AuthLayoutForCompany.vue';
 
 import NotFound from '@/views/NotFoundPage.vue';
 
@@ -51,7 +52,26 @@ const routes = [{
             },
             { path: '*', component: NotFound }
         ]
-    }
+    }, 
+    {
+        path: '/',
+        redirect: 'logincompany',
+        component: AuthLayoutForCompany,
+        children: [{
+                path: '/logincompany',
+                name: 'logincompany',
+                component: () =>
+                    import ('../views/Pages/LoginCompany.vue')
+            },
+            {
+                path: '/registercompany',
+                name: 'registercompany',
+                component: () =>
+                    import ('../views/Pages/RegisterCompany.vue')
+            },
+            { path: '*', component: NotFound }
+        ]
+    }    
 ];
 
 export default routes;

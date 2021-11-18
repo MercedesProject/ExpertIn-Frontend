@@ -30,7 +30,7 @@
                <i class="ni ni-key-25 text-info"></i>
                <span class="nav-link-inner--text"> Login </span>
            </b-nav-item>
-            <b-nav-item to="/register">
+            <b-nav-item to="/registercompany">
                <i class="ni ni-circle-08 text-pink"></i>
                <span class="nav-link-inner--text"> Register </span>
            </b-nav-item>
