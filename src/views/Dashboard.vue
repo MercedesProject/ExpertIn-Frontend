@@ -72,7 +72,6 @@
           <job-table></job-table>
         </b-col>
       </b-row>
-     <content-footer v-if="!$route.meta.hideFooter"></content-footer>  
      </b-container>
 
   </div>
@@ -90,9 +89,6 @@
   import SocialTrafficTable from './Dashboard/SocialTrafficTable';
   import PageVisitsTable from './Dashboard/PageVisitsTable';
   import JobTable from './Dashboard/JobTable.vue';
-  import AdvertCard from '../components/Cards/AdvertCard.vue';
-  import FavCard from '../components/Cards/FavCard.vue';
-import LightTableVue from './Tables/RegularTables/LightTable.vue';
  
 
   export default {
@@ -104,8 +100,6 @@ import LightTableVue from './Tables/RegularTables/LightTable.vue';
      PageVisitsTable,
      SocialTrafficTable,
      JobTable,
-     AdvertCard,
-     FavCard,
     },
     data() {
       return {
