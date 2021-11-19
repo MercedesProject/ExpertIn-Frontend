@@ -54,13 +54,25 @@
     </base-header>
 
     <b-container fluid class="bg-white">
-       <b-row class="mt-2">
-        <b-col xl="8" class="mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
+       <!-- <b-row class="mt-2 justify-content-center">
+        <b-col xl="5" class="mt-5 mb-5 mb-xl-0 " border-variant="success" header="Success" align="center">
+          <advert-card></advert-card>
+        </b-col>
+        <b-col xl="5" class="mt-5 mb-5 mb-xl-0 offset-xl-1" border-variant="success" header="Success" align="center">
+          <fav-card></fav-card>
+        </b-col>
+      </b-row> -->
+       <b-row class="">
+        <b-col xl="6" class="mt-5 mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
+          <label for="" class="w-100 border" style="border-color:#3698a3!important;">Başvurularım</label>
+          <job-table></job-table>
+        </b-col>
+        <b-col xl="6" class="mt-5 mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
+           <label for="" class="w-100 border" style="border-color:#3698a3!important;">Kaydedilenler</label>
           <job-table></job-table>
         </b-col>
       </b-row>
-
-     
+     <content-footer v-if="!$route.meta.hideFooter"></content-footer>  
      </b-container>
 
   </div>
@@ -76,8 +88,12 @@
   import StatsCard from '@/components/Cards/StatsCard';
 
   import SocialTrafficTable from './Dashboard/SocialTrafficTable';
- import PageVisitsTable from './Dashboard/PageVisitsTable';
- import JobTable from './Dashboard/JobTable.vue';
+  import PageVisitsTable from './Dashboard/PageVisitsTable';
+  import JobTable from './Dashboard/JobTable.vue';
+  import AdvertCard from '../components/Cards/AdvertCard.vue';
+  import FavCard from '../components/Cards/FavCard.vue';
+import LightTableVue from './Tables/RegularTables/LightTable.vue';
+ 
 
   export default {
     components: {
@@ -87,7 +103,9 @@
       StatsCard,
      PageVisitsTable,
      SocialTrafficTable,
-     JobTable
+     JobTable,
+     AdvertCard,
+     FavCard,
     },
     data() {
       return {

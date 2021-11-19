@@ -1,5 +1,7 @@
 <template>
-  <b-container fluid class="bv-example-row">
+  <b-container  class="bv-example-row border mb-4" style="border-color:#3698a3 !important;">
+  <!-- <b-container fluid class="bv-example-row border border-success"> -->
+    
     <!-- User Interface controls -->
     <b-row class="lg-6">
         <b-col  md="6" class="my-1">
@@ -47,62 +49,9 @@
               </template>
             </b-form-select>
 
-            <!-- <b-form-select
-              v-model="sortDesc"
-              :disabled="!sortBy"
-              :aria-describedby="ariaDescribedby"
-              size="sm"
-              class="w-25"
-            >
-              <option :value="false">Asc</option>
-              <option :value="true">Desc</option>
-            </b-form-select> -->
           </b-input-group>
         </b-form-group>
       </b-col>
-
-      <!-- <b-col lg="6" class="my-1">
-        <b-form-group
-          label="Initial sort"
-          label-for="initial-sort-select"
-          label-cols-sm="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-        >
-          <b-form-select
-            id="initial-sort-select"
-            v-model="sortDirection"
-            :options="['asc', 'desc', 'last']"
-            size="sm"
-          ></b-form-select>
-        </b-form-group>
-      </b-col> -->
-
-    
-
-      <!-- <b-col lg="6" class="my-1">
-        <b-form-group
-          v-model="sortDirection"
-          label="Filter On"
-          description="Leave all unchecked to filter on all data"
-          label-cols-sm="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-          v-slot="{ ariaDescribedby }"
-        >
-          <b-form-checkbox-group
-            v-model="filterOn"
-            :aria-describedby="ariaDescribedby"
-            class="mt-1"
-          >
-            <b-form-checkbox value="name">Name</b-form-checkbox>
-            <b-form-checkbox value="age">Age</b-form-checkbox>
-            <b-form-checkbox value="isActive">Active</b-form-checkbox>
-          </b-form-checkbox-group>
-        </b-form-group>
-      </b-col> -->
     </b-row>
     <b-row class="lg-6">
 
@@ -124,7 +73,7 @@
       show-empty
       small
       @filtered="onFiltered"
-      class="table b-table table-hover table-sticky-header table-bordered thead-dark"
+      class=" b-table table-hover table-sticky-header table-bordered thead-dark"
     >
       <template #cell(name)="row">
         {{ row.value.first }} {{ row.value.last }}
@@ -158,7 +107,7 @@
         </b-card>
       </template>
     </b-table>
-    <b-row align-h="end">
+    <b-row align-h="end" class="mr-4">
         <b-col sm="2" md="2" class="my-1">
         <b-form-group
           label-for="per-page-select"
@@ -206,37 +155,37 @@
             name: 'flip-list'
         },
         items: [
-          { isActive: true, age: 40, name: { first: 'Dickerson', last: 'Macdonald' } },
-          { isActive: false, age: 21, name: { first: 'Larsen', last: 'Shaw' },},
+          { status: true, jobType: 40, name: { first: 'Dickerson', last: 'Macdonald' } },
+          { status: false, jobType: 21, name: { first: 'Larsen', last: 'Shaw' },},
           {
-            isActive: false,
-            age: 9,
+            status: false,
+            jobType: 9,
             name: { first: 'Mini', last: 'Navarro' },
           },
-          { isActive: false, age: 89, name: { first: 'Geneva', last: 'Wilson' } },
-          { isActive: true, age: 38, name: { first: 'Jami', last: 'Carney' } },
-          { isActive: false, age: 27, name: { first: 'Essie', last: 'Dunlap' } },
-          { isActive: true, age: 40, name: { first: 'Thor', last: 'Macdonald' } },
+          { status: false, jobType: 89, name: { first: 'Geneva', last: 'Wilson' } },
+          { status: true, jobType: 38, name: { first: 'Jami', last: 'Carney' } },
+          { status: false, jobType: 27, name: { first: 'Essie', last: 'Dunlap' } },
+          { status: true, jobType: 40, name: { first: 'Thor', last: 'Macdonald' } },
           {
-            isActive: true,
-            age: 87,
+            status: true,
+            jobType: 87,
             name: { first: 'Larsen', last: 'Shaw' },
-            _cellVariants: { age: 'danger', isActive: 'warning' }
+            // _cellVariants: { jobType: 'danger', status: 'warning' }
           },
-          { isActive: false, age: 26, name: { first: 'Mitzi', last: 'Navarro' } },
-          { isActive: false, age: 22, name: { first: 'Genevieve', last: 'Wilson' } },
-          { isActive: true, age: 38, name: { first: 'John', last: 'Carney' } },
-          { isActive: false, age: 29, name: { first: 'Dick', last: 'Dunlap' } }
+          { status: false, jobType: 26, name: { first: 'Mitzi', last: 'Navarro' } },
+          { status: false, jobType: 22, name: { first: 'Genevieve', last: 'Wilson' } },
+          { status: true, jobType: 38, name: { first: 'John', last: 'Carney' } },
+          { status: false, jobType: 29, name: { first: 'Dick', last: 'Dunlap' } }
         ],
         fields: [
            { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center", },
           { key: 'name', label: 'Firma', sortable: true, sortDirection: 'desc',class:"text-center" },
-          { key: 'age', label: 'İş Tanımı', sortable: true, class: 'text-center' },
+          { key: 'jobType', label: 'İş Tanımı', sortable: true, class: 'text-center' },
           { key: 'position', label: 'Pozisyon', sortable: true, class: 'text-center' },
           { key: 'kontenjan', label: 'Kontenjan', sortable: true, class: 'text-center' },
           { key: 'actions', label: 'Actions', class:"text-center", },
           {
-            key: 'isActive',
+            key: 'status',
             label: 'Status',
             formatter: (value, key, item) => {
               return value ? 'Yes' : 'No'
@@ -285,12 +234,12 @@
         },
   changeBgWithStatus() {
         // this.items.forEach(function(obj)
-        // { if(obj.isActive ===true){ obj._rowVariant = "success"; }
-        // if(obj.isActive === false){ obj._rowVariant = "danger"; } });
+        // { if(obj.status ===true){ obj._rowVariant = "success"; }
+        // if(obj.status === false){ obj._rowVariant = "danger"; } });
         this.items.forEach(function(obj)
-        { if(obj.isActive ===true){ obj._cellVariants = { isActive: 'success' } }
-        if(obj.isActive === false){ obj._cellVariants = { isActive: 'danger'} } });
-      
+        { if(obj.status ===true){ obj._cellVariants = { status: 'success' } }
+        if(obj.status === false){ obj._cellVariants = { status: 'danger'} } });
+        return null;
     }
    
     },
@@ -300,12 +249,12 @@
     //    this.remoteConfig = null;
     //     this.remoteRows = null;
         this.loading = true;
-        axios.get("https://api.coindesk.com/v1/bpi/currentprice.json").then((response)=>{
-            // this.remoteRows = response.data.rows;
-            // this.remoteConfig = response.data.config;
-            this.loading = false;
-            console.log(response);
-        });
+        // axios.get("https://api.coindesk.com/v1/bpi/currentprice.json").then((response)=>{
+        //     // this.remoteRows = response.data.rows;
+        //     // this.remoteConfig = response.data.config;
+        //     this.loading = false;
+        //     console.log(response);
+        // });
     },
     methods: {
       info(item, index, button) {
@@ -318,7 +267,6 @@
         this.infoModal.content = ''
       },
       onFiltered(filteredItems) {
-        // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
         this.currentPage = 1
       },

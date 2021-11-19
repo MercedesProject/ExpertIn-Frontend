@@ -1,22 +1,22 @@
 import LandingPage from '@/views/Pages/LandingPage.vue';
 import DashboardLayout from '@/views/Layout/DashboardLayout.vue';
 import AuthLayout from '@/views/Pages/AuthLayout.vue';
-
+import AuthLayoutForCompany from '@/views/Pages/AuthLayoutForCompany.vue';
 import NotFound from '@/views/NotFoundPage.vue';
 
 const routes = [{
         path: '/',
-        redirect:'landingpage',
+        redirect: 'landingpage',
         component: LandingPage,
         children: [{
-                path:'/landingpage',
-                name:'',
-                component: ()=> 
-                    import('../views/Pages/LandingPage.vue')
+            path: '/landingpage',
+            name: '',
+            component: () =>
+                import ('../views/Pages/LandingPage.vue')
         }]
     },
 
-       {
+    {
         path: '/',
         redirect: 'dashboard',
         component: DashboardLayout,
@@ -61,6 +61,24 @@ const routes = [{
                 name: 'register',
                 component: () =>
                     import ('../views/Pages/Register.vue')
+            },
+        ]
+    },
+    {
+        path: '/',
+        redirect: 'logincompany',
+        component: AuthLayoutForCompany,
+        children: [{
+                path: '/logincompany',
+                name: 'logincompany',
+                component: () =>
+                    import ('../views/Pages/LoginCompany.vue')
+            },
+            {
+                path: '/registercompany',
+                name: 'registercompany',
+                component: () =>
+                    import ('../views/Pages/RegisterCompany.vue')
             },
             { path: '*', component: NotFound }
         ]
