@@ -58,7 +58,7 @@
               <router-link to="/dashboard" class="text-dark"><small>Forgot password?</small></router-link>
             </b-col>
             <b-col cols="6" class="text-right">
-              <router-link to="/register" class="text-dark"><small>Create new account</small></router-link>
+              <router-link to="/registercompany" class="text-dark"><small>Create new account</small></router-link>
             </b-col>
           </b-row>
         </b-col>

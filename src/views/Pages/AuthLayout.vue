@@ -2,7 +2,7 @@
   <div class="main-content bg-gradient-busra">
       <div slot="brand" class="navbar-wrapper" style="padding: 2%;">
         <b-navbar-brand to="/">
-          <img style="width:270px; height: 70px" src="img/brand/logo_company.png">
+          <img style="width:210px; height: 70px" src="img/brand/logo_employee.png">
         </b-navbar-brand>
       </div>
 
@@ -11,7 +11,7 @@
          <b-row>
            <b-col cols="6" class="collapse-brand">
              <router-link to="/">
-               <img src="img/brand/logo.png">
+               <img src="img/brand/logo_employee.png">
              </router-link>
            </b-col>
            <b-col cols="6" class="collapse-close">

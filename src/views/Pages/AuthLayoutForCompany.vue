@@ -1,15 +1,8 @@
 <template>
-  <div class="main-content bg-gradient-success">
-    <base-nav
-      v-model="showMenu"
-      :transparent="true"
-      menu-classes="justify-content-end"
-      class="navbar-horizontal navbar-main navbar-top navbar-dark"
-      expand="lg"
-    >
-      <div slot="brand" class="navbar-wrapper">
+  <div class="main-content bg-gradient-busra">
+      <div slot="brand" class="navbar-wrapper" style="padding: 2%;">
         <b-navbar-brand to="/">
-          <img src="img/brand/logo_company.png">
+ <img style="width:270px; height: 70px" src="img/brand/logo_company.png">
         </b-navbar-brand>
       </div>
 
@@ -18,7 +11,7 @@
          <b-row>
            <b-col cols="6" class="collapse-brand">
              <router-link to="/">
-               <img src="img/brand/logo_company.png">
+ <img style="width:270px; height: 70px" src="img/brand/logo_company.png">
              </router-link>
            </b-col>
            <b-col cols="6" class="collapse-close">
@@ -30,7 +23,6 @@
          </b-row>
        </div>
      </template>
-    </base-nav>
 
     <div class="main-content bg-gradient-success">
       <zoom-center-transition

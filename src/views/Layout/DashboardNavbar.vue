@@ -30,9 +30,9 @@
                <i class="ni ni-key-25 text-info"></i>
                <span class="nav-link-inner--text"> Login </span>
            </b-nav-item>
-            <b-nav-item to="/registercompany">
+            <b-nav-item to="/logincompany">
                <i class="ni ni-circle-08 text-pink"></i>
-               <span class="nav-link-inner--text"> Register </span>
+               <span class="nav-link-inner--text"> For Company </span>
            </b-nav-item>
 
        </b-navbar-nav>

@@ -45,10 +45,10 @@ const routes = [{
                     import ('../views/Pages/Login.vue')
             },
             {
-                path: '/register',
-                name: 'register',
+                path: '/logincompany',   //
+                name: 'logincompany',
                 component: () =>
-                    import ('../views/Pages/Register.vue')
+                    import ('../views/Pages/LoginCompany.vue')
             },
         ]
     }, 
