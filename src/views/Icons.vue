@@ -1192,7 +1192,7 @@
 
   Vue.use(VueClipboard)
   export default {
-    name: 'icons',
+    name: 'messages',
     components: {
       BaseHeader
     },
