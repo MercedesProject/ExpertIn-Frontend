@@ -70,7 +70,7 @@
         </b-col>
             <b-col md="2"></b-col>    
          <b-col md="5">
-            <b-img src="img/theme/register.png" fluid />
+            <b-img src="img/theme/company_register.png" fluid />
           </b-col>
       </b-row>
     </b-container>

@@ -9,7 +9,7 @@
        &nbsp;
       <b-row class="justify-content-center ">
           <b-col md="5">
-            <b-img src="img/theme/signin.png" fluid />
+            <b-img src="img/theme/company_login.png" fluid />
           </b-col>
           <b-col md="2"></b-col>  
         <b-col md="5" class="mb-5 mb-xl-0 ">
