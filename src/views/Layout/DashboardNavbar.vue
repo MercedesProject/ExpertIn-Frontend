@@ -20,7 +20,7 @@
                <i class="ni ni-key-25"></i>
                <span class="nav-link-inner--text"> My Profile </span>
            </b-nav-item>
-            <b-nav-item to="/icons">
+            <b-nav-item to="/messages">
                <i class="ni ni-email-83"></i>
                <span class="nav-link-inner--text"> Mesajlar </span>
            </b-nav-item>
