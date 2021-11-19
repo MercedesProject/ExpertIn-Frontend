@@ -64,11 +64,11 @@
       </b-row> -->
        <b-row class="">
         <b-col xl="6" class="mt-5 mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
-          <label for="" class="w-100 border" style="border-color:#3698a3!important;">Başvurularım</label>
+          <label for="" class="w-100 border rounded" style="border-color:#3698a3!important;">Başvurularım</label>
           <job-table></job-table>
         </b-col>
         <b-col xl="6" class="mt-5 mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
-           <label for="" class="w-100 border" style="border-color:#3698a3!important;">Kaydedilenler</label>
+           <label for="" class="w-100 border rounded" style="border-color:#3698a3!important;">Kaydedilenler</label>
           <job-table></job-table>
         </b-col>
       </b-row>

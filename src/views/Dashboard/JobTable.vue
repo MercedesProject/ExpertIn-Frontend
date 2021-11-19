@@ -1,5 +1,5 @@
 <template>
-  <b-container  class="bv-example-row border mb-4" style="border-color:#3698a3 !important;">
+  <b-container  class="bv-example-row border rounded mb-4" style="border-color:#3698a3 !important;">
   <!-- <b-container fluid class="bv-example-row border border-success"> -->
     
     <!-- User Interface controls -->
@@ -107,7 +107,7 @@
         </b-card>
       </template>
     </b-table>
-    <b-row align-h="end" class="mr-4">
+    <b-row align-h="end" class="mr-5">
         <b-col sm="2" md="2" class="my-1">
         <b-form-group
           label-for="per-page-select"
