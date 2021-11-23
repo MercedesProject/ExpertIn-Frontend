@@ -2,6 +2,7 @@ import LandingPage from '@/views/Pages/LandingPage.vue';
 import DashboardLayout from '@/views/Layout/DashboardLayout.vue';
 import AuthLayout from '@/views/Pages/AuthLayout.vue';
 import AuthLayoutForCompany from '@/views/Pages/AuthLayoutForCompany.vue';
+import ForgotPassword from '@/views/Pages/ForgotPassword.vue';
 import NotFound from '@/views/NotFoundPage.vue';
 
 const routes = [{
@@ -62,6 +63,12 @@ const routes = [{
                 component: () =>
                     import ('../views/Pages/Register.vue')
             },
+            {
+                path: '/forgotpassword',
+                name: '',
+                component: () =>
+                import ('../views/Pages/ForgotPassword.vue')
+            }
         ]
     },
     {
@@ -79,6 +86,12 @@ const routes = [{
                 name: 'registercompany',
                 component: () =>
                     import ('../views/Pages/RegisterCompany.vue')
+            },
+            {
+                path: '/forgotpassword',
+                name: '',
+                component: () =>
+                import ('../views/Pages/ForgotPassword.vue')
             },
             { path: '*', component: NotFound }
         ]
