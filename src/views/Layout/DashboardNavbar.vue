@@ -10,11 +10,11 @@
     <b-navbar-nav  class="align-items-lg-center mr-lg-auto">
            <b-nav-item to="/dashboard">
                <i class="ni ni-planet"></i>
-               <span class="nav-link-inner--text"> Anasayfa </span>
+               <span class="nav-link-inner--text"> Home </span>
            </b-nav-item>
            <b-nav-item to="/tables">
                <i class="ni ni-briefcase-24"></i>
-               <span class="nav-link-inner--text"> İlanlar </span>
+               <span class="nav-link-inner--text"> Jobs </span>
            </b-nav-item>
            <b-nav-item to="/profile">
                <i class="ni ni-key-25"></i>
@@ -22,7 +22,7 @@
            </b-nav-item>
             <b-nav-item to="/messages">
                <i class="ni ni-email-83"></i>
-               <span class="nav-link-inner--text"> Mesajlar </span>
+               <span class="nav-link-inner--text"> Messages </span>
            </b-nav-item>
        </b-navbar-nav>
        <b-navbar-nav  class="align-items-lg-center ml-lg-auto">
