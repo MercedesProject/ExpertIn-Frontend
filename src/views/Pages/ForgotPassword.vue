@@ -31,10 +31,17 @@
                               v-model="model.email">
                   </base-input>
                   <div class="text-center">
-                    <base-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Reset Password</base-button>
+                    <base-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Reset Password</base-button> 
                   </div>
                 </b-form>
               </validation-observer>
+                <h4  class="text-center"><button 
+  type="button"    
+  @click="hasHistory() 
+    ? $router.go(-1) 
+    : $router.push('/')" class="my-5 btn btn-outline-success">&laquo; 
+  Back to Login
+</button></h4>
             </b-card-body>
           </b-card>
         </b-col>
@@ -63,7 +70,8 @@
       async login(){
         const googleUser = await this.$gAuth.signIn()
         console.log("googleUser", googleUser);
-      }
+      },
+       hasHistory () { return window.history.length > 2 }
     }
   };
 </script>
