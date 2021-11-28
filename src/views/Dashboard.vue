@@ -5,8 +5,8 @@
       <b-row class="justify-content-center">
         
         <b-col xl="3" md="6">
-          <router-link to="/tables">
-          <stats-card title="İlan Sayısı"
+          <router-link to="/dashboard">
+          <stats-card title="Jobs"
                       type="gradient-orange"
                       sub-title="2,356"
                       icon="ni ni-single-copy-04"
@@ -17,8 +17,8 @@
              </router-link>
         </b-col>
         <b-col xl="3" md="6">
-          <router-link to="/tables">
-          <stats-card title="Başvurularım"
+          <router-link to="/applications">
+          <stats-card title="My Applications"
                       type="gradient-green"
                       sub-title="3"
                       icon="ni ni-active-40"
@@ -31,8 +31,21 @@
           </router-link>
         </b-col>
         <b-col xl="3" md="6">
+          <router-link to="/favourites">
+          <stats-card title="My Favourites"
+                      type="gradient-red"
+                      sub-title="4"
+                      icon="ni ni-favourite-28"
+                      class="mb-4">
+
+            <template slot="footer">
+            </template>
+          </stats-card>
+          </router-link>
+        </b-col>
+        <b-col xl="3" md="6">
           <router-link to="/messages">
-          <stats-card title="Mesajlar"
+          <stats-card title="Messages"
                       type="gradient-info"
                       sub-title="5"
                       icon="ni ni-chat-round"
@@ -43,19 +56,7 @@
           </stats-card>
           </router-link>
         </b-col>
-        <b-col xl="3" md="6">
-          <router-link to="/profile">
-          <stats-card title="Profil Görüntülenme"
-                      type="gradient-red"
-                      sub-title="4"
-                      icon="ni ni-badge"
-                      class="mb-4">
-
-            <template slot="footer">
-            </template>
-          </stats-card>
-          </router-link>
-        </b-col>
+      
       </b-row>
     </base-header>
 

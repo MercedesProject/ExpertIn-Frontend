@@ -30,7 +30,7 @@
           </stats-card>
           </router-link>
         </b-col>
-         <b-col xl="3" md="6">
+          <b-col xl="3" md="6">
           <router-link to="/profile">
           <stats-card title="My Favourites"
                       type="gradient-red"
@@ -56,7 +56,7 @@
           </stats-card>
           </router-link>
         </b-col>
-       
+      
       </b-row>
     </base-header>
     <b-container fluid class="mt--7">

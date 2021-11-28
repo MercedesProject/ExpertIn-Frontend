@@ -40,10 +40,16 @@ const routes = [{
                     import ('../views/Pages/UserProfile.vue')
             },
             {
-                path: '/tables',
-                name: 'İlanlar',
+                path: '/applications',
+                name: 'MyApplications',
                 component: () =>
                     import ('../views/RegularTables.vue')
+            },
+            {
+                path: '/favourites',
+                name: 'MyFavourites',
+                component: () =>
+                    import ('../views/MyFavouritesTables.vue')
             }
         ]
     },
@@ -67,7 +73,7 @@ const routes = [{
                 path: '/forgotpassword',
                 name: '',
                 component: () =>
-                import ('../views/Pages/ForgotPassword.vue')
+                    import ('../views/Pages/ForgotPassword.vue')
             }
         ]
     },
@@ -91,7 +97,7 @@ const routes = [{
                 path: '/forgotpasswordcompany',
                 name: '',
                 component: () =>
-                import ('../views/Pages/ForgotPassword.vue')
+                    import ('../views/Pages/ForgotPassword.vue')
             },
             { path: '*', component: NotFound }
         ]
