@@ -2,11 +2,11 @@
   <!-- <b-container  class="bv-example-row border rounded mb-4" style="border-color:#3698a3 !important;"> -->
   <!-- <b-container fluid class="bv-example-row border border-success"> -->
   <b-card no-body style="border-width:1px;border-color:#7e65c2">
-        <b-card-header class="border-0 border-primary">
+        <b-card-header class="border-0 border-primary" >
             <h3 class="mb-0 text-center" style="color:#7e65c2;">My Applications</h3>
         </b-card-header>  
     <!-- User Interface controls -->
-    <b-row class="lg-6">
+    <b-row class="lg-6 mb-1">
         <b-col  md="6" class="my-1">
         <b-form-group
           
@@ -46,8 +46,8 @@
               :options="sortOptions"
               :aria-describedby="ariaDescribedby"
               class="w-75"
-              :a = changeBgWithStatus2
               style="background-color:#7e65c2; color:white;"
+              :a = changeBgWithStatus2
             >
               <template #first>
                 <option value="">Sort</option>
@@ -56,11 +56,10 @@
 
           </b-input-group>
         </b-form-group>
+        
       </b-col>
     </b-row>
-    <b-row class="lg-6">
-
-    </b-row>
+    
     <!-- Main table element -->
     <b-table
       :items="items"
@@ -116,34 +115,35 @@
       </template>
     </b-table>
     <b-row align-h="end" class="mr-5">
-        <b-col sm="2" md="2" class="my-1">
-        <b-form-group
-          label-for="per-page-select"
-          label-cols-sm="6"
-          label-cols-md="4"
-          label-cols-lg="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-        >
-          <b-form-select
-            id="per-page-select"
-            v-model="perPage"
-            :options="pageOptions"
+      <b-col sm="4" md="4" class="my-1 mt-2">
+          <b-pagination
+            v-model="currentPage"
+            :total-rows="totalRows"
+            :per-page="perPage"
+            align="fill"
             size="sm"
-          ></b-form-select>
-        </b-form-group>
-    </b-col>
-    <b-col sm="4" md="4" class="my-1">
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="totalRows"
-          :per-page="perPage"
-          align="fill"
-          size="sm"
-          class="my-0"
-        ></b-pagination>
-    </b-col>
+            class="my-0 customPagination"
+          ></b-pagination>
+      </b-col>
+      <b-col sm="1" md="1" class="my-1">
+          <!-- <b-form-group
+            label-for="per-page-select"
+            label-cols-sm="6"
+            label-cols-md="4"
+            label-cols-lg="3"
+            label-align-sm="right"
+            label-size="sm"
+            class="mb-0"
+          > -->
+            <b-form-select
+              id="per-page-select"
+              v-model="perPage"
+              :options="pageOptions"
+              size="sm"
+              class="customFormSelect mt-1"
+            ></b-form-select>
+          <!-- </b-form-group> -->
+      </b-col>
     </b-row>
     
 
@@ -188,7 +188,7 @@
           { status: false, jobType: 29, name: { first: 'Dick', last: 'Dunlap' } }
         ],
         fields: [
-           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center", },
+           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
           { key: 'name', label: 'Firma', sortable: true, sortDirection: 'desc',class:"text-center" },
           { key: 'jobType', label: 'İş Tanımı', sortable: true, class: 'text-center' },
           { key: 'position', label: 'Pozisyon', sortable: true, class: 'text-center' },
@@ -313,7 +313,47 @@
       console.log(obj.favourite);
       console.log(index);
       
-    }
+    },
+    getCustomObjectDetail(obj) {
+        this.$appAxios.get(String.format('/customobject/get?id={0}',obj.id))
+            .then((response) => {
+                this.customObjectData = response.data;
+                this.detailTitle =  response.data.name;
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+        },
     }
   }
 </script>
+<style>
+.customPagination> li >button
+{
+  color:white;
+ background-color:#7e65c2!important;
+}
+.customPagination> li >span
+{
+  color: white!important;;
+ background-color:#7e65c2!important;
+}
+.customPagination> li 
+{
+  flex: none!important;;
+}
+.customPagination
+{
+ float: right!important;
+}
+
+
+.customFormSelect 
+{
+  color:white;
+ background-color:#7e65c2!important;
+ 
+}
+
+
+</style>
