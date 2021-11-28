@@ -88,7 +88,7 @@ const routes = [{
                     import ('../views/Pages/RegisterCompany.vue')
             },
             {
-                path: '/forgotpassword',
+                path: '/forgotpasswordcompany',
                 name: '',
                 component: () =>
                 import ('../views/Pages/ForgotPassword.vue')

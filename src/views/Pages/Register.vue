@@ -1,13 +1,14 @@
 <template>
   <div class =bg-gradient-busra>
     <!-- Header -->
-    <div class="header py-7 py-lg-8">
+    <div class="header py-6 py-lg-6">
     </div>
     <!-- Page content -->
-    <b-container class="mt--8">
+    <b-container class="mt--9">
       <!-- Table -->
       <b-row class="justify-content-center">
         <b-col md="5">
+         <h1 style = "font-family:Lato; font-size: 250%; color: black; allign: center;" class="text-center">Sign Up</h1> 
           <b-card no-body class="bg-secondary border-0">
             <b-card-body class="px-lg-5 py-lg-5" style="background-color: white;">
               <validation-observer v-slot="{handleSubmit}" ref="formValidator">
@@ -53,7 +54,7 @@
                       <div class="mt-4 mb-4">
                         <base-input :rules="{ required: { allowFalse: false } }" name=Privacy Policy>
                           <b-form-checkbox v-model="model.agree">
-                            <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                            <span class="text-muted">I agree with the <a  style= "color: #3aaf85;" href="#!">Privacy Policy</a></span>
                           </b-form-checkbox>
                         </base-input>
                         <div class="text-center">
@@ -71,10 +72,10 @@
             <b-col md="2"></b-col>    
          <b-col md="5">
             <b-img src="img/theme/register.png" fluid />
+              <h4  class="text-center"> Already have an account? <router-link to="/login" style= "color:green;" class="text"><bold>Sign in</bold></router-link></h4>
           </b-col>
       </b-row>
     </b-container>
-    <div class="footer bg-gradient-busra"></div>
   </div>
 </template>
 <script>

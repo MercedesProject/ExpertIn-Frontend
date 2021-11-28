@@ -1,18 +1,22 @@
 <template>
   <div>
     <!-- Header -->
-    <div class="header bg-gradient-busra py-7">      
+    <div class="header bg-gradient-busra py-6">      
     </div>
     <div class="body bg-gradient-busra">
       <!-- Page content -->
     <b-container class="mt--8 ">
        &nbsp;
       <b-row class="justify-content-center ">
-          <b-col md="5">
+                  <b-col md="5">
+                  <!-- <h1 style = "font-family:Lato; font-size: 250%; color: black; allign: center;" class="text-center">Sign In to Expert In!</h1>    -->
             <b-img src="img/theme/company_login.png" fluid />
+                      <h4  class="text-center" >If you don't have an account yet</h4>
+                        <h4  class="text-center"> You can <router-link to="/registercompany" style= "color:green;" class="text"><bold>Register here!</bold></router-link></h4>
           </b-col>
           <b-col md="2"></b-col>  
         <b-col md="5" class="mb-5 mb-xl-0 ">
+           <h1 style = "font-family:Lato; font-size: 250%; color: black; padding-left: 10%" class="text-left">Sign In</h1> 
           <b-card no-body class="bg-secondary border-0 mb-0">
             <b-card-header >
                &nbsp;
@@ -45,6 +49,9 @@
                               placeholder="  Password"
                               v-model="model.password" style="background-color: #87960;"> 
                   </base-input>
+               <b-row  class="justify-content-end">
+              <router-link to="/forgotpasswordcompany" class="text-dark"><small>Forgot password?</small></router-link>
+            </b-row>
                   <b-form-checkbox v-model="model.rememberMe">Remember me</b-form-checkbox>
                   <div class="text-center">
                     <base-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
@@ -53,20 +60,11 @@
               </validation-observer>
             </b-card-body>
           </b-card>
-          <b-row class="mt-3">
-            <b-col cols="6">
-              <router-link to="/dashboard" class="text-dark"><small>Forgot password?</small></router-link>
-            </b-col>
-            <b-col cols="6" class="text-right">
-              <router-link to="/registercompany" class="text-dark"><small>Create new account</small></router-link>
-            </b-col>
-          </b-row>
         </b-col>
       </b-row>
     </b-container>
-    <div class="footer bg-gradient-busra"></div>
+    <!-- <div class="footer bg-gradient-busra"></div> -->
     </div>
-     <div class="footer bg-gradient-busra"></div>
   </div>
   
 </template>

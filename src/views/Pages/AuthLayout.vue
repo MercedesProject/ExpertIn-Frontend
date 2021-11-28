@@ -14,18 +14,10 @@
                <img src="img/brand/logo_employee.png">
              </router-link>
            </b-col>
-           <b-col cols="6" class="collapse-close">
-             <button type="button" class="navbar-toggler" @click="showMenu = false">
-               <span></span>
-               <span></span>
-             </button>
-           </b-col>
          </b-row>
        </div>
      </template>
-
-
-    <div class="main-content bg-gradient-success">
+    <div class="main-content bg-gradient-busra">
       <zoom-center-transition
         :duration="pageTransitionDuration"
         mode="out-in"

@@ -53,7 +53,7 @@
                       <div class="mt-4 mb-4">
                         <base-input :rules="{ required: { allowFalse: false } }" name=Privacy Policy>
                           <b-form-checkbox v-model="model.agree">
-                            <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                            <span class="text-muted">I agree with the <a style= "color: #3aaf85;" href="#!">Privacy Policy</a></span>
                           </b-form-checkbox>
                         </base-input>
                         <div class="text-center">

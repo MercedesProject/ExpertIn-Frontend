@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div >
     <!-- Header -->
-    <div class="header bg-gradient-busra py-6">   
+    <div class="header bg-gradient-busra py-8">   
     </div>
     <div class="body bg-gradient-busra">
       <!-- Page content -->
