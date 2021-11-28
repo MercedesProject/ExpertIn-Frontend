@@ -1,7 +1,10 @@
 <template>
-  <b-container  class="bv-example-row border rounded mb-4" style="border-color:#3698a3 !important;">
+  <!-- <b-container  class="bv-example-row border rounded mb-4" style="border-color:#3698a3 !important;"> -->
   <!-- <b-container fluid class="bv-example-row border border-success"> -->
-    
+  <b-card no-body class="border border-info" >
+        <b-card-header class="border-0 border-primary">
+            <h3 class="mb-0 text-center">İlanlar</h3>
+        </b-card-header>  
     <!-- User Interface controls -->
     <b-row class="lg-6">
         <b-col  md="6" class="my-1">
@@ -40,9 +43,9 @@
               id="sort-by-select"
               v-model="sortBy"
               :options="sortOptions"
-              :a = changeBgWithStatus
               :aria-describedby="ariaDescribedby"
               class="w-75"
+              :a = changeBgWithStatus2
             >
               <template #first>
                 <option value="">Sort</option>
@@ -73,7 +76,7 @@
       show-empty
       small
       @filtered="onFiltered"
-      class=" b-table table-hover table-sticky-header table-bordered thead-dark"
+      class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
     >
       <template #cell(name)="row">
         {{ row.value.first }} {{ row.value.last }}
@@ -81,22 +84,25 @@
 
       <template #cell(actions)="row">
         <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-         <i class="ni ni-active-40"></i>
+         <i :id="`${row.index}`" class="ni ni-active-40"></i>
         </b-button>
         <b-button size="sm" @click="row.toggleDetails">
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
         </b-button>
       </template>
+      
+      <template #cell(status)="row">
+      <badge class="badge-dot mr-4"  type="">
+                        <i :class="`bg-${row.item.class}`"></i>
+                        <span class="status" :class="`text-${row.item.class}`">{{row.item.status}}</span>
+                    </badge>
+      </template>
 
-      <template #cell(favourites)="row">
-        <b-form-checkbox 
-      id=v-model
-      v-model="row.id"
-      name="checkbox"
-      value="accepted"
-      unchecked-value="not_accepted"
-    >
-    </b-form-checkbox>      
+      <template #cell(favourites)="row" >
+         <b-button @click="toggleFav(row.item,row.index)" class="bg-white">
+            <i v-if="row.item.favourite" class="fa fa-heart" style="color:red"></i>
+            <i v-else class="fa fa-heart" style="color:gray;"></i> 
+         </b-button>
       </template>
 
       <template #row-details="row">
@@ -143,11 +149,12 @@
     <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
       <pre>{{ infoModal.content }}</pre>
     </b-modal>
-  </b-container>
+    </b-card>
+  <!-- </b-container> -->
 </template>
 
 <script>
-    import axios from 'axios'
+  import axios from 'axios'
   export default {
     data() {
       return {
@@ -155,17 +162,18 @@
             name: 'flip-list'
         },
         items: [
-          { status: true, jobType: 40, name: { first: 'Dickerson', last: 'Macdonald' } },
-          { status: false, jobType: 21, name: { first: 'Larsen', last: 'Shaw' },},
+          { favourite: false ,status: "pending", jobType: 40, name: { first: 'Dickerson', last: 'Macdonald'} },
+          {favourite: true , status: "accepted", jobType: 21, name: { first: 'Larsen', last: 'Shaw' },},
           {
-            status: false,
+            favourite: false,
+            status: "denied",
             jobType: 9,
             name: { first: 'Mini', last: 'Navarro' },
           },
-          { status: false, jobType: 89, name: { first: 'Geneva', last: 'Wilson' } },
-          { status: true, jobType: 38, name: { first: 'Jami', last: 'Carney' } },
-          { status: false, jobType: 27, name: { first: 'Essie', last: 'Dunlap' } },
-          { status: true, jobType: 40, name: { first: 'Thor', last: 'Macdonald' } },
+          {favourite: false , status: "denied", jobType: 89, name: { first: 'Geneva', last: 'Wilson' } },
+          { favourite: true ,status: "accepted", jobType: 38, name: { first: 'Jami', last: 'Carney' } },
+          {favourite: false , status: false, jobType: 27, name: { first: 'Essie', last: 'Dunlap' } },
+          {favourite: true , status: true, jobType: 40, name: { first: 'Thor', last: 'Macdonald' } },
           {
             status: true,
             jobType: 87,
@@ -187,13 +195,14 @@
           {
             key: 'status',
             label: 'Status',
-            formatter: (value, key, item) => {
-              return value ? 'Yes' : 'No'
-            },
+            // formatter: (value, key, item) => {
+            //   return value ? 'Yes' : 'No'
+            // },
             sortable: true,
             sortByFormatted: true,
             filterByFormatted: true,
-            class:"text-center"
+            class:"text-center",
+           
           },
         ],
         totalRows: 1,
@@ -215,6 +224,7 @@
             remoteRows:[],
       }
     },
+    props:['is_fav'],
     computed: {
       sortOptions() {
         // Create an options list from our fields
@@ -228,21 +238,37 @@
     if (!this.requests) return []
     return this.requests.map(item => {
       item._rowVariant  = this.getVariant(item.Status);
+      item.status = this.getVariant(item.status);
       item.add
       return item
     })
         },
   changeBgWithStatus() {
-        // this.items.forEach(function(obj)
-        // { if(obj.status ===true){ obj._rowVariant = "success"; }
-        // if(obj.status === false){ obj._rowVariant = "danger"; } });
         this.items.forEach(function(obj)
         { if(obj.status ===true){ obj._cellVariants = { status: 'success' } }
         if(obj.status === false){ obj._cellVariants = { status: 'danger'} } });
+        // { if(obj.status ==="accepted"){ obj.a = "success"}
+        // else if(obj.status === "pending"){ obj.a = "success"}
+        // else{{ obj.a = "success"}}
+        // });
         return null;
-    }
-   
     },
+    changeBgWithStatus2() {
+        this.items.forEach(function(obj)
+        {
+        if(obj.status ==="pending")
+        { obj.class = "info"}
+        else if(obj.status === "accepted")
+        { obj.class ="success" }
+        else{
+          obj.class ="danger"
+        }
+        
+        });
+        
+        return null;
+    },
+     },
     mounted() {
       // Set the initial number of items
       this.totalRows = this.items.length
@@ -280,7 +306,12 @@
         return 'active'
       }
     },
-     
+    toggleFav(obj,index){
+      obj.favourite = !obj.favourite;
+      console.log(obj.favourite);
+      console.log(index);
+      
+    }
     }
   }
 </script>

@@ -1,21 +1,23 @@
 <template>
   <div>
-    <base-header class="pb-4 pt-5 pt-md-8 bg-gradient-success">
+    <base-header class="pb-8 pt-5 pt-md-8 bg-gradient-success">
        <!-- Card stats -->
       <b-row class="justify-content-center">
         
         <b-col xl="3" md="6">
+          <router-link to="/tables">
           <stats-card title="İlan Sayısı"
                       type="gradient-orange"
                       sub-title="2,356"
                       icon="ni ni-single-copy-04"
                       class="mb-4">
-
             <template slot="footer">
             </template>
           </stats-card>
+             </router-link>
         </b-col>
         <b-col xl="3" md="6">
+          <router-link to="/tables">
           <stats-card title="Başvurularım"
                       type="gradient-green"
                       sub-title="3"
@@ -26,9 +28,10 @@
             
             </template>
           </stats-card>
-
+          </router-link>
         </b-col>
         <b-col xl="3" md="6">
+          <router-link to="/messages">
           <stats-card title="Mesajlar"
                       type="gradient-info"
                       sub-title="5"
@@ -38,8 +41,10 @@
             <template slot="footer">
             </template>
           </stats-card>
+          </router-link>
         </b-col>
         <b-col xl="3" md="6">
+          <router-link to="/profile">
           <stats-card title="Profil Görüntülenme"
                       type="gradient-red"
                       sub-title="4"
@@ -49,28 +54,22 @@
             <template slot="footer">
             </template>
           </stats-card>
+          </router-link>
         </b-col>
       </b-row>
     </base-header>
 
-    <b-container fluid class="bg-white">
-       <!-- <b-row class="mt-2 justify-content-center">
-        <b-col xl="5" class="mt-5 mb-5 mb-xl-0 " border-variant="success" header="Success" align="center">
-          <advert-card></advert-card>
-        </b-col>
-        <b-col xl="5" class="mt-5 mb-5 mb-xl-0 offset-xl-1" border-variant="success" header="Success" align="center">
-          <fav-card></fav-card>
-        </b-col>
-      </b-row> -->
+    <b-container fluid class=" mt--7">
        <b-row class="">
-        <b-col xl="6" class="mt-5 mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
-          <label for="" class="w-100 border rounded" style="border-color:#3698a3!important;">Başvurularım</label>
-          <job-table></job-table>
+        <b-col xl="12" class=" mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
+          <!-- <light-table></light-table> -->
+          <!-- <application-table></application-table> -->
+          <job-table> </job-table>
         </b-col>
-        <b-col xl="6" class="mt-5 mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
+        <!-- <b-col xl="6" class="mt-5 mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
            <label for="" class="w-100 border rounded" style="border-color:#3698a3!important;">Kaydedilenler</label>
           <job-table></job-table>
-        </b-col>
+        </b-col> -->
       </b-row>
      </b-container>
 
@@ -89,6 +88,8 @@
   import SocialTrafficTable from './Dashboard/SocialTrafficTable';
   import PageVisitsTable from './Dashboard/PageVisitsTable';
   import JobTable from './Dashboard/JobTable.vue';
+  import LightTable from './Tables/RegularTables/LightTable.vue';
+  import ApplicationTable from './Tables/RegularTables/ApplicationTable.vue';
  
 
   export default {
@@ -100,9 +101,11 @@
      PageVisitsTable,
      SocialTrafficTable,
      JobTable,
+     LightTable,
+     ApplicationTable,
     },
     data() {
-      return {
+        return {
         bigLineChart: {
           allData: [
             [0, 20, 10, 30, 15, 40, 20, 60, 60],
