@@ -19,7 +19,10 @@
             <p class="text-white mt-0 mb-5">
               This is your profile page. You can add your projects and edit your skills and personal information.
             </p>
-            <a href="#!" class="btn btn-info">Edit profile</a>
+            <router-link to="/editprofilform"> 
+              <a href="#!" class="btn btn-info">Edit profile</a>
+            </router-link>
+            
           </div>
         </div>
       </div>

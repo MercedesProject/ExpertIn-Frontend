@@ -4,7 +4,9 @@ import AuthLayout from '@/views/Pages/AuthLayout.vue';
 import AuthLayoutForCompany from '@/views/Pages/AuthLayoutForCompany.vue';
 import ForgotPassword from '@/views/Pages/ForgotPassword.vue';
 import NotFound from '@/views/NotFoundPage.vue';
-
+import EditProfileForm from '@/views/Pages/UserProfile/EditProfileForm.vue';
+import CompanyProfile from '@/views/Pages/CompanyProfile/CompanyProfile.vue';
+import EditFormforCompany from '@/views/Pages/CompanyProfile/EditFormforCompany.vue';
 const routes = [{
         path: '/',
         redirect: 'landingpage',
@@ -37,7 +39,7 @@ const routes = [{
                 path: '/profile',
                 name: 'Profil',
                 component: () =>
-                    import ('../views/Pages/UserProfile.vue')
+                    import ('../views/Pages/UserProfile/UserProfile.vue')
             },
             {
                 path: '/applications',
@@ -52,6 +54,39 @@ const routes = [{
                     import ('../views/MyFavouritesTables.vue')
             }
         ]
+    },
+    {
+        path: '/',
+        redirect: 'editprofilform',
+        component: EditProfileForm,
+        children: [{
+            path: '/editprofilform',
+            name: '',
+            component: () =>
+                import ('../views/Pages/UserProfile/EditProfileForm.vue')
+        }]
+    },
+    {
+        path: '/',
+        redirect: 'companyprofile',
+        component: CompanyProfile,
+        children: [{
+            path: '/companyprofile',
+            name: '',
+            component: () =>
+                import ('../views/Pages/CompanyProfile/CompanyProfile.vue')
+        }]
+    },
+    {
+        path: '/',
+        redirect: 'editformforcompany',
+        component: EditFormforCompany,
+        children: [{
+            path: '/editformforcompany',
+            name: '',
+            component: () =>
+                import ('../views/Pages/CompanyProfile/EditFormforCompany.vue')
+        }]
     },
     {
         path: '/',

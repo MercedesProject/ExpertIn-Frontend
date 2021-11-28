@@ -32,6 +32,12 @@
     }
 }
 
+@mixin backg($parent, $color, $ignore-warning: true){
+    #{$parent}{
+        background-color: #8f3fb1c0;
+    }
+    
+}
 
 @mixin bg-translucent-variant($parent, $color, $ignore-warning: true) {
     #{$parent} {
