@@ -31,7 +31,7 @@
           </router-link>
         </b-col>
          <b-col xl="3" md="6">
-          <router-link to="/profile">
+          <router-link to="/favourites">
           <stats-card title="My Favourites"
                       type="gradient-red"
                       sub-title="4"
@@ -62,7 +62,7 @@
     <b-container fluid class="mt--7">
       <b-row>
         <b-col>
-          <job-table/>
+          <applications-table/>
         </b-col>
       </b-row>
     </b-container>
@@ -73,13 +73,14 @@
   import projects from './Tables/projects'
   import users from './Tables/users'
   import LightTable from "./Tables/RegularTables/LightTable";
-import JobTable from './Dashboard/JobTable.vue';
+  import ApplicationsTable from './Tables/RegularTables/ApplicationsTable.vue';
+   
  
  
   export default {
     components: {
       LightTable,
-      JobTable,
+      ApplicationsTable,
       [Dropdown.name]: Dropdown,
       [DropdownItem.name]: DropdownItem,
       [DropdownMenu.name]: DropdownMenu,

@@ -1,9 +1,9 @@
 <template>
   <!-- <b-container  class="bv-example-row border rounded mb-4" style="border-color:#3698a3 !important;"> -->
   <!-- <b-container fluid class="bv-example-row border border-success"> -->
-  <b-card no-body class="border border-info" >
+ <b-card no-body style="border-width:1px;border-color:#7e65c2">
         <b-card-header class="border-0 border-primary">
-            <h3 class="mb-0 text-center">İlanlar</h3>
+            <h3 class="mb-0 text-center" style="color:#7e65c2;">My Favourites</h3>
         </b-card-header>  
     <!-- User Interface controls -->
     <b-row class="lg-6">
@@ -22,10 +22,12 @@
               v-model="filter"
               type="search"
               placeholder="Type to Search"
+              style="background-color:white;color:#7e65c2;border-color:#7e65c2;"
+              
             ></b-form-input>
 
             <b-input-group-append>
-              <b-button  :disabled="!filter" @click="filter = ''" class="btn-info">Clear</b-button>
+              <b-button  :enabled="!filter" @click="filter = ''"  style="background-color:#7e65c2;color:white;border-width:1px;border-color:#7e65c2">Clear</b-button>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -46,6 +48,7 @@
               :aria-describedby="ariaDescribedby"
               class="w-75"
               :a = changeBgWithStatus2
+              style="background-color:#7e65c2; color:white;"
             >
               <template #first>
                 <option value="">Sort</option>

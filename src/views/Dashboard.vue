@@ -88,7 +88,7 @@
 
   import SocialTrafficTable from './Dashboard/SocialTrafficTable';
   import PageVisitsTable from './Dashboard/PageVisitsTable';
-  import JobTable from './Dashboard/JobTable.vue';
+  import JobTable from './Tables/RegularTables/JobsTable.vue';
   import LightTable from './Tables/RegularTables/LightTable.vue';
   import ApplicationTable from './Tables/RegularTables/ApplicationTable.vue';
  
