@@ -2,7 +2,7 @@
   <card>
     <b-row align-v="center" slot="header" >
       <b-col cols="8">
-        <h3 class="mb-0">Edit profile </h3>
+        <h2 class="mb-0">Edit profile </h2>
       </b-col>
       <b-col cols="4" class="text-right">
         <a href="#!" class="btn btn-sm btn-primary">Settings</a>
@@ -13,6 +13,16 @@
       <h6 class="heading-small text-muted mb-4">User information</h6>
 
       <div class="pl-lg-4">
+        <b-row>
+          
+          <div class="col-lg-6">
+            <base-button outline type="default">Resume Upload</base-button>
+          </div>
+          <div class="col-lg-6">
+            <base-button outline type="default">Import from Linkedin</base-button>
+          </div>
+          
+        </b-row>
         <b-row>
           <b-col lg="6">
             <base-input
@@ -33,8 +43,27 @@
             </base-input>
           </b-col>
         </b-row>
+        
         <b-row >
           <b-col lg="6">
+            
+            <base-dropdown>
+              <template v-slot:title>
+                
+                <base-input
+                  type="text"
+                  placeholder=""
+                  v-model="user.title"
+                >
+                </base-input>
+              </template>
+              <a class="dropdown-item" href="#">Student</a>
+              <a class="dropdown-item" href="#">Junior Developer</a>
+              <a class="dropdown-item" href="#">Senior Developer</a>
+            </base-dropdown>
+            
+          </b-col>
+          <b-col lg="3">
             <base-input
               type="text"
               label="First Name"
@@ -43,7 +72,7 @@
             >
             </base-input>
           </b-col>
-          <b-col lg="6">
+          <b-col lg="3">
             <base-input
               type="text"
               label="Last Name"
@@ -53,6 +82,35 @@
             </base-input>
           </b-col>
         </b-row>
+        <b-row>
+          <b-col lg="6">
+            <base-input
+              type="text"
+              label="GitHub Link"
+              placeholder="github.com/busrasari"
+              v-model="user.github"
+            >
+            </base-input>
+          </b-col>
+          <b-col lg="6">
+            <base-input
+              type="email"
+              label="Linkedin Link"
+              placeholder="https://www.linkedin.com/in/busrasari/"
+              v-model="user.linkedin"
+            >
+            </base-input>
+          </b-col>
+        </b-row>
+      </div>
+      <hr class="my-4">
+      <!-- Description -->
+      <h6 class="heading-small text-muted mb-4">About me</h6>
+      <div class="pl-lg-4">
+        <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
+         <!--  <label class="form-control-label">About Me</label> -->
+          <b-form-textarea rows="4" value="A beautiful premium dashboard for BootstrapVue." id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+        </b-form-group>
       </div>
       <hr class="my-4">
 
@@ -100,16 +158,274 @@
           </b-col>
         </b-row>
       </div>
-
       <hr class="my-4">
-      <!-- Description -->
-      <h6 class="heading-small text-muted mb-4">About me</h6>
+<!-- Education -->
+      <h6 class="heading-small text-muted mb-4">Education Information</h6>
+
       <div class="pl-lg-4">
-        <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
-         <!--  <label class="form-control-label">About Me</label> -->
-          <b-form-textarea rows="4" value="A beautiful premium dashboard for BootstrapVue." id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
-        </b-form-group>
+        <b-row>
+          <b-col md="4">
+            <base-input
+              type="text"
+              label="School"
+              placeholder="Turkish German University"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          <b-col md="4">
+            <base-input
+              type="text"
+              label="Degree"
+              placeholder="Lisans"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          <b-col md="4">
+            <base-input
+              type="text"
+              label="Study"
+              placeholder="Computer Engineering"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col lg="6">
+            <base-input
+              type="text"
+              label="Start Date"
+              placeholder="Start Date"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          <b-col lg="6">
+            <base-input
+              type="text"
+              label="End Date"
+              placeholder="End Date"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          
+        </b-row>
       </div>
+      <hr class="my-4">
+      <!-- Experience-->
+      <h6 class="heading-small text-muted mb-4">Experience</h6>
+
+      <div class="pl-lg-4">
+        <b-row>
+          <b-col md="4">
+            <base-input
+              type="text"
+              label="Title"
+              placeholder="Junior Developer"
+              v-model="user.title"
+            >
+            </base-input>
+          </b-col>
+          <b-col lg="4">
+            <base-input
+              type="text"
+              label="Firma Name"
+              placeholder="Doğuş"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          <b-col lg="4">
+            <base-input
+              type="text"
+              label="Location"
+              placeholder="Maslak"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col lg="4">
+            <base-input
+              type="text"
+              label="Start Date"
+              placeholder="Start Date"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          <b-col lg="4">
+            <base-input
+              type="text"
+              label="End Date"
+              placeholder="End Date"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          <b-col lg="4">
+            <h4>Current</h4>
+            <base-checkbox class="mb-3" v-model="checkboxes.checked">
+              
+            </base-checkbox>
+          </b-col>
+        </b-row>
+      </div>
+      <hr class="my-4">
+      <!-- Skill -->
+      <h6 class="heading-small text-muted mb-4">Skill</h6>
+
+      <div class="pl-lg-4">
+        <b-row>
+          <b-col md="1">
+            <span><badge type="default">Skill 1</badge></span>
+            
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 2</badge></span>
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 3</badge></span>
+            
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 4</badge></span>
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 5</badge></span>
+            
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 6</badge></span>
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 7</badge></span>
+            
+          </b-col>
+          
+        </b-row>
+        <b-row>
+          <b-col md="1">
+            <span><badge type="default">Skill 8</badge></span>
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 9</badge></span>
+            
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 10</badge></span>
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 11</badge></span>
+            
+          </b-col>
+          <b-col md="1">
+            <span><badge type="default">Skill 12</badge></span>
+          </b-col>
+          
+        </b-row>
+      </div>
+      <hr class="my-4">
+            <!-- Project -->
+      <h6 class="heading-small text-muted mb-4">Project</h6>
+
+      <div class="pl-lg-4">
+        <b-row>
+          <b-col lg="6">
+            
+            <base-input
+              type="text"
+              label="Project Name"
+              placeholder=""
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          <b-col lg="6">
+            <base-input
+              type="text"
+              label="URL"
+              placeholder=""
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          
+        </b-row>
+        <b-row>
+          <b-col lg="4">
+            <base-input
+              type="text"
+              label="Start Date"
+              placeholder="Start Date"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          <b-col lg="4">
+            <base-input
+              type="text"
+              label="End Date"
+              placeholder="End Date"
+              v-model="user.email"
+            >
+            </base-input>
+          </b-col>
+          <b-col lg="4">
+            <h4>Current</h4>
+            <base-checkbox class="mb-3" v-model="checkboxes.checked">
+              
+            </base-checkbox>
+          </b-col>
+        </b-row>
+        
+        <div class="pl-lg-12">
+          <b-form-group label="Description" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
+          <!--  <label class="form-control-label">Description for Project</label> -->
+            <b-form-textarea rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+          </b-form-group>
+          
+        
+        </div>
+        <div class="pl-lg-4" style="padding-top:10px">
+        <b-row>
+           <div class="col-lg-6">
+            <base-button size="sm" type="default"> Add Project</base-button>
+          </div>
+
+        </b-row>
+        
+      </div>
+        
+      </div>
+      <hr class="my-4">
+            <!-- Certificate -->
+      <h6 class="heading-small text-muted mb-4">Certificate</h6>
+
+      <div class="pl-lg-4">
+        <b-row>
+           <div class="col-lg-6">
+            <base-button outline type="default">Upload Certificate</base-button>
+          </div>
+
+        </b-row>
+        
+      </div>
+      
+      <h6 class="heading-small text-muted mb-4"></h6>
+      <b-row>
+          
+          <div class="col-lg-6 "> 
+            <base-button type="success">Save</base-button>
+          </div>
+          
+
+      </b-row>
+      
 
     </b-form>
   </card>
@@ -122,6 +438,9 @@ export default {
         company: 'Creative Code Inc.',
         username: 'michael23',
         email: '',
+        github:'',
+        linkedin:'',
+        title:'',
         firstName: 'Mike',
         lastName: 'Andrew',
         address: 'Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09',
@@ -129,12 +448,18 @@ export default {
         country: 'USA',
         postalCode: '',
         aboutMe: `Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.`
-      }
+      },
+      checkboxes: {
+            unchecked: false,
+            checked: true,
+            uncheckedDisabled: false,
+            checkedDisabled: true
+          }
     };
   },
   methods: {
     updateProfile() {
-      alert('Your data: ' + JSON.stringify(this.user));
+      //alert('Your data: ' + JSON.stringify(this.user));
     }
   }
 };
