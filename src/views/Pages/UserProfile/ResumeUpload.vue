@@ -69,23 +69,21 @@
               <form>
                 
                 <div class="pl-lg-4">
-                  <div class="line ">
-                    <div class="col-lg-12 " style="padding-left: 100px">  
-                        <img
+                  <div class="row">
+                    <div class="col-lg-6 " style=" padding-left:10px">  
+                        <img style="width:313px; height:355px;"
                           src="img/linkedin.png"
                         />  
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <DropZone/>
-                    </div>
-                    <div class="col-lg-6" style="padding-top: 125px ">
+                    <div class="col-lg-6">  
+                        <DropZone/>
+                        <div class="col-lg-6" style="padding-top:5px; padding-lef:0px">
                       
                       <base-button v-on:click="submitFile()" outline type="default">Submit</base-button>
                     </div>
+                    </div>
                   </div>
-                  
+                
                   <div class="row">
                     
                   </div>
