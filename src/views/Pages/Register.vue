@@ -58,7 +58,7 @@
                           </b-form-checkbox>
                         </base-input>
                         <div class="text-center">
-                         <b-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" type="submit" variant="primary" class="mt-4">Create account</b-button>
+                         <b-button @click="createAcc()" style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" type="submit" variant="primary" class="mt-4">Create account</b-button>
                         </div>
                       </div>
                     </b-col>
@@ -72,14 +72,15 @@
             <b-col md="2"></b-col>    
          <b-col md="5">
             <b-img src="img/theme/register.png" fluid />
-              <h4  class="text-center"> Already have an account? <router-link to="/login" style= "color:green;" class="text"><bold>Sign in</bold></router-link></h4>
+              <h4  class="text-center"> Already have an account? <router-link to="/login" style= "color:green;" class="text">Sign in</router-link></h4>
           </b-col>
       </b-row>
     </b-container>
   </div>
 </template>
 <script>
-
+import axios from 'axios';
+  
   export default {
     name: 'register',
     data() {
@@ -88,6 +89,7 @@
           name: '',
           email: '',
           password: '',
+          lastname:'asdasda',
           agree: false
         }
       }
@@ -95,6 +97,21 @@
     methods: {
       onSubmit() {
         // this will be called only after form is valid. You can do an api call here to register users
+      },
+      createAcc(){
+        
+        axios.post("/api/auth/register",this.model).then((response)=>{
+            console.log(response.status);
+        });
+//         axios({
+//               method: 'post',
+//               url: '/api/auth/register',
+//               UserForRegisterDto: {
+//                     name: this.name,
+//                   email: this.email,
+//                   password: this.password,
+//               }
+// });
       }
     }
 

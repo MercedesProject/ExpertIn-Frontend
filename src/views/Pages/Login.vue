@@ -11,7 +11,7 @@
           <b-col md="5">
             <b-img src="img/theme/signin.png" fluid />
                       <h4  class="text-center" >If you don't have an account yet</h4>
-                        <h4  class="text-center"> You can <router-link to="/register" style= "color:green;" class="text"><bold>Register here!</bold></router-link></h4>
+                        <h4  class="text-center"> You can <router-link to="/register" style= "color:green;" class="text">Register here!</router-link></h4>
           </b-col>
           <b-col md="2"></b-col>  
         <b-col md="5" class="mb-5 mb-xl-0 ">
@@ -51,7 +51,7 @@
               <router-link to="/forgotpassword" class="text-dark"><small>Forgot password?</small></router-link>
             </b-row>
                   <div class="text-center">
-                    <base-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
+                    <base-button @click="loginUser()" style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
                   </div>
                 </b-form>
               </validation-observer>
@@ -66,6 +66,8 @@
   </div> 
 </template>
 <script>
+import axios from 'axios';
+
   export default {
     data() {
       return {
@@ -81,10 +83,12 @@
       onSubmit() {
         // this will be called only after form is valid. You can do api call here to login
       },
-      async login(){
-        const googleUser = await this.$gAuth.signIn()
-        console.log("googleUser", googleUser);
+      loginUser(){
+        axios.post("/api/auth/login",this.model).then((response)=>{
+            console.log(response.status);
+        });
       }
+      
     }
   };
 </script>
