@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
+// import Login from '@/views/Pages/Login'
 
 Vue.use(VueRouter);
 

@@ -10,7 +10,7 @@
       <b-row class="justify-content-center ">
                   <b-col md="5">
                   <!-- <h1 style = "font-family:Lato; font-size: 250%; color: black; allign: center;" class="text-center">Sign In to Expert In!</h1>    -->
-            <b-img src="img/theme/company_login.png" fluid />
+            <b-svg src="img/theme/company_login.png" fluid />
                       <h4  class="text-center" >If you don't have an account yet</h4>
                         <h4  class="text-center"> You can <router-link to="/registercompany" style= "color:green;" class="text"><bold>Register here!</bold></router-link></h4>
           </b-col>
