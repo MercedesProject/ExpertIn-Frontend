@@ -7,6 +7,7 @@ import NotFound from '@/views/NotFoundPage.vue';
 import EditProfileForm from '@/views/Pages/UserProfile/EditProfileForm.vue';
 import CompanyProfile from '@/views/Pages/CompanyProfile/CompanyProfile.vue';
 import EditFormforCompany from '@/views/Pages/CompanyProfile/EditFormforCompany.vue';
+import ResumeUpload from '@/views/Pages/UserProfile/ResumeUpload.vue';
 const routes = [{
         path: '/',
         redirect: 'landingpage',
@@ -64,6 +65,17 @@ const routes = [{
             name: '',
             component: () =>
                 import ('../views/Pages/UserProfile/EditProfileForm.vue')
+        }]
+    },
+    {
+        path: '/',
+        redirect: 'resumeupload',
+        component: ResumeUpload,
+        children: [{
+            path: '/resumeupload',
+            name: '',
+            component: () =>
+                import ('../views/Pages/UserProfile/ResumeUpload.vue')
         }]
     },
     {

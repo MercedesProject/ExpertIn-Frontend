@@ -16,11 +16,13 @@
         <b-row>
           
           <div class="col-lg-6">
+            
+            <router-link to="/resumeupload" >
             <base-button outline type="default">Resume Upload</base-button>
+            </router-link>
+            
           </div>
-          <div class="col-lg-6">
-            <base-button outline type="default">Import from Linkedin</base-button>
-          </div>
+          
           
         </b-row>
         <b-row>
@@ -109,7 +111,7 @@
       <div class="pl-lg-4">
         <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
          <!--  <label class="form-control-label">About Me</label> -->
-          <b-form-textarea rows="4" value="A beautiful premium dashboard for BootstrapVue." id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+          <b-form-textarea rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
         </b-form-group>
       </div>
       <hr class="my-4">
@@ -150,9 +152,9 @@
           </b-col>
           <b-col lg="4">
             <base-input
-              label="Postal Code"
-              placeholder="ZIP Code"
-              v-model="user.postalCode"
+              label="Phone Number"
+              placeholder=""
+              v-model="user.email"
             >
             </base-input>
           </b-col>
@@ -420,7 +422,7 @@
       <b-row>
           
           <div class="col-lg-6 "> 
-            <base-button type="success">Save</base-button>
+            <base-button type="default">Save</base-button>
           </div>
           
 
@@ -431,7 +433,13 @@
   </card>
 </template>
 <script>
+import DropZone from "@/components/Inputs/DropZone.vue";
 export default {
+  name:"editProfile",
+  components:{
+    DropZone,
+  },
+  
   data() {
     return {
       user: {
@@ -460,8 +468,27 @@ export default {
   methods: {
     updateProfile() {
       //alert('Your data: ' + JSON.stringify(this.user));
-    }
+    },
+    
   }
 };
 </script>
-<style></style>
+<style lang="scss" scoped>
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+
+  h1{
+    font-size: 40px;
+    margin-bottom: 32px;
+  }
+  
+  .file-info {
+    margin-top: 32px;
+  }
+}
+</style>
