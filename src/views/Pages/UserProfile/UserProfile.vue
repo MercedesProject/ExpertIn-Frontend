@@ -75,15 +75,10 @@
                   <i class="ni education_hat mr-2"></i> Turkish German University
                 </div>
                 <hr class="my-4" />
-                <base-input alternative="" label="About Me">
-                    <textarea
-                      rows="4"
-                      class="form-control form-control-alternative"
-                      placeholder="A few words about you ..."
-                    >
-Ben Türk Alman Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim.</textarea
-                    >
-                  </base-input>
+                
+                <p>Ben Türk Alman Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim.</p>
+                    
+                
               </div>
             </div>
           </div>
@@ -137,8 +132,10 @@ Ben Türk Alman Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiy
   </div>
 </template>
 <script>
+
 export default {
   name: "user-profile",
+
   data() {
     return {
       model: {

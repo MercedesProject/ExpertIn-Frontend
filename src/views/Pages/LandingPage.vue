@@ -76,7 +76,7 @@
 
       <div class="container-fluid px-lg-5">
         <b-container class="mt-auto" >
-          <b-row class="justify-content">
+          <b-row class="justify-content-center">
             <div class="container-fluid " 
             style="
             min-height: auto; 

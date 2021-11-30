@@ -25,7 +25,7 @@ import LoadingPanel from './LoadingPanel.vue';
 import BasePagination from './BasePagination.vue';
 
 import SidebarPlugin from './SidebarPlugin';
-
+import DropZone from './Inputs/DropZone.vue';
 export {
   BaseCheckbox,
   Badge,
@@ -48,5 +48,6 @@ export {
   BaseButton,
   Collapse,
   CollapseItem,
-  LoadingPanel
+  LoadingPanel,
+  DropZone
 };
