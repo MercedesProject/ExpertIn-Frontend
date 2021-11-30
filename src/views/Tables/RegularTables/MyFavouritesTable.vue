@@ -154,15 +154,17 @@
     </b-card>
   <!-- </b-container> -->
 </template>
-
+ 
 <script>
-  import axios from 'axios'
+import axios from 'axios'
+
   export default {
     data() {
       return {
         transProps:{
             name: 'flip-list'
         },
+        appAxios : 'http://localhost:44362',
         items: [
           { favourite: false ,status: "pending", jobType: 40, name: { first: 'Dickerson', last: 'Macdonald'} },
           {favourite: true , status: "accepted", jobType: 21, name: { first: 'Larsen', last: 'Shaw' },},
@@ -187,8 +189,9 @@
           { status: true, jobType: 38, name: { first: 'John', last: 'Carney' } },
           { status: false, jobType: 29, name: { first: 'Dick', last: 'Dunlap' } }
         ],
+        jobs:[],
         fields: [
-           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
+          { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
           { key: 'name', label: 'Firma', sortable: true, sortDirection: 'desc',class:"text-center" },
           { key: 'jobType', label: 'İş Tanımı', sortable: true, class: 'text-center' },
           { key: 'position', label: 'Pozisyon', sortable: true, class: 'text-center' },
@@ -274,15 +277,19 @@
     mounted() {
       // Set the initial number of items
       this.totalRows = this.items.length
-    //    this.remoteConfig = null;
-    //     this.remoteRows = null;
+      this.remoteConfig = null;
+      this.remoteRows = null;
         this.loading = true;
-        // axios.get("https://api.coindesk.com/v1/bpi/currentprice.json").then((response)=>{
-        //     // this.remoteRows = response.data.rows;
-        //     // this.remoteConfig = response.data.config;
-        //     this.loading = false;
-        //     console.log(response);
-        // });
+        axios.get("/api/jobs/getall").then((response)=>{
+            this.jobs = response.data;
+            console.log(response);
+//             this.jobs.forEach((value, index) => {
+//               this.items.push(value);
+//               console.log(value);
+//               console.log(index);
+// });
+           
+        });
     },
     methods: {
       info(item, index, button) {
@@ -314,16 +321,16 @@
       console.log(index);
       
     },
-    getCustomObjectDetail(obj) {
-        this.$appAxios.get(String.format('/customobject/get?id={0}',obj.id))
-            .then((response) => {
-                this.customObjectData = response.data;
-                this.detailTitle =  response.data.name;
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-        },
+    // getCustomObjectDetail(obj) {
+    //     this.$appAxios.get(String.format('/customobject/get?id={0}',obj.id))
+    //         .then((response) => {
+    //             this.customObjectData = response.data;
+    //             this.detailTitle =  response.data.name;
+    //         })
+    //         .catch(function (error) {
+    //             alert(error);
+    //         });
+    //     },
     }
   }
 </script>
