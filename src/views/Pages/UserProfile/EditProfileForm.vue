@@ -422,7 +422,7 @@
       <b-row>
           
           <div class="col-lg-6 "> 
-            <base-button type="success">Save</base-button>
+            <base-button type="default">Save</base-button>
           </div>
           
 
