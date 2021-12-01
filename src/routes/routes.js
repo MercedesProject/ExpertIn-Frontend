@@ -8,7 +8,9 @@ import EditProfileForm from '@/views/Pages/UserProfile/EditProfileForm.vue';
 import CompanyProfile from '@/views/Pages/CompanyProfile/CompanyProfile.vue';
 import EditFormforCompany from '@/views/Pages/CompanyProfile/EditFormforCompany.vue';
 import ResumeUpload from '@/views/Pages/UserProfile/ResumeUpload.vue';
-const routes = [{
+const routes = 
+[
+    {
         path: '/',
         redirect: 'landingpage',
         component: LandingPage,
@@ -34,7 +36,7 @@ const routes = [{
                 path: '/messages',
                 name: 'Mesajlar',
                 component: () =>
-                    import ('../views/Icons.vue')
+                    import ('../views/Messages.vue')
             },
             {
                 path: '/profile',
@@ -54,6 +56,13 @@ const routes = [{
                 component: () =>
                 import ('../views/Pages/UserProfile/ResumeUpload.vue')
             },
+        /*      {
+                path: '/settings',
+                name: '',
+                component: () =>
+                import ('../views/Pages/Settings.vue')
+            },
+        */
             {
                 path: '/applications',
                 name: 'MyApplications',
