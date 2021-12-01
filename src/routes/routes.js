@@ -43,6 +43,18 @@ const routes = [{
                     import ('../views/Pages/UserProfile/UserProfile.vue')
             },
             {
+                path: '/editprofilform',
+                name: '',
+                component: () =>
+                import ('../views/Pages/UserProfile/EditProfileForm.vue')
+            },
+            {
+                path: '/resumeupload',
+                name: '',
+                component: () =>
+                import ('../views/Pages/UserProfile/ResumeUpload.vue')
+            },
+            {
                 path: '/applications',
                 name: 'MyApplications',
                 component: () =>
@@ -56,7 +68,7 @@ const routes = [{
             }
         ]
     },
-    {
+    /*{
         path: '/',
         redirect: 'editprofilform',
         component: EditProfileForm,
@@ -77,7 +89,7 @@ const routes = [{
             component: () =>
                 import ('../views/Pages/UserProfile/ResumeUpload.vue')
         }]
-    },
+    },*/
     {
         path: '/',
         redirect: 'companyprofile',
