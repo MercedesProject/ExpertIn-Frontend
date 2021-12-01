@@ -9,9 +9,9 @@
        &nbsp;
       <b-row class="justify-content-center ">
           <b-col md="5">
-            <b-img src="img/theme/signin.png" fluid />
+            <b-img src="img/theme/login.gif" fluid />
                       <h4  class="text-center" >If you don't have an account yet</h4>
-                        <h4  class="text-center"> You can <router-link to="/register" style= "color:green;" class="text">Register here!</router-link></h4>
+                        <h4  class="text-center"> You can <router-link to="/register" style= "color:#7E57C2;" class="text">Register here!</router-link></h4>
           </b-col>
           <b-col md="2"></b-col>  
         <b-col md="5" class="mb-5 mb-xl-0 ">
@@ -51,7 +51,7 @@
               <router-link to="/forgotpassword" class="text-dark"><small>Forgot password?</small></router-link>
             </b-row>
                   <div class="text-center">
-                    <base-button @click="loginUser()" style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
+                    <base-button @click="loginUser()" style="background-color: #8A78C8; border-color: #8A78C8; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
                   </div>
                 </b-form>
               </validation-observer>

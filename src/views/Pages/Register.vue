@@ -54,11 +54,11 @@
                       <div class="mt-4 mb-4">
                         <base-input :rules="{ required: { allowFalse: false } }" name=Privacy Policy>
                           <b-form-checkbox v-model="model.agree">
-                            <span class="text-muted">I agree with the <a  style= "color: #3aaf85;" href="#!">Privacy Policy</a></span>
+                            <span class="text-muted">I agree with the <a  style= "color: #8A78C8;" href="#!">Privacy Policy</a></span>
                           </b-form-checkbox>
                         </base-input>
                         <div class="text-center">
-                         <b-button @click="createAcc()" style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" type="submit" variant="primary" class="mt-4">Create account</b-button>
+                         <b-button @click="createAcc()" style="background-color: #8A78C8; border-color: #8A78C8; width: 60%" type="submit" variant="primary" class="mt-4">Create account</b-button>
                         </div>
                       </div>
                     </b-col>
@@ -71,8 +71,8 @@
         </b-col>
             <b-col md="2"></b-col>    
          <b-col md="5">
-            <b-img src="img/theme/register.png" fluid />
-              <h4  class="text-center"> Already have an account? <router-link to="/login" style= "color:green;" class="text">Sign in</router-link></h4>
+            <b-img src="img/theme/register.svg" fluid />
+              <h4  class="text-center"> Already have an account? <router-link to="/login" style= "color:#7E57C2;" class="text">Sign in</router-link></h4>
           </b-col>
       </b-row>
     </b-container>

@@ -10,9 +10,9 @@
       <b-row class="justify-content-center ">
                   <b-col md="5">
                   <!-- <h1 style = "font-family:Lato; font-size: 250%; color: black; allign: center;" class="text-center">Sign In to Expert In!</h1>    -->
-            <b-img src="img/theme/company_login.png" fluid />
+            <b-img src="img/theme/login_company_page.svg" fluid />
                       <h4  class="text-center" >If you don't have an account yet</h4>
-                        <h4  class="text-center"> You can <router-link to="/registercompany" style= "color:green;" class="text"><bold>Register here!</bold></router-link></h4>
+                        <h4  class="text-center"> You can <router-link to="/registercompany" style= "color: #7E57C2;" class="text"><bold>Register here!</bold></router-link></h4>
           </b-col>
           <b-col md="2"></b-col>  
         <b-col md="5" class="mb-5 mb-xl-0 ">
@@ -47,14 +47,14 @@
                               prepend-icon="ni ni-lock-circle-open"
                               type="Password"
                               placeholder="  Password"
-                              v-model="model.password" style="background-color: #87960;"> 
+                              v-model="model.password" style="background-color:#8A78C8;"> 
                   </base-input>
                <b-row  class="justify-content-end">
               <router-link to="/forgotpasswordcompany" class="text-dark"><small>Forgot password?</small></router-link>
             </b-row>
                   <b-form-checkbox v-model="model.rememberMe">Remember me</b-form-checkbox>
                   <div class="text-center">
-                    <base-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
+                    <base-button style="background-color: #8A78C8; border-color: #8A78C8; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
                   </div>
                 </b-form>
               </validation-observer>

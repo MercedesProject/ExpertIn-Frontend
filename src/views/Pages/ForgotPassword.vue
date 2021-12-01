@@ -9,7 +9,7 @@
        &nbsp;
       <b-row class="justify-content-center ">
           <b-col md="5"> 
-            <b-img src="img/theme/Forgot.png" fluid />
+            <b-img src="img/theme/forgot.svg" fluid />
           </b-col>
           <b-col md="2"></b-col>  
         <b-col md="5" class="mb-5 mb-xl-0 ">
@@ -31,7 +31,7 @@
                               v-model="model.email">
                   </base-input>
                   <div class="text-center">
-                    <base-button style="background-color: #3aaf85; border-color: #3aaf85; width: 60%" native-type="submit" class="my-4">Reset Password</base-button> 
+                    <base-button style="background-color: #8A78C8; border-color: #8A78C8; width: 60%" native-type="submit" class="my-4">Reset Password</base-button> 
                   </div>
                 </b-form>
               </validation-observer>
