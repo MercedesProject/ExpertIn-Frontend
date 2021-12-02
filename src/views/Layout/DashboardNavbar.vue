@@ -14,7 +14,7 @@
            </b-nav-item>
            <b-nav-item to="/applications">
                <i class="ni ni-briefcase-24"></i>
-               <span class="nav-link-inner--text"> Jobs </span>
+               <span class="nav-link-inner--text"> My Applications </span>
            </b-nav-item>
            <b-nav-item to="/favourites">
                <i class="ni ni-favourite-28"></i>
@@ -28,8 +28,8 @@
                <i class="ni ni-email-83"></i>
                <span class="nav-link-inner--text"> Messages </span>
            </b-nav-item>
-       </b-navbar-nav>
-       <b-navbar-nav  class="align-items-lg-center ml-lg-auto">
+        </b-navbar-nav>
+       <!-- <b-navbar-nav  class="align-items-lg-center ml-lg-auto">
                <b-nav-item to="/login">
                <i class="ni ni-key-25 text-info"></i>
                <span class="nav-link-inner--text"> Login </span>
@@ -37,9 +37,9 @@
             <b-nav-item to="/logincompany">
                <i class="ni ni-circle-08 text-pink"></i>
                <span class="nav-link-inner--text"> For Company </span>
-           </b-nav-item>
+           </b-nav-item> -->
 
-       </b-navbar-nav>
+      
     <b-navbar-nav class="align-items-center ml-auto ml-md-0">
       <base-dropdown menu-on-right
                      class="nav-item"
@@ -61,16 +61,16 @@
 
           <b-dropdown-item href="#!">
             <i class="ni ni-single-02"></i>
-            <span>Profil</span>
+            <span>Profile</span>
           </b-dropdown-item>
           <b-dropdown-item href="#!">
             <i class="ni ni-settings-gear-65"></i>
-            <span>Ayarlar</span>
+            <span>Settings</span>
           </b-dropdown-item>
           <div class="dropdown-divider"></div>
           <b-dropdown-item href="#!">
             <i class="ni ni-user-run"></i>
-            <span>Çıkış</span>
+            <span>Logout</span>
           </b-dropdown-item>
         </template>
       </base-dropdown>

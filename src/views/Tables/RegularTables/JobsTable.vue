@@ -79,7 +79,7 @@
       @filtered="onFiltered"
       class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
     >
-      <template #cell(name)="row">
+      <template #cell(companyName)="row">
         {{ row.value.first }} {{ row.value.last }}
       </template>
 
@@ -164,35 +164,25 @@
             name: 'flip-list'
         },
         items: [
-          { favourite: false ,status: "pending", jobType: 40, name: { first: 'Dickerson', last: 'Macdonald'} },
-          {favourite: true , status: "accepted", jobType: 21, name: { first: 'Larsen', last: 'Shaw' },},
-          {
-            favourite: false,
-            status: "denied",
-            jobType: 9,
-            name: { first: 'Mini', last: 'Navarro' },
-          },
-          {favourite: false , status: "denied", jobType: 89, name: { first: 'Geneva', last: 'Wilson' } },
-          { favourite: true ,status: "accepted", jobType: 38, name: { first: 'Jami', last: 'Carney' } },
-          {favourite: false , status: false, jobType: 27, name: { first: 'Essie', last: 'Dunlap' } },
-          {favourite: true , status: true, jobType: 40, name: { first: 'Thor', last: 'Macdonald' } },
-          {
-            status: true,
-            jobType: 87,
-            name: { first: 'Larsen', last: 'Shaw' },
-            // _cellVariants: { jobType: 'danger', status: 'warning' }
-          },
-          { status: false, jobType: 26, name: { first: 'Mitzi', last: 'Navarro' } },
-          { status: false, jobType: 22, name: { first: 'Genevieve', last: 'Wilson' } },
-          { status: true, jobType: 38, name: { first: 'John', last: 'Carney' } },
-          { status: false, jobType: 29, name: { first: 'Dick', last: 'Dunlap' } }
+          { favourite: false ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM'},description:"aciklama",salary:2000 },
+          {favourite: true , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'Daimler' },description:"deneme",salary:8000},
+          {favourite: false, status: "denied",jobType: "a",companyName: { first: 'Mercedes', last: 'BBS' },description:"aciklama",salary:9000},
+          {favourite: true , status: "denied", jobType: "b", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:1000 },
+          { favourite: true ,status: "accepted", jobType: "c", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:12000 },
+          {favourite: false , status: "pending", jobType: "Backend", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7000 },
+          {favourite: true , status: "accepted", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' } ,description:"aciklama",salary:6000},
+          {favourite: true ,status: "pending", jobType: "Backend",companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7500},
+          {favourite: false ,status: "denied", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'Daimler' },description:"aciklama",salary:8800 },
+          {favourite: true ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:9200 },
+          {favourite: false , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'BBS' } ,description:"aciklama",salary:6500},
+          {favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
         ],
         fields: [
-           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
-          { key: 'name', label: 'Firma', sortable: true, sortDirection: 'desc',class:"text-center" },
-          { key: 'jobType', label: 'İş Tanımı', sortable: true, class: 'text-center' },
-          { key: 'position', label: 'Pozisyon', sortable: true, class: 'text-center' },
-          { key: 'kontenjan', label: 'Kontenjan', sortable: true, class: 'text-center' },
+          { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
+          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center" },
+          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center' },
+          { key: 'description', label: 'Description', sortable: true, class: 'text-center' },
+          { key: 'salary', label: 'Salary', sortable: true, class: 'text-center' },
           { key: 'actions', label: 'Actions', class:"text-center", },
           {
             key: 'status',
@@ -314,16 +304,16 @@
       console.log(index);
       
     },
-    getCustomObjectDetail(obj) {
-        this.$appAxios.get(String.format('/customobject/get?id={0}',obj.id))
-            .then((response) => {
-                this.customObjectData = response.data;
-                this.detailTitle =  response.data.name;
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-        },
+    // getCustomObjectDetail(obj) {
+    //     this.$appAxios.get(String.format('/customobject/get?id={0}',obj.id))
+    //         .then((response) => {
+    //             this.customObjectData = response.data;
+    //             this.detailTitle =  response.data.name;
+    //         })
+    //         .catch(function (error) {
+    //             alert(error);
+    //         });
+    //     },
     }
   }
 </script>
