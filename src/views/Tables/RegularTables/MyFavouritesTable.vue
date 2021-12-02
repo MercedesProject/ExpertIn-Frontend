@@ -166,17 +166,12 @@ import axios from 'axios'
         },
         appAxios : 'http://localhost:44362',
         items: [
-          { favourite: false ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM'},description:"aciklama",salary:2000 },
           {favourite: true , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'Daimler' },description:"deneme",salary:8000},
-          {favourite: false, status: "denied",jobType: "a",companyName: { first: 'Mercedes', last: 'BBS' },description:"aciklama",salary:9000},
           {favourite: true , status: "denied", jobType: "b", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:1000 },
           { favourite: true ,status: "accepted", jobType: "c", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:12000 },
-          {favourite: false , status: "pending", jobType: "Backend", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7000 },
           {favourite: true , status: "accepted", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' } ,description:"aciklama",salary:6000},
           {favourite: true ,status: "pending", jobType: "Backend",companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7500},
-          {favourite: false ,status: "denied", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'Daimler' },description:"aciklama",salary:8800 },
           {favourite: true ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:9200 },
-          {favourite: false , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'BBS' } ,description:"aciklama",salary:6500},
           {favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
         ],
         fields: [

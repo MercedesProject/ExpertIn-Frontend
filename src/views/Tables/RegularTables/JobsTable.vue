@@ -184,18 +184,18 @@
           { key: 'description', label: 'Description', sortable: true, class: 'text-center' },
           { key: 'salary', label: 'Salary', sortable: true, class: 'text-center' },
           { key: 'actions', label: 'Actions', class:"text-center", },
-          {
-            key: 'status',
-            label: 'Status',
-            // formatter: (value, key, item) => {
-            //   return value ? 'Yes' : 'No'
-            // },
-            sortable: true,
-            sortByFormatted: true,
-            filterByFormatted: true,
-            class:"text-center",
+          // {
+          //   key: 'status',
+          //   label: 'Status',
+          //   // formatter: (value, key, item) => {
+          //   //   return value ? 'Yes' : 'No'
+          //   // },
+          //   sortable: true,
+          //   sortByFormatted: true,
+          //   filterByFormatted: true,
+          //   class:"text-center",
            
-          },
+          // },
         ],
         totalRows: 1,
         currentPage: 1,

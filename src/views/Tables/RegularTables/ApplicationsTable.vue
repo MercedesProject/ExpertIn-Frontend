@@ -185,7 +185,7 @@
           { key: 'description', label: 'Description', sortable: true, class: 'text-center' },
           { key: 'salary', label: 'Salary', sortable: true, class: 'text-center' },
           { key: 'actions', label: 'Actions', class:"text-center", },
-          // {key: 'status',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
+          {key: 'status',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
         ],
         totalRows: 1,
         currentPage: 1,
