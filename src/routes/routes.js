@@ -8,6 +8,7 @@ import EditProfileForm from '@/views/Pages/UserProfile/EditProfileForm.vue';
 import CompanyProfile from '@/views/Pages/CompanyProfile/CompanyProfile.vue';
 import EditFormforCompany from '@/views/Pages/CompanyProfile/EditFormforCompany.vue';
 import ResumeUpload from '@/views/Pages/UserProfile/ResumeUpload.vue';
+import UserCard from '@/views/Pages/UserProfile/UserCard.vue';
 const routes = 
 [
     {

@@ -20,7 +20,8 @@
               This is your profile page. You can add your projects and edit your skills and personal information.
             </p>
             <router-link to="/editprofilform"> 
-              <a href="#!" class="btn btn-info">Edit profile</a>
+            <base-button  size="xl" type="default">Edit profile</base-button>
+              
             </router-link>
             
           </div>
@@ -47,14 +48,7 @@
             <div
               class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
             >
-              <div class="d-flex justify-content-between">
-                <base-button size="sm" type="default" class="mr-4"
-                  >CV Download</base-button
-                >
-                <base-button size="sm" type="default" class="float-right"
-                  >Send Message</base-button
-                >
-              </div>
+              
             </div>
             <div class="card-body pt-0 pt-md-4">
               <div style="padding: 30px 70px 30px 123px" > 
@@ -75,15 +69,31 @@
                   <i class="ni education_hat mr-2"></i> Turkish German University
                 </div>
                 <hr class="my-4" />
+                <div class=" line ">
+                  <div class="col-lg-12 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Github Url: 
+                  </div>
+                  <div class="col-lg-12 ">
+                    <i class="ni education_hat mr-2"></i> https://github.com/busrasari
+                  </div>
+                  <div class="col-lg-12 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Email Adress: 
+                  </div>
+                  <div class="col-lg-12">
+                    <i class="ni education_hat mr-2"></i> busrasari@gmail.com
+                  </div>
+                </div>
+                <hr class="my-4" />
                 
-                <p>Ben Türk Alman Üniversitesi Bilgisayar Mühendisliği son sınıf öğrencisiyim.</p>
+                <p>I am a final year student of Computer Engineering at Turkish German University.</p>
                     
                 
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-8 order-xl-1">
+        <div class="line col-xl-8">
+          <div >
           <card shadow type="secondary">
             <template v-slot:header>
               <div class="bg-white border-0">
@@ -99,29 +109,133 @@
             </template>
 
             <form>
-              <h6 class="heading-small text-muted mb-4">User information</h6>
+              <!-- Contact Information -->
+              <h6 class="heading-small text-muted mb-4">Contact information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Adress:
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Phone Number:
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>City:
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Country:
+                  </div>
+                </div>
+                
+              </div>
+              <hr class="my-4" />
+              <!-- EDUCATION INFORMATION -->
+              <h6 class="heading-small text-muted mb-4">EDUCATION INFORMATION</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-4 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>School:
+                  </div>
+                  <div class="col-lg-4 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Degree:
+                  </div>
+                  <div class="col-lg-4 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Study:
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Starting Date:
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Ending Date:
+                    <i class="ni education_hat mr-2"></i> Current
+                  </div>
+                  
+                </div>
+                
+              </div>
+              <hr class="my-4" />
+              <!-- EXPERIENCE -->
+              <h6 class="heading-small text-muted mb-4">EXPERIENCE</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-4 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Title:
+                  </div>
+                  <div class="col-lg-4 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Firma Name:
+                  </div>
+                  <div class="col-lg-4 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Location:
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Starting Date:
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Ending Date:
+                  </div>
+                </div>
+                
+              </div>
+              <hr class="my-4" />
+              <!-- SKILL-->
+              <h6 class="heading-small text-muted mb-4">SKILL</h6>
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-6">
-                    <base-button outline type="default">Resume Upload</base-button>
+                    
                   </div>
                   <div class="col-lg-6">
-                    <base-button outline type="default">Edit User Information</base-button>
+                    
                   </div>
                 </div>
-                <div class="row">
-                  
-                </div>
+                
               </div>
               <hr class="my-4" />
-              <!-- Address -->
-              
-              
+              <!-- PROJECT-->
+              <h6 class="heading-small text-muted mb-4">PROJECT</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-4 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Project Name:
+                  </div>
+                  <div class="col-lg-4 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Url:
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Starting Date:
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Ending Date:
+                  </div>
+                  <div class="col-lg-4 h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Description:
+                  </div>
+                </div>
+                
+              </div>
+              <hr class="my-4" />
+              <!-- CERTIFICATE-->
+              <h6 class="heading-small text-muted mb-4">CERTIFICATE</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    
+                  </div>
+                  <div class="col-lg-6">
+                    
+                  </div>
+                </div>
+                
+              </div>
+              <hr class="my-4" />
               
               
             </form>
           </card>
+          </div>
+          
         </div>
+        
         
         
 
