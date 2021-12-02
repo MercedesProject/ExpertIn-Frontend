@@ -1,19 +1,42 @@
 <template>
-  <div>
+  <div class="pb-5 pt-md-8 bg-gradient-success">
     <base-header class="pb-5 pt-md-8 bg-gradient-success">
     <!-- Mask -->
       <span class="mask bg-gradient-success opacity-8"></span>
       <!-- Header container -->
-      <div class="container-fluid d-flex align-items-center">
-        <div class="row">
-          <div class="col-lg-12">
-            <h1 class="display-2 text-white">Edit Profile</h1>
+      <div class="container-fluid mt--7 align-items-center">
+        <div class="line">
+          <div class="col-xl-36 order-x2-1 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+
+            <div
+              class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
+            >
+              <div class="d-flex justify-content-between">
+                <h1 size="sm" type="default" class="mr-4"
+                  >Edit Profile</h1>
+                  <router-link to="/profile" >
+                    <base-button size="sm" type="default" class="float-right"
+                    >Back to Profile</base-button>
+                  </router-link>
+                
+              </div>
+            </div>
             
           </div>
         </div>
+
+
+
+        </div>
       </div>
     </base-header>
-    <card>
+
+    <div class=" container-fluid mt--1 align-items-center">
+      <div class="line">
+        <div class="col-xl-12 order-x2-1 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+              <card>
 
     <b-form @submit.prevent="updateProfile">
       <h6 class="heading-small text-muted mb-4">User information</h6>
@@ -436,7 +459,12 @@
       
 
     </b-form>
-    </card>
+              </card>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
   
 </template>
