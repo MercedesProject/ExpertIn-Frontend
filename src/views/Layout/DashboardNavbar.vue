@@ -52,7 +52,7 @@
                     <img alt="Image placeholder" src="img/theme/profil.jpg">
                   </span>
             <b-media-body class="ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">Büsra Sarı</span>
+              <span class="mb-0 text-sm  font-weight-bold">Büşra Sarı</span>
             </b-media-body>
           </b-media>
         </a>
