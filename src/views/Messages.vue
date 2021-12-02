@@ -61,14 +61,14 @@
       </b-row>
     </base-header>
 
-
-     <b-container fluid class="mt--7">
+   
+     <!-- <b-container fluid class="mt--7">
       <b-row>
         <b-col>
           <my-favourites-table/>
         </b-col>
       </b-row>
-    </b-container>
+    </b-container> -->
   </div>
 </template>
 <script>

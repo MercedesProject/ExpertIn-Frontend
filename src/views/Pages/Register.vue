@@ -110,7 +110,9 @@ import axios from 'axios';
       createAcc(){
         
         axios.post("/api/auth/register",this.model).then((response)=>{
-            console.log(response.status);
+            if(response.status==200){
+              this.$router.push('login');
+            }
         });
 //         axios({
 //               method: 'post',
