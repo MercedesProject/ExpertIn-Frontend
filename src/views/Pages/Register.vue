@@ -22,6 +22,15 @@
                               v-model="model.name">
                   </base-input>
 
+                   <base-input alternative
+                              class="mb-3"
+                              prepend-icon="ni ni-hat-3"
+                              placeholder="  Lastname"
+                              name="Lastname"
+                              :rules="{required: true}"
+                              v-model="model.lastname">
+                  </base-input>
+
                   <base-input alternative
                               class="mb-3"
                               prepend-icon="ni ni-email-83"
@@ -87,9 +96,9 @@ import axios from 'axios';
       return {
         model: {
           name: '',
+          lastname: '',
           email: '',
           password: '',
-          lastname:'asdasda',
           agree: false
         }
       }
