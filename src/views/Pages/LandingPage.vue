@@ -1,6 +1,5 @@
 <template>
 <div>
-
   <!--NavBar-->  
   <div class="navbar-main ml-auto">
     <base-nav
@@ -87,7 +86,7 @@
             background-position: center center;
             background-image: url(img/brand/bg19.png)"
           >  
-
+<!--
           <div class="row justify-content-center text-center pt-7 pb-4">  
                <h1 style=
                 "font-size: 72px; 
@@ -99,16 +98,18 @@
                 border-color: #7e65c2"
               > EXPERT IN</h1>
           </div>
-           
+         
             <div class="row justify-content-center text-center">
+ --> 
+            <div class="row justify-content-center text-center pt-8 pb-3"> 
                 <h1 style=
-                "font-size: 48px; 
+                "font-size: 72px; 
                 font-family: Nucleolcons;  
-                text-shadow: 1px 1px 1px #d8d0ec;
+                text-shadow: 1px 2px 10px #d8d0ec;
                 font-weight: bold; 
-                color: #251e3a; 
+                color: #191426; 
                 position: relative;
-                border-color: #b1a2da"
+                border-color: #7e65c2"
                 > Finding a job is just a click away</h1>  
             </div>
 
