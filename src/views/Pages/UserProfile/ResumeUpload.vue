@@ -25,7 +25,7 @@
                       <h3 class="mb-0">Upload from Your Device</h3>
                     </div>
                     <div class="col-4 text-right">
-                      <a href="#!" class="btn btn-sm btn-default">Settings</a>
+                      
                     </div>
                   </div>
                 </div>
@@ -66,7 +66,10 @@
                       <h3 class="mb-0">Import from Linkedin</h3>
                     </div>
                     <div class="col-4 text-right">
-                      <a href="#!" class="btn btn-sm btn-default">Settings</a>
+                      <router-link to="/editprofilform">
+                        <a href="#!" class="btn btn-sm btn-default">Back to Edit Profile</a>
+                      </router-link>
+                      
                     </div>
                   </div>
                 </div>
