@@ -1,23 +1,28 @@
 <template>
 <div>
-    <base-header
-      class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
-      <!-- Mask -->
+  <base-header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+    <!-- Mask -->
       <span class="mask bg-gradient-success opacity-8"></span>
       <!-- Header container -->
       <div class="container-fluid d-flex align-items-center">
-       
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="display-2 text-white">Upload Resume</h1>
+            
+          </div>
+        </div>
       </div>
-      <div class="container-fluid mt--7">
+    </base-header>
+    <div class=" body container-fluid mt--7">
         <div class="row">
           
-          <div class="col-xl-5 order-xl-1">
+          <div class="col-xl-4 order-xl-1">
             <card shadow type="secondary">
               <template v-slot:header>
                 <div class="bg-white border-0">
                   <div class="row align-items-center">
                     <div class="col-8">
-                      <h3 class="mb-0">Upload from your device</h3>
+                      <h3 class="mb-0">Upload from Your Device</h3>
                     </div>
                     <div class="col-4 text-right">
                       <a href="#!" class="btn btn-sm btn-default">Settings</a>
@@ -30,10 +35,11 @@
                 
                 <div class="pl-lg-4">
                   <div class="line">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                       <DropZone/>
                     </div>
-                    <div class="col-lg-6">
+                    
+                    <div class="col-lg-12" style="padding-top:5px">
                       
                       <base-button v-on:click="submitFile()" outline type="default">Submit</base-button>
                     </div>
@@ -51,7 +57,7 @@
               </form>
             </card>
           </div>
-          <div class="col-xl-7 order-xl-1">
+          <div class="col-xl-8 order-xl-1">
             <card shadow type="secondary">
               <template v-slot:header>
                 <div class="bg-white border-0">
@@ -70,17 +76,22 @@
                 
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-lg-6 " style=" padding-left:10px">  
+                    <div class="col-lg-5 " style=" padding-left:10px">  
                         <img style="width:313px; height:355px;"
                           src="img/linkedin.png"
-                        />  
+                        /> 
+                    </div>
+                    <div class="col-lg-1 " style=" padding-top:40px">  
+                        <img src="img/ok-işareti.png" style="width:30px; height:10px"> 
                     </div>
                     <div class="col-lg-6">  
                         <DropZone/>
-                        <div class="col-lg-6" style="padding-top:5px; padding-lef:0px">
+                        
+                        <div style="padding-top:5px"> 
+                          <base-button v-on:click="submitFile()" outline type="default">Submit</base-button>
+                        </div>
+                        
                       
-                      <base-button v-on:click="submitFile()" outline type="default">Submit</base-button>
-                    </div>
                     </div>
                   </div>
                 
@@ -100,7 +111,6 @@
 
         </div>
       </div>
-    </base-header>
 </div>
 </template>
 <script>

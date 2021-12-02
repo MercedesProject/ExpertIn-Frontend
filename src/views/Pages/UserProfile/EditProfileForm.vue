@@ -1,13 +1,19 @@
 <template>
-  <card>
-    <b-row align-v="center" slot="header" >
-      <b-col cols="8">
-        <h2 class="mb-0">Edit profile </h2>
-      </b-col>
-      <b-col cols="4" class="text-right">
-        <a href="#!" class="btn btn-sm btn-primary">Settings</a>
-      </b-col>
-    </b-row>
+  <div>
+    <base-header class="pb-5 pt-md-8 bg-gradient-success">
+    <!-- Mask -->
+      <span class="mask bg-gradient-success opacity-8"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="display-2 text-white">Edit Profile</h1>
+            
+          </div>
+        </div>
+      </div>
+    </base-header>
+    <card>
 
     <b-form @submit.prevent="updateProfile">
       <h6 class="heading-small text-muted mb-4">User information</h6>
@@ -430,7 +436,9 @@
       
 
     </b-form>
-  </card>
+    </card>
+  </div>
+  
 </template>
 <script>
 import DropZone from "@/components/Inputs/DropZone.vue";

@@ -40,8 +40,8 @@ export default {
 </script>
 <style scoped lang = "scss">
 .dropzone {
-    width: 340px;
-    height: 170px;
+    width: 280px;
+    height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
