@@ -9,9 +9,7 @@ import CompanyProfile from '@/views/Pages/CompanyProfile/CompanyProfile.vue';
 import EditFormforCompany from '@/views/Pages/CompanyProfile/EditFormforCompany.vue';
 import ResumeUpload from '@/views/Pages/UserProfile/ResumeUpload.vue';
 import UserCard from '@/views/Pages/UserProfile/UserCard.vue';
-const routes = 
-[
-    {
+const routes = [{
         path: '/',
         redirect: 'landingpage',
         component: LandingPage,
@@ -49,21 +47,21 @@ const routes =
                 path: '/editprofilform',
                 name: '',
                 component: () =>
-                import ('../views/Pages/UserProfile/EditProfileForm.vue')
+                    import ('../views/Pages/UserProfile/EditProfileForm.vue')
             },
             {
                 path: '/resumeupload',
                 name: '',
                 component: () =>
-                import ('../views/Pages/UserProfile/ResumeUpload.vue')
+                    import ('../views/Pages/UserProfile/ResumeUpload.vue')
             },
-        /*      {
-                path: '/settings',
-                name: '',
-                component: () =>
-                import ('../views/Pages/Settings.vue')
-            },
-        */
+            /*      {
+                    path: '/settings',
+                    name: '',
+                    component: () =>
+                    import ('../views/Pages/Settings.vue')
+                },
+            */
             {
                 path: '/applications',
                 name: 'MyApplications',
@@ -75,6 +73,18 @@ const routes =
                 name: 'MyFavourites',
                 component: () =>
                     import ('../views/MyFavouritesTables.vue')
+            },
+            {
+                path: '/Job/Detail/:jobId',
+                name: "JobDetail",
+                component: () =>
+                    import ('../views/Pages/Jobs/Detail.vue')
+            },
+            {
+                path: '/Job/New',
+                name: "JobNew",
+                component: () =>
+                    import ('../views/Pages/Jobs/New.vue')
             }
         ]
     },

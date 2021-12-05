@@ -84,12 +84,12 @@
       </template>
 
       <template #cell(actions)="row">
-        <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
+        <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1 jobDetail" v-on:click=commandClick(row.item)>
          <i :id="`${row.index}`" class="ni ni-active-40"></i>
         </b-button>
-        <b-button size="sm" @click="row.toggleDetails">
+        <!-- <b-button size="sm" @click="row.toggleDetails">
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-        </b-button>
+        </b-button> -->
       </template>
       
       <template #cell(status)="row">
@@ -164,18 +164,18 @@
             name: 'flip-list'
         },
         items: [
-          { favourite: false ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM'},description:"aciklama",salary:2000 },
-          {favourite: true , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'Daimler' },description:"deneme",salary:8000},
-          {favourite: false, status: "denied",jobType: "a",companyName: { first: 'Mercedes', last: 'BBS' },description:"aciklama",salary:9000},
-          {favourite: true , status: "denied", jobType: "b", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:1000 },
-          { favourite: true ,status: "accepted", jobType: "c", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:12000 },
-          {favourite: false , status: "pending", jobType: "Backend", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7000 },
-          {favourite: true , status: "accepted", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' } ,description:"aciklama",salary:6000},
-          {favourite: true ,status: "pending", jobType: "Backend",companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7500},
-          {favourite: false ,status: "denied", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'Daimler' },description:"aciklama",salary:8800 },
-          {favourite: true ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:9200 },
-          {favourite: false , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'BBS' } ,description:"aciklama",salary:6500},
-          {favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
+          {jobId: 1,favourite: false ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM'},description:"aciklama",salary:2000 },
+          {jobId: 2,favourite: true , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'Daimler' },description:"deneme",salary:8000},
+          {jobId: 3,favourite: false, status: "denied",jobType: "a",companyName: { first: 'Mercedes', last: 'BBS' },description:"aciklama",salary:9000},
+          {jobId: 4,favourite: true , status: "denied", jobType: "b", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:1000 },
+          {jobId: 5, favourite: true ,status: "accepted", jobType: "c", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:12000 },
+          {jobId: 6,favourite: false , status: "pending", jobType: "Backend", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7000 },
+          {jobId: 7,favourite: true , status: "accepted", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' } ,description:"aciklama",salary:6000},
+          {jobId: 8,favourite: true ,status: "pending", jobType: "Backend",companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7500},
+          {jobId: 9,favourite: false ,status: "denied", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'Daimler' },description:"aciklama",salary:8800 },
+          {jobId: 10,favourite: true ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:9200 },
+          {jobId: 11,favourite: false , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'BBS' } ,description:"aciklama",salary:6500},
+          {jobId: 12,favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
         ],
         fields: [
           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
@@ -184,18 +184,7 @@
           { key: 'description', label: 'Description', sortable: true, class: 'text-center' },
           { key: 'salary', label: 'Salary', sortable: true, class: 'text-center' },
           { key: 'actions', label: 'Actions', class:"text-center", },
-          // {
-          //   key: 'status',
-          //   label: 'Status',
-          //   // formatter: (value, key, item) => {
-          //   //   return value ? 'Yes' : 'No'
-          //   // },
-          //   sortable: true,
-          //   sortByFormatted: true,
-          //   filterByFormatted: true,
-          //   class:"text-center",
-           
-          // },
+          // { key: 'status',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
         ],
         totalRows: 1,
         currentPage: 1,
@@ -304,6 +293,10 @@
       console.log(index);
       
     },
+    commandClick: function(args) {
+      console.log(args);
+      this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
+      }
     // getCustomObjectDetail(obj) {
     //     this.$appAxios.get(String.format('/customobject/get?id={0}',obj.id))
     //         .then((response) => {
