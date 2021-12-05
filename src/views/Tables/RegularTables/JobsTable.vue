@@ -295,6 +295,7 @@
     },
     commandClick: function(args) {
       console.log(args);
+     
       this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
       }
     // getCustomObjectDetail(obj) {

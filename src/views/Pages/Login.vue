@@ -86,7 +86,9 @@ import axios from 'axios';
       loginUser(){
         axios.post("/api/auth/login",this.model).then((response)=>{
             if(response.status==200){
-              this.$router.push('dashboard')
+                this.$store.commit("setUser", response.data);
+                console.log(this.$store.state.userData);
+                this.$router.push('dashboard');
             }
         });
       }
