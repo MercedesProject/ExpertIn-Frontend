@@ -20,8 +20,8 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                     <img
-                      src="img/theme/profil.jpg"
-                      class="rounded-circle"
+                      src="../../../../public/mercedes.png"
+                      
                     />
                 </div>
               </div>
@@ -52,7 +52,7 @@
                     <i class="fas fa-map-marker-alt"></i> Address: 
                   </div>
                   <div class="col-lg-12 ">
-                    {{ dummyData.address}}
+                    {{ model.address}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-envelope"></i> Email Adress: 
@@ -77,7 +77,7 @@
               <div class="bg-white border-0">
                 <div class="row align-items-center">
                   <div class="col-8">
-                    <h3 class="mb-0">Detail</h3>
+                    <h3 class="mb-0">Edit Job</h3>
                   </div>
                   <div class="col-4 text-right">
                       <a href="#" class="btn btn-sm btn-default ">Message</a> 
@@ -90,59 +90,104 @@
             <form>
               <div class="pl-lg-4">
                 <div class="row">
-                  <!-- <div class="col-lg-6 h5 mt-4">
-                    <label><b>Adress:</b></label>
-                    deneme
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <label><b>Phone Number:</b></label>
-                    Phone Number:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <label><b>City:</b></label>
-                    City
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <label><b>Country:</b></label>
-                    Country
-                  </div> -->
                   <div class="col-lg-6 h5 mt-4">
                     <label ><b>Job:</b></label>
-                       <b-form-text class="form-control">{{model.username}}</b-form-text>
+                        <base-input
+                            type="text"
+                            v-model="model.job"
+                            required
+                            id="address">
+                        </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Type:</b></label>
-                    <b-form-text class="form-control">{{model.username}}</b-form-text>
+                    <base-input
+                            type="select"
+                            v-model="model.type"
+                            required
+                            id="jobType">
+                            <select class="form-control">
+                              <option>Backend</option>
+                              <option>Frontend</option>
+                              <option>Fullstack</option>
+                            </select>
+                        </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                   <label><b>Salary:</b></label>
-                       <b-form-text class="form-control">{{model.username}}</b-form-text>
+                       <base-input 
+                            type="number"
+                            v-model="model.salary"
+                            required
+                            id="city">
+                        </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Form:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <base-input  
+                            type="select"
+                            v-model="model.form"
+                            required
+                            id="form">
+                            <select class="form-control">
+                              <option>Remote</option>
+                              <option>Office</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                        </base-input>
                   </div>
                       <div class="col-lg-6 h5 mt-4">
                     <label><b>Time:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <base-input
+                            type="text"
+                            v-model="model.time"
+                            required
+                            id="time">
+                        </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Deadline:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <base-input
+                            type="date"
+                            v-model="model.deadline"
+                            required
+                            id="deadline">
+                        </base-input>
                   </div>
               
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Start Date:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <base-input
+                            type="date"
+                            v-model="model.startDate"
+                            required
+                            id="startDate">
+                        </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>End Date:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <base-input
+                            type="date"
+                            v-model="model.endDate"
+                            required
+                            id="endDate">
+                        </base-input>
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <label><b>Description:</b></label>
-                    <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <base-input>
+                            <textarea class="form-control" 
+                            rows="3"
+                            v-model="model.description"
+                            required
+                            id="description"
+                            ></textarea>
+                           
+                        </base-input>
                   </div>
+                  
                 </div>
               </div>
             </form>
@@ -157,7 +202,7 @@
 import axios from 'axios';
 
 export default {
-  name: "job-detail",
+  name: "job-edit",
   data() {
     return {
       model: {
@@ -165,24 +210,13 @@ export default {
         email: "2",
         firstName: "3",
         lastName: "4",
-        address: "",
+        address: "kavakyeli",
+        phone:"",
         city: "",
         country: "",
         zipCode: "",
         about: "",
       },
-      dummyData: {
-        username: "1",
-        email: "2",
-        firstName: "3",
-        lastName: "4",
-        address: "kavakyelisokak",
-        city: "6",
-        country: "7",
-        zipCode: "8",
-        about: "9",
-      },
-      jobData:[],
     };
   },
    methods:{

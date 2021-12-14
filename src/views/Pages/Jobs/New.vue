@@ -20,8 +20,8 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                     <img
-                      src="img/theme/profil.jpg"
-                      class="rounded-circle"
+                      src="../../../../public/mercedes.png"
+                      
                     />
                 </div>
               </div>
@@ -77,7 +77,7 @@
               <div class="bg-white border-0">
                 <div class="row align-items-center">
                   <div class="col-8">
-                    <h3 class="mb-0">Detail</h3>
+                    <h3 class="mb-0">New Job</h3>
                   </div>
                   <div class="col-4 text-right">
                       <a href="#" class="btn btn-sm btn-default ">Message</a> 
@@ -88,46 +88,106 @@
             </template>
 
             <form>
-              <!-- Contact Information -->
-              <h6 class="heading-small text-muted mb-4">Contact information</h6>
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-6 h5 mt-4">
-                    <label ><b>Adress:</b></label>
+                    <label ><b>Job:</b></label>
                         <base-input
                             type="text"
-                            v-model="model.email"
+                            v-model="model.job"
                             required
                             id="address">
                         </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>Phone Number:</b></label>
+                    <label><b>Type:</b></label>
                     <base-input
-                            type="text"
-                            v-model="model.phone"
+                            type="select"
+                            v-model="model.type"
                             required
-                            id="phoneNumber">
+                            id="jobType">
+                            <select class="form-control">
+                              <option>Backend</option>
+                              <option>Frontend</option>
+                              <option>Fullstack</option>
+                            </select>
                         </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>City:</b></label>
-                      <base-input
-                            type="text"
-                            v-model="model.city"
+                  <label><b>Salary:</b></label>
+                       <base-input 
+                            type="number"
+                            v-model="model.salary"
                             required
                             id="city">
                         </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>Country:</b></label>
-                     <base-input
-                            type="text"
-                            v-model="model.country"
+                    <label><b>Form:</b></label>
+                     <base-input  
+                            type="select"
+                            v-model="model.form"
                             required
-                            id="country">
+                            id="form">
+                            <select class="form-control">
+                              <option>Remote</option>
+                              <option>Office</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
                         </base-input>
                   </div>
+                      <div class="col-lg-6 h5 mt-4">
+                    <label><b>Time:</b></label>
+                     <base-input
+                            type="text"
+                            v-model="model.time"
+                            required
+                            id="time">
+                        </base-input>
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <label><b>Deadline:</b></label>
+                     <base-input
+                            type="date"
+                            v-model="model.deadline"
+                            required
+                            id="deadline">
+                        </base-input>
+                  </div>
+              
+                  <div class="col-lg-6 h5 mt-4">
+                    <label><b>Start Date:</b></label>
+                     <base-input
+                            type="date"
+                            v-model="model.startDate"
+                            required
+                            id="startDate">
+                        </base-input>
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <label><b>End Date:</b></label>
+                     <base-input
+                            type="date"
+                            v-model="model.endDate"
+                            required
+                            id="endDate">
+                        </base-input>
+                  </div>
+                  <div class="col-lg-12 h5 mt-4">
+                    <label><b>Description:</b></label>
+                     <base-input>
+                            <textarea class="form-control" 
+                            rows="3"
+                            v-model="model.description"
+                            required
+                            id="description"
+                            ></textarea>
+                           
+                        </base-input>
+                  </div>
+                  
                 </div>
               </div>
             </form>
@@ -142,7 +202,7 @@
 import axios from 'axios';
 
 export default {
-  name: "job-detail",
+  name: "job-new",
   data() {
     return {
       model: {

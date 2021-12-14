@@ -52,7 +52,7 @@
                     <img alt="Image placeholder" src="img/theme/profil.jpg">
                   </span>
             <b-media-body class="ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">{{this.$store.state.userData.firstName}} {{this.$store.state.userData.lastName}}</span>
+              <span class="mb-0 text-sm  font-weight-bold"><!-- {{this.$store.state.userData.firstName}} {{this.$store.state.userData.lastName}} --></span>
             </b-media-body>
           </b-media>
         </a>
