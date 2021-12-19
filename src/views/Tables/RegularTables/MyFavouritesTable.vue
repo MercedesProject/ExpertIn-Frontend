@@ -62,7 +62,7 @@
     
     <!-- Main table element -->
     <b-table
-      :items="items"
+      :items="favJobs"
       :fields="fields"
       sort-icon-left
       :current-page="currentPage"
@@ -164,7 +164,6 @@ import axios from 'axios'
         transProps:{
             name: 'flip-list'
         },
-        appAxios : 'http://localhost:44362',
         items: [
           {favourite: true , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'Daimler' },description:"deneme",salary:8000},
           {favourite: true , status: "denied", jobType: "b", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:1000 },
@@ -174,12 +173,13 @@ import axios from 'axios'
           {favourite: true ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:9200 },
           {favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
         ],
+        favJobs : [],
         fields: [
           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
           { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center" },
           { key: 'jobType', label: 'Type', sortable: true, class: 'text-center' },
-          { key: 'description', label: 'Description', sortable: true, class: 'text-center' },
-          { key: 'salary', label: 'Salary', sortable: true, class: 'text-center' },
+          { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center' },
+          { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center' },
           { key: 'actions', label: 'Actions', class:"text-center", },
           {
             key: 'status',
@@ -259,21 +259,7 @@ import axios from 'axios'
     },
      },
     mounted() {
-      // Set the initial number of items
-      this.totalRows = this.items.length
-      this.remoteConfig = null;
-      this.remoteRows = null;
-        this.loading = true;
-        axios.get("/api/jobs/getall").then((response)=>{
-            this.jobs = response.data;
-            console.log(response);
-//             this.jobs.forEach((value, index) => {
-//               this.items.push(value);
-//               console.log(value);
-//               console.log(index);
-// });
-           
-        });
+
     },
     methods: {
       info(item, index, button) {
@@ -305,16 +291,20 @@ import axios from 'axios'
       console.log(index);
       
     },
-    // getCustomObjectDetail(obj) {
-    //     this.$appAxios.get(String.format('/customobject/get?id={0}',obj.id))
-    //         .then((response) => {
-    //             this.customObjectData = response.data;
-    //             this.detailTitle =  response.data.name;
-    //         })
-    //         .catch(function (error) {
-    //             alert(error);
-    //         });
-    //     },
+    getFavJobs() {
+    axios.get("/api/favoriteJobs/getallbyemployerid?=" + 1).then((response)=>{
+    this.favJobs = response.data;
+    console.log(response.favJobs);
+    this.jobs.forEach((value, index) => {
+      this.items.push(value);
+      console.log(value);
+      console.log(index);
+    });  
+    })},
+
+    },
+    created(){
+      // this.getFavJobs()
     }
   }
 </script>

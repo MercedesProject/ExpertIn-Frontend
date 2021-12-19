@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="card-header border-0 text-center pt-8 pb-0  ">
-               <a href="#" class="btn btn-sm btn-default ">Message</a> 
+                
             </div>
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
@@ -80,8 +80,7 @@
                     <h3 class="mb-0">Edit Job</h3>
                   </div>
                   <div class="col-4 text-right">
-                      <a href="#" class="btn btn-sm btn-default ">Message</a> 
-                    <button  @click=ApplyJob() class="btn btn-sm btn-success">Apply</button>
+                    <button  @click=editJob() class="btn btn-sm btn-primary saveJob">Save</button>
                   </div>
                 </div>
               </div>
@@ -94,7 +93,7 @@
                     <label ><b>Job:</b></label>
                         <base-input
                             type="text"
-                            v-model="model.job"
+                            v-model="jobData.jobName"
                             required
                             id="address">
                         </base-input>
@@ -103,7 +102,7 @@
                     <label><b>Type:</b></label>
                     <base-input
                             type="select"
-                            v-model="model.type"
+                            v-model="jobData.jobType"
                             required
                             id="jobType">
                             <select class="form-control">
@@ -117,7 +116,7 @@
                   <label><b>Salary:</b></label>
                        <base-input 
                             type="number"
-                            v-model="model.salary"
+                            v-model="jobData.jobSalary"
                             required
                             id="city">
                         </base-input>
@@ -126,7 +125,7 @@
                     <label><b>Form:</b></label>
                      <base-input  
                             type="select"
-                            v-model="model.form"
+                            v-model="jobData.jobForm"
                             required
                             id="form">
                             <select class="form-control">
@@ -180,12 +179,15 @@
                      <base-input>
                             <textarea class="form-control" 
                             rows="3"
-                            v-model="model.description"
+                            v-model="jobData.jobDescription"
                             required
                             id="description"
                             ></textarea>
                            
                         </base-input>
+                  </div>
+                  <div class="offset-md-10 col-md-2 text-right">
+                    <button  @click=editJob() class="btn btn-sm btn-primary saveJob">Save</button>
                   </div>
                   
                 </div>
@@ -217,26 +219,27 @@ export default {
         zipCode: "",
         about: "",
       },
+      jobData:[]
     };
   },
    methods:{
-     ApplyJob: function() {
-         alert(this.$route.params.jobId);
-      },
-    //    getJobDetail() {
-    //     axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
-    //         .then((response) => {
-    //             console.log(response);
-    //             this.jobData = response.data;
-    //         })
-    //         .catch(function (error) {
-    //             alert(error);
-    //         });
-    //     },
+       getJobDetail() {
+        axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
+            .then((response) => {
+                console.log(response);
+                this.jobData = response.data;
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+        },
+        editJob(id){
+          alert(this.$route.params.jobId);
+        }
      },
-    // mounted(){
-    //   this.getJobDetail();
-    // }
+    created(){
+      this.getJobDetail();
+    }
 };
 </script>
 <style></style>

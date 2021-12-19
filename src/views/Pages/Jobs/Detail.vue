@@ -108,40 +108,40 @@
                   </div> -->
                   <div class="col-lg-6 h5 mt-4">
                     <label ><b>Job:</b></label>
-                       <b-form-text class="form-control">{{model.username}}</b-form-text>
+                       <b-form-text class="form-control">{{jobData.jobName}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Type:</b></label>
-                    <b-form-text class="form-control">{{model.username}}</b-form-text>
+                    <b-form-text class="form-control">{{jobData.jobType}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                   <label><b>Salary:</b></label>
-                       <b-form-text class="form-control">{{model.username}}</b-form-text>
+                       <b-form-text class="form-control">{{jobData.jobSalary}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Form:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <b-form-text class="form-control">{{jobData.jobForm}}</b-form-text>
                   </div>
                       <div class="col-lg-6 h5 mt-4">
                     <label><b>Time:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <b-form-text class="form-control">{{jobData.username}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Deadline:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <b-form-text class="form-control">{{jobData.username}}</b-form-text>
                   </div>
               
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Start Date:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <b-form-text class="form-control">{{jobData.username}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>End Date:</b></label>
-                     <b-form-text class="form-control">{{model.username}}</b-form-text>
+                     <b-form-text class="form-control">{{jobData.username}}</b-form-text>
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <label><b>Description:</b></label>
-                    <b-form-text class="form-control">{{model.username}}</b-form-text>
+                    <b-form-text class="form-control">{{jobData.jobDescription}}</b-form-text>
                   </div>
                 </div>
               </div>
@@ -189,20 +189,20 @@ export default {
      ApplyJob: function() {
          alert(this.$route.params.jobId);
       },
-    //    getJobDetail() {
-    //     axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
-    //         .then((response) => {
-    //             console.log(response);
-    //             this.jobData = response.data;
-    //         })
-    //         .catch(function (error) {
-    //             alert(error);
-    //         });
-    //     },
+       getJobDetail() {
+        axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
+            .then((response) => {
+                console.log(response);
+                this.jobData = response.data;
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+        },
      },
-    // mounted(){
-    //   this.getJobDetail();
-    // }
+    created(){
+      this.getJobDetail();
+    }
 };
 </script>
 <style></style>

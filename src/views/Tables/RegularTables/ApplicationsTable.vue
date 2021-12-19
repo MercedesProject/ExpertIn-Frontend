@@ -62,7 +62,7 @@
     
     <!-- Main table element -->
     <b-table
-      :items="items"
+      :items="jobs"
       :fields="fields"
       sort-icon-left
       :current-page="currentPage"
@@ -178,6 +178,7 @@
           {favourite: false , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'BBS' } ,description:"aciklama",salary:6500},
           {favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
         ],
+        jobs:[],
         fields: [
           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
           { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center" },
@@ -208,6 +209,7 @@
     },
     props:['is_fav'],
     computed: {
+      
       sortOptions() {
         // Create an options list from our fields
         return this.fields
@@ -269,19 +271,10 @@
         
     //     return null;
     // },
+      
      },
     mounted() {
-      // Set the initial number of items
-      this.totalRows = this.items.length
-    //    this.remoteConfig = null;
-    //     this.remoteRows = null;
-        this.loading = true;
-        // axios.get("https://api.coindesk.com/v1/bpi/currentprice.json").then((response)=>{
-        //     // this.remoteRows = response.data.rows;
-        //     // this.remoteConfig = response.data.config;
-        //     this.loading = false;
-        //     console.log(response);
-        // });
+        
     },
     methods: {
       info(item, index, button) {
@@ -313,18 +306,19 @@
       console.log(index);
       
     },
-    // getCustomObjectDetail(obj) {
-    //     this.$appAxios.get(String.format('/customobject/get?id={0}',obj.id))
-    //         .then((response) => {
-    //             this.customObjectData = response.data;
-    //             this.detailTitle =  response.data.name;
-    //         })
-    //         .catch(function (error) {
-    //             alert(error);
-    //         });
-    //     },
-    }
+    getApplicationJobs() {
+        axios.get("/api/appjobs/getall").then((response)=>{
+            this.jobs = response.data;
+            console.log(this.jobs);
+        });
+    },
+
+  },
+  created(){
+     //this.getApplicationJobs()
+  },
   }
+  
 </script>
 <style>
 .customPagination> li >button

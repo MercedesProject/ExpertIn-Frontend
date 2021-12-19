@@ -62,7 +62,7 @@
     
     <!-- Main table element -->
     <b-table
-      :items="items"
+      :items="jobs"
       :fields="fields"
       sort-icon-left
       :current-page="currentPage"
@@ -79,9 +79,7 @@
       @filtered="onFiltered"
       class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
     >
-      <template #cell(companyName)="row">
-        {{ row.value.first }} {{ row.value.last }}
-      </template>
+      
 
       <template #cell(actions)="row">
         <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1 jobDetail" v-on:click=commandClick(row.item)>
@@ -177,12 +175,14 @@
           {jobId: 11,favourite: false , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'BBS' } ,description:"aciklama",salary:6500},
           {jobId: 12,favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
         ],
+        jobs:[],
         fields: [
           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
           { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center" },
           { key: 'jobType', label: 'Type', sortable: true, class: 'text-center' },
-          { key: 'description', label: 'Description', sortable: true, class: 'text-center' },
-          { key: 'salary', label: 'Salary', sortable: true, class: 'text-center' },
+          { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center' },
+          { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center' },
+          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center' },
           { key: 'actions', label: 'Actions', class:"text-center", },
           // { key: 'status',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
         ],
@@ -249,19 +249,10 @@
         
         return null;
     },
+    
      },
     mounted() {
-      // Set the initial number of items
-      this.totalRows = this.items.length
-    //    this.remoteConfig = null;
-    //     this.remoteRows = null;
-        this.loading = true;
-        // axios.get("https://api.coindesk.com/v1/bpi/currentprice.json").then((response)=>{
-        //     // this.remoteRows = response.data.rows;
-        //     // this.remoteConfig = response.data.config;
-        //     this.loading = false;
-        //     console.log(response);
-        // });
+   
     },
     methods: {
       info(item, index, button) {
@@ -297,17 +288,17 @@
       console.log(args);
      
       this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
-      }
-    // getCustomObjectDetail(obj) {
-    //     this.$appAxios.get(String.format('/customobject/get?id={0}',obj.id))
-    //         .then((response) => {
-    //             this.customObjectData = response.data;
-    //             this.detailTitle =  response.data.name;
-    //         })
-    //         .catch(function (error) {
-    //             alert(error);
-    //         });
-    //     },
+      },
+   getAllJobs() {
+        
+        axios.get("/api/jobs/getall").then((response)=>{
+            this.jobs = response.data;
+            console.log(this.jobs);
+        });
+        },
+    },
+    created(){
+      this.getAllJobs();
     }
   }
 </script>
