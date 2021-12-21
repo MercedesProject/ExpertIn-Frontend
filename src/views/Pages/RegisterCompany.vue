@@ -57,7 +57,7 @@
                           </b-form-checkbox>
                         </base-input>
                         <div class="text-center">
-                         <b-button style="background-color: #8A78C8; border-color: #8A78C8; width: 60%" type="submit" variant="primary" class="mt-4">Create account</b-button>
+                         <b-button @click="createAcc()" style="background-color: #8A78C8; border-color: #8A78C8; width: 60%" type="submit" variant="primary" class="mt-4">Create account</b-button>
                         </div>
                       </div>
                     </b-col>
@@ -78,13 +78,14 @@
   </div>
 </template>
 <script>
-
+import axios from 'axios';
   export default {
     name: 'register',
     data() {
       return {
         model: {
           name: '',
+          lastname: '',
           email: '',
           password: '',
           agree: false
@@ -94,6 +95,23 @@
     methods: {
       onSubmit() {
         // this will be called only after form is valid. You can do an api call here to register users
+      },
+      createAcc(){
+        
+        axios.post("/api/auth/register",this.model).then((response)=>{
+            if(response.status==200){
+              this.$router.push('logincompany');
+            }
+        });
+//         axios({
+//               method: 'post',
+//               url: '/api/auth/register',
+//               UserForRegisterDto: {
+//                     name: this.name,
+//                   email: this.email,
+//                   password: this.password,
+//               }
+// });
       }
     }
 

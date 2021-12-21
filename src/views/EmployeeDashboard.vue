@@ -5,7 +5,7 @@
       <b-row class="justify-content-center">
         
         <b-col xl="3" md="6">
-          <router-link to="/dashboard">
+          <router-link to="/employeedashboard">
           <stats-card title="Jobs"
                       type="gradient-orange"
                       sub-title="2,356"
@@ -17,7 +17,7 @@
              </router-link>
         </b-col>
         <b-col xl="3" md="6">
-          <router-link to="/applications">
+          <router-link to="/employeeapplications">
           <stats-card title="My Applications"
                       type="gradient-green"
                       sub-title="3"
@@ -31,7 +31,7 @@
           </router-link>
         </b-col>
         <b-col xl="3" md="6">
-          <router-link to="/favourites">
+          <router-link to="/employeefavourites">
           <stats-card title="My Favourites"
                       type="gradient-red"
                       sub-title="4"
@@ -44,7 +44,7 @@
           </router-link>
         </b-col>
         <b-col xl="3" md="6">
-          <router-link to="/messages">
+          <router-link to="/employeemessages">
           <stats-card title="Messages"
                       type="gradient-info"
                       sub-title="5"

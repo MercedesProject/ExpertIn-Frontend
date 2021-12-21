@@ -54,7 +54,7 @@
             </b-row>
                   <b-form-checkbox v-model="model.rememberMe">Remember me</b-form-checkbox>
                   <div class="text-center">
-                    <base-button style="background-color: #8A78C8; border-color: #8A78C8; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
+                    <base-button @click="loginUser()" style="background-color: #8A78C8; border-color: #8A78C8; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
                   </div>
                 </b-form>
               </validation-observer>
@@ -69,6 +69,7 @@
   
 </template>
 <script>
+import axios from 'axios';
   export default {
     data() {
       return {
@@ -76,12 +77,22 @@
           email: '',
           password: '',
           rememberMe: false
-        }
+        },
+        isLogin: false
       };
     },
     methods: {
       onSubmit() {
         // this will be called only after form is valid. You can do api call here to login
+      },
+      loginUser(){
+        axios.post("/api/auth/login",this.model).then((response)=>{
+            if(response.status==200){
+                this.$store.commit("setUser", response.data);
+                console.log(this.$store.state.userData);
+                this.$router.push('companydashboard');
+            }
+        });
       }
     }
   };

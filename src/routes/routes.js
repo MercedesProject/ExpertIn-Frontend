@@ -1,5 +1,6 @@
 import LandingPage from '@/views/Pages/LandingPage.vue';
 import DashboardLayout from '@/views/Layout/DashboardLayout.vue';
+import CompanyDashboardLayout from '@/views/Layout/CompanyDashboardLayout.vue';
 import AuthLayout from '@/views/Pages/AuthLayout.vue';
 import AuthLayoutForCompany from '@/views/Pages/AuthLayoutForCompany.vue';
 import ForgotPassword from '@/views/Pages/ForgotPassword.vue';
@@ -20,25 +21,25 @@ const routes = [{
                 import ('../views/Pages/LandingPage.vue')
         }]
     },
-
+    //Employee için
     {
         path: '/',
-        redirect: 'dashboard',
+        redirect: 'employeedashboard',
         component: DashboardLayout,
         children: [{
-                path: '/dashboard',
-                name: 'dashboard',
+                path: '/employeedashboard',
+                name: 'employeedashboard',
                 component: () =>
-                    import ('../views/Dashboard.vue')
+                    import ('../views/EmployeeDashboard.vue')
             },
             {
-                path: '/messages',
+                path: '/employeemessages',
                 name: 'Mesajlar',
                 component: () =>
                     import ('../views/Messages.vue')
             },
             {
-                path: '/profile',
+                path: '/employeeprofile',
                 name: 'Profil',
                 component: () =>
                     import ('../views/Pages/UserProfile/UserProfile.vue')
@@ -55,24 +56,56 @@ const routes = [{
                 component: () =>
                     import ('../views/Pages/UserProfile/ResumeUpload.vue')
             },
-            /*      {
-                    path: '/settings',
-                    name: '',
-                    component: () =>
-                    import ('../views/Pages/Settings.vue')
-                },
-            */
             {
-                path: '/applications',
+                path: '/landingpage',
+                name: '',
+                component: () =>
+                import ('../views/Pages/LandingPage.vue')
+            },
+            
+            {
+                path: '/employeeapplications',
                 name: 'MyApplications',
                 component: () =>
                     import ('../views/RegularTables.vue')
             },
             {
-                path: '/favourites',
+                path: '/employeefavourites',
                 name: 'MyFavourites',
                 component: () =>
                     import ('../views/MyFavouritesTables.vue')
+            },
+            
+        ]
+    },
+    //Company için 
+    {
+        path: '/',
+        redirect: 'companydashboard',
+        component: CompanyDashboardLayout,
+        children: [{
+                path: '/companydashboard',
+                name: 'companydashboard',
+                component: () =>
+                    import ('../views/CompanyDashboard.vue')
+            },
+            {
+                path: '/companymessages',
+                name: 'Mesajlar',
+                component: () =>
+                    import ('../views/Messages.vue')
+            },
+            {
+                path: '/companyprofile',
+                name: '',
+                component: () =>
+                    import ('../views/Pages/CompanyProfile/CompanyProfile.vue')
+            },
+            {
+                path: '/editformforcompany',
+                name: '',
+                component: () =>
+                    import ('../views/Pages/CompanyProfile/EditFormforCompany.vue')
             },
             {
                 path: '/Job/Detail/:jobId',
@@ -94,50 +127,7 @@ const routes = [{
             },
         ]
     },
-    /*{
-        path: '/',
-        redirect: 'editprofilform',
-        component: EditProfileForm,
-        children: [{
-            path: '/editprofilform',
-            name: '',
-            component: () =>
-                import ('../views/Pages/UserProfile/EditProfileForm.vue')
-        }]
-    },
-    {
-        path: '/',
-        redirect: 'resumeupload',
-        component: ResumeUpload,
-        children: [{
-            path: '/resumeupload',
-            name: '',
-            component: () =>
-                import ('../views/Pages/UserProfile/ResumeUpload.vue')
-        }]
-    },*/
-    {
-        path: '/',
-        redirect: 'companyprofile',
-        component: CompanyProfile,
-        children: [{
-            path: '/companyprofile',
-            name: '',
-            component: () =>
-                import ('../views/Pages/CompanyProfile/CompanyProfile.vue')
-        }]
-    },
-    {
-        path: '/',
-        redirect: 'editformforcompany',
-        component: EditFormforCompany,
-        children: [{
-            path: '/editformforcompany',
-            name: '',
-            component: () =>
-                import ('../views/Pages/CompanyProfile/EditFormforCompany.vue')
-        }]
-    },
+
     {
         path: '/',
         redirect: 'login',

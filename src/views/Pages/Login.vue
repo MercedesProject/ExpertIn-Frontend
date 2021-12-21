@@ -88,7 +88,7 @@ import axios from 'axios';
             if(response.status==200){
                 this.$store.commit("setUser", response.data);
                 console.log(this.$store.state.userData);
-                this.$router.push('dashboard');
+                this.$router.push('employeedashboard');
             }
         });
       }

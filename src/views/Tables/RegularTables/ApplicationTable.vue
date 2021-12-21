@@ -1,13 +1,13 @@
 <template>
     <b-card no-body class="border border-info" >
         <b-card-header class="border-0 border-primary ">
-            <h3 class="mb-0 text-center">İlanlar</h3>
+            <h3 class="mb-0 text-center">Posted Jobs</h3>
         </b-card-header>
 
         <el-table class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
                   header-row-class-name="thead-light"
                   :data="projects">
-            <el-table-column label="Project"
+            <el-table-column label="Job"
                              min-width="310px"
                              prop="name">
                 <template v-slot="{row}">
@@ -21,14 +21,14 @@
                     </b-media>
                 </template>
             </el-table-column>
-            <el-table-column label="Budget"
+            <!--<el-table-column label="Salary"
                              prop="budget"
                              min-width="140px">
             </el-table-column>
-
+            -->
            
 
-            <el-table-column label="Users" min-width="190px">
+            <el-table-column label="Applicants" min-width="170px">
                 <div class="avatar-group">
                     <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
                        data-original-title="Ryan Tompson">
@@ -49,7 +49,7 @@
                 </div>
             </el-table-column>
 
-            <el-table-column label="Completion"
+            <!--<el-table-column label="Form"
                              prop="completion"
                              min-width="240px">
                 <template v-slot="{row}">
@@ -63,7 +63,7 @@
             </el-table-column>
 
              <el-table-column label="Status"
-                             min-width="170px"
+                             min-width="150px"
                              prop="status">
                 <template v-slot="{row}">
                     <badge class="badge-dot mr-4" type="">
@@ -71,8 +71,8 @@
                         <span class="status" :class="`text-${row.statusType}`">{{row.status}}</span>
                     </badge>
                 </template>
-            </el-table-column>
-        </el-table>
+            </el-table-column>-->
+        </el-table> 
 
         <b-card-footer class="py-4 d-flex justify-content-end">
             <base-pagination v-model="currentPage" :per-page="10" :total="50"></base-pagination>

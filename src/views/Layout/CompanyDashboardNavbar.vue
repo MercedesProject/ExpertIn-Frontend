@@ -8,23 +8,20 @@
     </div>
 
     <b-navbar-nav  class="align-items-lg-center mr-lg-auto">
-           <b-nav-item to="/employeedashboard">
+           <b-nav-item to="/companydashboard">
                <i class="ni ni-planet"></i>
                <span class="nav-link-inner--text"> Home </span>
            </b-nav-item>
-           <b-nav-item to="/employeeapplications">
-               <i class="ni ni-briefcase-24"></i>
-               <span class="nav-link-inner--text"> My Applications </span>
+            <b-nav-item to="/Job/New">
+               <i class="ni ni-single-02"></i>
+               <span class="nav-link-inner--text"> New Job </span>
            </b-nav-item>
-           <b-nav-item to="/employeefavourites">
-               <i class="ni ni-favourite-28"></i>
-               <span class="nav-link-inner--text"> My Favourites </span>
-           </b-nav-item>
-           <b-nav-item to="/employeeprofile">
+
+           <b-nav-item to="/companyprofile">
                <i class="ni ni-single-02"></i>
                <span class="nav-link-inner--text"> My Profile </span>
            </b-nav-item>
-            <b-nav-item to="/employeemessages">
+            <b-nav-item to="/companymessages">
                <i class="ni ni-email-83"></i>
                <span class="nav-link-inner--text"> Messages </span>
            </b-nav-item>
