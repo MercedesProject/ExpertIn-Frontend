@@ -5,6 +5,8 @@ import { appAxios } from './utils/appAxios';
 import Axios from 'axios';
 import { createApp } from './App.vue';
 import store from './store/index';
+import VueCompositionAPI from '@vue/composition-api'
+import Multiselect from '@vueform/multiselect'
 // router setup
 import router from './routes/router';
 Axios.defaults.headers.common['expertin'] = 'Expert In'
@@ -12,6 +14,8 @@ Axios.defaults.baseURL = 'https://localhost:44362'
     // plugin setup
 Vue.use(DashboardPlugin);
 Vue.use(appAxios);
+Vue.use(VueCompositionAPI);
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

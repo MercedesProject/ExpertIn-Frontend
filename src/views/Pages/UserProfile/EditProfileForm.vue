@@ -306,35 +306,13 @@
 
                   <div class="pl-lg-4">
                     <b-row>
-                      <b-col md="1">
-                        <span><badge type="default">Skill 1</badge></span>
-                        
+                      <b-col md="4">
+                      <multiselect/>
                       </b-col>
-                      <b-col md="1">
-                        <span><badge type="default">Skill 2</badge></span>
-                      </b-col>
-                      <b-col md="1">
-                        <span><badge type="default">Skill 3</badge></span>
-                        
-                      </b-col>
-                      <b-col md="1">
-                        <span><badge type="default">Skill 4</badge></span>
-                      </b-col>
-                      <b-col md="1">
-                        <span><badge type="default">Skill 5</badge></span>
-                        
-                      </b-col>
-                      <b-col md="1">
-                        <span><badge type="default">Skill 6</badge></span>
-                      </b-col>
-                      <b-col md="1">
-                        <span><badge type="default">Skill 7</badge></span>
-                        
-                      </b-col>
-                      
                     </b-row>
+                    
                     <b-row>
-                      <b-col md="1">
+                      <!-- <b-col md="1">
                         <span><badge type="default">Skill 8</badge></span>
                       </b-col>
                       <b-col md="1">
@@ -350,7 +328,7 @@
                       </b-col>
                       <b-col md="1">
                         <span><badge type="default">Skill 12</badge></span>
-                      </b-col>
+                      </b-col> -->
                       
                     </b-row>
                   </div>
@@ -464,10 +442,13 @@
 </template>
 <script>
 import DropZone from "@/components/Inputs/DropZone.vue";
+import Multiselect from '../../../components/Inputs/Multiselect.vue';
+
 export default {
   name:"editProfile",
   components:{
     DropZone,
+    Multiselect 
   },
   
   data() {
