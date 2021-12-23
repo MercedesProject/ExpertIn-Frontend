@@ -299,6 +299,8 @@
     },
     created(){
       this.getAllJobs();
+      console.log(this.$store.state.userData.id);
+      console.log(this.$store.state.userData);
     }
   }
 </script>

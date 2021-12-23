@@ -57,10 +57,10 @@
               </div>
               <div class="text-center">
                 <h3>
-                  Büşra Sarı<span class="font-weight-light">, 22, 1.74</span>
+                  {{model.EmployerName}} {{model.EmployerSurname}}<span class="font-weight-light"></span>
                 </h3>
-                <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>Istanbul, Turkey
+                <div class="h5 font-weight-300" >
+                  <i class="ni location_pin mr-2" ></i>{{model.EmployerCity}}, {{model.EmployerCountry}}
                 </div>
                 <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Computer Engineer
@@ -74,7 +74,7 @@
                     <i class="ni business_briefcase-24 mr-2"></i>Github Url: 
                   </div>
                   <div class="col-lg-12 ">
-                    <i class="ni education_hat mr-2"></i> https://github.com/busrasari
+                    <i class="ni education_hat mr-2"></i> {{model.EmployerGithub}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <i class="ni business_briefcase-24 mr-2"></i>Email Adress: 
@@ -246,25 +246,49 @@
   </div>
 </template>
 <script>
-
+import axios from 'axios';
 export default {
   name: "user-profile",
 
   data() {
     return {
       model: {
-        username: "",
-        email: "",
-        firstName: "",
-        lastName: "",
-        address: "",
-        city: "",
-        country: "",
-        zipCode: "",
-        about: "",
+        EmployerId: this.$store.state.userData.id,
+        UserTypeId: 1,
+        UserId: 3,
+        EmployerName: this.$store.state.userData.firstName,
+        EmployerSurname: this.$store.state.userData.lastName,
+        EmployerTitle:'',
+        EmployerCity: '',
+        EmployerCountry: '',
+        EmployerLocation: '',
+        EmployerEmail: this.$store.state.userData.email,
+        EmployerGithub:'',
+        EmployerLinkedin:'',
+        eEmployerAboutMe: ``,
+        // EmployerResume:'',
+        EmployerPhoneNumber: null,
       },
     };
   },
+  methods: {
+    getUserInformation(){
+      axios.get('api/employers/getbyid?id=' + this.model.EmployerId)
+            .then((response) => {
+                console.log(response);
+                this.model = response.data;
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+    },
+    
+  },
+  created(){
+    this.getUserInformation();
+    console.log(this.model);
+    
+  }
 };
 </script>
 <style></style>

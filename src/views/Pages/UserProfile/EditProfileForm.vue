@@ -433,19 +433,21 @@ export default {
   data() {
     return {
       user: {
+        EmployerId: this.$store.state.userData.id,
         UserTypeId: 1,
         UserId: 3,
-        EmployerName: '',
-        EmployerSurname: '',
-        // EmployerTitle:'',
-        // EmployerCity: 'Istanbul',
-        // EmployerCountry: 'Turkey',
-        // EmployerLocation: '',
-        // EmployerEmail: '',
-        // EmployerGithub:'',
-        // EmployerLinkedin:'',
-        // EmployerAboutMe: ``,
+        EmployerName: this.$store.state.userData.firstName,
+        EmployerSurname: this.$store.state.userData.lastName,
+        EmployerTitle:'',
+        EmployerCity: 'Istanbul',
+        EmployerCountry: 'Turkey',
+        EmployerLocation: '',
+        EmployerEmail: this.$store.state.userData.email,
+        EmployerGithub:'',
+        EmployerLinkedin:'',
+        EmployerAboutMe: ``,
         // EmployerResume:'',
+        EmployerPhoneNumber: 0,
       },
       
        education:{
@@ -481,10 +483,10 @@ export default {
       //   SkillId:null,
       //   SkillName:'',
       // },
-      // skill:[{
-      //   SkillId: null,
-      //   EmployerId: this.$store.state.userData.EmployerId,
-      // }],
+      //  savedSkill:[{
+      //    SkillId: null,
+      //    EmployerId: this.$store.state.userData.id,
+      //    }],
       project: {
         ProjectName:'',
         ProjectStartingDate:'',
@@ -500,13 +502,13 @@ export default {
       //alert('Your data: ' + JSON.stringify(this.user));
     },
     saveInformation() {
-      axios.post("/api/employers/add",this.user).then((response)=>{
+      axios.post("/api/employers/update",this.user).then((response)=>{
             if(response.status==200){
-              console.log(this.user.name);
+              console.log(this.user);
               this.$router.push('employeeprofile');
             }
         });
-    }
+    },
     
   }
 };

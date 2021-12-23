@@ -49,7 +49,7 @@
                           type="text"
                           label="Company Name"
                           placeholder=""
-                          v-model="user.CompanyName"
+                          v-model= this.$store.state.userData.firstName
                         >
                         </base-input>
                       </b-col>
@@ -57,8 +57,8 @@
                         <base-input
                           type="email"
                           label="Email address"
-                          placeholder="example@email.com"
-                          v-model="user.CompanyEmail"
+                          placeholder=""
+                          v-model= this.$store.state.userData.email
                         >
                         </base-input>
                       </b-col>
@@ -157,13 +157,14 @@ export default {
   data() {
     return {
       user: {
-        UserTypeId:2,
+        CompanyId: this.$store.userData.id,
+        UserTypeId: 2,
         SectorId:1,
         CompanyName: '',
         CompanyEmail: '',
         CompanyLocation: '',
         CompanyWebsite:'',
-        CompanyPhoneNumber:'',
+        CompanyPhoneNumber:654365,
         CompanyDescription: '',
         CompanyPhoto:'',
       },
@@ -176,13 +177,15 @@ export default {
       //alert('Your data: ' + JSON.stringify(this.user));
     },
     saveData(){
-      axios.post("/api/companies/add",this.user).then((response)=>{
+      axios.post("/api/companies/update",this.user).then((response)=>{
             if(response.status==200){
-              console.log(this.user.CompanyName);
+              console.log(this.user);
+              
               this.$router.push('companyprofile');
             }
         });
     },
+    
   }
 };
 </script>

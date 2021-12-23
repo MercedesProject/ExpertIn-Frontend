@@ -72,6 +72,7 @@ import axios from 'axios';
     data() {
       return {
         model: {
+          userTypeId:1,
           email: '',
           password: '',
           rememberMe: false

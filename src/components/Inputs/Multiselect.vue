@@ -17,9 +17,9 @@
   :searchable="true"
   :create-option="true"
   :options="[
-    { value: 'batman', label: 'Batman' },
-    { value: 'robin', label: 'Robin' },
-    { value: 'joker', label: 'Joker' },
+    { value: '1', label: 'Batman' },
+    { value: '2', label: 'Robin' },
+    { value: '3', label: 'Joker' },
   ]"
 />
   
