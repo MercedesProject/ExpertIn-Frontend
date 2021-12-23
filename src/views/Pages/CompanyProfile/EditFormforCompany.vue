@@ -49,7 +49,7 @@
                           type="text"
                           label="Company Name"
                           placeholder=""
-                          v-model="user.firstName"
+                          v-model="user.CompanyName"
                         >
                         </base-input>
                       </b-col>
@@ -58,7 +58,7 @@
                           type="email"
                           label="Email address"
                           placeholder="example@email.com"
-                          v-model="user.email"
+                          v-model="user.CompanyEmail"
                         >
                         </base-input>
                       </b-col>
@@ -67,14 +67,19 @@
                     <b-row >
                       <b-col lg="6">
                         
-                        <base-dropdown v-model="user.title">
-                          <template v-slot:title>
-                          Sector
-                          </template>
-                          <a class="dropdown-item" href="#">Internet</a>
-                          <a class="dropdown-item" href="#">Business Solution</a>
-                          <a class="dropdown-item" href="#">Data Science</a>
-                        </base-dropdown>
+                        <base-input
+                            type="select"
+                            label="Sector"
+                            v-model="sector"
+                            required
+                            id="Sector">
+                            <select class="form-control">
+                              <option></option>
+                              <option>Internet</option>
+                              <option>Technology</option>
+                              <option>Media</option>
+                            </select>
+                        </base-input>
                         
                       </b-col>
                       <b-col lg="6">
@@ -82,7 +87,7 @@
                           type="text"
                           label="Adress"
                           placeholder="Adress"
-                          v-model="user.address"
+                          v-model="user.CompanyLocation"
                         >
                         </base-input>
                       </b-col>
@@ -94,7 +99,7 @@
                           type="text"
                           label="Website"
                           placeholder=""
-                          v-model="user.Website"
+                          v-model="user.CompanyWebsite"
                         >
                         </base-input>
                       </b-col>
@@ -103,7 +108,7 @@
                           type="text"
                           label="Phone Number"
                           placeholder=""
-                          v-model="user.phoneNumber"
+                          v-model="user.CompanyPhoneNumber"
                         >
                         </base-input>
                       </b-col>
@@ -114,7 +119,7 @@
                   <div class="pl-lg-4">
                     <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
                     <!--  <label class="form-control-label">About Me</label> -->
-                      <b-form-textarea rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+                      <b-form-textarea v-model="user.CompanyDescription" rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
                     </b-form-group>
                   </div>
                   
@@ -122,7 +127,7 @@
                   <b-row>
                       
                       <div class="col-lg-6 "> 
-                        <base-button type="default">Save</base-button>
+                        <base-button @click="saveData" type="default">Save</base-button>
                       </div>
                       
 
@@ -141,6 +146,8 @@
 </template>
 <script>
 import DropZone from "@/components/Inputs/DropZone.vue";
+import axios from 'axios';
+
 export default {
   name:"editProfile",
   components:{
@@ -150,33 +157,32 @@ export default {
   data() {
     return {
       user: {
-        company: 'Creative Code Inc.',
-        username: '',
-        email: '',
-        website:'',
-        phoneNumber:'',
-        title:'',
-        firstName: '',
-        lastName: '',
-        address: '',
-        city: 'Istanbul',
-        country: 'Turkey',
-        postalCode: '',
-        aboutMe: ``
+        UserTypeId:2,
+        SectorId:1,
+        CompanyName: '',
+        CompanyEmail: '',
+        CompanyLocation: '',
+        CompanyWebsite:'',
+        CompanyPhoneNumber:'',
+        CompanyDescription: '',
+        CompanyPhoto:'',
       },
-      checkboxes: {
-            unchecked: false,
-            checked: true,
-            uncheckedDisabled: false,
-            checkedDisabled: true
-          }
+      sector:'',
+
     };
   },
   methods: {
     updateProfile() {
       //alert('Your data: ' + JSON.stringify(this.user));
     },
-    
+    saveData(){
+      axios.post("/api/companies/add",this.user).then((response)=>{
+            if(response.status==200){
+              console.log(this.user.CompanyName);
+              this.$router.push('companyprofile');
+            }
+        });
+    },
   }
 };
 </script>

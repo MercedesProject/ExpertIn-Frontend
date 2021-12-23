@@ -85,7 +85,7 @@ import axios from 'axios';
       return {
         model: {
           name: '',
-          lastname: '',
+          //lastname: '',
           email: '',
           password: '',
           agree: false
