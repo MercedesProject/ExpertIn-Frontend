@@ -77,6 +77,12 @@ import axios from 'axios';
           password: '',
           rememberMe: false
         },
+        staticUser: {
+          userTypeId:1,
+          email: 'kopfkino@gmail.com',
+          password:'123456',
+          rememberMe:false,
+        },
         isLogin: false
       };
     },
@@ -85,7 +91,7 @@ import axios from 'axios';
         // this will be called only after form is valid. You can do api call here to login
       },
       loginUser(){
-        axios.post("/api/auth/login",this.model).then((response)=>{
+        axios.post("/api/auth/login",this.staticUser).then((response)=>{
             if(response.status==200){
                 this.$store.commit("setUser", response.data);
                 console.log(this.$store.state.userData);

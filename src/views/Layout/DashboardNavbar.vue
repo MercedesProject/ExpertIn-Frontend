@@ -49,7 +49,7 @@
         <a href="#" class="nav-link pr-0" @click.prevent slot="title-container">
           <b-media no-body class="align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="img/theme/profil.jpg">
+                    <img alt="Image placeholder" src="img/user.png" >
                   </span>
             <b-media-body class="ml-2 d-none d-lg-block">
               <span class="mb-0 text-sm  font-weight-bold">{{this.$store.state.userData.firstName}} {{this.$store.state.userData.lastName}}</span>
@@ -140,7 +140,12 @@ export default {
       activeNotifications: false,
       showMenu: false,
       searchModalVisible: false,
-      searchQuery: ''
+      searchQuery: '',
+      image:{
+        userId: 0,
+        imagePath:"",
+
+      },
     };
   },
   methods: {
