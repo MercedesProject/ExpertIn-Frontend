@@ -307,7 +307,7 @@
       
     },
     getApplicationJobs() {
-        axios.get("/api/appjobs/getall").then((response)=>{
+        axios.post("/api/applicationjobs/getallbyemployerid?id=" +this.$store.state.userData.id ).then((response)=>{
             this.jobs = response.data;
             console.log(this.jobs);
         });
@@ -315,7 +315,7 @@
 
   },
   created(){
-     //this.getApplicationJobs()
+     this.getApplicationJobs()
   },
   }
   

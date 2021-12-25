@@ -292,19 +292,19 @@ import axios from 'axios'
       
     },
     getFavJobs() {
-    axios.get("/api/favoriteJobs/getallbyemployerid?=" + 1).then((response)=>{
+    axios.post("/api/favoriteJobs/getallbyemployerid?employerId=" + this.$store.state.userData.id).then((response)=>{
     this.favJobs = response.data;
     console.log(response.favJobs);
-    this.jobs.forEach((value, index) => {
-      this.items.push(value);
-      console.log(value);
-      console.log(index);
-    });  
+    // this.jobs.forEach((value, index) => {
+    //   this.items.push(value);
+    //   console.log(value);
+    //   console.log(index);
+    // });  
     })},
 
     },
     created(){
-      // this.getFavJobs()
+       this.getFavJobs()
     }
   }
 </script>

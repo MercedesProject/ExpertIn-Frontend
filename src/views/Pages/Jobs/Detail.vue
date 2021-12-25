@@ -52,7 +52,7 @@
                     <i class="fas fa-map-marker-alt"></i> Address: 
                   </div>
                   <div class="col-lg-12 ">
-                    {{ dummyData.address}}
+                    {{this.dummyData.address}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-envelope"></i> Email Adress: 
@@ -183,11 +183,24 @@ export default {
         about: "9",
       },
       jobData:[],
+      applicationJob:{
+        // ApplicationJobId: 0,
+        JobId : this.$route.params.jobId,
+        EmployerId : this.$store.state.userData.id,
+        ApplicationJobStatus : 'pending'
+      }
     };
   },
    methods:{
-     ApplyJob: function() {
-         alert(this.$route.params.jobId);
+     ApplyJob() {
+        axios.post("api/ApplicationJobs/add", this.applicationJob)
+            .then((response) => {
+                console.log(response);
+                this.jobData = response.data;
+            })
+            .catch(function (error) {
+                alert(error);
+            }); 
       },
        getJobDetail() {
         axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)

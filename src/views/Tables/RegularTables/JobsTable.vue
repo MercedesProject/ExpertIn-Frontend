@@ -47,7 +47,6 @@
               :aria-describedby="ariaDescribedby"
               class="w-75"
               style="background-color:#7e65c2; color:white;"
-              :a = changeBgWithStatus2
             >
               <template #first>
                 <option value="">Sort</option>
@@ -97,12 +96,12 @@
                     </badge>
       </template>
 
-      <template #cell(favourites)="row" >
-         <b-button @click="toggleFav(row.item,row.index)" class="bg-white">
+      <!-- <template #cell(favourites)="row" >
+         <b-button @click="row.item.favourite ? unfav(row.item) : fav(row.item)" class="bg-white">
             <i v-if="row.item.favourite" class="fa fa-heart" style="color:red"></i>
             <i v-else class="fa fa-heart" style="color:gray;"></i> 
          </b-button>
-      </template>
+      </template> -->
 
       <template #row-details="row">
         <b-card>
@@ -161,29 +160,20 @@
         transProps:{
             name: 'flip-list'
         },
-        items: [
-          {jobId: 1,favourite: false ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM'},description:"aciklama",salary:2000 },
-          {jobId: 2,favourite: true , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'Daimler' },description:"deneme",salary:8000},
-          {jobId: 3,favourite: false, status: "denied",jobType: "a",companyName: { first: 'Mercedes', last: 'BBS' },description:"aciklama",salary:9000},
-          {jobId: 4,favourite: true , status: "denied", jobType: "b", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:1000 },
-          {jobId: 5, favourite: true ,status: "accepted", jobType: "c", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:12000 },
-          {jobId: 6,favourite: false , status: "pending", jobType: "Backend", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7000 },
-          {jobId: 7,favourite: true , status: "accepted", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' } ,description:"aciklama",salary:6000},
-          {jobId: 8,favourite: true ,status: "pending", jobType: "Backend",companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7500},
-          {jobId: 9,favourite: false ,status: "denied", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'Daimler' },description:"aciklama",salary:8800 },
-          {jobId: 10,favourite: true ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:9200 },
-          {jobId: 11,favourite: false , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'BBS' } ,description:"aciklama",salary:6500},
-          {jobId: 12,favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
-        ],
         jobs:[],
         fields: [
-          { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
-          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center" },
-          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center' },
-          { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center' },
-          { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center' },
-          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center' },
-          { key: 'actions', label: 'Actions', class:"text-center", },
+          // { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center text-primary"},
+          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center text-primary" },
+          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center text-primary' },
+          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center text-primary' },
+          { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center text-primary' },
+          { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center text-primary' },
+          { key: 'companyLocation', label: 'Location', sortable: true, class: 'text-center text-primary' },
+          { key: 'jobWeekDay', label: 'Day/Week', sortable: true, class: 'text-center text-primary' },
+          { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center text-primary' },
+          { key: 'jobStartDate', label: 'Start Date', sortable: true, class: 'text-center text-primary' },
+          { key: 'jobEndDate', label: 'End Date', sortable: true, class: 'text-center text-primary' },
+          { key: 'actions', label: 'Actions', class:"text-center text-primary ", },
           // { key: 'status',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
         ],
         totalRows: 1,
@@ -203,6 +193,7 @@
         loading:false,
             remoteConfig:{},
             remoteRows:[],
+        
       }
     },
     props:['is_fav'],
@@ -225,9 +216,9 @@
     })
         },
   changeBgWithStatus() {
-        this.items.forEach(function(obj)
-        { if(obj.status ===true){ obj._cellVariants = { status: 'success' } }
-        if(obj.status === false){ obj._cellVariants = { status: 'danger'} } });
+        // this.items.forEach(function(obj)
+        // { if(obj.status ===true){ obj._cellVariants = { status: 'success' } }
+        // if(obj.status === false){ obj._cellVariants = { status: 'danger'} } });
         // { if(obj.status ==="accepted"){ obj.a = "success"}
         // else if(obj.status === "pending"){ obj.a = "success"}
         // else{{ obj.a = "success"}}
@@ -235,17 +226,17 @@
         return null;
     },
     changeBgWithStatus2() {
-        this.items.forEach(function(obj)
-        {
-        if(obj.status ==="pending")
-        { obj.class = "info"}
-        else if(obj.status === "accepted")
-        { obj.class ="success" }
-        else{
-          obj.class ="danger"
-        }
+        // this.items.forEach(function(obj)
+        // {
+        // if(obj.status ==="pending")
+        // { obj.class = "info"}
+        // else if(obj.status === "accepted")
+        // { obj.class ="success" }
+        // else{
+        //   obj.class ="danger"
+        // }
         
-        });
+        // });
         
         return null;
     },
@@ -255,11 +246,11 @@
    
     },
     methods: {
-      info(item, index, button) {
-        this.infoModal.title = `Row index: ${index}`
-        this.infoModal.content = JSON.stringify(item, null, 2)
-        this.$root.$emit('bv::show::modal', this.infoModal.id, button)
-      },
+      // info(item, index, button) {
+      //   this.infoModal.title = `Row index: ${index}`
+      //   this.infoModal.content = JSON.stringify(item, null, 2)
+      //   this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+      // },
       resetInfoModal() {
         this.infoModal.title = ''
         this.infoModal.content = ''
@@ -280,27 +271,43 @@
     },
     toggleFav(obj,index){
       obj.favourite = !obj.favourite;
-      console.log(obj.favourite);
-      console.log(index);
       
+      console.log(obj);
+      console.log(index);
     },
     commandClick: function(args) {
       console.log(args);
      
       this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
       },
-   getAllJobs() {
-        
+    getAllJobs() {
         axios.get("/api/jobs/getall").then((response)=>{
             this.jobs = response.data;
             console.log(this.jobs);
         });
-        },
+    },
+    fav(obj){
+      // obj.favourite = !obj.favourite;
+      this.favoriteJobs.JobId = obj.jobId;
+      this.favoriteJobs.EmployerId = this.$store.state.userData.id;
+      
+       axios.get("/api/favoriteJobs/add",this.favoriteJobs).then((response)=>{
+            console.log("fav:" +response.data);
+        });
+    },
+    unfav(obj){
+      // obj.favourite = !obj.favourite;
+      this.favoriteJobs.JobId = obj.jobId;
+      this.favoriteJobs.EmployerId = this.$store.state.userData.id;
+      
+       axios.get("/api/favoriteJobs/delete",this.favoriteJobs).then((response)=>{
+            
+            console.log("unfav:" +response.data);
+        });
+    }
     },
     created(){
       this.getAllJobs();
-      console.log(this.$store.state.userData.id);
-      console.log(this.$store.state.userData);
     }
   }
 </script>
