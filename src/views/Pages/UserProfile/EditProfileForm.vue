@@ -43,23 +43,28 @@
 
                   <div class="pl-lg-4">
                     <b-row>
-                      
-                      <div class="col-lg-6">
-                        
+
+                        <b-col lg="6">
                         <router-link to="/resumeupload" >
-                        <base-button outline type="default">Resume Upload</base-button>
+                        <base-button outline type="default">Upload Resume </base-button>
                         </router-link>
-                        
-                      </div>
-                      
-                      
+                      </b-col>
+                      <b-col lg="6">
+                        <!-- <form @submit.prevent="onUpload" enctype="multipart/form-data">
+                          
+                        </form> -->
+                        <label class="labell" for="file">Select Image</label> 
+                          <input class="input" type="file"  @change="filesChange" id="file"/>
+                          <base-button outline type="default" @click="onUpload">Upload</base-button>
+                      </b-col>
+
                     </b-row>
                     <b-row>
                       <b-col lg="6">
                         <base-input
                           type="text"
                           label="First Name"
-                          placeholder="First Name"
+                          :placeholder="this.model.employerName"
                           v-model="user.EmployerName"
                         >
                         </base-input>
@@ -68,7 +73,7 @@
                         <base-input
                           type="text"
                           label="Last Name"
-                          placeholder="Last Name"
+                          :placeholder="this.model.employerSurname"
                           v-model="user.EmployerSurname"
                         >
                         </base-input>
@@ -100,7 +105,7 @@
                           type="email"
                           label="Email address"
                           placeholder="example@email.com"
-                          v-model="user.EmployerEmail"
+                          v-model="this.model.employerEMail"
                         >
                         </base-input>
                       </b-col>
@@ -432,25 +437,30 @@ export default {
   
   data() {
     return {
+      model:[],
       user: {
         EmployerId: this.$store.state.userData.id,
         UserTypeId: 1,
         UserId: 3,
-        EmployerName: this.$store.state.userData.firstName,
-        EmployerSurname: this.$store.state.userData.lastName,
+        EmployerName: '',
+        EmployerSurname: '',
         EmployerTitle:'',
-        EmployerCity: 'Istanbul',
-        EmployerCountry: 'Turkey',
+        EmployerCity: '',
+        EmployerCountry: '',
         EmployerLocation: '',
-        EmployerEmail: this.$store.state.userData.email,
+        EmployerEmail: '',
         EmployerGithub:'',
         EmployerLinkedin:'',
         EmployerAboutMe: ``,
         // EmployerResume:'',
         EmployerPhoneNumber: 0,
       },
+      image:{
+        UserId: this.$store.state.userData.id,
+      },
       
-       education:{
+      file: null,
+      education:{
         EducationId: null,
         EmployerId: null,
         EducationSchool:'',
@@ -502,33 +512,57 @@ export default {
       //alert('Your data: ' + JSON.stringify(this.user));
     },
     saveInformation() {
-      axios.post("/api/employers/update",this.user).then((response)=>{
+      axios.post("/api/employers/update",this.User).then((response)=>{
             if(response.status==200){
               console.log(this.user);
               this.$router.push('employeeprofile');
             }
         });
     },
+    getUserInformation(){
+      axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
+            .then((response) => {
+                console.log(response);
+                this.model = response.data;
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+    },
+    filesChange(event) {
+        console.log(event);
+        this.file = event.target.files[0];
+    },
+    onUpload(){
+      const fd = new FormData();
+      fd.append('image', this.file, this.file.name)
+      axios.post("/api/images/add",fd).then((response)=>{
+            console.log(response)
+              
+        });
+
+           console.log();  
+    },
     
+  },
+  created(){
+    this.getUserInformation();
+    console.log(this.model);
   }
+
+    
+  
 };
 </script>
 <style lang="scss" scoped>
-.home {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f1f1f1;
 
-  h1{
-    font-size: 40px;
-    margin-bottom: 32px;
-  }
-  
-  .file-info {
-    margin-top: 32px;
-  }
+.labell {
+  padding: 8px 12px;
+  color: #fff;
+  background-color: #41b8;
+  transition: 0.3s ease all;
+}
+.input {
+        display: none;
 }
 </style>
