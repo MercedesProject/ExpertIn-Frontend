@@ -20,7 +20,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                     <img
-                      src="img/theme/profil.jpg"
+                      src="img/user.png"
                       class="rounded-circle"
                     />
                 </div>
