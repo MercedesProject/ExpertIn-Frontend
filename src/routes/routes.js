@@ -135,11 +135,11 @@ const routes = [{
   
     },
     // {
-    //     path: '/Job/Detail/:jobId',
+    //     path: '/',
     //     redirect: 'companydashboard',
     //     component: CompanyDashboardLayout,
     //     children: [{
-    //         path: '/landingpage',
+    //         path: '/Job/Detail/:jobId',
     //         name: "JobDetail",
     //         component: () =>
     //         import ('../views/Pages/Jobs/Detail.vue')

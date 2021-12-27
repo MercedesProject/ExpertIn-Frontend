@@ -1,7 +1,7 @@
 <template>
     <b-card no-body class="border border-info" >
         <b-card-header class="border-0 border-primary ">
-            <h3 class="mb-0 text-center">Draft Jobs</h3>
+            <h3 class="mb-0 text-center">Draft Job Advertisements</h3>
         </b-card-header>
 
         <el-table class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"

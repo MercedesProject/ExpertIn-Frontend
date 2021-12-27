@@ -105,7 +105,7 @@
                           type="email"
                           label="Email address"
                           :placeholder= this.model.employerEMail
-                          v-model="user.employerEMail"
+                          v-model="user.EmployerEMail"
                         >
                         </base-input>
                       </b-col>
@@ -137,7 +137,7 @@
                   <div class="pl-lg-4">
                     <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
                     <!--  <label class="form-control-label">About Me</label> -->
-                      <b-form-textarea v-model="user.EmployerAboutMe" rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+                      <b-form-textarea v-model="user.EmployerAboutMe" rows="4" value="" id="about-form-textaria" :placeholder= this.model.employerAboutMe></b-form-textarea>
                     </b-form-group>
                   </div>
                   <hr class="my-4">
@@ -151,7 +151,7 @@
                         <base-input
                           type="text"
                           label="Address"
-                          placeholder="Home Address"
+                          :placeholder= this.model.employerLocation
                           v-model="user.EmployerLocation"
                         >
                         </base-input>
@@ -162,7 +162,7 @@
                         <base-input
                           type="text"
                           label="City"
-                          placeholder="City"
+                          :placeholder= this.model.employerCity
                           v-model="user.EmployerCity"
                         >
                         </base-input>
@@ -171,7 +171,7 @@
                         <base-input
                           type="text"
                           label="Country"
-                          placeholder="Country"
+                          :placeholder= this.model.employerCountry
                           v-model="user.EmployerCountry"
                         >
                         </base-input>
@@ -179,7 +179,7 @@
                       <b-col lg="4">
                         <base-input
                           label="Phone Number"
-                          placeholder=""
+                          :placeholder= this.model.employerPhoneNumber
                           v-model="user.EmployerPhoneNumber"
                         >
                         </base-input>

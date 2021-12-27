@@ -51,16 +51,13 @@
               
             </div>
             <div class="card-body pt-0 pt-md-4">
-              <div style="padding: 30px 70px 30px 123px" > 
-                <base-button size="sm" type="default"> 
-                <i class="ni ni-fat-add"></i> Add Photo</base-button>
-              </div>
+              
               <div class="text-center">
                 <h3>
                   {{this.$store.state.userData.firstName}} {{this.$store.state.userData.lastName}}<span class="font-weight-light"></span>
                 </h3>
                 <div class="h5 font-weight-300" >
-                  <i class="ni fa-location_pin" ></i>{{this.model.employerCity}}, {{model.employerCountry}}
+                  <i class="fas fa-map-marker-alt"></i>{{this.model.employerCity}}, {{model.employerCountry}}
                 </div>
                 <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Computer Engineer
@@ -81,7 +78,7 @@
                      {{this.model.employerGithub}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
-                    Email Adress: 
+                    <i class="fas fa-envelope"></i>Email Adress: 
                   </div>
                   <div class="col-lg-12">
                      {{this.model.employerEMail}}
@@ -139,6 +136,7 @@
                     <div class="form-group row">
                       <label class="col-md-7 col-form-label form-control-label">Phone Number</label>
                       <div class="col-md-10">
+                        <i class="fas fa-phone-volume"></i>
                         <base-input :placeholder= this.model.employerPhoneNumber ></base-input>
                       </div>
                     </div>

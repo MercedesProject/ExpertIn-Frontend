@@ -14,12 +14,12 @@
            </b-nav-item>
             <b-nav-item to="/Job/New">
                <i class="ni ni-single-02"></i>
-               <span class="nav-link-inner--text"> New Job </span>
+               <span class="nav-link-inner--text"> Create Job </span>
            </b-nav-item>
 
            <b-nav-item to="/companyprofile">
                <i class="ni ni-single-02"></i>
-               <span class="nav-link-inner--text"> My Profile </span>
+               <span class="nav-link-inner--text"> Company Profile </span>
            </b-nav-item>
             <b-nav-item to="/companymessages">
                <i class="ni ni-email-83"></i>
@@ -46,7 +46,7 @@
         <a href="#" class="nav-link pr-0" @click.prevent slot="title-container">
           <b-media no-body class="align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="img/theme/profil.jpg">
+                    <img alt="Image placeholder" src="img/user.png" >
                   </span>
             <b-media-body class="ml-2 d-none d-lg-block">
               <span class="mb-0 text-sm  font-weight-bold">{{this.$store.state.userData.firstName}} {{this.$store.state.userData.lastName}}</span>
