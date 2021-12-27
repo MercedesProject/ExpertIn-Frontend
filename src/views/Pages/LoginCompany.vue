@@ -37,7 +37,7 @@
                               :rules="{required: true, email: true}"
                               prepend-icon="ni ni-email-83"
                               placeholder="  Company Email"
-                              v-model="model.email">
+                              v-model="staticUser.email">
                   </base-input>
 
                   <base-input alternative
@@ -47,12 +47,12 @@
                               prepend-icon="ni ni-lock-circle-open"
                               type="Password"
                               placeholder="  Password"
-                              v-model="model.password" style="background-color:#8A78C8;"> 
+                              v-model="staticUser.password" style="background-color:#8A78C8;"> 
                   </base-input>
                <b-row  class="justify-content-end">
               <router-link to="/forgotpasswordcompany" class="text-dark"><small>Forgot password?</small></router-link>
             </b-row>
-                  <b-form-checkbox v-model="model.rememberMe">Remember me</b-form-checkbox>
+                  <b-form-checkbox v-model="staticUser.rememberMe">Remember me</b-form-checkbox>
                   <div class="text-center">
                     <base-button @click="loginUser()" style="background-color: #8A78C8; border-color: #8A78C8; width: 60%" native-type="submit" class="my-4">Sign in</base-button>
                   </div>
@@ -79,6 +79,12 @@ import axios from 'axios';
           password: '',
           rememberMe: false
         },
+        staticUser: {
+          userTypeId:2,
+          email: 'mercedes@gmail.com',
+          password:'1521698',
+          rememberMe:false,
+        },
         isLogin: false
       };
     },
@@ -87,7 +93,7 @@ import axios from 'axios';
         // this will be called only after form is valid. You can do api call here to login
       },
       loginUser(){
-        axios.post("/api/auth/login",this.model).then((response)=>{
+        axios.post("/api/auth/login",this.staticUser).then((response)=>{
             if(response.status==200){
                 this.$store.commit("setUser", response.data);
                 console.log(this.$store.state.userData);

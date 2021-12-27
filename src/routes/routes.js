@@ -107,12 +107,7 @@ const routes = [{
                 component: () =>
                     import ('../views/Pages/CompanyProfile/EditFormforCompany.vue')
             },
-            {
-                path: '/Job/Detail/:jobId',
-                name: "JobDetail",
-                component: () =>
-                    import ('../views/Pages/Jobs/Detail.vue')
-            },
+
             {
                 path: '/Job/New',
                 name: "JobNew",
@@ -127,7 +122,30 @@ const routes = [{
             },
         ]
     },
-
+    {
+        path: '/',
+        redirect: 'employeedashboard',
+        component: DashboardLayout,
+        children: [{
+            path: '/Job/Detail/:jobId',
+            name: "JobDetail",
+            component: () =>
+            import ('../views/Pages/Jobs/Detail.vue')
+        }]
+  
+    },
+    // {
+    //     path: '/Job/Detail/:jobId',
+    //     redirect: 'companydashboard',
+    //     component: CompanyDashboardLayout,
+    //     children: [{
+    //         path: '/landingpage',
+    //         name: "JobDetail",
+    //         component: () =>
+    //         import ('../views/Pages/Jobs/Detail.vue')
+    //     }]
+  
+    // },
     {
         path: '/',
         redirect: 'login',

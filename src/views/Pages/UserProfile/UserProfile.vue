@@ -60,7 +60,7 @@
                   {{this.$store.state.userData.firstName}} {{this.$store.state.userData.lastName}}<span class="font-weight-light"></span>
                 </h3>
                 <div class="h5 font-weight-300" >
-                  <i class="ni location_pin mr-2" ></i>{{this.model.employerCity}}, {{model.employerCountry}}
+                  <i class="ni fa-location_pin" ></i>{{this.model.employerCity}}, {{model.employerCountry}}
                 </div>
                 <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Computer Engineer
@@ -71,16 +71,30 @@
                 <hr class="my-4" />
                 <div class=" line ">
                   <div class="col-lg-12 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Github Url: 
+                    <span class="avatar avatar-sm rounded-circle" style=" width:25px; height:25px ">
+                    <img alt="Image placeholder" src="img/icons/github.png" >
+                    </span>
+                    <span>Github Url:</span>
+                     
                   </div>
                   <div class="col-lg-12 ">
-                    <i class="ni education_hat mr-2"></i> {{this.model.employerGithub}}
+                     {{this.model.employerGithub}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Email Adress: 
+                    Email Adress: 
                   </div>
                   <div class="col-lg-12">
-                    <i class="ni education_hat mr-2"></i> busrasari@gmail.com
+                     {{this.model.employerEMail}}
+                  </div>
+                  <div class="col-lg-12 h5 mt-4">
+                    <span class="avatar avatar-sm rounded-circle" style=" width:25px; height:25px ">
+                    <img alt="Image placeholder" src="img/icons/linkedin.png" >
+                    </span>
+                    <span>Linkedin Url:</span>
+                     
+                  </div>
+                  <div class="col-lg-12 ">
+                    {{this.model.employerLinkedin}}
                   </div>
                 </div>
                 <hr class="my-4" />
@@ -113,18 +127,40 @@
               <h6 class="heading-small text-muted mb-4">Contact information</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Adress:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Phone Number:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>City:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Country:
-                  </div>
+                  <b-col lg="12">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Adress</label>
+                      <div class="col-md-10">
+                        <base-input :placeholder="this.model.employerLocation"></base-input>
+                    </div>
+                  </div> 
+                  </b-col>
+                  <b-col lg="4">
+                    <div class="form-group row">
+                      <label class="col-md-7 col-form-label form-control-label">Phone Number</label>
+                      <div class="col-md-10">
+                        <base-input :placeholder= this.model.employerPhoneNumber ></base-input>
+                      </div>
+                    </div>
+                  </b-col>
+                  <b-col lg="4">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">City</label>
+                      <div class="col-md-10">
+                        <base-input :placeholder= this.model.employerCity></base-input>
+                    </div>
+                  </div> 
+                  </b-col>
+                  <b-col lg="4">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Country</label>
+                      <div class="col-md-10">
+                        <base-input :placeholder= this.model.employerCountry></base-input>
+                      </div>
+                    </div>
+                  </b-col>                  
+
+
                 </div>
                 
               </div>
@@ -133,60 +169,148 @@
               <h6 class="heading-small text-muted mb-4">EDUCATION INFORMATION</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <div class="col-lg-4 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>School:
-                  </div>
-                  <div class="col-lg-4 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Degree:
-                  </div>
-                  <div class="col-lg-4 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Study:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Starting Date:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Ending Date:
-                    <i class="ni education_hat mr-2"></i> Current
-                  </div>
-                  
+                  <b-col lg="4">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">School</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                    </div>
+                  </div> 
+                  </b-col>
+                  <b-col lg="4">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Degree</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                      </div>
+                    </div>
+                  </b-col>
+                  <b-col lg="4">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Study</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                    </div>
+                  </div> 
+                  </b-col>
+                  <b-col lg="5">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Starting Date</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                      </div>
+                    </div>
+                  </b-col>                  
+                  <b-col lg="5">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Ending Date</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                      </div>
+                    </div>
+                  </b-col>  
+                  <b-col lg="2">
+                    <div class="form-group row">
+                      <label class="col-md-8 col-form-label form-control-label">Current</label>
+                      <div class="col-md-10">
+                        <b-checkbox placeholder="Jon"></b-checkbox>
+                      </div>
+                    </div>
+                  </b-col>  
                 </div>
                 
-              </div>
+              </div>              
+
               <hr class="my-4" />
               <!-- EXPERIENCE -->
               <h6 class="heading-small text-muted mb-4">EXPERIENCE</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <div class="col-lg-4 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Title:
-                  </div>
-                  <div class="col-lg-4 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Firma Name:
-                  </div>
-                  <div class="col-lg-4 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Location:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Starting Date:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Ending Date:
-                  </div>
+                  <b-col lg="4">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Title</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                    </div>
+                  </div> 
+                  </b-col>
+                  <b-col lg="4">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Company</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                      </div>
+                    </div>
+                  </b-col>
+                  <b-col lg="4">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Location</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                    </div>
+                  </div> 
+                  </b-col>
+                  <b-col lg="5">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Starting Date</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                      </div>
+                    </div>
+                  </b-col>                  
+                  <b-col lg="5">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Ending Date</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                      </div>
+                    </div>
+                  </b-col>  
+                  <b-col lg="2">
+                    <div class="form-group row">
+                      <label class="col-md-8 col-form-label form-control-label">Current</label>
+                      <div class="col-md-10">
+                        <b-checkbox placeholder="Jon"></b-checkbox>
+                      </div>
+                    </div>
+                  </b-col>  
                 </div>
                 
-              </div>
+              </div>               
+
               <hr class="my-4" />
               <!-- SKILL-->
               <h6 class="heading-small text-muted mb-4">SKILL</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <div class="col-lg-6">
+                  <b-col lg="2">
+                    <badge rounded type="default">Default</badge>
                     
-                  </div>
-                  <div class="col-lg-6">
                     
-                  </div>
+
+                  </b-col>
+                  <b-col lg="2">
+                    <badge rounded type="default">Default</badge>
+                   
+
+                  </b-col>
+                  <b-col lg="2">
+                    <badge rounded type="default">Default</badge>
+                   
+
+                  </b-col>
+                 <b-col lg="2">
+                    <badge rounded type="default">Default</badge>
+                                       
+                  </b-col>
+                  <b-col lg="2">
+                    <badge rounded type="default">Default</badge>
+          
+                  </b-col>
+                  <b-col lg="2">
+                    <badge rounded type="default">Default</badge>
+
+                  </b-col>                 
                 </div>
                 
               </div>
@@ -195,24 +319,50 @@
               <h6 class="heading-small text-muted mb-4">PROJECT</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <div class="col-lg-4 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Project Name:
-                  </div>
-                  <div class="col-lg-4 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Url:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Starting Date:
-                  </div>
-                  <div class="col-lg-6 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Ending Date:
-                  </div>
-                  <div class="col-lg-4 h5 mt-4">
-                    <i class="ni business_briefcase-24 mr-2"></i>Description:
-                  </div>
+                  <b-col lg="6">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Project Name</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                    </div>
+                  </div> 
+                  </b-col>
+                  <b-col lg="6">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Url</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                      </div>
+                    </div>
+                  </b-col>
+                  <b-col lg="6">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Starting Date</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                    </div>
+                  </div> 
+                  </b-col>
+                  <b-col lg="6">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">Ending Date</label>
+                      <div class="col-md-10">
+                        <base-input placeholder="Jon"></base-input>
+                      </div>
+                    </div>
+                  </b-col> 
+                  <b-col lg="12">
+                    <b-form-group label="Description" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
+                    <!--  <label class="form-control-label">Description for Project</label> -->
+                      <b-form-textarea  rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+                    </b-form-group>
+                  </b-col>                 
+                  
+ 
                 </div>
                 
-              </div>
+              </div>               
+
               <hr class="my-4" />
               <!-- CERTIFICATE-->
               <h6 class="heading-small text-muted mb-4">CERTIFICATE</h6>

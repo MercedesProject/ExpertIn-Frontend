@@ -104,8 +104,8 @@
                         <base-input
                           type="email"
                           label="Email address"
-                          placeholder="example@email.com"
-                          v-model="this.model.employerEMail"
+                          :placeholder= this.model.employerEMail
+                          v-model="user.employerEMail"
                         >
                         </base-input>
                       </b-col>
@@ -115,16 +115,16 @@
                         <base-input
                           type="text"
                           label="GitHub Link"
-                          placeholder="github.com/busrasari"
+                          :placeholder= this.model.employerGithub
                           v-model="user.EmployerGithub"
                         >
                         </base-input>
                       </b-col>
                       <b-col lg="6">
                         <base-input
-                          type="email"
+                          type="text"
                           label="Linkedin Link"
-                          placeholder="https://www.linkedin.com/in/busrasari/"
+                          :placeholder= this.model.employerLinkedin
                           v-model="user.EmployerLinkedin"
                         >
                         </base-input>
@@ -441,15 +441,14 @@ export default {
       user: {
         EmployerId: this.$store.state.userData.id,
         UserTypeId: 1,
-        UserId: 3,
-        EmployerName: '',
-        EmployerSurname: '',
+        EmployerName: this.$store.state.userData.firstName,
+        EmployerSurname: this.$store.state.userData.lastName,
         EmployerTitle:'',
         EmployerCity: '',
         EmployerCountry: '',
         EmployerLocation: '',
-        EmployerEmail: '',
-        EmployerGithub:'',
+        EmployerEmail: this.$store.state.userData.email,
+        EmployerGithub: '',
         EmployerLinkedin:'',
         EmployerAboutMe: ``,
         // EmployerResume:'',
@@ -512,7 +511,7 @@ export default {
       //alert('Your data: ' + JSON.stringify(this.user));
     },
     saveInformation() {
-      axios.post("/api/employers/update",this.User).then((response)=>{
+      axios.post("/api/employers/update",this.user).then((response)=>{
             if(response.status==200){
               console.log(this.user);
               this.$router.push('employeeprofile');
