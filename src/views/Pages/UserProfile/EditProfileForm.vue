@@ -44,18 +44,20 @@
                   <div class="pl-lg-4">
                     <b-row>
 
-                        <b-col lg="6">
+                      <b-col lg="6">
                         <router-link to="/resumeupload" >
                         <base-button outline type="default">Upload Resume </base-button>
                         </router-link>
                       </b-col>
-                      <b-col lg="6">
+                      <b-col lg="3">
                         <!-- <form @submit.prevent="onUpload" enctype="multipart/form-data">
                           
                         </form> -->
-                        <label class="labell" for="file">Select Image</label> 
+                        <label class="label" for="file" >Select Image</label> 
                           <input class="input" type="file"  @change="filesChange" id="file"/>
-                          <base-button outline type="default" @click="onUpload">Upload</base-button>
+                      </b-col>
+                      <b-col lg="3">
+                          <base-button outline type="default" @click="onUpload" >Upload</base-button>
                       </b-col>
 
                     </b-row>
@@ -185,6 +187,14 @@
                         </base-input>
                       </b-col>
                     </b-row>
+                    <b-row>
+                      
+                      <div class="col-lg-6 "> 
+                        <base-button @click="updateInformation" type="default">Save</base-button>
+                      </div>
+                      
+
+                  </b-row>
                   </div>
                   <hr class="my-4">
             <!-- Education -->
@@ -241,6 +251,15 @@
                       </b-col>
                       
                     </b-row>
+                    <div class="pl-lg-4" style="padding-top:10px">
+                    <b-row>
+                      <div class="col-lg-6">
+                        <base-button @click="addEducation" size="sm" type="default"> Add Education</base-button>
+                      </div>
+
+                    </b-row>
+                    
+                  </div>
                   </div>
                   <hr class="my-4">
                   <!-- Experience-->
@@ -302,6 +321,15 @@
                         </base-checkbox>
                       </b-col>
                     </b-row>
+                    <div class="pl-lg-4" style="padding-top:10px">
+                    <b-row>
+                      <div class="col-lg-6">
+                        <base-button size="sm" type="default"> Add Experience</base-button>
+                      </div>
+
+                    </b-row>
+                    
+                  </div>
                   </div>
                   <hr class="my-4">
                   <!-- Skill -->
@@ -404,14 +432,7 @@
                   </div>
                   
                   <h6 class="heading-small text-muted mb-4"></h6>
-                  <b-row>
-                      
-                      <div class="col-lg-6 "> 
-                        <base-button @click="saveInformation" type="default">Save</base-button>
-                      </div>
-                      
-
-                  </b-row>
+                  
                   
 
                 </b-form>
@@ -438,8 +459,10 @@ export default {
   data() {
     return {
       model:[],
+      education:[],
       user: {
-        EmployerId: this.$store.state.userData.id,
+        EmployerId: 9,
+        userId: this.$store.state.userData.id,
         UserTypeId: 1,
         EmployerName: this.$store.state.userData.firstName,
         EmployerSurname: this.$store.state.userData.lastName,
@@ -510,7 +533,7 @@ export default {
     updateProfile() {
       //alert('Your data: ' + JSON.stringify(this.user));
     },
-    saveInformation() {
+    updateInformation() {
       axios.post("/api/employers/update",this.user).then((response)=>{
             if(response.status==200){
               console.log(this.user);
@@ -518,11 +541,44 @@ export default {
             }
         });
     },
+
+    addEducation() {
+      //böyle bi education varsa güncelle
+      if(this.education.employerId == this.$store.state.userData.id){
+        axios.post("/api/educations/update",this.user).then((response)=>{
+            if(response.status==200){
+              console.log(this.user);
+              this.$router.push('employeeprofile');
+            }
+        });
+      }
+      //böyle bi education yoksa ekle
+      else{
+        axios.post("/api/educations/add",this.education).then((response)=>{
+          if(response.status==200){
+            console.log(this.education);
+
+          }
+        });
+      }
+
+    },
+
     getUserInformation(){
-      axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
+      axios.get('api/employers/getbyid?id=' + 9)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+    },
+    getEducationInformation(){
+      axios.get('api/educations/getbyid?id=' + this.$store.state.userData.id)
+            .then((response) => {
+                console.log(response);
+                this.education = response.data;
             })
             .catch(function (error) {
                 alert(error);
@@ -547,6 +603,8 @@ export default {
   created(){
     this.getUserInformation();
     console.log(this.model);
+    this.getEducationInformation();
+    console.log(this.education);
   }
 
     
@@ -555,10 +613,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-.labell {
-  padding: 8px 12px;
-  color: #fff;
-  background-color: #41b8;
+.label {
+  padding: 8px 20px;
+  color: rgb(83, 43, 177);
+  align-items: center;
+  row-gap: 16px;
+  border: 2px dashed rgb(83, 43, 177);
+  background-color: #fff;
   transition: 0.3s ease all;
 }
 .input {

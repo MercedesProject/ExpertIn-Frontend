@@ -48,8 +48,8 @@
                         <base-input
                           type="text"
                           label="Company Name"
-                          placeholder=""
-                          v-model= this.$store.state.userData.firstName
+                          :placeholder="this.model.companyName"
+                          v-model="user.companyName"
                         >
                         </base-input>
                       </b-col>
@@ -57,8 +57,8 @@
                         <base-input
                           type="email"
                           label="Email address"
-                          placeholder=""
-                          v-model= this.$store.state.userData.email
+                          :placeholder="this.model.companyEMail"
+                          v-model="user.companyEmail"
                         >
                         </base-input>
                       </b-col>
@@ -86,20 +86,40 @@
                         <base-input
                           type="text"
                           label="Adress"
-                          placeholder="Adress"
-                          v-model="user.CompanyLocation"
+                          :placeholder="this.model.companyLocation"
+                          v-model="user.companyLocation"
                         >
                         </base-input>
                       </b-col>
 
+                    </b-row>
+                                        <b-row>
+                      <b-col lg="6">
+                        <base-input
+                          type="text"
+                          label="City"
+                          :placeholder="this.model.companyCity"
+                          v-model="user.companyCity"
+                        >
+                        </base-input>
+                      </b-col>
+                      <b-col lg="6">
+                        <base-input
+                          type="text"
+                          label="Country"
+                          :placeholder="this.model.companyCountry"
+                          v-model="user.companyCountry"
+                        >
+                        </base-input>
+                      </b-col>
                     </b-row>
                     <b-row>
                       <b-col lg="6">
                         <base-input
                           type="text"
                           label="Website"
-                          placeholder=""
-                          v-model="user.CompanyWebsite"
+                          :placeholder="this.model.companyWebSite"
+                          v-model="user.companyWebSite"
                         >
                         </base-input>
                       </b-col>
@@ -107,8 +127,8 @@
                         <base-input
                           type="text"
                           label="Phone Number"
-                          placeholder=""
-                          v-model="user.CompanyPhoneNumber"
+                          :placeholder="this.model.companyPhoneNumber"
+                          v-model="user.companyPhoneNumber"
                         >
                         </base-input>
                       </b-col>
@@ -119,7 +139,7 @@
                   <div class="pl-lg-4">
                     <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
                     <!--  <label class="form-control-label">About Me</label> -->
-                      <b-form-textarea v-model="user.CompanyDescription" rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+                      <b-form-textarea v-model="user.companyDescription" rows="4" value="" id="about-form-textaria" :placeholder="this.model.companyDescription"></b-form-textarea>
                     </b-form-group>
                   </div>
                   
@@ -156,17 +176,21 @@ export default {
   
   data() {
     return {
+      model:[],
       user: {
-        CompanyId: this.$store.userData.id,
+        companyId: 14,
+        userId: this.$store.state.userData.id,
         UserTypeId: 2,
         SectorId:1,
-        CompanyName: '',
-        CompanyEmail: '',
-        CompanyLocation: '',
-        CompanyWebsite:'',
-        CompanyPhoneNumber:654365,
-        CompanyDescription: '',
-        CompanyPhoto:'',
+        companyName: this.$store.state.userData.firstName,
+        companyEmail: this.$store.state.userData.email,
+        companyCity: '',
+        companyCountry: '',
+        companyLocation: '',
+        companyWebsite:'',
+        companyPhoneNumber:654365,
+        companyDescription: '',
+        companyPhoto:'',
       },
       sector:'',
 
@@ -185,26 +209,26 @@ export default {
             }
         });
     },
+    getUserInformation(){
+      axios.get('api/companies/getbyid?id=' + 36)
+            .then((response) => {
+                console.log(response);
+                this.model = response.data;
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+    },
     
-  }
+  },
+  created(){
+    this.getUserInformation();
+    console.log(this.model);
+    
+  },
+  
 };
 </script>
 <style lang="scss" scoped>
-.home {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f1f1f1;
 
-  h1{
-    font-size: 40px;
-    margin-bottom: 32px;
-  }
-  
-  .file-info {
-    margin-top: 32px;
-  }
-}
 </style>

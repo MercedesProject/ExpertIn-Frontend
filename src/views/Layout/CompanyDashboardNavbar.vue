@@ -49,7 +49,7 @@
                     <img alt="Image placeholder" src="img/user.png" >
                   </span>
             <b-media-body class="ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">{{this.$store.state.userData.firstName}} {{this.$store.state.userData.lastName}}</span>
+              <span class="mb-0 text-sm  font-weight-bold">{{this.$store.state.userData.firstName}}</span>
             </b-media-body>
           </b-media>
         </a>

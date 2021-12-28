@@ -48,7 +48,9 @@
             <div
               class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
             >
-              
+              <div style="padding: 30px 70px 30px 123px" > 
+                
+              </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
               
@@ -57,13 +59,13 @@
                   {{this.$store.state.userData.firstName}} {{this.$store.state.userData.lastName}}<span class="font-weight-light"></span>
                 </h3>
                 <div class="h5 font-weight-300" >
-                  <i class="fas fa-map-marker-alt"></i>{{this.model.employerCity}}, {{model.employerCountry}}
+                  <i class="ni fa-location_pin" ></i>{{this.model.employerCity}}, {{model.employerCountry}}
                 </div>
                 <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Computer Engineer
+                  <i class="ni business_briefcase-24 mr-2"></i> {{this.education.educationStudy}}
                 </div>
                 <div>
-                  <i class="ni education_hat mr-2"></i> Turkish German University
+                  <i class="ni education_hat mr-2"></i> {{this.education.educationSchool}}
                 </div>
                 <hr class="my-4" />
                 <div class=" line ">
@@ -96,8 +98,8 @@
                 </div>
                 <hr class="my-4" />
                 
-                <p>I am a final year student of Computer Engineering at Turkish German University.</p>
-                    
+                <!-- <p>I am a final year student of Computer Engineering at Turkish German University.</p> -->
+                <p>{{this.model.employerAboutMe}}</p>    
                 
               </div>
             </div>
@@ -136,7 +138,6 @@
                     <div class="form-group row">
                       <label class="col-md-7 col-form-label form-control-label">Phone Number</label>
                       <div class="col-md-10">
-                        <i class="fas fa-phone-volume"></i>
                         <base-input :placeholder= this.model.employerPhoneNumber ></base-input>
                       </div>
                     </div>
@@ -401,14 +402,25 @@ export default {
   data() {
     return {
       model:[],
+      education:[],
     };
   },
   methods: {
     getUserInformation(){
-      axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
+      axios.get('api/employers/getbyid?id=' + 9)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+    },
+    getEducationInformation(){
+      axios.get('api/educations/getbyid?id=' + this.$store.state.userData.id)
+            .then((response) => {
+                console.log(response);
+                this.education = response.data;
             })
             .catch(function (error) {
                 alert(error);
@@ -418,7 +430,9 @@ export default {
   },
   created(){
     this.getUserInformation();
+    this.getEducationInformation
     console.log(this.model);
+    console.log(this.education);
     
   }
 };

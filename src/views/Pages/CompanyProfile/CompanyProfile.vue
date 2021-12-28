@@ -25,7 +25,7 @@
                 <div class="card-profile-image">
                   <a href="#">
                     <img
-                      src="img/brand/logo.png"
+                      src="img/user.png"
                       class="rounded-circle"
                     />
                   </a>
@@ -50,13 +50,13 @@
               <div class="text-center">
                 <hr class="my-4" />
                 <h3>
-                  Expert In<span class="font-weight-light"></span>
+                  {{this.$store.state.userData.firstName}}<span class="font-weight-light"></span>
                 </h3>
                 <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>Istanbul, Turkey
+                  <i class="ni location_pin mr-2"></i>{{this.model.companyCity}},{{this.model.companyCountry}}
                 </div>
                 <div class="col-lg-12 h5 mt-4">
-                  Sector:
+                  Sector: 
                 </div>
                 <div class="col-lg-12">
                     Internet
@@ -66,9 +66,7 @@
                      About Company: 
                   </div>
                 <p>
-                  Yeni bir istihdam platformu olan Expert In,
-                   iş arama ve işe alım süreçlerinde yeni nesil teknolojilerle, 
-                   iş arayanlarla işverenleri internet ortamında bir araya getiriyor.
+                  {{this.model.companyDescription}}
                 </p>
                 
                 <hr class="my-4" />
@@ -76,25 +74,25 @@
                     <i class="fas fa-map-marker-alt"></i> Address: 
                   </div>
                   <div class="col-lg-12 ">
-                    {{ model.address}}
+                    {{this.model.companyLocation}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
-                    <i class="fas fa-envelope"></i> Email Adress: 
+                    <i class="fas fa-envelope"></i> Company Contact Email Adress: 
                   </div>
                   <div class="col-lg-12">
-                    busrasari@gmail.com
+                    {{this.$store.state.userData.email}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
-                    <i class="fas fa-envelope"></i> Website: 
+                    Website: 
                   </div>
                   <div class="col-lg-12">
-                    www.expertin.com
+                    {{this.model.companyWebSite}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-phone-volume"></i> Phone Number: 
                   </div>
                   <div class="col-lg-12">
-                    05000
+                    {{this.model.companyPhoneNumber}}
                   </div>
               </div>
             </div>
@@ -110,22 +108,32 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   name: "user-profile",
   data() {
     return {
-      model: {
-        username: "",
-        email: "",
-        firstName: "",
-        lastName: "",
-        address: "",
-        city: "",
-        country: "",
-        zipCode: "",
-        about: "",
-      },
+      model:[],
     };
+  },
+    methods: {
+      getUserInformation(){
+        axios.get('api/companies/getbyid?id=' + 14)
+              .then((response) => {
+                  console.log(response);
+                  this.model = response.data;
+              })
+              .catch(function (error) {
+                  alert(error);
+              });
+      },
+    
+  },
+  created(){
+    this.getUserInformation();
+    console.log(this.model);
+    
   },
 };
 </script>

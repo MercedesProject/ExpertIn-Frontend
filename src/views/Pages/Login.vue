@@ -78,7 +78,7 @@ import axios from 'axios';
           rememberMe: false
         },
         staticUser: {
-          userTypeId:1,
+          userTypesID:1,
           email: 'kopfkino@gmail.com',
           password:'123456',
           rememberMe:false,

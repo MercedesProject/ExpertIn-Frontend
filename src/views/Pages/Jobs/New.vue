@@ -31,10 +31,10 @@
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
                 <h3>
-                  Mercedes QLM
+                  {{this.$store.state.userData.firstName}}
                 </h3>
                 <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>Istanbul, Turkey
+                  <i class="ni location_pin mr-2"></i>{{this.company.companyCity}},{{this.company.companyCountry}}
                 </div>
                 <!-- <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Computer Engineer
@@ -44,26 +44,32 @@
                 </div> -->
                 <hr class="my-4" />
                 <div class=" line ">
-                    <p>Buraya Neler Eklenebilir ?</p>
+                    <p>{{this.company.companyDescription}}</p>
                 </div>
                 <hr class="my-4" />
                 <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-map-marker-alt"></i> Address: 
                   </div>
                   <div class="col-lg-12 ">
-                    {{ model.address}}
+                    {{this.company.companyLocation}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-envelope"></i> Email Adress: 
                   </div>
                   <div class="col-lg-12">
-                    busrasari@gmail.com
+                    {{this.$store.state.userData.email}}
+                  </div>
+                  <div class="col-lg-12 h5 mt-4">
+                    Website: 
+                  </div>
+                  <div class="col-lg-12">
+                    {{this.company.companyWebSite}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-phone-volume"></i> Phone Number: 
                   </div>
                   <div class="col-lg-12">
-                    05000
+                    {{this.company.companyPhoneNumber}}
                   </div>
               </div>
             </div>
@@ -208,13 +214,14 @@ export default {
   name: "job-new",
   data() {
     return {
+      company:[],
       model: {
-       "companyId":1,
-       "jobName" : "",
-       "jobDescription" : "",
-       "jobType" : "",
-       "jobForm": "",
-       "jobSalary" : 0,
+       companyId: 14,
+       jobName : "",
+       jobDescription : "",
+       jobType: "",
+       jobForm: "",
+       jobSalary : 0,
       },
     };
   },
@@ -222,17 +229,34 @@ export default {
      ApplyJob: function() {
          alert(this.$route.params.jobId);
       },
-       addJob() {
-        axios.post('api/jobs/add',this.model)
-            .then((response) => {
-                console.log(response);
-                this.$router.push('job/edit'+ response.data.jobId);
-            })
-            .catch(function (error) {
-                alert(error);
+      addJob() {
+      axios.post('api/jobs/add',this.model)
+          .then((response) => {
+              console.log(response);
+              this.$router.push('job/edit'+ response.data.jobId);
+          })
+          .catch(function (error) {
+              alert(error);
+          });
+      },
+      getCompanyInformation(){
+        axios.get('api/companies/getbyid?id=' + this.model.companyId)
+              .then((response) => {
+                  console.log(response);
+                  this.company = response.data;
+              })
+              .catch(function (error) {
+                  alert(error);
             });
-        },
-     },
+      },
+      
+    },
+  created(){
+    this.getCompanyInformation();
+    console.log(this.company.companyId);
+    
+  },
+     
 };
 </script>
 <style></style>

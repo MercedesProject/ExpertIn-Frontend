@@ -84,8 +84,9 @@ import axios from 'axios';
     data() {
       return {
         model: {
+          userTypesID: 2,
           name: '',
-          //lastname: '',
+          lastname: '',
           email: '',
           password: '',
           agree: false
