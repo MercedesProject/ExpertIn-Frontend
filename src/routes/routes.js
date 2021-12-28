@@ -120,6 +120,12 @@ const routes = [{
                 component: () =>
                     import ('../views/Pages/Jobs/Edit.vue')
             },
+            {
+                path: '/Job/CompanyDetail/:jobId',
+                name: "JobCompanyDetail",
+                component: () =>
+                    import ('../views/Pages/Jobs/CompanyDetail.vue')
+            },
         ]
     },
     {

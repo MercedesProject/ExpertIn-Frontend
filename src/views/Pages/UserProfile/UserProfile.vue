@@ -407,7 +407,7 @@ export default {
   },
   methods: {
     getUserInformation(){
-      axios.get('api/employers/getbyid?id=' + 9)
+      axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;

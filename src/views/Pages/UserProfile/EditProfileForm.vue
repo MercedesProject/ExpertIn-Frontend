@@ -565,7 +565,7 @@ export default {
     },
 
     getUserInformation(){
-      axios.get('api/employers/getbyid?id=' + 9)
+      axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
@@ -584,6 +584,7 @@ export default {
                 alert(error);
             });
     },
+    //Dosya işlemleri
     filesChange(event) {
         console.log(event);
         this.file = event.target.files[0];

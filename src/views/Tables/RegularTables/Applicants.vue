@@ -1,13 +1,13 @@
 <template>
     <b-card no-body class="border border-info" >
         <b-card-header class="border-0 border-primary ">
-            <h3 class="mb-0 text-center">Posted Job Advertisements</h3>
+            <h3 class="mb-0 text-center">Applicants</h3>
         </b-card-header>
 
         <el-table class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
                   header-row-class-name="thead-light"
                   :data="projects">
-            <el-table-column label="Job"
+            <el-table-column label="Applicant"
                              min-width="310px"
                              prop="name">
                 <template v-slot="{row}">
@@ -30,25 +30,17 @@
             -->
            
 
-            <el-table-column label="Applicants" min-width="170px">
-                <div class="avatar-group">
-                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
-                       data-original-title="Ryan Tompson">
-                        <img alt="Image placeholder" src="img/theme/team-1.jpg">
-                    </a>
-                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
-                       data-original-title="Romina Hadid">
-                        <img alt="Image placeholder" src="img/theme/team-2.jpg">
-                    </a>
-                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
-                       data-original-title="Alexander Smith">
-                        <img alt="Image placeholder" src="img/theme/team-3.jpg">
-                    </a>
-                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
-                       data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="img/theme/team-4.jpg">
-                    </a>
+            <el-table-column label="Action" min-width="100px">
+                <div class="d-flex justify-content-between">
+                    
+                    
+                    <base-button size="m" type="default" class="float-right" v-on:click=commandClick(row)>Review</base-button>
+                    
+                    
+                    
                 </div>
+                
+                
             </el-table-column>
 
             <!--<el-table-column label="Form"
@@ -82,7 +74,7 @@
     </b-card>
 </template>
 <script>
-  import projects from './../projects'
+  import projects from '../projects'
   import { Table, TableColumn} from 'element-ui'
   import axios from 'axios'
 
@@ -104,38 +96,38 @@
       };
     },
     methods: {
-      getUserInformation(){
-        axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
-              .then((response) => {
-                  console.log(response);
-                  this.model = response.data;
-                  this.user.companyId = this.model.companyId;
-                  console.log("Bu company iddir"+this.user.companyId);
-                  axios.get('api/jobs/getallbycompanyid?id=' + this.user.companyId)
-                    .then((response) => {
-                        console.log(response);
-                        this.jobs = response.data;
-                        console.log(this.jobs);
-                    })
-                    .catch(function (error) {
-                        alert(error);
-                    });
-              })
-              .catch(function (error) {
-                  alert(error);
-              });
-      },
+    //   getUserInformation(){
+    //     axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
+    //           .then((response) => {
+    //               console.log(response);
+    //               this.model = response.data;
+    //               this.user.companyId = this.model.companyId;
+    //               console.log("Bu company iddir"+this.user.companyId);
+    //               axios.get('api/jobs/getallbycompanyid?id=' + this.user.companyId)
+    //                 .then((response) => {
+    //                     console.log(response);
+    //                     this.jobs = response.data;
+    //                     console.log(this.jobs);
+    //                 })
+    //                 .catch(function (error) {
+    //                     alert(error);
+    //                 });
+    //           })
+    //           .catch(function (error) {
+    //               alert(error);
+    //           });
+    //   },
 
-      commandClick: function(args) {
-      console.log(args);
+    //   commandClick: function(args) {
+    //   console.log(args);
      
-      //this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
-      },
+    //   //this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
+    //   },
     
   },
   created(){
-    this.getUserInformation();
-    console.log(this.model);
+    // this.getUserInformation();
+    // console.log(this.model);
   },
   }
 </script>

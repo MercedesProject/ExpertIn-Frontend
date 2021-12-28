@@ -178,7 +178,6 @@ export default {
     return {
       model:[],
       user: {
-        companyId: 14,
         userId: this.$store.state.userData.id,
         UserTypeId: 2,
         SectorId:1,
@@ -210,7 +209,7 @@ export default {
         });
     },
     getUserInformation(){
-      axios.get('api/companies/getbyid?id=' + 36)
+      axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;

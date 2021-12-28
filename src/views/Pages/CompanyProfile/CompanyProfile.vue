@@ -115,14 +115,19 @@ export default {
   data() {
     return {
       model:[],
+      user:{
+        companyId: '',
+      }
     };
   },
     methods: {
       getUserInformation(){
-        axios.get('api/companies/getbyid?id=' + 14)
+        axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
               .then((response) => {
                   console.log(response);
                   this.model = response.data;
+                  this.user.companyId = this.model.companyId;
+                  console.log("Bu company iddir"+this.user.companyId);
               })
               .catch(function (error) {
                   alert(error);
@@ -133,6 +138,7 @@ export default {
   created(){
     this.getUserInformation();
     console.log(this.model);
+    
     
   },
 };
