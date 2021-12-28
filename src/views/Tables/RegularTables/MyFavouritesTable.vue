@@ -209,8 +209,9 @@ import axios from 'axios'
           content: ''
         },
         loading:false,
-            remoteConfig:{},
-            remoteRows:[],
+        remoteConfig:{},
+        remoteRows:[],
+        employerId: 0
       }
     },
     props:['is_fav'],
@@ -287,21 +288,20 @@ import axios from 'axios'
     },
     toggleFav(obj,index){
       obj.favourite = !obj.favourite;
-      console.log(obj.favourite);
-      console.log(index);
       
     },
     getFavJobs() {
-    axios.post("/api/favoriteJobs/getallbyemployerid?employerId=" + this.$store.state.userData.id).then((response)=>{
-    this.favJobs = response.data;
-    console.log(response.favJobs);
-    // this.jobs.forEach((value, index) => {
-    //   this.items.push(value);
-    //   console.log(value);
-    //   console.log(index);
-    // });  
-    })},
-
+        axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
+            .then((response) => {
+            this.employerId = response.data.employerId
+            axios.post("/api/favoriteJobs/getallbyemployerid?employerId=" + this.employerId).then((response)=>{
+                this.favJobs = response.data;
+                console.log(response.favJobs);
+    })
+        })
+       
+            
+    },
     },
     created(){
        this.getFavJobs()

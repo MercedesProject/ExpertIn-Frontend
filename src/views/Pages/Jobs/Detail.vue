@@ -124,20 +124,20 @@
                   </div>
                       <div class="col-lg-6 h5 mt-4">
                     <label><b>Time:</b></label>
-                     <b-form-text class="form-control">{{jobData.username}}</b-form-text>
+                     <b-form-text class="form-control">{{jobData.jobWeekDay}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Deadline:</b></label>
-                     <b-form-text class="form-control">{{jobData.username}}</b-form-text>
+                     <b-form-text class="form-control">{{jobData.jobApplyLastDate}}</b-form-text>
                   </div>
               
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>Start Date:</b></label>
-                     <b-form-text class="form-control">{{jobData.username}}</b-form-text>
+                     <b-form-text class="form-control">{{jobData.jobStartDate}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label><b>End Date:</b></label>
-                     <b-form-text class="form-control">{{jobData.username}}</b-form-text>
+                     <b-form-text class="form-control">{{jobData.jobEndDate}}</b-form-text>
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <label><b>Description:</b></label>
@@ -182,11 +182,13 @@ export default {
         zipCode: "8",
         about: "9",
       },
+      companyData:[],
+      companyId : 0,
       jobData:[],
       applicationJob:{
         // ApplicationJobId: 0,
         JobId : this.$route.params.jobId,
-        EmployerId : this.$store.state.userData.id,
+        EmployerId : '',
         ApplicationJobStatus : 'pending'
       }
     };
@@ -195,26 +197,30 @@ export default {
      ApplyJob() {
         axios.post("api/ApplicationJobs/add", this.applicationJob)
             .then((response) => {
-                console.log(response);
-                this.jobData = response.data;
+                console.log(response);               
             })
-            .catch(function (error) {
-                alert(error);
-            }); 
       },
        getJobDetail() {
         axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
             .then((response) => {
-                console.log(response);
                 this.jobData = response.data;
+                this.companyId = response.data.companyId;
+                axios.get('api/companies/getbyid?id=' + companyId)
+              .then((response) => {
+                  this.companyData = response.data;
+              })
             })
-            .catch(function (error) {
-                alert(error);
-            });
+        },
+        getEmployerDetail() {
+        axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
+            .then((response) => {
+                this.applicationJob.EmployerId = response.data.employerId
+            })
         },
      },
     created(){
       this.getJobDetail();
+      this.getEmployerDetail();
     }
 };
 </script>

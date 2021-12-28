@@ -85,8 +85,8 @@
                     <h3 class="mb-0">New Job</h3>
                   </div>
                   <div class="col-4 text-right">
-                      
-                    <button  @click=addJob() class="btn btn-sm btn-success">Add</button>
+                     <button  @click=draftJob() class="btn btn-sm btn-primary">Draft</button> 
+                    <button  @click=addJob() class="btn btn-sm btn-success">Publish</button>
                   </div>
                 </div>
               </div>
@@ -99,7 +99,7 @@
                     <label ><b>Job:</b></label>
                         <base-input
                             type="text"
-                            v-model="model.jobName"
+                            v-model="model.jobName" 
                             required
                             id="address">
                         </base-input>
@@ -110,7 +110,7 @@
                             type="select"
                             v-model="model.jobType"
                             required
-                            id="jobType">
+                            id="jobType" >
                             <select class="form-control">
                               <option>Backend</option>
                               <option>Frontend</option>
@@ -147,7 +147,7 @@
                     <label><b>Time:</b></label>
                      <base-input
                             type="text"
-                            v-model="model.time"
+                            v-model="model.jobWeekDay"
                             required
                             id="time">
                         </base-input>
@@ -156,7 +156,7 @@
                     <label><b>Deadline:</b></label>
                      <base-input
                             type="date"
-                            v-model="model.deadline"
+                            v-model="model.jobApplyLastDate"
                             required
                             id="deadline">
                         </base-input>
@@ -166,7 +166,7 @@
                     <label><b>Start Date:</b></label>
                      <base-input
                             type="date"
-                            v-model="model.startDate"
+                            v-model="model.jobStartDate"
                             required
                             id="startDate">
                         </base-input>
@@ -175,7 +175,7 @@
                     <label><b>End Date:</b></label>
                      <base-input
                             type="date"
-                            v-model="model.endDate"
+                            v-model="model.jobEndDate"
                             required
                             id="endDate">
                         </base-input>
@@ -216,7 +216,7 @@ export default {
     return {
       company:[],
       model: {
-       companyId: 14,
+       companyId: "",
        jobName : "",
        jobDescription : "",
        jobType: "",
@@ -233,17 +233,29 @@ export default {
       axios.post('api/jobs/add',this.model)
           .then((response) => {
               console.log(response);
-              this.$router.push('job/edit'+ response.data.jobId);
+              // this.$router.push('job/edit'+ response.data.jobId);
+          })
+          .catch(function (error) {
+              alert(error);
+          });
+      },
+      draftJob(){
+        axios.post('api/draftjobs/add',this.model)
+          .then((response) => {
+              console.log(response);
+              // this.$router.push('job/edit'+ response.data.jobId);
           })
           .catch(function (error) {
               alert(error);
           });
       },
       getCompanyInformation(){
-        axios.get('api/companies/getbyid?id=' + this.model.companyId)
+        axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
               .then((response) => {
                   console.log(response);
                   this.company = response.data;
+                  this.model.companyId = this.company.companyId;
+                  console.log("compnayId" + this.model.companyId);
               })
               .catch(function (error) {
                   alert(error);

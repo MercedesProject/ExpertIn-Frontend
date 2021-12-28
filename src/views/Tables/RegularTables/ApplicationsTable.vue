@@ -203,8 +203,10 @@
           content: ''
         },
         loading:false,
-            remoteConfig:{},
-            remoteRows:[],
+        remoteConfig:{},
+        remoteRows:[],
+        employerId : 0
+        
       }
     },
     props:['is_fav'],
@@ -307,15 +309,23 @@
       
     },
     getApplicationJobs() {
-        axios.post("/api/applicationjobs/getallbyemployerid?id=" +this.$store.state.userData.id ).then((response)=>{
-            this.jobs = response.data;
-            console.log(this.jobs);
+        axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
+            .then((response) => {
+                this.employerId = response.data.employerId
+                axios.post("/api/applicationjobs/getallbyemployerid?id=" + this.employerId).then((response)=>{
+                  this.jobs = response.data;
+                  console.log(this.jobs);
         });
-    },
+        })
+       
+            
+        },
+  
+
 
   },
   created(){
-     this.getApplicationJobs()
+     this.getApplicationJobs();
   },
   }
   
