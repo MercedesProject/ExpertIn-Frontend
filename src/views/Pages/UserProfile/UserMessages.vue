@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+  
     <base-header class="pb-8 pt-5 pt-md-8 bg-gradient-success">
        <!-- Card stats -->
       <b-row class="justify-content-center">
@@ -66,22 +66,25 @@
         showUserMenu = false
         showColorPalette = false
       " :class="darkMode ? 'darkMode' : ''">
-      <div class="chatbox__popupMenu" v-show="showOptions">
+      
+	  <div class="chatbox__popupMenu" v-show="showOptions">
         <button @click="darkMode = !darkMode">Dark mode {{ darkMode ? 'Off' : 'On' }}</button>
         <button @click.stop.prevent="showColorPalette = true; showOptions = false">Change channel color</button>
         <button @click="deleteCurrentChannel()" :disabled="selectedContact.selectedChannelIndex === 0">Delete current channel</button>
       </div>
-      <div class="chatbox__colorPalette" v-show="showColorPalette">
+      
+	  <div class="chatbox__colorPalette" v-show="showColorPalette">
         <div class="chatbox_color" v-for="i in 12" :key="i" @click="changeChannelColor"></div>
       </div>
-      <ul class="chatbox__contacts">
+      
+	  <ul class="chatbox__contacts">
           <!--:key="contact._id" ben yazdım -->
         <li class="chatbox__contact" v-for="(contact, contactIndex) in contacts" :key="contact._userId" :style="{ 'background-image': 'url(' + contact.profileImage + ')' }" :class="contactIndex === selectedContactIndex ? 'chatbox__contact--selected' : ''" @click="selectedContactIndex = contactIndex">
           <div class="chatbox__onlineIndicator" v-if="contactIndex &lt; 3"></div>
         </li>
         <li class="chatbox__contact" style="
             background-color: #f0f0f0;
-            background-image: url('img/brand/bg19.png')
+            background-image: url('img/user.png')
             background-position: center;
             background-size: 26px;
             background-repeat: no-repeat;
@@ -90,12 +93,13 @@
         
         </footer>
       </ul>
-      <div class="chatbox__container">
+      
+	  <div class="chatbox__container">
         <div class="chatbox__userMenu" v-if="showUserMenu">
           <button @click="deleteCurrentContact()" :disabled="selectedContactIndex === 0">Remove from contacts</button>
         </div>
-        <div class="chatbox__info"><img src="img/brand/logo.png" @click.stop.prevent="showUserMenu = !showUserMenu" height="26"/>
-          <p>{{ contacts[selectedContactIndex].name }}</p><img src="img/brand/logo.png" height="24" width="22" @click.stop.prevent="showOptions = !showOptions; showColorPalette = false"/>
+        <div class="chatbox__info"><img src="img/user.png" @click.stop.prevent="showUserMenu = !showUserMenu" height="26"/>
+          <p>{{ contacts[selectedContactIndex].name }}</p><img src="img/3dots1.png" height="24" width="22" @click.stop.prevent="showOptions = !showOptions; showColorPalette = false"/>
         </div>
         <nav class="chatbox__navigation">
               <!--:key="channel._id" ben yazdım -->
@@ -109,7 +113,7 @@
           <button class="chatbox__channelSwitchButton chatbox__channelNewButton--input" v-if="selectedContact.makeNewChannel">
             <input type="text" v-model="selectedContact.newChannelInput" name="newChannelInput" placeholder="Channel name" ref="newChannelInput" aria-label="New channel input" @blur="onChannelInputBlur()" @keyup.enter="newChannel(selectedContact.newChannelInput)"/>
           </button>
-          <button class="chatbox__channelNewButton" v-if="!selectedContact.makeNewChannel" @click="addButtonClick()"><img src="img/brand/logo.png" height="13"/></button>
+          <button class="chatbox__channelNewButton" v-if="!selectedContact.makeNewChannel" @click="addButtonClick()"><img src="img/plus.png" height="13"/></button>
         </nav>
         <div class="chatbox__chat">
           <input class="chatbox__messageInput" v-model="selectedContact.messageInput" ref="newMessageInput" :placeholder="firstMessageSent ? 'New message...' : 'New message... (press enter to send)'" @keyup.enter="newMessage()"/>
@@ -224,7 +228,7 @@ export default {
 						messages: [
 							{
 								content:
-									"Why would we spam our main chat, when we can plan our trip here? 🛳️",
+									"Why would we spam our main chat, when we can plan our trip here?",
 								date: "2019-02-09",
 								time: "23:34",
 								authorId: "umYHX3R"

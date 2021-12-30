@@ -34,9 +34,9 @@ const routes = [{
             },
             {
                 path: '/employeemessages',
-                name: 'Mesajlar',
+                name: 'employeemessages',
                 component: () =>
-                    import ('../views/Messages.vue')
+                    import ('../views/Pages/UserProfile/UserMessages.vue')
             },
             {
                 path: '/employeeprofile',
@@ -91,9 +91,9 @@ const routes = [{
             },
             {
                 path: '/companymessages',
-                name: 'Mesajlar',
+                name: '',
                 component: () =>
-                    import ('../views/Messages.vue')
+                    import ('../views/Pages/CompanyProfile/CompanyMessages.vue')
             },
             {
                 path: '/companyprofile',
