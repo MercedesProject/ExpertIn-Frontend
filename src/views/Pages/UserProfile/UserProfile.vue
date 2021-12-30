@@ -61,12 +61,12 @@
                 <div class="h5 font-weight-300" >
                   <i class="ni fa-location_pin" ></i>{{this.model.employerCity}}, {{model.employerCountry}}
                 </div>
-                <!-- <div class="h5 mt-4">
+                <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i> {{this.education[0].educationStudy}}, {{this.education[0].educationDegree}}
                 </div>
                 <div>
                   <i class="ni education_hat mr-2"></i> {{this.education[0].educationSchool}}
-                </div> -->
+                </div>
                 <hr class="my-4" />
                 <div class=" line ">
                   <div class="col-lg-12 h5 mt-4">
@@ -166,7 +166,7 @@
               <hr class="my-4" />
               <!-- EDUCATION INFORMATION -->
               <h6 class="heading-small text-muted mb-4">EDUCATION INFORMATION</h6>
-              <!-- <div class="pl-lg-4">
+              <div class="pl-lg-4">
                 <div class="row">
                   <b-col lg="4">
                     <div class="form-group row">
@@ -211,7 +211,7 @@
 
                 </div>
                 
-              </div>               -->
+              </div>              
 
               <hr class="my-4" />
               <!-- EXPERIENCE -->
@@ -222,7 +222,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Title</label>
                       <div class="col-md-10">
-                        {{this.experiences[0].ExperienceTitle}}
+                        {{this.experiences[0].experienceTitle}}
                     </div>
                   </div> 
                   </b-col>
@@ -230,7 +230,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Company</label>
                       <div class="col-md-10">
-                        {{this.experiences[0].ExperienceCompanyName}}
+                        {{this.experiences[0].experienceCompanyName}}
                       </div>
                     </div>
                   </b-col>
@@ -238,7 +238,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Location</label>
                       <div class="col-md-10">
-                        {{this.experiences.ExperienceLocation}}
+                        {{this.experiences[0].experienceLocation}}
                     </div>
                   </div> 
                   </b-col>
@@ -246,7 +246,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Starting Date</label>
                       <div class="col-md-10">
-                        {{this.experiences[0].ExperienceStartingDate}}
+                        {{this.experiences[0].experienceStartingDate}}
                       </div>
                     </div>
                   </b-col>                  
@@ -254,7 +254,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Ending Date</label>
                       <div class="col-md-10">
-                        {{this.experiences[0].ExperienceEndingDate}}
+                        {{this.experiences[0].experienceEndingDate}}
                       </div>
                     </div>
                   </b-col>  
@@ -401,15 +401,15 @@ export default {
                 this.model = response.data;
                 this.employerId = this.model.employerId
                 
-                // axios.get('api/educations/getbyid?id=' + this.employerId)
-                //     .then((response) => {
-                //         console.log(response);
-                //         this.education = response.data;
-                //         //this.Education.educationId = this.education[0].educationId;
-                //     })
-                //     .catch(function (error) {
-                //         alert(error);
-                //     });
+                axios.get('api/educations/getbyid?id=' + this.employerId)
+                    .then((response) => {
+                        console.log(response);
+                        this.education = response.data;
+                        //this.Education.educationId = this.education[0].educationId;
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
                 // axios.get('api/experiences/getbyid?id=' + this.employerId)
                 //     .then((response) => {
                 //         console.log(response);
@@ -429,7 +429,7 @@ export default {
   },
   created(){
     this.getUserInformation();
-    console.log(this.model);
+    //console.log(this.model);
 
     
   }

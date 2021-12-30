@@ -15,7 +15,7 @@
               <div class="d-flex justify-content-between">
                 <h1 size="sm" type="default" class="mr-4"
                   >Edit Profile</h1>
-                  <router-link to="/profile" >
+                  <router-link to="/employeeprofile" >
                     <base-button size="sm" type="default" class="float-right"
                     >Back to Profile</base-button>
                   </router-link>
@@ -576,10 +576,10 @@ export default {
                       if(response.status==200){
                         console.log(response);
                         this.experiences = response.data;
-                        this.Experience.experienceId = this.experiences.experienceId;
+                        this.Experience.experienceId = this.experiences[0].experienceId;
                         console.log("Bu experience iddir"+this.Experience.experienceId);
                       }
-                      else{
+                      if(response.status==204){
                         axios.post("/api/experiences/add",this.Experience).then((response)=>{
                           if(response.status==200){
                             console.log("Yeni experience eklendi:"+this.Experience);
