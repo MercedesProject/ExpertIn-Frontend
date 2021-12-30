@@ -1,7 +1,6 @@
 <template>
   <div>
 
-	<div class="00 mt-auto">
     <div class="chatbox" @click="
         showOptions = false
         showUserMenu = false
@@ -42,20 +41,22 @@
         <div class="chatbox__info"><img src="img/user.png" @click.stop.prevent="showUserMenu = !showUserMenu" height="26"/>
           <p>{{ contacts[selectedContactIndex].name }}</p><img src="img/3dots1.png" height="24" width="22" @click.stop.prevent="showOptions = !showOptions; showColorPalette = false"/>
         </div>
-        <nav class="chatbox__navigation">
+        <nav class="chatbox__navigation">	
               <!--:key="channel._id" ben yazdım -->
-          <button class="chatbox__channelSwitchButton" v-for="(channel, channelIndex) in selectedContact.channels" :key="channel._userId" :class="channelIndex === selectedContact.selectedChannelIndex ? 'chatbox__channelSwitchButton--selected' : ''" :style="{
-              backgroundColor: channelIndex === selectedContact.selectedChannelIndex ? selectedContact.channels[channelIndex].color:'initial',
-              borderColor: selectedContact.channels[channelIndex].color,
-              color: channelIndex !== selectedContact.selectedChannelIndex ? selectedContact.channels[channelIndex].color:'default'
-            }" @click="selectedContact.selectedChannelIndex = channelIndex">
-            <p>{{ channel.name }}</p>
-          </button>
-          <button class="chatbox__channelSwitchButton chatbox__channelNewButton--input" v-if="selectedContact.makeNewChannel">
-            <input type="text" v-model="selectedContact.newChannelInput" name="newChannelInput" placeholder="Channel name" ref="newChannelInput" aria-label="New channel input" @blur="onChannelInputBlur()" @keyup.enter="newChannel(selectedContact.newChannelInput)"/>
-          </button>
-          <button class="chatbox__channelNewButton" v-if="!selectedContact.makeNewChannel" @click="addButtonClick()"><img src="img/plus.png" height="13"/></button>
-        </nav>
+			  <div class="row col-sm-12">
+				<button class="chatbox__channelSwitchButton" v-for="(channel, channelIndex) in selectedContact.channels" :key="channel._userId" :class="channelIndex === selectedContact.selectedChannelIndex ? 'chatbox__channelSwitchButton--selected' : ''" :style="{
+					backgroundColor: channelIndex === selectedContact.selectedChannelIndex ? selectedContact.channels[channelIndex].color:'initial',
+					borderColor: selectedContact.channels[channelIndex].color,
+					color: channelIndex !== selectedContact.selectedChannelIndex ? selectedContact.channels[channelIndex].color:'default'
+					}" @click="selectedContact.selectedChannelIndex = channelIndex">
+					<p>{{ channel.name }}</p>
+				</button>
+				<button class="chatbox__channelSwitchButton chatbox__channelNewButton--input" v-if="selectedContact.makeNewChannel">
+					<input type="text" v-model="selectedContact.newChannelInput" name="newChannelInput" placeholder="Channel name" ref="newChannelInput" aria-label="New channel input" @blur="onChannelInputBlur()" @keyup.enter="newChannel(selectedContact.newChannelInput)"/>
+				</button>
+				<button class="chatbox__channelNewButton" v-if="!selectedContact.makeNewChannel" @click="addButtonClick()"><img src="img/plus.png" height="13"/></button>
+			  </div>
+	    </nav>
         <div class="chatbox__chat">
           <input class="chatbox__messageInput" v-model="selectedContact.messageInput" ref="newMessageInput" :placeholder="firstMessageSent ? 'New message...' : 'New message... (press enter to send)'" @keyup.enter="newMessage()"/>
           <div class="chatbox__messages">
@@ -80,7 +81,6 @@
         </div>
       </div>
     </div>
-	</div>
   </div>
 </template>
 
@@ -589,7 +589,6 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 * {
   box-sizing: border-box;
-  text-align: center;
 }
 *:focus {
   outline: none;
@@ -599,10 +598,14 @@ p {
 }
 html,
 body {
-  margin: 0;
-  font-size: 13px;
-  height: 100%;
-  font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    font-family: Open Sans, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #525f7f;
+    text-align: left;
+    background-color: #f8f9fe;
 }
 footer {
   width: 100%;
@@ -650,7 +653,7 @@ footer a {
   box-shadow: 0 0 0 2px #eee;
 }
 .chatbox__contact--selected {
-  box-shadow: 0 0 0 2px #09f !important;
+  box-shadow: 0 0 0 2px #7e65c2 !important;
 }
 .chatbox__onlineIndicator {
   position: absolute;
@@ -658,7 +661,7 @@ footer a {
   height: 16px;
   right: 0;
   bottom: 0;
-  background-color: #2de58d;
+  background-color: #65c27e;
   border-radius: 50px;
   border: 2px solid #fff;
 }
@@ -704,8 +707,8 @@ footer a {
   height: 25px;
   padding: 4px 12px;
   background: #fff;
-  border: 1px solid #09f;
-  color: #09f;
+  border: 1px solid #7e65c29f;
+  color: #7e65c2;
   cursor: pointer;
 }
 .chatbox__channelSwitchButton input,
@@ -724,7 +727,7 @@ footer a {
 }
 .chatbox__channelSwitchButton--selected,
 .chatbox__channelNewButton--selected {
-  background: #09f;
+  background: #7e65c2;
   color: #fff !important;
 }
 .chatbox__channelSwitchButton--input,
@@ -836,7 +839,7 @@ footer a {
 .chatbox__userMenu {
   position: absolute;
   right: 10px;
-  top: 40px;
+  top: auto;
   background: #fff;
   width: 200px;
   border-radius: 5px;
@@ -860,7 +863,7 @@ footer a {
 .chatbox__popupMenu button:last-child,
 .chatbox__colorPalette button:last-child,
 .chatbox__userMenu button:last-child {
-  color: #f00;
+  color: #c27e65;
 }
 .chatbox__popupMenu button:disabled,
 .chatbox__colorPalette button:disabled,
