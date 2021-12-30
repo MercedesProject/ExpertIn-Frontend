@@ -207,7 +207,7 @@
                           type="text"
                           label="School"
                           placeholder="Turkish German University"
-                          v-model="education.EducationSchool"
+                          v-model="Education.educationSchool"
                         >
                         </base-input>
                       </b-col>
@@ -216,7 +216,7 @@
                           type="text"
                           label="Degree"
                           placeholder="Lisans"
-                          v-model="education.EducationDegree"
+                          v-model="Education.educationDegree"
                         >
                         </base-input>
                       </b-col>
@@ -225,7 +225,7 @@
                           type="text"
                           label="Study"
                           placeholder="Computer Engineering"
-                          v-model="education.EducationStudy"
+                          v-model="Education.educationStudy"
                         >
                         </base-input>
                       </b-col>
@@ -236,7 +236,7 @@
                           type="date"
                           label="Start Date"
                           placeholder="Start Date"
-                          v-model="education.EducationStartingDate"
+                          v-model="Education.educationStartingDate"
                         >
                         </base-input>
                       </b-col>
@@ -245,7 +245,7 @@
                           type="date"
                           label="End Date"
                           placeholder="End Date"
-                          v-model="education.EducationEndingDate"
+                          v-model="Education.educationEndingDate"
                         >
                         </base-input>
                       </b-col>
@@ -272,7 +272,7 @@
                           type="text"
                           label="Title"
                           placeholder="Junior Developer"
-                          v-model="experince.ExperienceTitle"
+                          v-model="Experience.experienceTitle"
                         >
                         </base-input>
                       </b-col>
@@ -281,7 +281,7 @@
                           type="text"
                           label="Firma Name"
                           placeholder="Doğuş"
-                          v-model="experince.ExperienceCompanyName"
+                          v-model="Experience.experienceCompanyName"
                         >
                         </base-input>
                       </b-col>
@@ -290,7 +290,7 @@
                           type="text"
                           label="Location"
                           placeholder="Maslak"
-                          v-model="experince.ExperienceLocation"
+                          v-model="Experience.experienceLocation"
                         >
                         </base-input>
                       </b-col>
@@ -301,7 +301,7 @@
                           type="date"
                           label="Start Date"
                           placeholder="Start Date"
-                          v-model="experince.ExperienceStartingDate"
+                          v-model="Experience.experienceStartingDate"
                         >
                         </base-input>
                       </b-col>
@@ -310,7 +310,7 @@
                           type="date"
                           label="End Date"
                           placeholder="End Date"
-                          v-model="experince.ExperienceEndingDate"
+                          v-model="Experience.experienceEndingDate"
                         >
                         </base-input>
                       </b-col>
@@ -321,10 +321,18 @@
                         </base-checkbox>
                       </b-col>
                     </b-row>
+                    <div class="pl-lg-12">
+                      <b-form-group label="Description" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
+                      <!--  <label class="form-control-label">Description for Project</label> -->
+                        <b-form-textarea v-model="Experience.experienceDescription" rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+                      </b-form-group>
+                      
+                    
+                    </div>
                     <div class="pl-lg-4" style="padding-top:10px">
                     <b-row>
                       <div class="col-lg-6">
-                        <base-button size="sm" type="default"> Add Experience</base-button>
+                        <base-button @click="addExperience" size="sm" type="default"> Add Experience</base-button>
                       </div>
 
                     </b-row>
@@ -460,8 +468,9 @@ export default {
     return {
       model:[],
       education:[],
+      experiences:[],
       user: {
-        EmployerId: 9,
+        EmployerId: null,
         userId: this.$store.state.userData.id,
         UserTypeId: 1,
         EmployerName: this.$store.state.userData.firstName,
@@ -478,18 +487,21 @@ export default {
         EmployerPhoneNumber: 0,
       },
       image:{
+        Date:'',
+        ImagePath:'',
+        ImagesId:null,
         UserId: this.$store.state.userData.id,
       },
       
       file: null,
-      education:{
-        EducationId: null,
-        EmployerId: null,
-        EducationSchool:'',
-        EducationDegree:'',
-        EducationStudy:'',
-        EducationStartingDate:'',
-        EducationEndingDate:'',
+      Education:{
+        educationId:null,
+        employerId: null,
+        educationSchool:'',
+        educationDegree:'',
+        educationStudy:'',
+        educationStartingDate:'',
+        educationEndingDate:'',
       },
       checkboxes: {
             unchecked: false,
@@ -497,18 +509,18 @@ export default {
             uncheckedDisabled: false,
             checkedDisabled: true
       },
-      experince:{
-        ExperienceId: null,
-        EmployerId: null,
-        ExperienceTitle:'',
-        ExperienceCompanyName:'',
-        ExperienceCity: 'Istanbul',
-        ExperienceCountry: 'Turkey',
-        ExperienceLocation: '',
-        ExperienceStartingDate:'',
-        ExperienceEndingDate:'',
-        ExperienceCurrentStatus: false,
-        ExperienceDescription:'',
+      Experience:{
+        experienceId: 0,
+        employerId: 0,
+        experienceTitle:'',
+        experienceCompanyName:'',
+        experienceCity: 'Istanbul',
+        experienceCountry: 'Turkey',
+        experienceLocation: '',
+        experienceStartingDate:'',
+        experienceEndingDate:'',
+        experienceCurrentStatus: false,
+        experienceDescription:'',
       },
       // skills:[],
       // getSkill:{
@@ -542,47 +554,100 @@ export default {
         });
     },
 
-    addEducation() {
-      //böyle bi education varsa güncelle
-      if(this.education.employerId == this.$store.state.userData.id){
-        axios.post("/api/educations/update",this.user).then((response)=>{
-            if(response.status==200){
-              console.log(this.user);
-              this.$router.push('employeeprofile');
-            }
-        });
-      }
-      //böyle bi education yoksa ekle
-      else{
-        axios.post("/api/educations/add",this.education).then((response)=>{
-          if(response.status==200){
-            console.log(this.education);
-
-          }
-        });
-      }
-
-    },
-
     getUserInformation(){
       axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
+                this.Education.employerId = this.model.employerId;
+                this.Experience.employerId = this.model.employerId;
+                axios.get('api/educations/getbyid?id=' + this.Education.employerId)
+                    .then((response) => {
+                        console.log(response);
+                        this.education = response.data;
+                        this.Education.educationId = this.education[0].educationId;
+                        console.log("Bu education iddir"+this.Education.educationId);
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
+                axios.get('api/experiences/getbyid?id=' + this.Experience.employerId)
+                    .then((response) => {
+                      if(response.status==200){
+                        console.log(response);
+                        this.experiences = response.data;
+                        this.Experience.experienceId = this.experiences.experienceId;
+                        console.log("Bu experience iddir"+this.Experience.experienceId);
+                      }
+                      else{
+                        axios.post("/api/experiences/add",this.Experience).then((response)=>{
+                          if(response.status==200){
+                            console.log("Yeni experience eklendi:"+this.Experience);
+
+                          }
+                        });
+                      }
+                        
+                    })
+                    .catch(function (error) {
+                        //alert(error);
+                        
+                    });
             })
             .catch(function (error) {
                 alert(error);
             });
     },
-    getEducationInformation(){
-      axios.get('api/educations/getbyid?id=' + this.$store.state.userData.id)
-            .then((response) => {
-                console.log(response);
-                this.education = response.data;
-            })
-            .catch(function (error) {
-                alert(error);
-            });
+
+    addEducation(){
+      //böyle bi education varsa güncelle
+      console.log(this.education[0].employerId);
+      console.log(this.Education.employerId);
+      console.log(this.education[0].educationId);
+      if(this.education[0].employerId == this.Education.employerId){
+        axios.post("/api/educations/update",this.Education).then((response)=>{
+            if(response.status==200){
+              console.log("Güncellendi:"+ this.Education);
+              // this.$router.push('employeeprofile');
+            }
+        });
+      }
+      //böyle bi education yoksa ekle
+      else{
+        axios.post("/api/educations/add",this.Education).then((response)=>{
+          if(response.status==200){
+            console.log("Yeni education eklendi:"+this.Education);
+
+          }
+        });
+      }
+
+
+    },
+    addExperience(){
+      //böyle bi experience varsa güncelle
+      console.log(this.experiences[0].employerId);
+      console.log(this.Experience.employerId);
+      console.log(this.experiences[0].experienceId);
+      if(this.experiences[0].employerId == this.Experience.employerId){
+        axios.post("/api/experiences/update",this.Experience).then((response)=>{
+            if(response.status==200){
+              console.log("Experience Güncellendi:"+ this.Experience);
+              // this.$router.push('employeeprofile');
+            }
+        });
+      }
+      //böyle bi experience yoksa ekle
+      else{
+        axios.post("/api/experiences/add",this.Experience).then((response)=>{
+          if(response.status==200){
+            console.log("Yeni experience eklendi:"+this.Experience);
+
+          }
+        });
+      }
+
+
     },
     //Dosya işlemleri
     filesChange(event) {
@@ -591,8 +656,10 @@ export default {
     },
     onUpload(){
       const fd = new FormData();
-      fd.append('image', this.file, this.file.name)
-      axios.post("/api/images/add",fd).then((response)=>{
+      fd.append('file', this.file, this.file.name);
+      //this.image.file = fd; 
+      console.log(this.image);
+      axios.post("/api/images/add?image="+this.image.UserId,fd).then((response)=>{
             console.log(response)
               
         });
@@ -603,9 +670,8 @@ export default {
   },
   created(){
     this.getUserInformation();
-    console.log(this.model);
-    this.getEducationInformation();
-    console.log(this.education);
+    //console.log(this.model);
+
   }
 
     

@@ -61,12 +61,12 @@
                 <div class="h5 font-weight-300" >
                   <i class="ni fa-location_pin" ></i>{{this.model.employerCity}}, {{model.employerCountry}}
                 </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i> {{this.education.educationStudy}}
+                <!-- <div class="h5 mt-4">
+                  <i class="ni business_briefcase-24 mr-2"></i> {{this.education[0].educationStudy}}, {{this.education[0].educationDegree}}
                 </div>
                 <div>
-                  <i class="ni education_hat mr-2"></i> {{this.education.educationSchool}}
-                </div>
+                  <i class="ni education_hat mr-2"></i> {{this.education[0].educationSchool}}
+                </div> -->
                 <hr class="my-4" />
                 <div class=" line ">
                   <div class="col-lg-12 h5 mt-4">
@@ -130,7 +130,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Adress</label>
                       <div class="col-md-10">
-                        <base-input :placeholder="this.model.employerLocation"></base-input>
+                        {{this.model.employerLocation}}
                     </div>
                   </div> 
                   </b-col>
@@ -138,7 +138,7 @@
                     <div class="form-group row">
                       <label class="col-md-7 col-form-label form-control-label">Phone Number</label>
                       <div class="col-md-10">
-                        <base-input :placeholder= this.model.employerPhoneNumber ></base-input>
+                        {{this.model.employerPhoneNumber }}
                       </div>
                     </div>
                   </b-col>
@@ -146,7 +146,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">City</label>
                       <div class="col-md-10">
-                        <base-input :placeholder= this.model.employerCity></base-input>
+                        {{this.model.employerCity}}
                     </div>
                   </div> 
                   </b-col>
@@ -154,7 +154,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Country</label>
                       <div class="col-md-10">
-                        <base-input :placeholder= this.model.employerCountry></base-input>
+                        {{this.model.employerCountry}}
                       </div>
                     </div>
                   </b-col>                  
@@ -166,13 +166,13 @@
               <hr class="my-4" />
               <!-- EDUCATION INFORMATION -->
               <h6 class="heading-small text-muted mb-4">EDUCATION INFORMATION</h6>
-              <div class="pl-lg-4">
+              <!-- <div class="pl-lg-4">
                 <div class="row">
                   <b-col lg="4">
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">School</label>
-                      <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                      <div class="col-md-15">
+                        {{this.education[0].educationSchool}}
                     </div>
                   </div> 
                   </b-col>
@@ -180,7 +180,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Degree</label>
                       <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                        {{this.education[0].educationDegree}}
                       </div>
                     </div>
                   </b-col>
@@ -188,48 +188,41 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Study</label>
                       <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                        {{this.education[0].educationStudy}}
                     </div>
                   </div> 
                   </b-col>
-                  <b-col lg="5">
+                  <b-col lg="6">
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Starting Date</label>
                       <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                        {{this.education[0].educationStartingDate}}
                       </div>
                     </div>
                   </b-col>                  
-                  <b-col lg="5">
+                  <b-col lg="6">
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Ending Date</label>
                       <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                        {{this.education[0].educationEndingDate}}
                       </div>
                     </div>
                   </b-col>  
-                  <b-col lg="2">
-                    <div class="form-group row">
-                      <label class="col-md-8 col-form-label form-control-label">Current</label>
-                      <div class="col-md-10">
-                        <b-checkbox placeholder="Jon"></b-checkbox>
-                      </div>
-                    </div>
-                  </b-col>  
+
                 </div>
                 
-              </div>              
+              </div>               -->
 
               <hr class="my-4" />
               <!-- EXPERIENCE -->
               <h6 class="heading-small text-muted mb-4">EXPERIENCE</h6>
-              <div class="pl-lg-4">
+              <!-- <div class="pl-lg-4">
                 <div class="row">
                   <b-col lg="4">
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Title</label>
                       <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                        {{this.experiences[0].ExperienceTitle}}
                     </div>
                   </div> 
                   </b-col>
@@ -237,7 +230,7 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Company</label>
                       <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                        {{this.experiences[0].ExperienceCompanyName}}
                       </div>
                     </div>
                   </b-col>
@@ -245,37 +238,30 @@
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Location</label>
                       <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                        {{this.experiences.ExperienceLocation}}
                     </div>
                   </div> 
                   </b-col>
-                  <b-col lg="5">
+                  <b-col lg="6">
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Starting Date</label>
                       <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                        {{this.experiences[0].ExperienceStartingDate}}
                       </div>
                     </div>
                   </b-col>                  
-                  <b-col lg="5">
+                  <b-col lg="6">
                     <div class="form-group row">
                       <label class="col-md-5 col-form-label form-control-label">Ending Date</label>
                       <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
+                        {{this.experiences[0].ExperienceEndingDate}}
                       </div>
                     </div>
                   </b-col>  
-                  <b-col lg="2">
-                    <div class="form-group row">
-                      <label class="col-md-8 col-form-label form-control-label">Current</label>
-                      <div class="col-md-10">
-                        <b-checkbox placeholder="Jon"></b-checkbox>
-                      </div>
-                    </div>
-                  </b-col>  
+  
                 </div>
                 
-              </div>               
+              </div>                -->
 
               <hr class="my-4" />
               <!-- SKILL-->
@@ -403,6 +389,8 @@ export default {
     return {
       model:[],
       education:[],
+      experiences:[],
+      employerId: null,
     };
   },
   methods: {
@@ -411,28 +399,38 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
+                this.employerId = this.model.employerId
+                
+                // axios.get('api/educations/getbyid?id=' + this.employerId)
+                //     .then((response) => {
+                //         console.log(response);
+                //         this.education = response.data;
+                //         //this.Education.educationId = this.education[0].educationId;
+                //     })
+                //     .catch(function (error) {
+                //         alert(error);
+                //     });
+                // axios.get('api/experiences/getbyid?id=' + this.employerId)
+                //     .then((response) => {
+                //         console.log(response);
+                //         this.experiences = response.data;
+                        
+                //     })
+                //     .catch(function (error) {
+                //         alert(error);
+                //     });
             })
             .catch(function (error) {
                 alert(error);
             });
     },
-    getEducationInformation(){
-      axios.get('api/educations/getbyid?id=' + this.$store.state.userData.id)
-            .then((response) => {
-                console.log(response);
-                this.education = response.data;
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-    },
+
     
   },
   created(){
     this.getUserInformation();
-    this.getEducationInformation
     console.log(this.model);
-    console.log(this.education);
+
     
   }
 };
