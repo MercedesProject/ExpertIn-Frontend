@@ -486,11 +486,11 @@ export default {
         // EmployerResume:'',
         EmployerPhoneNumber: 0,
       },
-      image:{
-        Date:'',
-        ImagePath:'',
-        ImagesId:null,
+      imageData:{
+        ImagesId: 0,
         UserId: this.$store.state.userData.id,
+        ImagePath:'',
+        Date: null,
       },
       
       file: null,
@@ -658,8 +658,8 @@ export default {
       const fd = new FormData();
       fd.append('file', this.file, this.file.name);
       //this.image.file = fd; 
-      console.log(this.image);
-      axios.post("/api/images/add?image="+this.image.UserId,fd).then((response)=>{
+      console.log(this.imageData);
+      axios.post("/api/images/add?UserId="+this.$store.state.userData.id,fd).then((response)=>{
             console.log(response)
               
         });
