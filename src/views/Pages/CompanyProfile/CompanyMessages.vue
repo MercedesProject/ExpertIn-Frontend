@@ -1,6 +1,7 @@
 <template>
   <div>
 
+	<div class="00 mt-auto">
     <div class="chatbox" @click="
         showOptions = false
         showUserMenu = false
@@ -79,7 +80,7 @@
         </div>
       </div>
     </div>
-  
+	</div>
   </div>
 </template>
 
@@ -168,7 +169,7 @@ export default {
 						messages: [
 							{
 								content:
-									"Why would we spam our main chat, when we can plan our trip here? 🛳️",
+									"Why would we spam our main chat, when we can plan our trip here?",
 								date: "2019-02-09",
 								time: "23:34",
 								authorId: "umYHX3R"
@@ -602,7 +603,6 @@ body {
   font-size: 13px;
   height: 100%;
   font-family: 'Open Sans', sans-serif;
-  overflow: hidden;
 }
 footer {
   width: 100%;
@@ -616,6 +616,7 @@ footer a {
 }
 .chatbox {
   display: flex;
+  padding-top: 5px;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
@@ -626,7 +627,7 @@ footer a {
   height: 100%;
   width: 175px;
   padding: 10px;
-  border-right: 1px solid #f2f2f2;
+  border-right: 1px solid #f2eff8;
   overflow-y: auto;
 }
 .chatbox__contact {

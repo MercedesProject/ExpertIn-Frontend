@@ -61,6 +61,7 @@
       </b-row>
     </base-header>
 
+	<div class="00 mt-auto">
     <div class="chatbox" @click="
         showOptions = false
         showUserMenu = false
@@ -139,7 +140,7 @@
         </div>
       </div>
     </div>
-  
+	</div>
   </div>
 </template>
 
@@ -662,7 +663,6 @@ body {
   font-size: 13px;
   height: 100%;
   font-family: 'Open Sans', sans-serif;
-  overflow: hidden;
 }
 footer {
   width: 100%;
@@ -676,6 +676,7 @@ footer a {
 }
 .chatbox {
   display: flex;
+  padding-top: 5px;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
@@ -686,7 +687,7 @@ footer a {
   height: 100%;
   width: 175px;
   padding: 10px;
-  border-right: 1px solid #f2f2f2;
+  border-right: 1px solid #f2eff8;
   overflow-y: auto;
 }
 .chatbox__contact {
