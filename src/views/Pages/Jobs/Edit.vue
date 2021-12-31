@@ -86,7 +86,6 @@
                     <h3 class="mb-0">Edit Job</h3>
                   </div>
                   <div class="col-4 text-right">
-                    <button  @click=editJob() class="btn btn-sm btn-primary saveJob">Save</button>
                   </div>
                 </div>
               </div>
@@ -137,45 +136,43 @@
                             <select class="form-control">
                               <option>Remote</option>
                               <option>Office</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option>Hybrid</option>
                             </select>
                         </base-input>
                   </div>
                       <div class="col-lg-6 h5 mt-4">
-                    <label><b>Time:</b></label>
+                    <label><b>Working days(per week)</b></label>
                      <base-input
                             type="text"
-                            v-model="model.time"
+                            v-model="jobData.jobWeekDay"
                             required
                             id="time">
                         </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>Deadline:</b></label>
+                    <label><b>Application Deadline:</b></label>
                      <base-input
                             type="date"
-                            v-model="model.deadline"
+                            v-model="jobData.jobApplyLastDate"
                             required
                             id="deadline">
                         </base-input>
                   </div>
               
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>Start Date:</b></label>
+                    <label><b>Job Start Date:</b></label>
                      <base-input
                             type="date"
-                            v-model="model.startDate"
+                            v-model="jobData.jobStartDate"
                             required
                             id="startDate">
                         </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>End Date:</b></label>
+                    <label><b>Job End Date:</b></label>
                      <base-input
                             type="date"
-                            v-model="model.endDate"
+                            v-model="jobData.jobEndDate"
                             required
                             id="endDate">
                         </base-input>
@@ -193,6 +190,7 @@
                         </base-input>
                   </div>
                   <div class="offset-md-10 col-md-2 text-right">
+                    <button   class="btn btn-sm btn-danger saveJob">Delete</button>
                     <button  @click=editJob() class="btn btn-sm btn-primary saveJob">Save</button>
                   </div>
                   
@@ -215,44 +213,39 @@ export default {
     return {
       company:[],
       model: {
-        username: "1",
-        email: "2",
-        firstName: "3",
-        lastName: "4",
-        address: "kavakyeli",
-        phone:"",
-        city: "",
-        country: "",
-        zipCode: "",
-        about: "",
       },
-      jobData:[]
+      jobData:[],
+      companyData:{}
     };
   },
    methods:{
        getJobDetail() {
         axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
             .then((response) => {
-                console.log(response);
                 this.jobData = response.data;
+               // this.companyId = response.data.companyId;
+               this.companyId = 36;
+                axios.get('api/companies/getbyid?id=' + this.companyId)
+              .then((response) => {
+                  this.companyData = response.data;
+                  console.log("companydata" + this.companyData);
+              })
             })
-            .catch(function (error) {
-                alert(error);
-            });
         },
         editJob(id){
-          alert(this.$route.params.jobId);
+          console.log(this.jobData);
+          axios.post('api/jobs/update' , this.jobData)
+            .then((response) => {
+                this.$router.push({name:'JobDetail', params: { jobId: id}});
+            })
         },
         getCompanyInformation(){
-        axios.get('api/companies/getbyid?id=' + 14)
+        axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
               .then((response) => {
-                  console.log(response);
                   this.company = response.data;
+                  this.model.companyId = this.company.companyId;
               })
-              .catch(function (error) {
-                  alert(error);
-            });
-      },
+        },
      },
     created(){
       this.getJobDetail();

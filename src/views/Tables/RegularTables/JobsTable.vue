@@ -81,7 +81,7 @@
       
 
       <template #cell(actions)="row">
-        <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1 jobDetail" v-on:click=commandClick(row.item)>
+        <b-button size="sm"  class="mr-1 jobDetail" v-on:click=commandClick(row.item)>
          <i :id="`${row.index}`" class="ni ni-active-40"></i>
         </b-button>
         <!-- <b-button size="sm" @click="row.toggleDetails">
@@ -145,9 +145,9 @@
     
 
     <!-- Info modal -->
-    <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
+    <!-- <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
       <pre>{{ infoModal.content }}</pre>
-    </b-modal>
+    </b-modal> -->
     </b-card>
   <!-- </b-container> -->
 </template>
@@ -163,17 +163,17 @@
         jobs:[],
         fields: [
           // { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center text-primary"},
-          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center text-primary" },
-          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center text-primary' },
-          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center text-primary' },
-          { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center text-primary' },
-          { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center text-primary' },
-          { key: 'companyLocation', label: 'Location', sortable: true, class: 'text-center text-primary' },
-          { key: 'jobWeekDay', label: 'Day/Week', sortable: true, class: 'text-center text-primary' },
-          { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center text-primary' },
-          { key: 'jobStartDate', label: 'Start Date', sortable: true, class: 'text-center text-primary' },
-          { key: 'jobEndDate', label: 'End Date', sortable: true, class: 'text-center text-primary' },
-          { key: 'actions', label: 'Actions', class:"text-center text-primary ", },
+          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center " },
+          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center ' },
+          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center ' },
+          { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center ' },
+          { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center ' },
+          { key: 'companyLocation', label: 'Location', sortable: true, class: 'text-center ' },
+          { key: 'jobWeekDay', label: 'Day/Week', sortable: true, class: 'text-center ' },
+          { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center ' },
+          { key: 'jobStartDate', label: 'Start Date', sortable: true, class: 'text-center ' },
+          { key: 'jobEndDate', label: 'End Date', sortable: true, class: 'text-center ' },
+          { key: 'actions', label: 'Actions', class:"text-center ", },
           // { key: 'status',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
         ],
         totalRows: 1,
@@ -185,11 +185,7 @@
         sortDirection: 'asc',
         filter: null,
         filterOn: [],
-        infoModal: {
-          id: 'info-modal',
-          title: '',
-          content: ''
-        },
+        
         loading:false,
             remoteConfig:{},
             remoteRows:[],
@@ -251,10 +247,10 @@
       //   this.infoModal.content = JSON.stringify(item, null, 2)
       //   this.$root.$emit('bv::show::modal', this.infoModal.id, button)
       // },
-      resetInfoModal() {
-        this.infoModal.title = ''
-        this.infoModal.content = ''
-      },
+      // resetInfoModal() {
+      //   this.infoModal.title = ''
+      //   this.infoModal.content = ''
+      // },
       onFiltered(filteredItems) {
         this.totalRows = filteredItems.length
         this.currentPage = 1

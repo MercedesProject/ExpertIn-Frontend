@@ -81,13 +81,8 @@
                         this.draftJobs = response.data;
                         console.log(this.draftJobs);
                     })
-                    .catch(function (error) {
-                        alert(error);
-                    });
+                    
               })
-              .catch(function (error) {
-                  alert(error);
-              });
       },
       getDraftJobs(){
           

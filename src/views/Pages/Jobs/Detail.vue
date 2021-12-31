@@ -32,10 +32,10 @@
             <div class="card-body pt-0 pt-md-4">
               <div class="text-center">
                 <h3>
-                  Mercedes QLM
+                  {{this.companyData.companyName}}
                 </h3>
                 <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>Istanbul, Turkey
+                  <i class="ni location_pin mr-2"></i>{{this.companyData.companyCity}}, {{this.companyData.companyCountry}}
                 </div>
                 <!-- <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>Computer Engineer
@@ -45,26 +45,26 @@
                 </div> -->
                 <hr class="my-4" />
                 <div class=" line ">
-                    <p>Buraya Neler Eklenebilir ?</p>
+                    <p>{{this.companyData.companyDescription}}</p>
                 </div>
                 <hr class="my-4" />
                 <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-map-marker-alt"></i> Address: 
                   </div>
                   <div class="col-lg-12 ">
-                    {{this.dummyData.address}}
+                    {{this.companyData.companyLocation}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-envelope"></i> Email Adress: 
                   </div>
                   <div class="col-lg-12">
-                    busrasari@gmail.com
+                    {{this.companyData.companyEMail}}
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-phone-volume"></i> Phone Number: 
                   </div>
                   <div class="col-lg-12">
-                    05000
+                    {{this.companyData.companyPhoneNumber}}
                   </div>
               </div>
             </div>
@@ -123,20 +123,20 @@
                      <b-form-text class="form-control">{{jobData.jobForm}}</b-form-text>
                   </div>
                       <div class="col-lg-6 h5 mt-4">
-                    <label><b>Time:</b></label>
+                    <label><b>Working days(per week)</b></label>
                      <b-form-text class="form-control">{{jobData.jobWeekDay}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>Deadline:</b></label>
+                    <label><b>Application Deadline:</b></label>
                      <b-form-text class="form-control">{{jobData.jobApplyLastDate}}</b-form-text>
                   </div>
               
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>Start Date:</b></label>
+                    <label><b>Job Start Date:</b></label>
                      <b-form-text class="form-control">{{jobData.jobStartDate}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>End Date:</b></label>
+                    <label><b>Job End Date:</b></label>
                      <b-form-text class="form-control">{{jobData.jobEndDate}}</b-form-text>
                   </div>
                   <div class="col-lg-12 h5 mt-4">
@@ -182,7 +182,7 @@ export default {
         zipCode: "8",
         about: "9",
       },
-      companyData:[],
+      companyData:{},
       companyId : 0,
       jobData:[],
       applicationJob:{
@@ -204,10 +204,13 @@ export default {
         axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
             .then((response) => {
                 this.jobData = response.data;
-                this.companyId = response.data.companyId;
-                axios.get('api/companies/getbyid?id=' + companyId)
+                console.log(this.jobData);
+               // this.companyId = response.data.companyId;
+               this.companyId = 36;
+                axios.get('api/companies/getbyid?id=' + this.companyId)
               .then((response) => {
                   this.companyData = response.data;
+                  console.log("companydata" + this.companyData);
               })
             })
         },

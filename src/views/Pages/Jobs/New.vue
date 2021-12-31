@@ -82,12 +82,9 @@
               <div class="bg-white border-0">
                 <div class="row align-items-center">
                   <div class="col-8">
-                    <h3 class="mb-0">New Job</h3>
+                    <h3 class="mb-0">Create Job</h3>
                   </div>
-                  <div class="col-4 text-right">
-                     <button  @click=draftJob() class="btn btn-sm btn-primary">Draft</button> 
-                    <button  @click=addJob() class="btn btn-sm btn-success">Publish</button>
-                  </div>
+                  
                 </div>
               </div>
             </template>
@@ -108,10 +105,9 @@
                     <label><b>Type:</b></label>
                     <base-input
                             type="select"
-                            v-model="model.jobType"
                             required
-                            id="jobType" >
-                            <select class="form-control">
+                            id="type" >
+                            <select v-model="model.jobType" class="form-control">
                               <option>Backend</option>
                               <option>Frontend</option>
                               <option>Fullstack</option>
@@ -131,20 +127,17 @@
                     <label><b>Form:</b></label>
                      <base-input  
                             type="select"
-                            v-model="model.jobForm"
                             required
                             id="form">
-                            <select class="form-control">
+                            <select v-model="model.jobForm" class="form-control">
                               <option>Remote</option>
                               <option>Office</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option>Hybrid</option>
                             </select>
                         </base-input>
                   </div>
                       <div class="col-lg-6 h5 mt-4">
-                    <label><b>Time:</b></label>
+                    <label><b>Working days(per week)</b></label>
                      <base-input
                             type="text"
                             v-model="model.jobWeekDay"
@@ -153,7 +146,7 @@
                         </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>Deadline:</b></label>
+                    <label><b>Application Deadline:</b></label>
                      <base-input
                             type="date"
                             v-model="model.jobApplyLastDate"
@@ -163,7 +156,7 @@
                   </div>
               
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>Start Date:</b></label>
+                    <label><b>Job Start Date:</b></label>
                      <base-input
                             type="date"
                             v-model="model.jobStartDate"
@@ -172,7 +165,7 @@
                         </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                    <label><b>End Date:</b></label>
+                    <label><b>Job End Date:</b></label>
                      <base-input
                             type="date"
                             v-model="model.jobEndDate"
@@ -192,8 +185,10 @@
                            
                       </base-input>
                   </div>
+                 
                   <div class="offset-md-10 col-md-2 text-right">
-                    <button  @click=addJob() class="btn btn-sm btn-success">Add</button>
+                     <button  @click=draftJob() class="btn btn-sm btn-primary">Draft</button> 
+                    <button  @click=addJob() class="btn btn-sm btn-success">Publish</button>
                   </div>
                   
                   
@@ -226,28 +221,17 @@ export default {
     };
   },
    methods:{
-     ApplyJob: function() {
-         alert(this.$route.params.jobId);
-      },
       addJob() {
       axios.post('api/jobs/add',this.model)
           .then((response) => {
-              console.log(response);
-              // this.$router.push('job/edit'+ response.data.jobId);
+              // this.$router.push({path:'/companydashboard'});
           })
-          .catch(function (error) {
-              alert(error);
-          });
       },
       draftJob(){
         axios.post('api/draftjobs/add',this.model)
           .then((response) => {
-              console.log(response);
-              // this.$router.push('job/edit'+ response.data.jobId);
+              // this.$router.push({path:'/companydashboard'});
           })
-          .catch(function (error) {
-              alert(error);
-          });
       },
       getCompanyInformation(){
         axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
@@ -255,11 +239,7 @@ export default {
                   console.log(response);
                   this.company = response.data;
                   this.model.companyId = this.company.companyId;
-                  console.log("compnayId" + this.model.companyId);
               })
-              .catch(function (error) {
-                  alert(error);
-            });
       },
       
     },

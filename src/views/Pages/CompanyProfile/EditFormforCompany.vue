@@ -137,7 +137,7 @@
                   <!-- Description -->
                   <h6 class="heading-small text-muted mb-4">About Company</h6>
                   <div class="pl-lg-4">
-                    <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
+                    <b-form-group label="" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
                     <!--  <label class="form-control-label">About Me</label> -->
                       <b-form-textarea v-model="user.companyDescription" rows="4" value="" id="about-form-textaria" :placeholder="this.model.companyDescription"></b-form-textarea>
                     </b-form-group>

@@ -114,6 +114,9 @@
 
         </div>
       </div>
+      <!-- <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+    <iframe class="embed-responsive-item" src="https://www.google.com.tr/" allowfullscreen></iframe>
+  </div> -->
 </div>
 </template>
 <script>

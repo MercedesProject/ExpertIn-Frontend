@@ -117,13 +117,9 @@
                         this.jobs = response.data;
                         console.log(this.jobs);
                     })
-                    .catch(function (error) {
-                        alert(error);
-                    });
+                   
               })
-              .catch(function (error) {
-                  alert(error);
-              });
+              
       },
 
       commandClick: function(args) {
