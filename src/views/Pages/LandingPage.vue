@@ -65,7 +65,7 @@
                  border-color: #9783ce;                  
                  height:auto; 
                  width: auto;"
-                 > Login For Company</span>
+                 > Company Login</span>
            </b-nav-item>
        </b-navbar-nav>
      </template>
