@@ -51,7 +51,7 @@
                                   <div class="card-profile-image">
                                     
                                       <img
-                                        src="img/user.png"
+                                      :src=this.userPhoto
                                         class="rounded-circle"
                                       />
                                       
@@ -530,6 +530,7 @@ export default {
         ImagePath:'',
         Date: null,
       },
+      userPhoto: "img/user.png",
       
       file: null,
       Education:{
@@ -696,20 +697,32 @@ export default {
       const fd = new FormData();
       fd.append('file', this.file, this.file.name);
       //this.image.file = fd; 
-      console.log(this.imageData);
       axios.post("/api/images/add?UserId="+this.$store.state.userData.id,fd).then((response)=>{
-            console.log(response)
+            axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+            console.log(response.data.data[0].imagePath);
+           this.userPhoto  = require('../../../../../../Projects/Expert-In-Backend-Release/WebApplication1//wwwroot/Uploads/Images/' + response.data.data[0].imagePath );
+       
+        });
               
         });
 
-           console.log();  
+     
+    },
+    isExistUserPhoto(){
+      axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+            console.log(response.data.data[0]);
+          if(response.data.data[0] != null){
+            this.userPhoto  = require('../../../../../../Projects/Expert-In-Backend-Release/WebApplication1//wwwroot/Uploads/Images/' + response.data.data[0].imagePath );   
+          }
+          
+        });
     },
     
   },
   created(){
     this.getUserInformation();
     //console.log(this.model);
-
+ this.isExistUserPhoto()
   }
 
     
