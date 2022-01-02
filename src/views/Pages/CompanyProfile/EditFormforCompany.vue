@@ -39,10 +39,56 @@
               <card>
 
                 <b-form @submit.prevent="updateProfile">
+                  <h6 class="heading-small text-muted mb-7">Company Image Upload</h6>
+                  <div class="pl-lg-4">
+                    <b-row>
+                      <b-col lg="6">
+                        <b-container fluid="xl">
+                          <div class="line">
+                            <div class="col-xl-8 mb-5 mb-xl-0">
+                              <div class=" row justify-content-left">
+                                <div class="col-lg-5 order-lg-2">
+                                  <div class="card-profile-image">
+                                    
+                                      <img
+                                        src="img/user.png"
+                                        class="rounded-circle"
+                                      />
+                                      
+                                    
+                                  </div>
+                                  <div class="mb-5"> 
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                            
+                            </div>
+                            <div class="mb-5" style="padding-left:20px; padding-top:40px"> 
+                              <div class="mb-5">
+
+                              </div>
+                              
+                              <label for="file" ><i class="ni ni-fat-add"></i>Select Photo</label>
+                              <input class="input" type="file"  @change="filesChange" id="file"/>                      
+                              <div style="padding-left:10px;">
+                                <base-button outline type="default" @click="onUpload" >Upload</base-button>
+                              </div>
+                            </div>
+
+                            
+                          </div>
+                      
+                        </b-container>
+                      </b-col>
+
+                    </b-row>
+                    
+                  </div>
+                  <hr >
                   <h6 class="heading-small text-muted mb-4">Company information</h6>
 
                   <div class="pl-lg-4">
-
                     <b-row>
                       <b-col lg="6">
                         <base-input
@@ -218,7 +264,23 @@ export default {
                 alert(error);
             });
     },
-    
+        //Dosya işlemleri
+    filesChange(event) {
+        console.log(event);
+        this.file = event.target.files[0];
+    },
+    onUpload(){
+      const fd = new FormData();
+      fd.append('file', this.file, this.file.name);
+      //this.image.file = fd; 
+      console.log(this.imageData);
+      axios.post("/api/images/add?UserId="+this.$store.state.userData.id,fd).then((response)=>{
+            console.log(response)
+              
+        });
+
+           console.log();  
+    },
   },
   created(){
     this.getUserInformation();
@@ -229,5 +291,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
+.label {
+  padding: 8px 20px;
+  color: rgb(83, 43, 177);
+  align-items: center;
+  row-gap: 16px;
+  border: 2px dashed rgb(83, 43, 177);
+  background-color: #fff;
+  transition: 0.3s ease all;
+}
+.input {
+        display: none;
+}
 </style>

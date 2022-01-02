@@ -37,10 +37,19 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
+                    
                     <img
+                      v-if="IsUploaded"
+                      :src="this.image[0].imagePath"
+                      class="rounded-circle"
+                      
+                    />
+                    <!-- <img
+                      v-else
                       src="img/user.png"
                       class="rounded-circle"
-                    />
+                      
+                    /> -->
                   </a>
                 </div>
               </div>
@@ -77,7 +86,7 @@
                      
                   </div>
                   <div class="col-lg-12 ">
-                     {{this.model.employerGithub}}
+                     <a href="https://github.com/busrasari">{{this.model.employerGithub}}</a>
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <i class="fas fa-envelope"></i>Email Adress: 
@@ -93,7 +102,7 @@
                      
                   </div>
                   <div class="col-lg-12 ">
-                    {{this.model.employerLinkedin}}
+                    <a href="#">{{this.model.employerLinkedin}}</a>
                   </div>
                 </div>
                 <hr class="my-4" />
@@ -391,15 +400,31 @@ export default {
       education:[],
       experiences:[],
       employerId: null,
+      image: [],
+      IsUploaded:false,
     };
   },
   methods: {
+    getImage(){
+      axios.get('api/images/getimagesbyuserid?id=' + this.$store.state.userData.id)
+            .then((response) => {
+                console.log(response);
+                this.image = response.data;
+                
+                // this.IsUploaded = true;
+                // console.log(this.IsUploaded);
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+  },
     getUserInformation(){
       axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
                 this.employerId = this.model.employerId
+
                 
                 axios.get('api/educations/getbyid?id=' + this.employerId)
                     .then((response) => {
@@ -430,8 +455,8 @@ export default {
   created(){
     this.getUserInformation();
     //console.log(this.model);
-
-    
+    this.getImage();
+    console.log(this.image);
   }
 };
 </script>

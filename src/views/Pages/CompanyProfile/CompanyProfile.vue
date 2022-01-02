@@ -23,12 +23,17 @@
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
-                  <a href="#">
                     <img
+                      v-if="IsUploaded"
                       src="img/user.png"
                       class="rounded-circle"
                     />
-                  </a>
+                    <img
+                      v-else
+                      src="img/user.png"
+                      class="rounded-circle"
+                    />
+                  
                 </div>
               </div>
             </div>
@@ -117,7 +122,8 @@ export default {
       model:[],
       user:{
         companyId: '',
-      }
+      },
+      IsUploaded:false,
     };
   },
     methods: {
@@ -133,12 +139,25 @@ export default {
                   alert(error);
               });
       },
+      getImage(){
+      axios.get('api/images/getimagesbyuserid?id=' + this.$store.state.userData.id)
+            .then((response) => {
+                console.log(response);
+                this.image = response.data;
+                //this.IsUploaded = true;
+                
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+      },
+      
     
   },
   created(){
     this.getUserInformation();
     console.log(this.model);
-    
+    this.getImage();
     
   },
 };
