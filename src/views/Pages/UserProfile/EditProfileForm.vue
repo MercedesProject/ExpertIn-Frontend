@@ -39,27 +39,65 @@
               <card>
 
                 <b-form @submit.prevent="updateProfile">
-                  <h6 class="heading-small text-muted mb-4">User information</h6>
-
+                  <h6 class="heading-small text-muted mb-6">User File Upload</h6>
                   <div class="pl-lg-4">
                     <b-row>
+                      <b-col lg="6">
+                        <b-container fluid="xl">
+                          <div class="line">
+                            <div class="col-xl-8 mb-5 mb-xl-0">
+                              <div class=" row justify-content-left">
+                                <div class="col-lg-5 order-lg-2">
+                                  <div class="card-profile-image">
+                                    
+                                      <img
+                                        src="img/user.png"
+                                        class="rounded-circle"
+                                      />
+                                      
+                                    
+                                  </div>
+                                  <div class="mb-5"> 
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                            
+                            </div>
+                            <div class="mb-5" style="padding-left:20px; padding-top:40px"> 
+                              <div class="mb-5">
 
+                              </div>
+                              
+                              <label for="file" ><i class="ni ni-fat-add"></i>Select Photo</label>
+                              <input class="input" type="file"  @change="filesChange" id="file"/>                      
+                              <div style="padding-left:15px;">
+                                <base-button outline type="default" @click="onUpload" >Upload</base-button>
+                              </div>
+                            </div>
+
+                            
+                          </div>
+                      
+                        </b-container>
+                      </b-col>
+                      
                       <b-col lg="6">
                         <router-link to="/resumeupload" >
                         <base-button outline type="default">Upload Resume </base-button>
                         </router-link>
                       </b-col>
-                      <b-col lg="3">
-                        <!-- <form @submit.prevent="onUpload" enctype="multipart/form-data">
-                          
-                        </form> -->
-                        <label class="label" for="file" >Select Image</label> 
-                          <input class="input" type="file"  @change="filesChange" id="file"/>
-                      </b-col>
-                      <b-col lg="3">
-                          <base-button outline type="default" @click="onUpload" >Upload</base-button>
-                      </b-col>
+                    </b-row>
+                    
+                  </div>
+                  <hr >
+                  <h6 class="heading-small text-muted mb-4">User information</h6>
 
+                  <div class="pl-lg-4">
+                    <b-row>
+                      
+                      
+                      
                     </b-row>
                     <b-row>
                       <b-col lg="6">
@@ -681,11 +719,11 @@ export default {
 <style lang="scss" scoped>
 
 .label {
-  padding: 8px 20px;
-  color: rgb(83, 43, 177);
+
+  color: black;
   align-items: center;
-  row-gap: 16px;
-  border: 2px dashed rgb(83, 43, 177);
+
+  border: 1.5px solid black;
   background-color: #fff;
   transition: 0.3s ease all;
 }
