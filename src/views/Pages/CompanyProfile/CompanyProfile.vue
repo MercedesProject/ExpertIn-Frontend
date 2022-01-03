@@ -24,15 +24,10 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                     <img
-                      v-if="IsUploaded"
-                      src="img/user.png"
+                      :src="this.userPhoto"
                       class="rounded-circle"
                     />
-                    <img
-                      v-else
-                      src="img/user.png"
-                      class="rounded-circle"
-                    />
+
                   
                 </div>
               </div>
@@ -42,11 +37,11 @@
             >
               <div class="d-flex justify-content-between">
                 
-                <base-button size="m" type="default" class="float-right"
+                <base-button size="m" type="default" class="float-right" v-if="userType==1"
                   >Send Message</base-button
                 >
                 <router-link to="/editformforcompany"> 
-                  <a href="#!" class="btn btn-info">Edit profile</a>
+                  <a href="#!" class="btn btn-info" v-if="userType==2">Edit profile</a>
                 </router-link>
               </div>
             </div>
@@ -119,11 +114,12 @@ export default {
   name: "user-profile",
   data() {
     return {
+      userType: this.$store.state.userData.id,
       model:[],
       user:{
         companyId: '',
       },
-      IsUploaded:false,
+      userPhoto: "img/user.png",
     };
   },
     methods: {
@@ -139,18 +135,15 @@ export default {
                   alert(error);
               });
       },
-      getImage(){
-      axios.get('api/images/getimagesbyuserid?id=' + this.$store.state.userData.id)
-            .then((response) => {
-                console.log(response);
-                this.image = response.data;
-                //this.IsUploaded = true;
-                
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-      },
+      isExistUserPhoto(){
+      axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+            console.log(response.data.data[0]);
+          if(response.data.data[0] != null){   
+            this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+ response.data.data[0].imagePath);
+          }
+          
+        });
+    },
       
     
   },
@@ -158,7 +151,7 @@ export default {
     this.getUserInformation();
     console.log(this.model);
     this.getImage();
-    
+    this.isExistUserPhoto();
   },
 };
 </script>

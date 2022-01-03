@@ -524,12 +524,6 @@ export default {
         // EmployerResume:'',
         EmployerPhoneNumber: 0,
       },
-      imageData:{
-        ImagesId: 0,
-        UserId: this.$store.state.userData.id,
-        ImagePath:'',
-        Date: null,
-      },
       userPhoto: "img/user.png",
       
       file: null,
@@ -551,14 +545,14 @@ export default {
       Experience:{
         experienceId: 0,
         employerId: 0,
-        experienceTitle:'',
-        experienceCompanyName:'',
+        experienceTitle:'Senior Developer',
+        experienceCompanyName:'Doğuş',
         experienceCity: 'Istanbul',
         experienceCountry: 'Turkey',
         experienceLocation: '',
         experienceStartingDate:'',
         experienceEndingDate:'',
-        experienceCurrentStatus: false,
+        experienceCurrentStatus: "",
         experienceDescription:'',
       },
       // skills:[],
@@ -610,28 +604,33 @@ export default {
                     .catch(function (error) {
                         alert(error);
                     });
+                
                 axios.get('api/experiences/getbyid?id=' + this.Experience.employerId)
                     .then((response) => {
+
                       if(response.status==200){
-                        console.log(response);
+                        console.log(this.Experience.employerId);
+                        //console.log(response);
                         this.experiences = response.data;
                         this.Experience.experienceId = this.experiences[0].experienceId;
                         console.log("Bu experience iddir"+this.Experience.experienceId);
                       }
-                      if(response.status==204){
-                        axios.post("/api/experiences/add",this.Experience).then((response)=>{
-                          if(response.status==200){
-                            console.log("Yeni experience eklendi:"+this.Experience);
+                     
+                      // if(response.status==400){
+                      //   console.log(this.Experience.employerId);
+                      //   //console.log(response);
+                      //   axios.post("/api/experiences/add",this.Experience).then((response)=>{
+                      //     if(response.status==200){
+                      //       console.log("Yeni experience eklendi:"+this.Experience);
 
-                          }
-                        });
-                      }
+                      //     }
+                      //   });
+                      // }
                         
                     })
-                    .catch(function (error) {
-                        //alert(error);
-                        
-                    });
+
+                    
+
             })
             .catch(function (error) {
                 alert(error);
@@ -700,7 +699,7 @@ export default {
       axios.post("/api/images/add?UserId="+this.$store.state.userData.id,fd).then((response)=>{
             axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
             console.log(response.data.data[0].imagePath);
-           this.userPhoto  = require('../../../../../../Projects/Expert-In-Backend-Release/WebApplication1//wwwroot/Uploads/Images/' + response.data.data[0].imagePath );
+           this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+ response.data.data[0].imagePath);
        
         });
               
@@ -712,7 +711,8 @@ export default {
       axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
             console.log(response.data.data[0]);
           if(response.data.data[0] != null){
-            this.userPhoto  = require('../../../../../../Projects/Expert-In-Backend-Release/WebApplication1//wwwroot/Uploads/Images/' + response.data.data[0].imagePath );   
+            // this.userPhoto  = require('../../../../../../Projec/Expert-In-Backend-Release/WebApplication1//wwwroot/Uploads/Images/' + response.data.data[0].imagePath );   
+            this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+ response.data.data[0].imagePath);
           }
           
         });
@@ -722,7 +722,8 @@ export default {
   created(){
     this.getUserInformation();
     //console.log(this.model);
- this.isExistUserPhoto()
+    this.isExistUserPhoto()
+    // console.log(this.experiences[0].employerId);
   }
 
     

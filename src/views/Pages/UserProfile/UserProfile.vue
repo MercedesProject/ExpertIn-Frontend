@@ -39,17 +39,12 @@
                   <a href="#">
                     
                     <img
-                      v-if="IsUploaded"
-                      :src="this.image[0].imagePath"
+                      
+                      :src="this.userPhoto"
                       class="rounded-circle"
                       
                     />
-                    <!-- <img
-                      v-else
-                      src="img/user.png"
-                      class="rounded-circle"
-                      
-                    /> -->
+
                   </a>
                 </div>
               </div>
@@ -57,8 +52,16 @@
             <div
               class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
             >
-              <div style="padding: 30px 70px 30px 123px" > 
-                
+              <div class="d-flex justify-content-between">
+                <div style="padding-top:80px" v-if="userType==1">
+
+                </div>
+                <base-button size="sm" type="default" class="float-right" v-if="userType==2"
+                  >Send Message</base-button
+                >
+                <base-button size="sm" type="primary" class="float-right" v-if="userType==2"
+                  >Download CV</base-button
+                >
               </div>
             </div>
             <div class="card-body pt-0 pt-md-4">
@@ -124,7 +127,7 @@
                     <h3 class="mb-0">My account</h3>
                   </div>
                   <div class="col-4 text-right">
-                    <a href="#!" class="btn btn-sm btn-default">Settings</a>
+                    <a href="#!" class="btn btn-sm btn-default" v-if="userType==1">Settings</a>
                   </div>
                 </div>
               </div>
@@ -225,7 +228,7 @@
               <hr class="my-4" />
               <!-- EXPERIENCE -->
               <h6 class="heading-small text-muted mb-4">EXPERIENCE</h6>
-              <!-- <div class="pl-lg-4">
+              <div class="pl-lg-4">
                 <div class="row">
                   <b-col lg="4">
                     <div class="form-group row">
@@ -267,10 +270,17 @@
                       </div>
                     </div>
                   </b-col>  
-  
+                  <b-col lg="12">
+                    <div class="form-group row">
+                      <label class="col-md-5 col-form-label form-control-label">About Experience</label>
+                      <div class="col-md-10">
+                        <p>{{this.experiences[0].experienceDescription}}</p>
+                      </div>
+                    </div>
+                  </b-col> 
                 </div>
                 
-              </div>                -->
+              </div>               
 
               <hr class="my-4" />
               <!-- SKILL-->
@@ -396,28 +406,25 @@ export default {
 
   data() {
     return {
+      userType:this.$store.state.userData.userTypesID,
       model:[],
       education:[],
       experiences:[],
       employerId: null,
       image: [],
-      IsUploaded:false,
+      userPhoto: "img/user.png",
     };
   },
   methods: {
-    getImage(){
-      axios.get('api/images/getimagesbyuserid?id=' + this.$store.state.userData.id)
-            .then((response) => {
-                console.log(response);
-                this.image = response.data;
-                
-                // this.IsUploaded = true;
-                // console.log(this.IsUploaded);
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-  },
+    isExistUserPhoto(){
+      axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+            console.log(response.data.data[0]);
+          if(response.data.data[0] != null){   
+            this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+ response.data.data[0].imagePath);
+          }
+          
+        });
+    },
     getUserInformation(){
       axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
@@ -435,15 +442,15 @@ export default {
                     .catch(function (error) {
                         alert(error);
                     });
-                // axios.get('api/experiences/getbyid?id=' + this.employerId)
-                //     .then((response) => {
-                //         console.log(response);
-                //         this.experiences = response.data;
+                axios.get('api/experiences/getbyid?id=' + this.employerId)
+                    .then((response) => {
+                        console.log(response);
+                        this.experiences = response.data;
                         
-                //     })
-                //     .catch(function (error) {
-                //         alert(error);
-                //     });
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
             })
             .catch(function (error) {
                 alert(error);
@@ -455,8 +462,8 @@ export default {
   created(){
     this.getUserInformation();
     //console.log(this.model);
-    this.getImage();
-    console.log(this.image);
+    this.isExistUserPhoto()
+    
   }
 };
 </script>

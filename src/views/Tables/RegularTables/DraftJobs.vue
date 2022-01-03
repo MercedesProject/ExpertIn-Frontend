@@ -68,25 +68,23 @@
       };
     },
     methods: {
-      getUserInformation(){
-        axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
-              .then((response) => {
-                  console.log(response);
-                  this.model = response.data;
-                  this.user.companyId = this.model.companyId;
-                  console.log("Bu company iddir"+this.user.companyId);
-                  axios.get('api/draftjobs/getallbycompanyid?id=' + this.user.companyId)
-                    .then((response) => {
-                        console.log(response);
-                        this.draftJobs = response.data;
-                        console.log(this.draftJobs);
-                    })
+      // getUserInformation(){
+      //   axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
+      //         .then((response) => {
+      //             console.log(response);
+      //             this.model = response.data;
+      //             this.user.companyId = this.model.companyId;
+      //             console.log("Bu company iddir"+this.user.companyId);
+      //             axios.get('api/draftjobs/getallbycompanyid?id=' + this.user.companyId)
+      //               .then((response) => {
+      //                   console.log(response);
+      //                   this.draftJobs = response.data;
+      //                   console.log(this.draftJobs);
+      //               })
                     
-              })
-      },
-      getDraftJobs(){
-          
-      },
+      //         })
+      // },
+
       commandClick: function(args) {
       console.log(args);
      
@@ -95,8 +93,8 @@
     
   },
   created(){
-    this.getUserInformation();
-    console.log(this.model);
+    // this.getUserInformation();
+    // console.log(this.model);
     
     
   },

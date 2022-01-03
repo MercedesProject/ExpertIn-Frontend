@@ -104,34 +104,34 @@
       };
     },
     methods: {
-      getUserInformation(){
-        axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
-              .then((response) => {
-                  console.log(response);
-                  this.model = response.data;
-                  this.user.companyId = this.model.companyId;
-                  console.log("Bu company iddir"+this.user.companyId);
-                  axios.get('api/jobs/getallbycompanyid?id=' + this.user.companyId)
-                    .then((response) => {
-                        console.log(response);
-                        this.jobs = response.data;
-                        console.log(this.jobs);
-                    })
+//       getUserInformation(){
+//         axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
+//               .then((response) => {
+//                   console.log(response);
+//                   this.model = response.data;
+//                   this.user.companyId = this.model.companyId;
+//                   console.log("Bu company iddir"+this.user.companyId);
+//                   axios.get('api/jobs/getallbycompanyid?id=' + this.user.companyId)
+//                     .then((response) => {
+//                         console.log(response);
+//                         this.jobs = response.data;
+//                         console.log(this.jobs);
+//                     })
                    
-              })
+//               })
               
-      },
+//       },
 
-      commandClick: function(args) {
-      console.log(args);
+//       commandClick: function(args) {
+//       console.log(args);
      
-      //this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
-      },
+//       //this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
+//       },
     
   },
-  created(){
-    this.getUserInformation();
-    console.log(this.model);
-  },
+//   created(){
+//     this.getUserInformation();
+//     console.log(this.model);
+//   },
   }
 </script>

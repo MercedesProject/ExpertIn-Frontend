@@ -11,15 +11,25 @@
   :options="options"
 /> -->
 <Multiselect
-  v-model="value"
+  v-model="label"
   mode="tags"
   :close-on-select="false"
   :searchable="true"
   :create-option="true"
   :options="[
-    { value: '1', label: 'Batman' },
-    { value: '2', label: 'Robin' },
-    { value: '3', label: 'Joker' },
+    { value: '1', label: 'Java' },
+    { value: '2', label: 'C#' },
+    { value: '3', label: '.Net Core' },
+    { value: '4', label: 'Python' },
+    { value: '5', label: 'Machine Learning' },
+    { value: '6', label: 'C/C++' },
+    { value: '7', label: 'Artificial Intelligence' },
+    { value: '8', label: 'Android Stuido' },
+    { value: '9', label: 'Unity' },
+    { value: '10', label: 'DevOps' },
+    { value: '11', label: 'Flutter' },
+    { value: '12', label: 'SAP' },
+    { value: '13', label: 'Deep Learning' },
   ]"
 />
   

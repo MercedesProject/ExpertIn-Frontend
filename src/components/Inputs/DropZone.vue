@@ -22,7 +22,7 @@ export default {
 
        return {
            active: false,
-           file:"",  
+           file:null,  
        }
    },
    methods: {

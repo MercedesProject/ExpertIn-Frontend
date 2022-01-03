@@ -36,12 +36,16 @@
                 <div class="pl-lg-4">
                   <div class="line">
                     <div class="col-lg-12">
-                      <DropZone/>
+                      
                     </div>
                     
                     <div class="col-lg-12" style="padding-top:5px">
                       
-                      <base-button v-on:click="submitFile()" outline type="default">Submit</base-button>
+                      <label class="label" for="file" >Select File</label>
+                      <input class="input" type="file"  @change="filesChange" id="file"/>                      
+                      <div style="padding-left:95px;">
+                        <base-button outline type="default" @click="onUpload" >Submit</base-button>
+                      </div>
                     </div>
                   </div>
                   <div class="row">
@@ -88,10 +92,12 @@
                         <img src="img/ok-işareti.png" style="width:30px; height:10px"> 
                     </div>
                     <div class="col-lg-6">  
-                        <DropZone/>
-                        
                         <div style="padding-top:5px"> 
-                          <base-button v-on:click="submitFile()" outline type="default">Submit</base-button>
+                          <label class="label" for="file" >Select File</label>
+                          <input class="input" type="file"  @change="filesChange" id="file"/>                      
+                          <div style="padding-left:95px;">
+                            <base-button outline type="default" @click="onUpload" >Submit</base-button>
+                          </div>
                         </div>
                         
                       
@@ -133,22 +139,43 @@ export default {
     }
   },
   methods: {
-    submitFile(){
-         //Initialize the form data
-        let formData = new FormData();
-        //Add the form data we need to submit
-        formData.append('file', this.file);
-        //Make the request to the POST /single-file URL
-        axios.post( '/api/employers/postResume'
-                
-            ).then(function(){
-          console.log('SUCCESS!!');
-        })
-        .catch(function(){
-          console.log('FAILURE!!');
+    filesChange(event) {
+        console.log(event);
+        this.file = event.target.files[0];
+    },
+     onUpload(){
+      const fd = new FormData();
+      fd.append('file', this.file, this.file.name);
+      //this.image.file = fd; 
+      axios.post("/api/curriculumvitaes/add?UserId="+this.$store.state.userData.id,fd).then((response)=>{
+          if(response.status==200){
+            console.log("CV eklendi");
+
+          }
+              
         });
-     },
+
+     
+    },
   }
 };
 </script>
-<style></style>
+<style>
+.label {
+  width: 280px;
+  height: 140px;
+  color: black;
+  background-color: #fff;
+  transition: 0.3s ease all;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 16px;
+  border: 2px dashed #41b8;
+
+}
+.input {
+  display: none;
+}
+</style>
