@@ -288,31 +288,31 @@
               <div class="pl-lg-4">
                 <div class="row">
                   <b-col lg="2">
-                    <badge rounded type="default">Default</badge>
+                    <badge rounded type="default">Java</badge>
                     
                     
 
                   </b-col>
                   <b-col lg="2">
-                    <badge rounded type="default">Default</badge>
+                    <badge rounded type="default">C#</badge>
                    
 
                   </b-col>
                   <b-col lg="2">
-                    <badge rounded type="default">Default</badge>
+                    <badge rounded type="default">.Net Core</badge>
                    
 
                   </b-col>
                  <b-col lg="2">
-                    <badge rounded type="default">Default</badge>
+                    <badge rounded type="default">Python</badge>
                                        
                   </b-col>
                   <b-col lg="2">
-                    <badge rounded type="default">Default</badge>
+                    <badge rounded type="default">C/C++</badge>
           
                   </b-col>
                   <b-col lg="2">
-                    <badge rounded type="default">Default</badge>
+                    <badge rounded type="default">Unity</badge>
 
                   </b-col>                 
                 </div>
