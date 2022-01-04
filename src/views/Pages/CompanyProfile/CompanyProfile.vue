@@ -150,7 +150,6 @@ export default {
   created(){
     this.getUserInformation();
     console.log(this.model);
-    this.getImage();
     this.isExistUserPhoto();
   },
 };

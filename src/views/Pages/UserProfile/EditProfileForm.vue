@@ -105,7 +105,7 @@
                           type="text"
                           label="First Name"
                           :placeholder="this.model.employerName"
-                          v-model="user.EmployerName"
+                          v-model="user.employerName"
                         >
                         </base-input>
                       </b-col>
@@ -114,7 +114,7 @@
                           type="text"
                           label="Last Name"
                           :placeholder="this.model.employerSurname"
-                          v-model="user.EmployerSurname"
+                          v-model="user.employerSurname"
                         >
                         </base-input>
                       </b-col>
@@ -128,14 +128,15 @@
                     <base-input
                             type="select"
                             label="Title"
-                            v-model="user.EmployerTitle"
                             required
                             id="Title">
-                            <select class="form-control">
+                            <select v-model="user.employerTitle" class="form-control">
                               <option></option>
                               <option>Junior Developer</option>
                               <option>Senior Developer</option>
                               <option>Fullstack Developer</option>
+                              <option>Backend Developer</option>
+                              <option>Frontend Developer</option>
                             </select>
                         </base-input>
                         
@@ -145,7 +146,7 @@
                           type="email"
                           label="Email address"
                           :placeholder= this.model.employerEMail
-                          v-model="user.EmployerEMail"
+                          v-model="user.employerEMail"
                         >
                         </base-input>
                       </b-col>
@@ -156,7 +157,7 @@
                           type="text"
                           label="GitHub Link"
                           :placeholder= this.model.employerGithub
-                          v-model="user.EmployerGithub"
+                          v-model="user.employerGithub"
                         >
                         </base-input>
                       </b-col>
@@ -165,7 +166,7 @@
                           type="text"
                           label="Linkedin Link"
                           :placeholder= this.model.employerLinkedin
-                          v-model="user.EmployerLinkedin"
+                          v-model="user.employerLinkedin"
                         >
                         </base-input>
                       </b-col>
@@ -177,7 +178,7 @@
                   <div class="pl-lg-4">
                     <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
                     <!--  <label class="form-control-label">About Me</label> -->
-                      <b-form-textarea v-model="user.EmployerAboutMe" rows="4" value="" id="about-form-textaria" :placeholder= this.model.employerAboutMe></b-form-textarea>
+                      <b-form-textarea v-model="user.employerAboutMe" rows="4" value="" id="about-form-textaria" :placeholder= this.model.employerAboutMe></b-form-textarea>
                     </b-form-group>
                   </div>
                   <hr class="my-4">
@@ -192,7 +193,7 @@
                           type="text"
                           label="Address"
                           :placeholder= this.model.employerLocation
-                          v-model="user.EmployerLocation"
+                          v-model="user.employerLocation"
                         >
                         </base-input>
                       </b-col>
@@ -203,7 +204,7 @@
                           type="text"
                           label="City"
                           :placeholder= this.model.employerCity
-                          v-model="user.EmployerCity"
+                          v-model="user.employerCity"
                         >
                         </base-input>
                       </b-col>
@@ -212,7 +213,7 @@
                           type="text"
                           label="Country"
                           :placeholder= this.model.employerCountry
-                          v-model="user.EmployerCountry"
+                          v-model="user.employerCountry"
                         >
                         </base-input>
                       </b-col>
@@ -220,7 +221,7 @@
                         <base-input
                           label="Phone Number"
                           :placeholder= this.model.employerPhoneNumber
-                          v-model="user.EmployerPhoneNumber"
+                          v-model="user.employerPhoneNumber"
                         >
                         </base-input>
                       </b-col>
@@ -508,19 +509,19 @@ export default {
       education:[],
       experiences:[],
       user: {
-        EmployerId: null,
+        employerId:null,
         userId: this.$store.state.userData.id,
-        UserTypeId: 1,
-        EmployerName: this.$store.state.userData.firstName,
-        EmployerSurname: this.$store.state.userData.lastName,
-        EmployerTitle:'',
-        EmployerCity: '',
-        EmployerCountry: '',
-        EmployerLocation: '',
-        EmployerEmail: this.$store.state.userData.email,
-        EmployerGithub: '',
-        EmployerLinkedin:'',
-        EmployerAboutMe: ``,
+        userTypeId: 1,
+        employerName: this.$store.state.userData.firstName,
+        employerSurname: this.$store.state.userData.lastName,
+        employerTitle:'',
+        employerCity: '',
+        employerCountry: '',
+        employerLocation: '',
+        employerEmail: this.$store.state.userData.email,
+        employerGithub: '',
+        employerLinkedin:'',
+        employerAboutMe: ``,
         // EmployerResume:'',
         EmployerPhoneNumber: 0,
       },
@@ -592,6 +593,7 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
+                this.user.employerId = this.model.employerId;
                 this.Education.employerId = this.model.employerId;
                 this.Experience.employerId = this.model.employerId;
                 axios.get('api/educations/getbyid?id=' + this.Education.employerId)

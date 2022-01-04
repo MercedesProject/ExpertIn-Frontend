@@ -126,6 +126,13 @@ const routes = [{
                 component: () =>
                     import ('../views/Pages/Jobs/CompanyDetail.vue')
             },
+            {
+                path: '/employeeprofile/:employerId',
+                name: "Profil",
+                component: () =>
+                import ('../views/Pages/UserProfile/UserProfile.vue')
+            },
+            
         ]
     },
     {
@@ -140,6 +147,18 @@ const routes = [{
         }]
   
     },
+    // {
+    //     path: '/',
+    //     redirect: 'companydashboard',
+    //     component: DashboardLayout,
+    //     children: [{
+    //         path: '/employeeprofile/:employerId',
+    //         name: "Profil",
+    //         component: () =>
+    //         import ('../views/Pages/UserProfile/UserProfile.vue')
+    //     }]
+  
+    // },
     // {
     //     path: '/',
     //     redirect: 'companydashboard',

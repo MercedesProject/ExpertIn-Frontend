@@ -7,18 +7,17 @@
         <el-table class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
                   header-row-class-name="thead-light"
                   :data="projects">
-            <el-table-column label="Job"
+            <el-table-column label="Job Title"
                              min-width="310px"
                              prop="name">
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
-                        <a href="" class="avatar rounded-circle mr-3">
-                            <router-link to="/Job/CompanyDetail/:jobId">
-                                <img alt="Image placeholder" :src="row.img">
-                            </router-link>
-                        </a>
+                        
                         <b-media-body>
-                            <span class="font-weight-600 name mb-0 text-sm">{{row.title}}</span>
+                            <router-link to="/Job/CompanyDetail/:jobId">
+                                <span class="font-weight-600 name mb-0 text-sm">{{row.title}}</span>
+                            </router-link>
+                            
                         </b-media-body>
                     </b-media>
                 </template>

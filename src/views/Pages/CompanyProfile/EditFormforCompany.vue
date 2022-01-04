@@ -51,7 +51,7 @@
                                   <div class="card-profile-image">
                                     
                                       <img
-                                        src="img/user.png"
+                                        :src="this.userPhoto"
                                         class="rounded-circle"
                                       />
                                       
@@ -223,6 +223,7 @@ export default {
   data() {
     return {
       model:[],
+      userPhoto: "img/user.png",
       user: {
         userId: this.$store.state.userData.id,
         UserTypeId: 2,
@@ -276,15 +277,29 @@ export default {
       console.log(this.imageData);
       axios.post("/api/images/add?UserId="+this.$store.state.userData.id,fd).then((response)=>{
             console.log(response)
-              
-        });
+            axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+                this.userPhoto = require("../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/" + response.data.data[0].imagePath);
+       
+            });
+            
+      });
 
-           console.log();  
+           
+    },
+    isExistUserPhoto(){
+      axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+            console.log(response.data.data[0]);
+          if(response.data.data[0] != null){
+             this.userPhoto = require("../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/" + response.data.data[0].imagePath);
+          }
+          
+        });
     },
   },
   created(){
     this.getUserInformation();
     console.log(this.model);
+    this.isExistUserPhoto();
     
   },
   

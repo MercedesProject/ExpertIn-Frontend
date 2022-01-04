@@ -46,7 +46,7 @@
         <a href="#" class="nav-link pr-0" @click.prevent slot="title-container">
           <b-media no-body class="align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="img/user.png" >
+                    <img alt="Image placeholder" :src="this.userPhoto" >
                   </span>
             <b-media-body class="ml-2 d-none d-lg-block">
               <span class="mb-0 text-sm  font-weight-bold">{{this.$store.state.userData.firstName}}</span>
@@ -77,6 +77,7 @@
 <script>
 import { CollapseTransition } from 'vue2-transitions';
 import { BaseNav, Modal } from '@/components';
+import axios from 'axios';
 
 export default {
   components: {
@@ -137,7 +138,8 @@ export default {
       activeNotifications: false,
       showMenu: false,
       searchModalVisible: false,
-      searchQuery: ''
+      searchQuery: '',
+      userPhoto: "img/user.png",
     };
   },
   methods: {
@@ -158,6 +160,18 @@ export default {
     },
     closeNavbar(){
     },
+    isExistUserPhoto(){
+      axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+            console.log(response.data.data[0]);
+          if(response.data.data[0] != null){   
+            this.userPhoto = require('../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/' + response.data.data[0].imagePath);
+          }
+          
+        });
+    },
+  },
+  created(){
+    this.isExistUserPhoto();
   }
 };
 </script>

@@ -2,7 +2,7 @@
 export default [
   {
     img: 'img/theme/bootstrap.jpg',
-    title: 'Argon Design System',
+    title: 'Junior Backend Developer',
     budget: '$2500 USD',
     status: 'pending',
     statusType: 'warning',
@@ -10,7 +10,7 @@ export default [
   },
   {
     img: 'img/theme/angular.jpg',
-    title: 'Angular Now UI Kit PRO',
+    title: 'Senior Backend Developer',
     budget: '$1800 USD',
     status: 'completed',
     statusType: 'success',
@@ -18,7 +18,7 @@ export default [
   },
   {
     img: 'img/theme/sketch.jpg',
-    title: 'Black Dashboard',
+    title: 'Junior Fullstack developer',
     budget: '$3150 USD',
     status: 'delayed',
     statusType: 'danger',
@@ -26,7 +26,7 @@ export default [
   },
   {
     img: 'img/theme/react.jpg',
-    title: 'React Material Dashboard',
+    title: 'Senior Web Developer',
     budget: '$4400 USD',
     status: 'on schedule',
     statusType: 'info',
@@ -34,7 +34,7 @@ export default [
   },
   {
     img: 'img/theme/vue.jpg',
-    title: 'Vue Paper UI Kit PRO',
+    title: 'Senior Frontend Developer',
     budget: '$2200 USD',
     status: 'completed',
     statusType: 'success',

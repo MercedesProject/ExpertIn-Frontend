@@ -53,13 +53,13 @@
               class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
             >
               <div class="d-flex justify-content-between">
-                <div style="padding-top:80px" v-if="userType==1">
+                <div style="padding-top:80px" v-if="userType==2">
 
                 </div>
                 <base-button size="sm" type="default" class="float-right" v-if="userType==2"
                   >Send Message</base-button
                 >
-                <base-button size="sm" type="primary" class="float-right" v-if="userType==2"
+                <base-button @click="downloadCV()" size="sm" type="primary" class="float-right" v-if="userType==1"
                   >Download CV</base-button
                 >
               </div>
@@ -413,6 +413,7 @@ export default {
       employerId: null,
       image: [],
       userPhoto: "img/user.png",
+      userCV:"",
     };
   },
   methods: {
@@ -456,14 +457,39 @@ export default {
                 alert(error);
             });
     },
+    // isExistEmployeeCV(){
+    //   axios.get("/api/curriculumvitaes/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+    //       console.log(response.data.data[0]);
+    //       if(response.data.data[0] != null){   
+    //         this.userCV = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/CurriculumVitaes/' + response.data.data[0].curriculumVitaePath);
+    //       }
+          
+    //     });
+    // },
+    downloadCV(){
+      axios.get("/api/curriculumvitaes/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+          console.log(response.data.data[0]);
+          if(response.data.data[0] != null){   
+            this.userCV = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/CurriculumVitaes/' + response.data.data[0].curriculumVitaePath);
+            //this.userCV = 'C:\\Users\\arsla\\Documents\\GitHub\\Projects\\Expert-In-Backend-Release\\WebApplication1\\wwwroot\\Uploads\\CurriculumVitaes\\' + response.data.data[0].curriculumVitaePath;
+            console.log("CV path: " + this.userCV);
+            axios.post("/api/curriculumvitaes/download"+ this.userCV).then((response)=>{
+                console.log(response);
+                    
+              });
+          }
+          
+        });
+      
+    },
 
     
   },
   created(){
     this.getUserInformation();
     //console.log(this.model);
-    this.isExistUserPhoto()
-    
+    this.isExistUserPhoto();
+    // this.isExistEmployeeCV();
   }
 };
 </script>

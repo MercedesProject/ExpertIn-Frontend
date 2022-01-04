@@ -40,20 +40,7 @@
     </base-header>
 
     <div class="container-fluid mt--7 " >
-      <div class="row col-xl-12 " style="margin-left:-7px">
-       
-        
-          <div class="row col-xl-6 ">
-            <b-container  class="">
-                    <b-row class="">
-                      <b-col xl="12" class=" mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
-                        <applicants> </applicants>
-
-                      </b-col>
-                      
-                    </b-row>
-                </b-container>
-          </div>
+      <div class="row col-xl-12 " style="margin-left:37px">
           <div class="row col-xl-6">
           <div >
           <card shadow type="secondary">
@@ -72,7 +59,7 @@
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-6 h5 mt-4">
-                    <label ><b>Job:</b></label>
+                    <label ><b>Job Title:</b></label>
                         <base-input
                             type="text"
                             v-model="model.jobName" 
@@ -175,7 +162,20 @@
         
           
           
-        </div>
+          </div>
+        
+          <div class="row col-xl-6 ">
+            <b-container  class="">
+                    <b-row class="">
+                      <b-col xl="12" class=" mb-5 mb-xl-0" border-variant="success" header="Success" align="center">
+                        <applicants> </applicants>
+
+                      </b-col>
+                      
+                    </b-row>
+                </b-container>
+          </div>
+          
       </div>
           <!-- <div class="line col-xl-12">
             <div >
