@@ -8,7 +8,7 @@
                   header-row-class-name="thead-light"
                   :data="projects">
             <el-table-column label="Applicant"
-                             min-width="310px"
+                             min-width="280px"
                              prop="name">
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">

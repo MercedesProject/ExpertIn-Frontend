@@ -114,7 +114,7 @@ export default {
   name: "user-profile",
   data() {
     return {
-      userType: this.$store.state.userData.id,
+      userType: this.$store.state.userData.userTypesID,
       model:[],
       user:{
         companyId: '',
