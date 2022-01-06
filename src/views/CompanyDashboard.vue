@@ -12,7 +12,7 @@
             <b-row align-v="center" slot="header">
               <b-col>
                 <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                <h5 class="h3 text-white mb-0">Sales value</h5>
+                <h5 class="h3 text-white mb-0">Number of Application</h5>
               </b-col>
               <b-col>
                 <b-nav class="nav-pills justify-content-end">
@@ -49,8 +49,8 @@
           <card header-classes="bg-transparent">
             <b-row align-v="center" slot="header">
               <b-col>
-                <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                <h5 class="h3 mb-0">Total orders</h5>
+                <h6 class="text-uppercase text-muted ls-1 mb-1">Statistik</h6>
+                <h5 class="h3 mb-0">Employees</h5>
               </b-col>
             </b-row>
 
@@ -131,7 +131,7 @@
         return {
         bigLineChart: {
           allData: [
-            [0, 20, 10, 30, 15, 40, 20, 60, 60],
+            [0, 20, 10, 30, 15, 30, 20, 40, 60],
             [0, 20, 5, 25, 10, 30, 15, 40, 40]
           ],
           activeIndex: 0,
@@ -148,10 +148,10 @@
         },
         redBarChart: {
           chartData: {
-            labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: ['Avg Age Range','Woman', 'Man', ],
             datasets: [{
-              label: 'Sales',
-              data: [25, 20, 30, 22, 17, 29]
+              label: 'Number',
+              data: [28, 85, 80,  22, 17, 29]
             }]
           },
           extraOptions: chartConfigs.blueChartOptions
@@ -163,7 +163,7 @@
         let chartData = {
           datasets: [
             {
-              label: 'Performance',
+              label: 'Number',
               data: this.bigLineChart.allData[index]
             }
           ],
