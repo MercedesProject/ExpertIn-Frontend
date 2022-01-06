@@ -6,18 +6,45 @@
 
         <el-table class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
                   header-row-class-name="thead-light"
-                  :data="projects">
+                  :data="jobs"
+                  :items="jobs"
+                  :fields="fields">
             <el-table-column label="Job Title"
-                             min-width="310px"
-                             prop="name">
+                             min-width="200px"
+                             
+                             >
+                
+                <template v-slot="{row}">
+                    <b-media no-body class="align-items-center">
+                        <b-media-body>
+                            <router-link to="/Job/CompanyDetail/:jobId">
+                                <span class="font-weight-600 name mb-0 text-sm">{{row.jobName}}</span>
+                            </router-link>                          
+                        </b-media-body>
+                        </b-media>
+                </template>
+            </el-table-column>
+            <el-table-column label="Job Form"
+                             min-width="110px"
+                             >
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
                         
                         <b-media-body>
-                            <router-link to="/Job/CompanyDetail/:jobId">
-                                <span class="font-weight-600 name mb-0 text-sm">{{row.title}}</span>
-                            </router-link>
-                            
+                            <span class="font-weight-600 name mb-0 text-sm">{{row.jobForm}}</span>
+                        </b-media-body>
+                    </b-media>
+                </template>
+            </el-table-column>
+            <el-table-column label="Job Type"
+                             min-width="130px"
+                             
+                             >
+                <template v-slot="{row}">
+                    <b-media no-body class="align-items-center">
+                        
+                        <b-media-body>
+                            <span class="font-weight-600 name mb-0 text-sm">{{row.jobType}}</span>
                         </b-media-body>
                     </b-media>
                 </template>
@@ -29,25 +56,28 @@
             -->
            
 
-            <el-table-column label="Applicants" min-width="170px">
-                <div class="avatar-group">
+            <el-table-column label="Applicants" min-width="170px" >
+                <template >
+                    <div class="avatar-group" >
                     <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
                        data-original-title="Ryan Tompson">
                         <img alt="Image placeholder" src="img/theme/team-1.jpg">
                     </a>
                     <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
                        data-original-title="Romina Hadid">
-                        <img alt="Image placeholder" src="img/theme/team-2.jpg">
-                    </a>
-                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
-                       data-original-title="Alexander Smith">
                         <img alt="Image placeholder" src="img/theme/team-3.jpg">
                     </a>
                     <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
-                       data-original-title="Jessica Doe">
-                        <img alt="Image placeholder" src="img/theme/team-4.jpg">
+                       data-original-title="Alexander Smith">
+                        <img alt="Image placeholder" src="img/theme/team-2.jpg">
                     </a>
+                    <!-- <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
+                       data-original-title="Jessica Doe">
+                        <img alt="Image placeholder" :src="this.userPhotos[3]">
+                    </a> -->
                 </div>
+                </template>
+                
             </el-table-column>
 
             <!--<el-table-column label="Form"
@@ -100,37 +130,70 @@
             companyId:'',
         },
         jobs:[],
+        applicationjobs:[],
+        fields:[
+            { key: 'jobId'},
+            { key: 'jobName', label: 'Job Title'},
+          { key: 'action', label: 'Action'},
+          { key: 'imagePath', label: 'Applicants'},
+
+        ],
+        
+        userPhotos: [],
+        employerId:null,
       };
     },
     methods: {
-//       getUserInformation(){
-//         axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
-//               .then((response) => {
-//                   console.log(response);
-//                   this.model = response.data;
-//                   this.user.companyId = this.model.companyId;
-//                   console.log("Bu company iddir"+this.user.companyId);
-//                   axios.get('api/jobs/getallbycompanyid?id=' + this.user.companyId)
-//                     .then((response) => {
-//                         console.log(response);
-//                         this.jobs = response.data;
-//                         console.log(this.jobs);
-//                     })
-                   
-//               })
-              
-//       },
+      getUserInformation(){
+        axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
+              .then((response) => {
+                  console.log(response);
+                  this.model = response.data;
+                  this.user.companyId = this.model.companyId;
+                  console.log("Bu company iddir"+this.user.companyId);
+                  axios.get('api/jobs/getallbycompanyid?id=' + this.user.companyId)
+                    .then((response) => {
+                        console.log(response);
+                        this.jobs = response.data;
+                        console.log(this.jobs);
+                        for(let i=0;i<this.jobs.length+1;i++){
+                            console.log(this.jobs[i].jobId);
+                            this.fields[i].jobId = this.jobs[i].jobId;
+                            axios.get('api/applicationjobs/getallbyjobid?id=' + this.jobs[i].jobId)
+                            .then((response) => {
+                                //console.log(response);
+                                this.applicationjobs = response.data;
+                                
+                                //     axios.get("/api/images/getimagesbyuserid?id=" + this.applicationjobs[j].userId)
+                                //     .then((response) => {
+                                //         this.applicationjobs = response.data; 
+                                //          if(response.data.data[0] != null){
+                                //             this.fields[j].imagePath = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/' + response.data.data[0].imagePath);
+                                //          }
+                                        
+                                        
+                                //     })
 
-//       commandClick: function(args) {
-//       console.log(args);
-     
-//       //this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
-//       },
+                                
+                                
+                                
+                            })
+                        }
+                        
+                        
+                    })
+                   
+              })
+              
+      },
+
+    commandClick: function(args) {
+      this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
+      },
     
   },
-//   created(){
-//     this.getUserInformation();
-//     console.log(this.model);
-//   },
+  created(){
+    this.getUserInformation();
+  },
   }
 </script>

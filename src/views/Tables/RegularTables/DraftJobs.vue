@@ -6,26 +6,54 @@
 
         <el-table class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
                   header-row-class-name="thead-light"
-                  :data="projects">
+                  :data="draftJobs"
+                  :items="draftJobs"
+                  :fields="fields">
             <el-table-column label="Job Title"
-                             min-width="310px"
-                             prop="name">
+                             min-width="190px"
+                             prop="name"
+                             >
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
                         
                         <b-media-body>
-                            <span class="font-weight-600 name mb-0 text-sm">{{row.title}}</span>
+                            <span class="font-weight-600 name mb-0 text-sm">{{row.jobName}}</span>
+                        </b-media-body>
+                    </b-media>
+                </template>
+            </el-table-column>
+            <el-table-column label="Job Form"
+                             min-width="110px"
+                             >
+                <template v-slot="{row}">
+                    <b-media no-body class="align-items-center">
+                        
+                        <b-media-body>
+                            <span class="font-weight-600 name mb-0 text-sm">{{row.jobForm}}</span>
+                        </b-media-body>
+                    </b-media>
+                </template>
+            </el-table-column>
+            <el-table-column label="Job Type"
+                             min-width="130px"
+                             
+                             >
+                <template v-slot="{row}">
+                    <b-media no-body class="align-items-center">
+                        
+                        <b-media-body>
+                            <span class="font-weight-600 name mb-0 text-sm">{{row.jobType}}</span>
                         </b-media-body>
                     </b-media>
                 </template>
             </el-table-column>
             
 
-            <el-table-column label="Action" min-width="160px">
+            <el-table-column label="Action" min-width="202px" >
                 <div class="d-flex justify-content-between">
                     
                     
-                    <base-button size="m" type="default" class="float-right" v-on:click=commandClick(row)>Edit</base-button>
+                    <base-button size="m" type="default" class="float-right" v-on:click=commandClick(row.item)>Edit</base-button>
                     
                     <a href="#!" class="btn btn-info">Post</a>
                     
@@ -59,39 +87,44 @@
         currentPage: 1,
         model:[],
         draftJobs:[],
+        fields:[
+            { key: 'jobName', label: 'Job Title'},
+            { key: 'jobType', label: 'Job Type'},
+            { key: 'jobForm', label: 'Job Form'},
+          { key: 'action', label: 'Action'},
+
+        ],
         user:{
-            companyId:'',
+            companyId:null,
 
         }
       };
     },
     methods: {
-      // getUserInformation(){
-      //   axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
-      //         .then((response) => {
-      //             console.log(response);
-      //             this.model = response.data;
-      //             this.user.companyId = this.model.companyId;
-      //             console.log("Bu company iddir"+this.user.companyId);
-      //             axios.get('api/draftjobs/getallbycompanyid?id=' + this.user.companyId)
-      //               .then((response) => {
-      //                   console.log(response);
-      //                   this.draftJobs = response.data;
-      //                   console.log(this.draftJobs);
-      //               })
+      getUserInformation(){
+        axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
+              .then((response) => {
+                  console.log(response);
+                  this.model = response.data;
+                  this.user.companyId = this.model.companyId;
+                  console.log("Bu company iddir"+this.user.companyId);
+                  axios.get('api/draftjobs/getallbycompanyid?id=' + this.user.companyId)
+                    .then((response) => {
+                        console.log(response);
+                        this.draftJobs = response.data;
+                        console.log(this.draftJobs);
+                    })
                     
-      //         })
-      // },
+              })
+      },
 
       commandClick: function(args) {
-      console.log(args);
-     
-      //this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
+      this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
       },
     
   },
   created(){
-    // this.getUserInformation();
+     this.getUserInformation();
     // console.log(this.model);
     
     
