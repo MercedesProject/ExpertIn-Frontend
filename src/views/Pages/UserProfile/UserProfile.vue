@@ -413,7 +413,7 @@ export default {
       employerId: null,
       image: [],
       userPhoto: "img/user.png",
-      userCV:"",
+      curriculumVitaePath:"",
     };
   },
   methods: {
@@ -470,13 +470,26 @@ export default {
       axios.get("/api/curriculumvitaes/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
           console.log(response.data.data[0]);
           if(response.data.data[0] != null){   
-            this.userCV = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/CurriculumVitaes/' + response.data.data[0].curriculumVitaePath);
+            this.curriculumVitaePath = 'C:\\Users\\arsla\\Documents\\GitHub\\Projects\\Expert-In-Backend-Release\\WebApplication1\\wwwroot\\Uploads\\CurriculumVitaes\\' + response.data.data[0].curriculumVitaePath;
             //this.userCV = 'C:\\Users\\arsla\\Documents\\GitHub\\Projects\\Expert-In-Backend-Release\\WebApplication1\\wwwroot\\Uploads\\CurriculumVitaes\\' + response.data.data[0].curriculumVitaePath;
-            console.log("CV path: " + this.userCV);
-            axios.post("/api/curriculumvitaes/download"+ this.userCV).then((response)=>{
-                console.log(response);
+            console.log("CV path: " + this.curriculumVitaePath);
+            axios({
+                    url: "/api/curriculumvitaes/download?curriculumvitaepath="+ this.curriculumVitaePath, // File URL Goes Here
+                    method: 'GET',
+                    responseType: 'blob',
+                }).then((response) => {
+                     var FILE = window.URL.createObjectURL(new Blob([response.data]));
+                     
+                     var docUrl = document.createElement('a');
+                     docUrl.href = FILE;
+                     docUrl.setAttribute('download', 'file.pdf');
+                     document.body.appendChild(docUrl);
+                     docUrl.click();
+                });
+            // axios.get("/api/curriculumvitaes/download?curriculumvitaepath="+ this.curriculumVitaePath).then((response)=>{
+            //     console.log(response);
                     
-              });
+            //   });
           }
           
         });
@@ -485,6 +498,9 @@ export default {
 
     
   },
+  mounted() {
+          this.downloadCV();
+      },
   created(){
     this.getUserInformation();
     //console.log(this.model);
