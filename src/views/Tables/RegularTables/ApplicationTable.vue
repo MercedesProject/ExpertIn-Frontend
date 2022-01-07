@@ -6,9 +6,7 @@
 
         <el-table class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
                   header-row-class-name="thead-light"
-                  :data="jobs"
-                  :items="jobs"
-                  :fields="fields">
+                  :data="jobs">
             <el-table-column label="Job Title"
                              min-width="200px"
                              
@@ -17,9 +15,11 @@
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
                         <b-media-body>
-                            <router-link to="/Job/CompanyDetail/:jobId">
+                            <a href="#!"  v-on:click=commandClick(row.jobId)>
                                 <span class="font-weight-600 name mb-0 text-sm">{{row.jobName}}</span>
-                            </router-link>                          
+                            </a>
+                                
+                                                    
                         </b-media-body>
                         </b-media>
                 </template>
@@ -114,12 +114,12 @@
   import projects from './../projects'
   import { Table, TableColumn} from 'element-ui'
   import axios from 'axios'
-
+  
   export default {
     name: 'light-table',
     components: {
       [Table.name]: Table,
-      [TableColumn.name]: TableColumn
+      [TableColumn.name]: TableColumn,
     },
     data() {
       return {
@@ -131,13 +131,7 @@
         },
         jobs:[],
         applicationjobs:[],
-        fields:[
-            { key: 'jobId'},
-            { key: 'jobName', label: 'Job Title'},
-          { key: 'action', label: 'Action'},
-          { key: 'imagePath', label: 'Applicants'},
-
-        ],
+        
         
         userPhotos: [],
         employerId:null,
@@ -156,13 +150,13 @@
                         console.log(response);
                         this.jobs = response.data;
                         console.log(this.jobs);
-                        for(let i=0;i<this.jobs.length+1;i++){
-                            console.log(this.jobs[i].jobId);
-                            this.fields[i].jobId = this.jobs[i].jobId;
-                            axios.get('api/applicationjobs/getallbyjobid?id=' + this.jobs[i].jobId)
-                            .then((response) => {
-                                //console.log(response);
-                                this.applicationjobs = response.data;
+                        // for(let i=0;i<this.jobs.length+1;i++){
+                        //     console.log(this.jobs[i].jobId);
+                        //     this.fields[i].jobId = this.jobs[i].jobId;
+                        //     axios.get('api/applicationjobs/getallbyjobid?id=' + this.jobs[i].jobId)
+                        //     .then((response) => {
+                        //         //console.log(response);
+                        //         this.applicationjobs = response.data;
                                 
                                 //     axios.get("/api/images/getimagesbyuserid?id=" + this.applicationjobs[j].userId)
                                 //     .then((response) => {
@@ -177,8 +171,8 @@
                                 
                                 
                                 
-                            })
-                        }
+                        //     })
+                        // }
                         
                         
                     })
@@ -188,12 +182,14 @@
       },
 
     commandClick: function(args) {
-      this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
+        console.log("bu sayfaya yönlendiriliyor:" + args);
+        this.$router.push({name:'JobCompanyDetail', params: { jobId: args}});
       },
     
   },
   created(){
     this.getUserInformation();
   },
+
   }
 </script>

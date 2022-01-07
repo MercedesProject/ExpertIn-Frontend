@@ -6,7 +6,7 @@
 
         <el-table class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
                   header-row-class-name="thead-light"
-                  :data="users">
+                  :data="applicants">
             <el-table-column label="Applicant "
                              min-width="280px"
                              prop="name">
@@ -14,11 +14,11 @@
                     <b-media no-body class="align-items-center">
                         <a href="" class="avatar rounded-circle mr-3">
                             
-                            <img alt="Image placeholder" :src="row.image">
+                            <img alt="Image placeholder" :src="row.employerTitle">
                             
                         </a>
                         <b-media-body>
-                            <span class="font-weight-600 name mb-0 text-sm">{{row.name}}</span>
+                            <span class="font-weight-600 name mb-0 text-sm">{{row.employerName}} {{row.employerSurname}}</span>
                         </b-media-body>
                     </b-media>
                 </template>
@@ -31,16 +31,17 @@
            
 
             <el-table-column label="Action" min-width="100px">
-                <div class="d-flex justify-content-between">
-                    
-                    <router-link to="/employeeprofile/:employerId" >
-                        <base-button size="m" type="default" class="float-right" >Review</base-button>
-                    </router-link >
-                    
-                    
-                    
-                    
-                </div>
+                <template v-slot="{row}">
+                    <b-media no-body class="align-items-center">
+                        
+                        <b-media-body>
+                            <a href="#!"  @click="commandClick(row.userId)">
+                                <base-button size="m" type="default" class="float-right" >Review</base-button>
+                            </a>  
+                        </b-media-body>
+                    </b-media>
+                </template>
+
                 
                 
             </el-table-column>
@@ -93,44 +94,40 @@
         projects,
         users,
         currentPage: 1,
-        user:{
-            companyId:'',
-        },
-        jobs:[],
+        employerId:null,
+        applicationJob:[],
+        applicants:[],
       };
     },
     methods: {
-    //   getUserInformation(){
-    //     axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
-    //           .then((response) => {
-    //               console.log(response);
-    //               this.model = response.data;
-    //               this.user.companyId = this.model.companyId;
-    //               console.log("Bu company iddir"+this.user.companyId);
-    //               axios.get('api/jobs/getallbycompanyid?id=' + this.user.companyId)
-    //                 .then((response) => {
-    //                     console.log(response);
-    //                     this.jobs = response.data;
-    //                     console.log(this.jobs);
-    //                 })
-    //                 .catch(function (error) {
-    //                     alert(error);
-    //                 });
-    //           })
-    //           .catch(function (error) {
-    //               alert(error);
-    //           });
-    //   },
+        getJobDetail() {
+                axios.get('api/applicationjobs/getallbyjobid?id=' + this.$route.params.jobId)
+                    .then((response) => {
+                        this.applicationJob = response.data;
+                        console.log(this.applicationJob);
+                        
+                        console.log(this.applicationJob.length);
+                        for(let i=0;i<this.applicationJob.length;i++){
+                            console.log("application job id:"+ this.applicationJob[i].employerId);
+                            axios.get('api/employers/getbyid?id=' + this.applicationJob[i].employerId)
+                                .then((response) => { 
+                                    console.log(response.data);
+                                    this.applicants.push(response.data);
+                                    console.log("applicants data:" + this.applicants);
+                                })
+                        }
+                        
+                })
+        },
 
-    //   commandClick: function(args) {
-    //   console.log(args);
-     
-    //   //this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
-    //   },
+      commandClick: function(args) {
+        console.log(args);
+        this.$router.push({name:'EmployeeProfil', params: {userId: args }});
+      },
     
   },
   created(){
-    // this.getUserInformation();
+     this.getJobDetail();
     // console.log(this.model);
   },
   }

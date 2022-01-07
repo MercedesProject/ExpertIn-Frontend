@@ -12,21 +12,7 @@
       <!-- Mask -->
       <span class="mask bg-gradient-success opacity-8"></span>
       <!-- Header container -->
-      <div class="container-fluid d-flex align-items-center">
-        <div class="row">
-          <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello {{this.$store.state.userData.firstName}}</h1>
-            <p class="text-white mt-0 mb-5">
-              This is your profile page. You can add your projects and edit your skills and personal information.
-            </p>
-            <router-link to="/editprofilform"> 
-            <base-button  size="xl" type="default">Edit profile</base-button>
-              
-            </router-link>
-            
-          </div>
-        </div>
-      </div>
+      
     </base-header>
 
     <div class="container-fluid mt--7">
@@ -54,14 +40,19 @@
             >
               <div class="d-flex justify-content-between">
                 
-                
+                <base-button size="sm" type="default" class="float-right" v-if="userType==2"
+                  >Send Message</base-button
+                >
+                <base-button @click="downloadCV()" size="sm" type="primary" class="float-right" v-if="userType==2"
+                  >Download CV</base-button
+                >
               </div>
             </div>
             <div class="card-body pt-100 pt-md-4">
               
               <div class="text-center">
                 <h3>
-                  {{this.$store.state.userData.firstName}} {{this.$store.state.userData.lastName}}<span class="font-weight-light"></span>
+                  {{this.model.employerName}} {{this.model.employerSurname}}<span class="font-weight-light"></span>
                 </h3>
                 <div class="h5 font-weight-300" >
                   <i class="ni fa-location_pin" ></i>{{this.model.employerCity}}, {{model.employerCountry}}
@@ -117,10 +108,10 @@
               <div class="bg-white border-0">
                 <div class="row align-items-center">
                   <div class="col-8">
-                    <h3 class="mb-0">My account</h3>
+                    
                   </div>
                   <div class="col-4 text-right">
-                    <a href="#!" class="btn btn-sm btn-default" v-if="userType==1">Settings</a>
+                    
                   </div>
                 </div>
               </div>
@@ -411,7 +402,7 @@ export default {
   },
   methods: {
     isExistUserPhoto(){
-      axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+      axios.get("/api/images/getimagesbyuserid?id="+this.$route.params.userId).then((response)=>{
             console.log(response.data.data[0]);
           if(response.data.data[0] != null){   
             this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+ response.data.data[0].imagePath);
@@ -420,7 +411,7 @@ export default {
         });
     },
     getUserInformation(){
-      axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
+      axios.get('api/employers/getbyid?id=' + this.$route.params.userId)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
@@ -460,7 +451,7 @@ export default {
     //     });
     // },
     downloadCV(){
-      axios.get("/api/curriculumvitaes/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+      axios.get("/api/curriculumvitaes/getimagesbyuserid?id="+this.$route.params.userId).then((response)=>{
           console.log(response.data.data[0]);
           if(response.data.data[0] != null){   
             this.curriculumVitaePath = 'C:\\Users\\arsla\\Documents\\GitHub\\Projects\\Expert-In-Backend-Release\\WebApplication1\\wwwroot\\Uploads\\CurriculumVitaes\\' + response.data.data[0].curriculumVitaePath;
@@ -491,6 +482,7 @@ export default {
 
     
   },
+
   created(){
     this.getUserInformation();
     //console.log(this.model);

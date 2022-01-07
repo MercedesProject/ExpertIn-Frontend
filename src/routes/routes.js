@@ -39,7 +39,7 @@ const routes = [{
                     import ('../views/Pages/UserProfile/UserMessages.vue')
             },
             {
-                path: '/employeeprofile',
+                path: '/profile',
                 name: 'Profil',
                 component: () =>
                     import ('../views/Pages/UserProfile/UserProfile.vue')
@@ -127,10 +127,10 @@ const routes = [{
                     import ('../views/Pages/Jobs/CompanyDetail.vue')
             },
             {
-                path: '/employeeprofile/:employerId',
-                name: "Profil",
+                path: '/employeeprofile/:userId',
+                name: "EmployeeProfil",
                 component: () =>
-                import ('../views/Pages/UserProfile/UserProfile.vue')
+                import ('../views/Pages/CompanyProfile/EmployeeProfile.vue')
             },
             
         ]

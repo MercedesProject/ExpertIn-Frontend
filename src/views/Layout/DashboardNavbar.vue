@@ -20,7 +20,7 @@
                <i class="ni ni-favourite-28"></i>
                <span class="nav-link-inner--text"> My Favourites </span>
            </b-nav-item>
-           <b-nav-item to="/employeeprofile">
+           <b-nav-item to="/profile">
                <i class="ni ni-single-02"></i>
                <span class="nav-link-inner--text"> My Profile </span>
            </b-nav-item>
