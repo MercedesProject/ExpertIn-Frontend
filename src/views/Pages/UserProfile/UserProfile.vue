@@ -463,7 +463,7 @@ export default {
       axios.get("/api/curriculumvitaes/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
           console.log(response.data.data[0]);
           if(response.data.data[0] != null){   
-            this.curriculumVitaePath = 'C:\\Users\\arsla\\Documents\\GitHub\\Projects\\Expert-In-Backend-Release\\WebApplication1\\wwwroot\\Uploads\\CurriculumVitaes\\' + response.data.data[0].curriculumVitaePath;
+            this.curriculumVitaePath = this.$fileCVPath + response.data.data[0].curriculumVitaePath;
             //this.userCV = 'C:\\Users\\arsla\\Documents\\GitHub\\Projects\\Expert-In-Backend-Release\\WebApplication1\\wwwroot\\Uploads\\CurriculumVitaes\\' + response.data.data[0].curriculumVitaePath;
             console.log("CV path: " + this.curriculumVitaePath);
             axios({

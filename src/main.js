@@ -15,8 +15,9 @@ Axios.defaults.baseURL = 'https://localhost:44362'
 Vue.use(DashboardPlugin);
 Vue.use(appAxios);
 Vue.use(VueCompositionAPI);
-
-/* eslint-disable no-new */
+//Vue.prototype.$fileCVPath = 'C:\\Users\\kemal\\Documents\\GitHub\\Projects\\Expert-In-Backend-Release\\WebApplication1\\wwwroot\\Uploads\\CurriculumVitaes\\'
+Vue.prototype.$fileCVPath = 'C:\\Users\\arsla\\Documents\\GitHub\\Projects\\Expert-In-Backend-Release\\WebApplication1\\wwwroot\\Uploads\\CurriculumVitaes\\'
+    /* eslint-disable no-new */
 new Vue({
     el: '#app',
     store,
