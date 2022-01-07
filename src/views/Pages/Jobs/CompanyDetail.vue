@@ -22,10 +22,15 @@
               <div class="d-flex justify-content-between">
                 <h1 size="sm" type="default" class="mr-4"
                   >{{jobData.jobName}}</h1>
-                  <router-link to="/companydashboard" >
-                    <base-button size="sm" type="default" class="float-right"
-                    >Back to Dashboard</base-button>
-                  </router-link>
+                  
+                  <div class="row float-right">
+                    <router-link to="/companydashboard" >
+                    
+                    </router-link>
+                    <button   class="btn btn-sm btn-default">Back to Dashboard</button>
+                    <button   class="btn btn-sm btn-danger ">Delete this Advertisement</button>
+                  </div>
+                  
                 
               </div>
             </div>
