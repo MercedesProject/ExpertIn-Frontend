@@ -81,8 +81,8 @@
       
 
       <template #cell(actions)="row">
-        <b-button size="sm"  class="mr-1 jobDetail" v-on:click=commandClick(row.item)>
-         <i :id="`${row.index}`" class="ni ni-active-40"></i>
+        <b-button size="sm"  class="mr-1 jobDetail btn btn-default" v-on:click=commandClick(row.item)>
+         <i :id="`${row.index}`" class="ni ni-curved-next"></i> Detail
         </b-button>
         <!-- <b-button size="sm" @click="row.toggleDetails">
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
@@ -166,13 +166,13 @@
           { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center " },
           { key: 'jobType', label: 'Type', sortable: true, class: 'text-center ' },
           { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center ' },
-          { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center ' },
-          { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center ' },
+          // { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center ' },
+          // { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center ' },
           { key: 'companyLocation', label: 'Location', sortable: true, class: 'text-center ' },
-          { key: 'jobWeekDay', label: 'Day/Week', sortable: true, class: 'text-center ' },
+          // { key: 'jobWeekDay', label: 'Day/Week', sortable: true, class: 'text-center ' },
           { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center ' },
-          { key: 'jobStartDate', label: 'Start Date', sortable: true, class: 'text-center ' },
-          { key: 'jobEndDate', label: 'End Date', sortable: true, class: 'text-center ' },
+          // { key: 'jobStartDate', label: 'Start Date', sortable: true, class: 'text-center ' },
+          // { key: 'jobEndDate', label: 'End Date', sortable: true, class: 'text-center ' },
           { key: 'actions', label: 'Actions', class:"text-center ", },
           // { key: 'status',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
         ],

@@ -86,7 +86,8 @@
                           <i v-else class="fa fa-heart" style="color:gray;"></i> 
                       </b-button>
                       <a href="#" class="btn btn-sm btn-default ">Message</a> 
-                    <button  @click=ApplyJob() class="btn btn-sm btn-success">Apply</button>
+                      <router-link :to="{ name: 'MyApplications', params: {  }}"><button  @click=ApplyJob() class="btn btn-sm btn-success">Apply</button></router-link>
+                    
                   </div>
                 </div>
               </div>
@@ -112,7 +113,7 @@
                     Country
                   </div> -->
                   <div class="col-lg-6 h5 mt-4">
-                    <label ><b>Job:</b></label>
+                    <label ><b>Job Title:</b></label>
                        <b-form-text class="form-control">{{jobData.jobName}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
@@ -120,7 +121,7 @@
                     <b-form-text class="form-control">{{jobData.jobType}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                  <label><b>Salary:</b></label>
+                  <label><b>Payment:</b></label>
                        <b-form-text class="form-control">{{jobData.jobSalary}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
@@ -165,6 +166,7 @@ export default {
   name: "job-detail",
   data() {
     return {
+      isClicked:false,
       model: {
         username: "1",
         email: "2",
@@ -208,8 +210,9 @@ export default {
        
         axios.post("api/ApplicationJobs/add", this.applicationJob)
             .then((response) => {
-
-                console.log(response);               
+              this.isClicked=true;
+                console.log(response);
+                //this.$router.linkto('employeeapplications');            
             })
       },
        fav(){

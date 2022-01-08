@@ -24,10 +24,7 @@
                   >{{jobData.jobName}}</h1>
                   
                   <div class="row float-right">
-                    <router-link to="/companydashboard" >
-                    
-                    </router-link>
-                    <button   class="btn btn-sm btn-default">Back to Dashboard</button>
+
                     <button   class="btn btn-sm btn-danger ">Delete this Advertisement</button>
                   </div>
                   
@@ -64,7 +61,7 @@
               <div class="pl-lg-4">
                 <div class="row">
                  <div class="col-lg-6 h5 mt-4">
-                    <label ><b>Job:</b></label>
+                    <label ><b>Job Title:</b></label>
                        <b-form-text class="form-control">{{jobData.jobName}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
@@ -72,7 +69,7 @@
                     <b-form-text class="form-control">{{jobData.jobType}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                  <label><b>Salary:</b></label>
+                  <label><b>Payment:</b></label>
                        <b-form-text class="form-control">{{jobData.jobSalary}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">

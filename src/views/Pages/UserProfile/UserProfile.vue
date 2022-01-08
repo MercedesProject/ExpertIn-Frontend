@@ -220,34 +220,34 @@
               <h6 class="heading-small text-muted mb-4">SKILL</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <b-col lg="2">
-                    <badge rounded type="default">Java</badge>
+                  
+                    <badge  rounded type="default">Java</badge>
                     
                     
 
-                  </b-col>
-                  <b-col lg="2">
-                    <badge rounded type="default">C#</badge>
+                  
+                  
+                    <badge  rounded type="default">C#</badge>
                    
 
-                  </b-col>
-                  <b-col lg="2">
-                    <badge rounded type="default">.Net Core</badge>
+                 
+                  
+                    <badge  rounded type="default">.Net Core</badge>
                    
 
-                  </b-col>
-                 <b-col lg="2">
+                  
+                 
                     <badge rounded type="default">Python</badge>
                                        
-                  </b-col>
-                  <b-col lg="2">
+                  
+                  
                     <badge rounded type="default">C/C++</badge>
           
-                  </b-col>
-                  <b-col lg="2">
+                  
+                  
                     <badge rounded type="default">Unity</badge>
 
-                  </b-col>                 
+                                 
                 </div>
                 
               </div>
@@ -282,9 +282,9 @@
                 
               </div>               
 
-              <hr class="my-4" />
+              <!-- <hr class="my-4" /> -->
               <!-- CERTIFICATE-->
-              <h6 class="heading-small text-muted mb-4">CERTIFICATE</h6>
+              <!-- <h6 class="heading-small text-muted mb-4">CERTIFICATE</h6>
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-6">
@@ -296,7 +296,7 @@
                 </div>
                 
               </div>
-              <hr class="my-4" />
+              <hr class="my-4" /> -->
               
               
             </form>

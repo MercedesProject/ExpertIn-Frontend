@@ -40,7 +40,7 @@
             >
               <div class="d-flex justify-content-between">
                 
-                <base-button size="sm" type="default" class="float-right" v-if="userType==2"
+                <base-button  @click="sendMessage()" size="sm" type="default" class="float-right" v-if="userType==2"
                   >Send Message</base-button
                 >
                 <base-button @click="downloadCV()" size="sm" type="primary" class="float-right" v-if="userType==2"
@@ -324,6 +324,9 @@ export default {
     };
   },
   methods: {
+    sendMessage(){
+      this.$router.push('companydashboard');
+    },
     isExistUserPhoto(){
       axios.get("/api/images/getimagesbyuserid?id="+this.$route.params.userId).then((response)=>{
             console.log(response.data.data[0]);

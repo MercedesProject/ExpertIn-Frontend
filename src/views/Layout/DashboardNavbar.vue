@@ -59,16 +59,18 @@
 
         <template>
 
-          <b-dropdown-item href="#!">
+          <b-dropdown-item >
             <i class="ni ni-single-02"></i>
-            <span>Profile</span>
+            <router-link to="/profile" >
+              <span>Profile</span>
+              </router-link>
           </b-dropdown-item>
-          <b-dropdown-item href="#!">
+          <b-dropdown-item >
             <i class="ni ni-settings-gear-65"></i>
             <span>Settings</span>
           </b-dropdown-item>
           <div class="dropdown-divider"></div>
-          <b-dropdown-item href="#!">
+          <b-dropdown-item >
             <i class="ni ni-user-run"></i>
             <router-link to="/landingpage">Logout</router-link>
           </b-dropdown-item>

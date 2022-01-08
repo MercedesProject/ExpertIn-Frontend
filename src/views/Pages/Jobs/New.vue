@@ -187,8 +187,8 @@
                   </div>
                  
                   <div class="offset-md-10 col-md-2 text-right">
-                     <button  @click=draftJob() class="btn btn-sm btn-primary">Draft</button> 
-                    <button  @click=addJob() class="btn btn-sm btn-success">Publish</button>
+                     <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=draftJob() class="btn btn-sm btn-primary">Draft</button> </router-link>
+                    <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=addJob() class="btn btn-sm btn-success">Publish</button></router-link>
                   </div>
                   
                   
@@ -225,15 +225,16 @@ export default {
       addJob() {
       axios.post('api/jobs/add',this.model)
           .then((response) => {
-              // this.$router.push({path:'/companydashboard'});
+              
           })
       },
       draftJob(){
         axios.post('api/draftjobs/add',this.model)
           .then((response) => {
-              // this.$router.push({path:'/companydashboard'});
+               
           })
       },
+
       getCompanyInformation(){
         axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
               .then((response) => {

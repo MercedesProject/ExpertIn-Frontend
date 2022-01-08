@@ -15,7 +15,7 @@
               <div class="d-flex justify-content-between">
                 <h1 size="sm" type="default" class="mr-4"
                   >Edit Profile</h1>
-                  <router-link to="/employeeprofile" >
+                  <router-link to="/profile" >
                     <base-button size="sm" type="default" class="float-right"
                     >Back to Profile</base-button>
                   </router-link>

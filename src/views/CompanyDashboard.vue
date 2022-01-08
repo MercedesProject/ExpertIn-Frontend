@@ -49,7 +49,7 @@
           <card header-classes="bg-transparent">
             <b-row align-v="center" slot="header">
               <b-col>
-                <h6 class="text-uppercase text-muted ls-1 mb-1">Statistik</h6>
+                <h6 class="text-uppercase text-muted ls-1 mb-1">Statistics</h6>
                 <h5 class="h3 mb-0">Employees</h5>
               </b-col>
             </b-row>
@@ -148,7 +148,7 @@
         },
         redBarChart: {
           chartData: {
-            labels: ['Avg Age Range','Woman', 'Man', ],
+            labels: ['Avg Age Range','Women', 'Men', ],
             datasets: [{
               label: 'Number',
               data: [28, 85, 80,  22, 17, 29]

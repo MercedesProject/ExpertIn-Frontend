@@ -95,7 +95,7 @@
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-6 h5 mt-4">
-                    <label ><b>Job:</b></label>
+                    <label ><b>Job Title:</b></label>
                         <base-input
                             type="text"
                             v-model="jobData.jobName"
@@ -109,7 +109,7 @@
                             type="select"
                             v-model="jobData.jobType"
                             required
-                            id="jobType">
+                            id="type">
                             <select class="form-control">
                               <option>Backend</option>
                               <option>Frontend</option>
@@ -118,7 +118,7 @@
                         </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                  <label><b>Salary:</b></label>
+                  <label><b>Payment:</b></label>
                        <base-input 
                             type="number"
                             v-model="jobData.jobSalary"
@@ -191,7 +191,8 @@
                   </div>
                   <div class="offset-md-10 col-md-2 text-right">
                     <button   class="btn btn-sm btn-danger saveJob">Delete</button>
-                    <button  @click=editJob() class="btn btn-sm btn-primary saveJob">Save</button>
+                    <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=editJob() class="btn btn-sm btn-primary saveJob">Save</button></router-link>
+                    <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=publishJob() class="btn btn-sm btn-primary saveJob">Publish</button></router-link>
                   </div>
                   
                 </div>
@@ -213,30 +214,31 @@ export default {
     return {
       company:[],
       model: {
+        companyId:null,
       },
       jobData:[],
-      companyData:{}
     };
   },
    methods:{
+     publishJob(){
+       axios.post('api/jobs/add',this.jobData)
+          .then((response) => {
+              
+          })
+     },
        getJobDetail() {
-        axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
+        axios.get('api/draftjobs/getbyid?id=' + this.$route.params.jobId)
             .then((response) => {
                 this.jobData = response.data;
-               // this.companyId = response.data.companyId;
-               this.companyId = 36;
-                axios.get('api/companies/getbyid?id=' + this.companyId)
-              .then((response) => {
-                  this.companyData = response.data;
-                  console.log("companydata" + this.companyData);
-              })
+               console.log(this.jobData);
+
             })
         },
         editJob(id){
           console.log(this.jobData);
-          axios.post('api/jobs/update' , this.jobData)
+          axios.post('api/draftjobs/update' , this.jobData)
             .then((response) => {
-                this.$router.push({name:'JobDetail', params: { jobId: id}});
+                
             })
         },
         getCompanyInformation(){

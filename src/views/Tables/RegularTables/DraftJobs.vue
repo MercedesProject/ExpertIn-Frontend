@@ -146,6 +146,7 @@
                   axios.post('api/draftjobs/delete', args)
                     .then((response) => {
                         this.getUserInformation();
+                        //this.$router.push({name:'companydashboard', params: {}});
                     })
                     
               })
