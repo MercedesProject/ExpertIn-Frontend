@@ -416,8 +416,8 @@
                         <base-input
                           type="text"
                           label="Project Name"
-                          placeholder=""
-                          v-model="project.ProjectName"
+                         
+                          v-model="projects[0].projectName"
                         >
                         </base-input>
                       </b-col>
@@ -426,7 +426,7 @@
                           type="text"
                           label="URL"
                           placeholder=""
-                          v-model="project.ProjectUrl"
+                          v-model="projects[0].projectUrl"
                         >
                         </base-input>
                       </b-col>
@@ -438,7 +438,7 @@
                           type="date"
                           label="Start Date"
                           placeholder="Start Date"
-                          v-model="project.ProjectStartingDate"
+                          v-model="projects[0].projectStartingDate"
                         >
                         </base-input>
                       </b-col>
@@ -447,7 +447,7 @@
                           type="date"
                           label="End Date"
                           placeholder="End Date"
-                          v-model="project.ProjectEndingDate"
+                          v-model="projects[0].projectEndingDate"
                         >
                         </base-input>
                       </b-col>
@@ -462,7 +462,7 @@
                     <div class="pl-lg-12">
                       <b-form-group label="Description" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
                       <!--  <label class="form-control-label">Description for Project</label> -->
-                        <b-form-textarea v-model="project.ProjectDescription" rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
+                        <b-form-textarea v-model="projects[0].projectDescription" rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
                       </b-form-group>
                       
                     
@@ -470,7 +470,7 @@
                     <div class="pl-lg-4" style="padding-top:10px">
                     <b-row>
                       <div class="col-lg-6">
-                        <base-button size="sm" type="default"> Add Project</base-button>
+                        <base-button size="sm" type="default" @click="addProject()" > Add Project</base-button>
                       </div>
 
                     </b-row>
@@ -522,6 +522,7 @@ export default {
       model:[],
       education:[],
       experiences:[],
+      projects:[],
       user:[],
       userData:{
         employerId:null,
@@ -581,10 +582,11 @@ export default {
       //    EmployerId: this.$store.state.userData.id,
       //    }],
       project: {
+        employerId:null,
         ProjectName:'',
         ProjectStartingDate:'',
         ProjectEndingDate:'',
-        ProjectCurrentStatus:false,
+        ProjectCurrentStatus:'',
         ProjectUrl:'',
         ProjectDescription:'',
       },
@@ -612,6 +614,7 @@ export default {
                 this.user = response.data;
                 this.Education.employerId = this.model.employerId;
                 this.Experience.employerId = this.model.employerId;
+                this.project.employerId = this.model.employerId;
                 axios.get('api/educations/getbyid?id=' + this.Education.employerId)
                     .then((response) => {
                         console.log(response);
@@ -646,6 +649,14 @@ export default {
                       // }
                         
                     })
+                axios.get('api/projects/getbyid?id=' + this.project.employerId)
+                    .then((response) => {
+                        console.log(response);
+                        this.projects = response.data;
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
 
                     
 
@@ -704,6 +715,30 @@ export default {
       }
 
 
+    },
+    addProject(){
+      //böyle bi experience varsa güncelle
+      console.log(this.projects[0].employerId);
+      console.log(this.project.employerId);
+      if(this.projects[0].employerId == this.project.employerId){
+        axios.post("/api/projects/update",this.project).then((response)=>{
+            if(response.status==200){
+              console.log("Project Güncellendi:"+ this.Experience);
+              // this.$router.push('employeeprofile');
+            }
+        });
+      }
+      //böyle bi project yoksa ekle
+      else{
+        axios.post("/api/projects/add",this.project).then((response)=>{
+          if(response.status==200){
+            console.log("Yeni project eklendi:"+this.project);
+
+          }
+        });
+      }
+
+      
     },
     //Dosya işlemleri
     filesChange(event) {

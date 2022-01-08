@@ -258,23 +258,23 @@
                 <div class="row">
                   <div class="col-lg-6 h5 mt-4">
                     <label ><b>Project Name:</b></label>
-                       <b-form-text class="form-control">projects.projectName</b-form-text>
+                       <b-form-text class="form-control">{{projects[0].projectName}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label ><b>Url:</b></label>
-                       <b-form-text class="form-control">projects.projectUrl</b-form-text>
+                       <b-form-text class="form-control">{{projects[0].projectUrl}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label ><b>Starting Date:</b></label>
-                       <b-form-text class="form-control">project.projectStartingDate</b-form-text>
+                       <b-form-text class="form-control">{{projects[0].projectStartingDate}}</b-form-text>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
                     <label ><b>Ending Date:</b></label>
-                       <b-form-text class="form-control">project.projectEndingDate</b-form-text>
+                       <b-form-text class="form-control">{{projects[0].projectEndingDate}}</b-form-text>
                   </div>
                   <div class="col-lg-12 h5 mt-4">
                     <label ><b>Description:</b></label>
-                       <b-form-text class="form-control">project.projectDescription</b-form-text>
+                       <b-form-text class="form-control">{{projects[0].projectDescription}}</b-form-text>
                   </div>                
                   
  
