@@ -47,7 +47,6 @@
               :aria-describedby="ariaDescribedby"
               class="w-75"
               style="background-color:#7e65c2; color:white;"
-              :a = changeBgWithStatus2
             >
               <template #first>
                 <option value="">Sort</option>
@@ -126,15 +125,6 @@
           ></b-pagination>
       </b-col>
       <b-col sm="1" md="1" class="my-1">
-          <!-- <b-form-group
-            label-for="per-page-select"
-            label-cols-sm="6"
-            label-cols-md="4"
-            label-cols-lg="3"
-            label-align-sm="right"
-            label-size="sm"
-            class="mb-0"
-          > -->
             <b-form-select
               id="per-page-select"
               v-model="perPage"
@@ -147,10 +137,6 @@
     </b-row>
     
 
-    <!-- Info modal -->
-    <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
-      <pre>{{ infoModal.content }}</pre>
-    </b-modal>
     </b-card>
   <!-- </b-container> -->
 </template>
@@ -164,15 +150,6 @@ import axios from 'axios'
         transProps:{
             name: 'flip-list'
         },
-        items: [
-          {favourite: true , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'Daimler' },description:"deneme",salary:8000},
-          {favourite: true , status: "denied", jobType: "b", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:1000 },
-          { favourite: true ,status: "accepted", jobType: "c", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:12000 },
-          {favourite: true , status: "accepted", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' } ,description:"aciklama",salary:6000},
-          {favourite: true ,status: "pending", jobType: "Backend",companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7500},
-          {favourite: true ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:9200 },
-          {favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
-        ],
         favJobs : [],
         fields: [
           { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
@@ -203,11 +180,6 @@ import axios from 'axios'
         sortDirection: 'asc',
         filter: null,
         filterOn: [],
-        infoModal: {
-          id: 'info-modal',
-          title: '',
-          content: ''
-        },
         loading:false,
         remoteConfig:{},
         remoteRows:[],
@@ -233,45 +205,11 @@ import axios from 'axios'
       return item
     })
         },
-  changeBgWithStatus() {
-        this.items.forEach(function(obj)
-        { if(obj.status ===true){ obj._cellVariants = { status: 'success' } }
-        if(obj.status === false){ obj._cellVariants = { status: 'danger'} } });
-        // { if(obj.status ==="accepted"){ obj.a = "success"}
-        // else if(obj.status === "pending"){ obj.a = "success"}
-        // else{{ obj.a = "success"}}
-        // });
-        return null;
-    },
-    changeBgWithStatus2() {
-        this.items.forEach(function(obj)
-        {
-        if(obj.status ==="pending")
-        { obj.class = "info"}
-        else if(obj.status === "accepted")
-        { obj.class ="success" }
-        else{
-          obj.class ="danger"
-        }
-        
-        });
-        
-        return null;
-    },
      },
     mounted() {
 
     },
     methods: {
-      info(item, index, button) {
-        this.infoModal.title = `Row index: ${index}`
-        this.infoModal.content = JSON.stringify(item, null, 2)
-        this.$root.$emit('bv::show::modal', this.infoModal.id, button)
-      },
-      resetInfoModal() {
-        this.infoModal.title = ''
-        this.infoModal.content = ''
-      },
       onFiltered(filteredItems) {
         this.totalRows = filteredItems.length
         this.currentPage = 1
@@ -302,6 +240,22 @@ import axios from 'axios'
        
             
     },
+     fav(obj){
+      this.favoriteJobs.JobId = obj.jobId;
+      this.favoriteJobs.EmployerId = this.employerId
+       axios.post("/api/favoriteJobs/add",this.favoriteJobs).then((response)=>{
+            console.log("fav:" +response.data);
+        });
+    },
+    unfav(obj){
+      // obj.favourite = !obj.favourite;
+      this.favoriteJobs.JobId = obj.jobId;
+      this.favoriteJobs.EmployerId = this.employerId
+       axios.psot("/api/favoriteJobs/delete",this.favoriteJobs).then((response)=>{
+            
+            console.log("unfav:" +response.data);
+        });
+    }
     },
     created(){
        this.getFavJobs()

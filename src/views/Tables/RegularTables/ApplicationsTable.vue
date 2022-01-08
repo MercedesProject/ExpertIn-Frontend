@@ -84,22 +84,21 @@
       </template>
 
       <template #cell(actions)="row">
-        <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
+        <b-button size="sm"  class="mr-1 jobDetail" v-on:click=commandClick(row.item)>
          <i :id="`${row.index}`" class="ni ni-active-40"></i>
         </b-button>
-        <b-button size="sm" @click="row.toggleDetails">
+        <!-- <b-button size="sm" @click="row.toggleDetails">
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-        </b-button>
+        </b-button> -->
       </template>
       
-      <template #cell(status)="row">
+      <template #cell(applicationJobStatus)="row">
       <badge class="badge-dot mr-4"  type="">
                         <i :class="`bg-${row.item.class}`"></i>
-                        <span class="status" :class="`text-${row.item.class}`">{{row.item.status}}</span>
+                        <span class="status" :class="`text-${row.item.class}`">{{row.item.applicationJobStatus}}</span>
                     </badge>
       </template>
-      
-
+    
       <template #cell(favourites)="row" >
          <b-button @click="toggleFav(row.item,row.index)" class="bg-white">
             <i v-if="row.item.favourite" class="fa fa-heart" style="color:red"></i>
@@ -148,10 +147,6 @@
     </b-row>
     
 
-    <!-- Info modal -->
-    <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
-      <pre>{{ infoModal.content }}</pre>
-    </b-modal>
     </b-card>
   <!-- </b-container> -->
 </template>
@@ -164,29 +159,20 @@
         transProps:{
             name: 'flip-list'
         },
-        items: [
-          { favourite: false ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM'},description:"aciklama",salary:2000 },
-          {favourite: true , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'Daimler' },description:"deneme",salary:8000},
-          {favourite: false, status: "denied",jobType: "a",companyName: { first: 'Mercedes', last: 'BBS' },description:"aciklama",salary:9000},
-          {favourite: true , status: "denied", jobType: "b", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:1000 },
-          { favourite: true ,status: "accepted", jobType: "c", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:12000 },
-          {favourite: false , status: "pending", jobType: "Backend", companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7000 },
-          {favourite: true , status: "accepted", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' } ,description:"aciklama",salary:6000},
-          {favourite: true ,status: "pending", jobType: "Backend",companyName: { first: 'Dogus', last: 'Holding' },description:"aciklama",salary:7500},
-          {favourite: false ,status: "denied", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'Daimler' },description:"aciklama",salary:8800 },
-          {favourite: true ,status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'FAK' },description:"aciklama",salary:9200 },
-          {favourite: false , status: "accepted", jobType: "Backend", companyName: { first: 'Mercedes', last: 'BBS' } ,description:"aciklama",salary:6500},
-          {favourite: true , status: "pending", jobType: "Front-End", companyName: { first: 'Mercedes', last: 'QLM' },description:"aciklama",salary:5000 }
-        ],
         jobs:[],
         fields: [
-          { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
-          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center" },
-          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center' },
-          { key: 'description', label: 'Description', sortable: true, class: 'text-center' },
-          { key: 'salary', label: 'Salary', sortable: true, class: 'text-center' },
-          { key: 'actions', label: 'Actions', class:"text-center", },
-          {key: 'status',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
+          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center " },
+          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center ' },
+          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center ' },
+          { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center ' },
+          { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center ' },
+          { key: 'companyLocation', label: 'Location', sortable: true, class: 'text-center ' },
+          { key: 'jobWeekDay', label: 'Day/Week', sortable: true, class: 'text-center ' },
+          { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center ' },
+          { key: 'jobStartDate', label: 'Start Date', sortable: true, class: 'text-center ' },
+          { key: 'jobEndDate', label: 'End Date', sortable: true, class: 'text-center ' },
+          { key: 'applicationJobStatus',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
+          { key: 'actions', label: 'Actions', class:"text-center ", },
         ],
         totalRows: 1,
         currentPage: 1,
@@ -240,53 +226,29 @@
   //       return null;
   //   },
     changeBgWithStatus() {
-        this.items.forEach(function(obj)
+        this.jobs.forEach(function(obj)
         {
-        if(obj.status ==="pending")
+        if(obj.applicationJobStatus ==="pending"){
+         
         { obj.class = "info"}
-        else if(obj.status === "accepted")
-        { obj.class ="success" }
+        }
+        else if(obj.applicationJobStatus === "accepted"){
+          { obj.class ="success" }
+        }
         else{
           obj.class ="danger"
         }
-        
         });
         
         return null;
     },
-    // changeBgWithJobType() {
-    //     this.items.forEach(function(obj)
-    //     {
-    //     if(obj.jobType ==="Front-End")
-    //     { obj.jobTypeClass = "info"}
-    //     else if(obj.jobType === "Backend")
-    //     { obj.jobTypeClass ="success" }
-    //      else if(obj.jobType === "a")
-    //     { obj.jobTypeClass ="primary" }
-    //     else if(obj.jobType === "b")
-    //     { obj.jobTypeClass ="warning" }
-    //     else{
-    //       obj.jobTypeClass ="danger"
-    //     }
-        
-    //     });
-        
-    //     return null;
-    // },
-      
      },
     mounted() {
         
     },
     methods: {
-      info(item, index, button) {
-        this.infoModal.title = `Row index: ${index}`
-        this.infoModal.content = JSON.stringify(item, null, 2)
-        this.$root.$emit('bv::show::modal', this.infoModal.id, button)
-      },
-      resetInfoModal() {
-        this.infoModal.title = ''
-        this.infoModal.content = ''
+      commandClick: function(args) {
+      this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
       },
       onFiltered(filteredItems) {
         this.totalRows = filteredItems.length
@@ -304,25 +266,12 @@
     },
     toggleFav(obj,index){
       obj.favourite = !obj.favourite;
-      console.log(obj.favourite);
-      console.log(index);
-      
     },
     getApplicationJobs() {
-        axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
-            .then((response) => {
-                this.employerId = response.data.employerId
-                axios.post("/api/applicationjobs/getallbyemployerid?id=" + this.employerId).then((response)=>{
-                  this.jobs = response.data;
-                  console.log(this.jobs);
+          axios.post("/api/applicationjobs/getallbyuserid?id=" + this.$store.state.userData.id).then((response)=>{
+            this.jobs = response.data;
         });
-        })
-       
-            
         },
-  
-
-
   },
   created(){
      this.getApplicationJobs();

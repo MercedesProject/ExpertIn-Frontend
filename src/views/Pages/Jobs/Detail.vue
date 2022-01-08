@@ -80,6 +80,11 @@
                     <h3 class="mb-0">Detail</h3>
                   </div>
                   <div class="col-4 text-right">
+                      <b-button  @click="isFavJob ? unfav() : fav()"  class="bg-white" >
+                        
+                         <i v-if="isFavJob"  class="fa fa-heart" style="color:red"></i>
+                          <i v-else class="fa fa-heart" style="color:gray;"></i> 
+                      </b-button>
                       <a href="#" class="btn btn-sm btn-default ">Message</a> 
                     <button  @click=ApplyJob() class="btn btn-sm btn-success">Apply</button>
                   </div>
@@ -185,29 +190,62 @@ export default {
       companyData:{},
       companyId : 0,
       jobData:[],
+      favoriteJobs:{
+      },
+      isFavJob : false,
       applicationJob:{
         // ApplicationJobId: 0,
-        JobId : this.$route.params.jobId,
-        EmployerId : '',
-        ApplicationJobStatus : 'pending'
+        // employerId : 0,
+        // applicationJobStatus : 'pending',
+        // userId : 0,
       }
     };
   },
    methods:{
      ApplyJob() {
+      
+       console.log("appylicationjob"+this.applicationJob.data)
+       
         axios.post("api/ApplicationJobs/add", this.applicationJob)
             .then((response) => {
+
                 console.log(response);               
             })
+      },
+       fav(){
+        this.isFavJob = !this.isFavJob;
+       axios.post("/api/favoriteJobs/add",this.favoriteJobs).then((response)=>{
+            
+        });
+      },
+      unfav(){
+        this.isFavJob = !this.isFavJob;
+        axios.post("/api/favoriteJobs/delete",this.favoriteJobs).then((response)=>{
+          });
+      },
+      isFavTableExist(){
+        axios.get("/api/favoriteJobs/getbyjobid?id=" + this.$route.params.jobId).then((response)=>{
+          console.log("rrr" +response.data);
+          if(response.data.favoriteJobId != null){
+            this.isFavJob = true;
+          }
+          else{
+            this.isFavJob = false;
+          }
+          console.log("isfavjob" + this.isFavJob);
+          });
       },
        getJobDetail() {
         axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
             .then((response) => {
                 this.jobData = response.data;
-                console.log(this.jobData);
-               // this.companyId = response.data.companyId;
-               this.companyId = 36;
-                axios.get('api/companies/getbyid?id=' + this.companyId)
+                this.applicationJob = this.jobData
+                this.applicationJob.userId = this.$store.state.userData.id
+                this.applicationJob.applicationJobStatus=  'pending'
+                
+               this.companyId = response.data.companyId;
+              // this.companyId = 36;
+                axios.get('api/companies/getbycompanyid?id=' + this.companyId)
               .then((response) => {
                   this.companyData = response.data;
                   console.log("companydata" + this.companyData);
@@ -217,13 +255,18 @@ export default {
         getEmployerDetail() {
         axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
-                this.applicationJob.EmployerId = response.data.employerId
+                this.applicationJob.employerId = response.data.employerId;
+                this.favoriteJobs.employerId = response.data.employerId;
+                this.favoriteJobs.jobId = this.$route.params.jobId;
             })
         },
      },
     created(){
       this.getJobDetail();
       this.getEmployerDetail();
+    },
+    mounted(){
+      this.isFavTableExist();
     }
 };
 </script>
