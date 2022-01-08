@@ -91,7 +91,7 @@
                     
                   </div>
                   <hr >
-                  <h6 class="heading-small text-muted mb-4">User information</h6>
+                                    <h6 class="heading-small text-muted mb-4">User information</h6>
 
                   <div class="pl-lg-4">
                     <b-row>
@@ -104,8 +104,9 @@
                         <base-input
                           type="text"
                           label="First Name"
-                          :placeholder="this.model.employerName"
                           v-model="user.employerName"
+                          required
+                          id="firstName"
                         >
                         </base-input>
                       </b-col>
@@ -113,8 +114,9 @@
                         <base-input
                           type="text"
                           label="Last Name"
-                          :placeholder="this.model.employerSurname"
                           v-model="user.employerSurname"
+                          required
+                          id="lastName"
                         >
                         </base-input>
                       </b-col>
@@ -145,8 +147,9 @@
                         <base-input
                           type="email"
                           label="Email address"
-                          :placeholder= this.model.employerEMail
                           v-model="user.employerEMail"
+                          required
+                          id="email"
                         >
                         </base-input>
                       </b-col>
@@ -156,8 +159,9 @@
                         <base-input
                           type="text"
                           label="GitHub Link"
-                          :placeholder= this.model.employerGithub
                           v-model="user.employerGithub"
+                          required
+                          id="github"
                         >
                         </base-input>
                       </b-col>
@@ -165,8 +169,9 @@
                         <base-input
                           type="text"
                           label="Linkedin Link"
-                          :placeholder= this.model.employerLinkedin
                           v-model="user.employerLinkedin"
+                          required
+                          id="linkedin"
                         >
                         </base-input>
                       </b-col>
@@ -178,7 +183,7 @@
                   <div class="pl-lg-4">
                     <b-form-group label="About Me" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
                     <!--  <label class="form-control-label">About Me</label> -->
-                      <b-form-textarea v-model="user.employerAboutMe" rows="4" value="" id="about-form-textaria" :placeholder= this.model.employerAboutMe></b-form-textarea>
+                      <b-form-textarea v-model="user.employerAboutMe" rows="3" value="" id="about-form-textaria" ></b-form-textarea>
                     </b-form-group>
                   </div>
                   <hr class="my-4">
@@ -192,8 +197,9 @@
                         <base-input
                           type="text"
                           label="Address"
-                          :placeholder= this.model.employerLocation
                           v-model="user.employerLocation"
+                          required
+                          id="employerAdress"
                         >
                         </base-input>
                       </b-col>
@@ -203,8 +209,9 @@
                         <base-input
                           type="text"
                           label="City"
-                          :placeholder= this.model.employerCity
                           v-model="user.employerCity"
+                          required
+                          id="employerCity"
                         >
                         </base-input>
                       </b-col>
@@ -212,16 +219,18 @@
                         <base-input
                           type="text"
                           label="Country"
-                          :placeholder= this.model.employerCountry
                           v-model="user.employerCountry"
+                          required
+                          id="employerCountry"
                         >
                         </base-input>
                       </b-col>
                       <b-col lg="4">
                         <base-input
                           label="Phone Number"
-                          :placeholder= this.model.employerPhoneNumber
                           v-model="user.employerPhoneNumber"
+                          required
+                          id="employerPhoneNumber"
                         >
                         </base-input>
                       </b-col>
@@ -245,8 +254,9 @@
                         <base-input
                           type="text"
                           label="School"
-                          placeholder="Turkish German University"
-                          v-model="Education.educationSchool"
+                          v-model="education[0].educationSchool"
+                          required
+                          id="school"
                         >
                         </base-input>
                       </b-col>
@@ -254,8 +264,9 @@
                         <base-input
                           type="text"
                           label="Degree"
-                          placeholder="Lisans"
-                          v-model="Education.educationDegree"
+                          v-model="education[0].educationDegree"
+                          required
+                          id="degree"
                         >
                         </base-input>
                       </b-col>
@@ -263,8 +274,9 @@
                         <base-input
                           type="text"
                           label="Study"
-                          placeholder="Computer Engineering"
-                          v-model="Education.educationStudy"
+                          v-model="education[0].educationStudy"
+                          required
+                          id="study"
                         >
                         </base-input>
                       </b-col>
@@ -274,8 +286,9 @@
                         <base-input
                           type="date"
                           label="Start Date"
-                          placeholder="Start Date"
-                          v-model="Education.educationStartingDate"
+                          v-model="education[0].educationStartingDate"
+                          required
+                          id="educationStartDate"
                         >
                         </base-input>
                       </b-col>
@@ -283,8 +296,9 @@
                         <base-input
                           type="date"
                           label="End Date"
-                          placeholder="End Date"
-                          v-model="Education.educationEndingDate"
+                          v-model="education[0].educationEndingDate"
+                          required
+                          id="educationEndDate"
                         >
                         </base-input>
                       </b-col>
@@ -310,8 +324,8 @@
                         <base-input
                           type="text"
                           label="Title"
-                          placeholder="Junior Developer"
                           v-model="Experience.experienceTitle"
+                          required
                         >
                         </base-input>
                       </b-col>
@@ -508,7 +522,8 @@ export default {
       model:[],
       education:[],
       experiences:[],
-      user: {
+      user:[],
+      userData:{
         employerId:null,
         userId: this.$store.state.userData.id,
         userTypeId: 1,
@@ -579,7 +594,7 @@ export default {
     updateProfile() {
       //alert('Your data: ' + JSON.stringify(this.user));
     },
-    updateInformation() {
+    updateInformation(id) {
       axios.post("/api/employers/update",this.user).then((response)=>{
             if(response.status==200){
               console.log(this.user);
@@ -588,12 +603,13 @@ export default {
         });
     },
 
+
     getUserInformation(){
       axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
-                this.user.employerId = this.model.employerId;
+                this.user = response.data;
                 this.Education.employerId = this.model.employerId;
                 this.Experience.employerId = this.model.employerId;
                 axios.get('api/educations/getbyid?id=' + this.Education.employerId)

@@ -3,7 +3,7 @@
     <base-header
       class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
       style="
-        min-height: 600px;
+        min-height: 300px;
         background-image: url(img/theme/img-1-1000x600.jpg);
         background-size: cover;
         background-position: center top;
@@ -122,38 +122,22 @@
               <h6 class="heading-small text-muted mb-4">Contact information</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <b-col lg="12">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Adress</label>
-                      <div class="col-md-10">
-                        {{this.model.employerLocation}}
-                    </div>
+                  <div class="col-lg-12 h5 mt-4">
+                    <label ><b>Adress:</b></label>
+                       <b-form-text class="form-control">{{this.model.employerLocation}}</b-form-text>
                   </div> 
-                  </b-col>
-                  <b-col lg="4">
-                    <div class="form-group row">
-                      <label class="col-md-7 col-form-label form-control-label">Phone Number</label>
-                      <div class="col-md-10">
-                        {{this.model.employerPhoneNumber }}
-                      </div>
-                    </div>
-                  </b-col>
-                  <b-col lg="4">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">City</label>
-                      <div class="col-md-10">
-                        {{this.model.employerCity}}
-                    </div>
-                  </div> 
-                  </b-col>
-                  <b-col lg="4">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Country</label>
-                      <div class="col-md-10">
-                        {{this.model.employerCountry}}
-                      </div>
-                    </div>
-                  </b-col>                  
+                  <div class="col-lg-4 h5 mt-4">
+                    <label ><b>Phone Number:</b></label>
+                       <b-form-text class="form-control">{{this.model.employerPhoneNumber}}</b-form-text>
+                  </div>                  
+                  <div class="col-lg-4 h5 mt-4">
+                    <label ><b>City:</b></label>
+                       <b-form-text class="form-control">{{this.model.employerCity}}</b-form-text>
+                  </div>  
+                  <div class="col-lg-4 h5 mt-4">
+                    <label ><b>Country:</b></label>
+                       <b-form-text class="form-control">{{this.model.employerCountry}}</b-form-text>
+                  </div>                  
 
 
                 </div>
@@ -164,46 +148,26 @@
               <h6 class="heading-small text-muted mb-4">EDUCATION INFORMATION</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <b-col lg="4">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">School</label>
-                      <div class="col-md-15">
-                        {{this.education[0].educationSchool}}
-                    </div>
-                  </div> 
-                  </b-col>
-                  <b-col lg="4">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Degree</label>
-                      <div class="col-md-10">
-                        {{this.education[0].educationDegree}}
-                      </div>
-                    </div>
-                  </b-col>
-                  <b-col lg="4">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Study</label>
-                      <div class="col-md-10">
-                        {{this.education[0].educationStudy}}
-                    </div>
-                  </div> 
-                  </b-col>
-                  <b-col lg="6">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Starting Date</label>
-                      <div class="col-md-10">
-                        {{this.education[0].educationStartingDate}}
-                      </div>
-                    </div>
-                  </b-col>                  
-                  <b-col lg="6">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Ending Date</label>
-                      <div class="col-md-10">
-                        {{this.education[0].educationEndingDate}}
-                      </div>
-                    </div>
-                  </b-col>  
+                  <div class="col-lg-4 h5 mt-4">
+                    <label ><b>School:</b></label>
+                       <b-form-text class="form-control">{{this.education[0].educationSchool}}</b-form-text>
+                  </div>                  
+                  <div class="col-lg-4 h5 mt-4">
+                    <label ><b>Degree:</b></label>
+                       <b-form-text class="form-control">{{this.education[0].educationDegree}}</b-form-text>
+                  </div>  
+                  <div class="col-lg-4 h5 mt-4">
+                    <label ><b>Study:</b></label>
+                       <b-form-text class="form-control">{{this.education[0].educationStudy}}</b-form-text>
+                  </div>  
+                  <div class="col-lg-6 h5 mt-4">
+                    <label ><b>Starting Date:</b></label>
+                       <b-form-text class="form-control">{{this.education[0].educationStartingDate}}</b-form-text>
+                  </div>                  
+                  <div class="col-lg-6 h5 mt-4">
+                    <label ><b>Ending Date:</b></label>
+                       <b-form-text class="form-control">{{this.education[0].educationEndingDate}}</b-form-text>
+                  </div>    
 
                 </div>
                 
@@ -214,54 +178,30 @@
               <h6 class="heading-small text-muted mb-4">EXPERIENCE</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <b-col lg="4">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Title</label>
-                      <div class="col-md-10">
-                        {{this.experiences[0].experienceTitle}}
-                    </div>
+                  <div class="col-lg-4 h5 mt-4">
+                    <label ><b>Title:</b></label>
+                       <b-form-text class="form-control">{{this.experiences[0].experienceTitle}}</b-form-text>
+                  </div>
+                  <div class="col-lg-4 h5 mt-4">
+                    <label ><b>Company Name:</b></label>
+                       <b-form-text class="form-control">{{this.experiences[0].experienceCompanyName}}</b-form-text>
+                  </div>
+                  <div class="col-lg-4 h5 mt-4">
+                    <label ><b>Location:</b></label>
+                       <b-form-text class="form-control">{{this.experiences[0].experienceLocation}}</b-form-text>
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <label ><b>Starting Date:</b></label>
+                       <b-form-text class="form-control">{{this.experiences[0].experienceStartingDate}}</b-form-text>
+                  </div>                  
+                  <div class="col-lg-6 h5 mt-4">
+                    <label ><b>Ending Date:</b></label>
+                       <b-form-text class="form-control">{{this.experiences[0].experienceEndingDate}}</b-form-text>
+                  </div>  
+                  <div class="col-lg-12 h5 mt-4">
+                    <label ><b>Starting Date:</b></label>
+                       <b-form-text class="form-control">{{this.experiences[0].experienceDescription}}</b-form-text>
                   </div> 
-                  </b-col>
-                  <b-col lg="4">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Company</label>
-                      <div class="col-md-10">
-                        {{this.experiences[0].experienceCompanyName}}
-                      </div>
-                    </div>
-                  </b-col>
-                  <b-col lg="4">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Location</label>
-                      <div class="col-md-10">
-                        {{this.experiences[0].experienceLocation}}
-                    </div>
-                  </div> 
-                  </b-col>
-                  <b-col lg="6">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Starting Date</label>
-                      <div class="col-md-10">
-                        {{this.experiences[0].experienceStartingDate}}
-                      </div>
-                    </div>
-                  </b-col>                  
-                  <b-col lg="6">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Ending Date</label>
-                      <div class="col-md-10">
-                        {{this.experiences[0].experienceEndingDate}}
-                      </div>
-                    </div>
-                  </b-col>  
-                  <b-col lg="12">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">About Experience</label>
-                      <div class="col-md-10">
-                        <p>{{this.experiences[0].experienceDescription}}</p>
-                      </div>
-                    </div>
-                  </b-col> 
                 </div>
                 
               </div>               
@@ -307,44 +247,26 @@
               <h6 class="heading-small text-muted mb-4">PROJECT</h6>
               <div class="pl-lg-4">
                 <div class="row">
-                  <b-col lg="6">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Project Name</label>
-                      <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
-                    </div>
-                  </div> 
-                  </b-col>
-                  <b-col lg="6">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Url</label>
-                      <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
-                      </div>
-                    </div>
-                  </b-col>
-                  <b-col lg="6">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Starting Date</label>
-                      <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
-                    </div>
-                  </div> 
-                  </b-col>
-                  <b-col lg="6">
-                    <div class="form-group row">
-                      <label class="col-md-5 col-form-label form-control-label">Ending Date</label>
-                      <div class="col-md-10">
-                        <base-input placeholder="Jon"></base-input>
-                      </div>
-                    </div>
-                  </b-col> 
-                  <b-col lg="12">
-                    <b-form-group label="Description" label-class="form-control-label" class="mb-0" label-for="about-form-textaria">
-                    <!--  <label class="form-control-label">Description for Project</label> -->
-                      <b-form-textarea  rows="4" value="" id="about-form-textaria" placeholder="A few words about you ..."></b-form-textarea>
-                    </b-form-group>
-                  </b-col>                 
+                  <div class="col-lg-6 h5 mt-4">
+                    <label ><b>Project Name:</b></label>
+                       <b-form-text class="form-control">projects.projectName</b-form-text>
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <label ><b>Url:</b></label>
+                       <b-form-text class="form-control">projects.projectUrl</b-form-text>
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <label ><b>Starting Date:</b></label>
+                       <b-form-text class="form-control">project.projectStartingDate</b-form-text>
+                  </div>
+                  <div class="col-lg-6 h5 mt-4">
+                    <label ><b>Ending Date:</b></label>
+                       <b-form-text class="form-control">project.projectEndingDate</b-form-text>
+                  </div>
+                  <div class="col-lg-12 h5 mt-4">
+                    <label ><b>Description:</b></label>
+                       <b-form-text class="form-control">project.projectDescription</b-form-text>
+                  </div>                
                   
  
                 </div>
@@ -394,6 +316,7 @@ export default {
       model:[],
       education:[],
       experiences:[],
+      projects:[],
       employerId: null,
       image: [],
       userPhoto: "img/user.png",
@@ -404,8 +327,9 @@ export default {
     isExistUserPhoto(){
       axios.get("/api/images/getimagesbyuserid?id="+this.$route.params.userId).then((response)=>{
             console.log(response.data.data[0]);
-          if(response.data.data[0] != null){   
-            this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+ response.data.data[0].imagePath);
+          if(response.data.data[0] != null){ 
+             
+            this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+response.data.data[0].imagePath );
           }
           
         });
@@ -431,6 +355,15 @@ export default {
                     .then((response) => {
                         console.log(response);
                         this.experiences = response.data;
+                        
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
+                axios.get('api/projects/getbyid?id=' + this.employerId)
+                    .then((response) => {
+                        console.log(response);
+                        this.projects = response.data;
                         
                     })
                     .catch(function (error) {
