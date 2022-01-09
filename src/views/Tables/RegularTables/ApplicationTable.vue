@@ -153,11 +153,11 @@
                         for(let i=0; i<this.jobs.length; i++){
                         axios.get('api/applicationjobs/getallemployerandphoto?JobId=' + this.jobs[i].jobId)
                         .then((response) => {
-                            //console.log(response.data);
-                            // this.employees[i] = response.data[i];
+                            console.log(response.data);
+                            // this.employees[i] = response.data;
                             // console.log(this.employees[i]);
-                             this.jobs.push(response.data)
-                             console.log("jobs arrayi bilgileri:"+this.jobs);
+                             this.employees.push(response.data);
+                             console.log("employees arrayi bilgileri:"+this.employees);
                         
                     })
                   }
