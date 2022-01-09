@@ -78,17 +78,13 @@
       @filtered="onFiltered"
       class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
     >
-      <template #cell(companyName)="row">
-        {{ row.value.first }} {{ row.value.last }}
-      </template>
-
       <template #cell(actions)="row">
-        <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
-         <i :id="`${row.index}`" class="ni ni-active-40"></i>
+        <b-button size="sm"  class="mr-1 jobDetail btn btn-default" v-on:click=commandClick(row.item)>
+         <i :id="`${row.index}`" class="ni ni-curved-next"></i> Detail
         </b-button>
-        <b-button size="sm" @click="row.toggleDetails">
+        <!-- <b-button size="sm" @click="row.toggleDetails">
           {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-        </b-button>
+        </b-button> -->
       </template>
       
       <template #cell(status)="row">
@@ -152,24 +148,14 @@ import axios from 'axios'
         },
         favJobs : [],
         fields: [
-          { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
-          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center" },
+          // { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
+          { key: 'companyName', label: 'Company', sortable: true,class:"text-center" },
           { key: 'jobType', label: 'Type', sortable: true, class: 'text-center' },
           { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center' },
           { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center' },
+          { key: 'applicationJobStatus',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
           { key: 'actions', label: 'Actions', class:"text-center", },
-          {
-            key: 'status',
-            label: 'Status',
-            // formatter: (value, key, item) => {
-            //   return value ? 'Yes' : 'No'
-            // },
-            sortable: true,
-            sortByFormatted: true,
-            filterByFormatted: true,
-            class:"text-center",
-           
-          },
+         
         ],
         totalRows: 1,
         currentPage: 1,
@@ -232,9 +218,9 @@ import axios from 'axios'
         axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
             this.employerId = response.data.employerId
-            axios.post("/api/favoriteJobs/getallbyemployerid?employerId=" + this.employerId).then((response)=>{
+            axios.post("/api/FavoriteJobs/getlistallbyemloyerid?employerId=" + this.employerId).then((response)=>{
                 this.favJobs = response.data;
-                console.log(response.favJobs);
+                console.log(this.favJobs);
     })
         })
        

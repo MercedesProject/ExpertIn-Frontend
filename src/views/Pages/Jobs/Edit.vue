@@ -107,13 +107,12 @@
                     <label><b>Type:</b></label>
                     <base-input
                             type="select"
-                            v-model="jobData.jobType"
                             required
                             id="type">
-                            <select class="form-control">
-                              <option>Backend</option>
-                              <option>Frontend</option>
-                              <option>Fullstack</option>
+                            <select v-model="jobData.jobType" class="form-control">
+                              <option value="Backend">Backend</option>
+                              <option value="Frontend">Frontend</option>
+                              <option value="Fullstack">Fullstack</option>
                             </select>
                         </base-input>
                   </div>
@@ -130,13 +129,12 @@
                     <label><b>Form:</b></label>
                      <base-input  
                             type="select"
-                            v-model="jobData.jobForm"
                             required
                             id="form">
-                            <select class="form-control">
-                              <option>Remote</option>
-                              <option>Office</option>
-                              <option>Hybrid</option>
+                            <select v-model="jobData.jobForm" class="form-control">
+                              <option value="Remote">Remote</option>
+                              <option value="Office">Office</option>
+                              <option value="Hybrid">Hybrid</option>
                             </select>
                         </base-input>
                   </div>
@@ -220,6 +218,7 @@ export default {
     };
   },
    methods:{
+    
      publishJob(){
        axios.post('api/jobs/add',this.jobData)
           .then((response) => {
@@ -238,7 +237,7 @@ export default {
           console.log(this.jobData);
           axios.post('api/draftjobs/update' , this.jobData)
             .then((response) => {
-                
+
             })
         },
         getCompanyInformation(){

@@ -228,7 +228,6 @@ export default {
       },
       isFavTableExist(){
         axios.get("/api/favoriteJobs/getbyjobid?id=" + this.$route.params.jobId).then((response)=>{
-          console.log("rrr" +response.data);
           if(response.data.favoriteJobId != null){
             this.isFavJob = true;
           }
