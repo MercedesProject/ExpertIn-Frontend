@@ -6,7 +6,8 @@
 
         <el-table class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
                   header-row-class-name="thead-light"
-                  :data="jobs">
+                  :data="jobs"
+                  >
             <el-table-column label="Job Title"
                              min-width="200px"
                              
@@ -56,7 +57,7 @@
             -->
            
 
-            <el-table-column label="Applicants" min-width="170px" >
+            <el-table-column label="Applicants" min-width="170px"  >
                 <template >
                     <div class="avatar-group" >
                     <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip"
@@ -130,11 +131,10 @@
             companyId:'',
         },
         jobs:[],
-        applicationjobs:[],
+        employees:[],
         
-        
-        userPhotos: [],
-        employerId:null,
+
+
       };
     },
     methods: {
@@ -150,32 +150,22 @@
                         console.log(response);
                         this.jobs = response.data;
                         console.log(this.jobs);
-                        // for(let i=0;i<this.jobs.length+1;i++){
-                        //     console.log(this.jobs[i].jobId);
-                        //     this.fields[i].jobId = this.jobs[i].jobId;
-                        //     axios.get('api/applicationjobs/getallbyjobid?id=' + this.jobs[i].jobId)
-                        //     .then((response) => {
-                        //         //console.log(response);
-                        //         this.applicationjobs = response.data;
-                                
-                                //     axios.get("/api/images/getimagesbyuserid?id=" + this.applicationjobs[j].userId)
-                                //     .then((response) => {
-                                //         this.applicationjobs = response.data; 
-                                //          if(response.data.data[0] != null){
-                                //             this.fields[j].imagePath = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/' + response.data.data[0].imagePath);
-                                //          }
-                                        
-                                        
-                                //     })
-
-                                
-                                
-                                
-                        //     })
-                        // }
-                        
+                        for(let i=0; i<this.jobs.length; i++){
+                        axios.get('api/applicationjobs/getallemployerandphoto?JobId=' + this.jobs[i].jobId)
+                        .then((response) => {
+                            //console.log(response.data);
+                            // this.employees[i] = response.data[i];
+                            // console.log(this.employees[i]);
+                             this.jobs.push(response.data)
+                             console.log("jobs arrayi bilgileri:"+this.jobs);
                         
                     })
+                  }
+  
+                    })
+                    
+                  
+                  
                    
               })
               

@@ -37,6 +37,8 @@
                         <b-media-body>
                             <a href="#!"  @click="commandClick(row.userId)">
                                 <base-button size="m" type="default" class="float-right" >Review</base-button>
+                                <a href="#!" class="order-2 btn btn-info" @click="publish(row)">Accept</a>
+                                <button   class="btn btn-sm btn-danger saveJob">Decline</button>
                             </a>  
                         </b-media-body>
                     </b-media>
@@ -101,22 +103,13 @@
     },
     methods: {
         getJobDetail() {
-                axios.get('api/applicationjobs/getallbyjobid?id=' + this.$route.params.jobId)
-                    .then((response) => {
-                        this.applicationJob = response.data;
-                        console.log(this.applicationJob);
-                        
-                        console.log(this.applicationJob.length);
-                        for(let i=0;i<this.applicationJob.length;i++){
-                            console.log("application job id:"+ this.applicationJob[i].employerId);
-                            axios.get('api/employers/getbyid?id=' + this.applicationJob[i].employerId)
-                                .then((response) => { 
-                                    console.log(response.data);
-                                    this.applicants.push(response.data);
-                                    console.log("applicants data:" + this.applicants);
-                                })
-                        }
-                        
+            console.log(this.$route.params.jobId);
+            axios.get('api/applicationjobs/getallemployerandphoto?JobId=' + this.$route.params.jobId)
+                .then((response) => {
+                    console.log(response.data);
+                    this.applicants = response.data;
+
+                
                 })
         },
 
