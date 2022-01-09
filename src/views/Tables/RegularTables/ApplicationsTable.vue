@@ -264,7 +264,7 @@
       obj.favourite = !obj.favourite;
     },
     getApplicationJobs() {
-          axios.post("/api/applicationjobs/getallbyuserid?id=" + this.$store.state.userData.id).then((response)=>{
+          axios.get("/api/ApplicationJobs/getjobdetails?userId=" + this.$store.state.userData.id).then((response)=>{
             this.jobs = response.data;
         });
         },

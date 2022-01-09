@@ -242,9 +242,13 @@ export default {
           })
     },
      publishJob(){
+       this.jobData.jobId = 0;
        axios.post('api/jobs/add',this.jobData)
           .then((response) => {
-              
+               this.jobData.jobId = this.jobId
+               axios.post('api/draftjobs/delete', this.jobData)
+              .then((response) => {
+            })
           })
      },
        getJobDetail() {
@@ -273,7 +277,7 @@ export default {
     created(){
       this.getJobDetail();
       this.getCompanyInformation();
-    }
+    },
 };
 </script>
 <style></style>
