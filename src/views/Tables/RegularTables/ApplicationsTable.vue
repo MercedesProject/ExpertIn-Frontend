@@ -224,11 +224,11 @@
     changeBgWithStatus() {
         this.jobs.forEach(function(obj)
         {
-        if(obj.applicationJobStatus ==="pending"){
+        if(obj.applicationJobStatus ==="Pending"){
          
         { obj.class = "info"}
         }
-        else if(obj.applicationJobStatus === "accepted"){
+        else if(obj.applicationJobStatus === "Accepted"){
           { obj.class ="success" }
         }
         else{

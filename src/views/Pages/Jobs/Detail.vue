@@ -86,8 +86,24 @@
                           <i v-else class="fa fa-heart" style="color:gray;"></i> 
                       </b-button>
                       <a href="#" class="btn btn-sm btn-default ">Message</a> 
-                      <router-link :to="{ name: 'MyApplications', params: {  }}"><button  @click=ApplyJob() class="btn btn-sm btn-success">Apply</button></router-link>
-                    
+                      <!-- <router-link :to="{ name: 'MyApplications', params: {  }}"> -->
+                        <b-button v-b-modal.applyJobModal @click=ApplyJob()  class="btn btn-sm btn-success">Apply</b-button>
+                        <!-- </router-link> -->
+                      <b-modal id="applyJobModal" title="Apply Job"  @hide="resetInfoModal" button-size="sm"
+                                             >
+                        <pre>{{applyJobResponseMesage}}</pre>
+                        <template #modal-footer="{ ok, cancel}">
+                          <!-- Emulate built in modal footer ok and cancel button actions -->
+                          <router-link :to="{ name: 'MyApplications', params: {  }}">
+                          <b-button size="sm" variant="success" @click="ok()">
+                            Go To My Applications
+                          </b-button>
+                          </router-link>
+                          <b-button size="sm" variant="danger" @click="cancel()">
+                            Cancel
+                          </b-button>
+                        </template>
+                      </b-modal>
                   </div>
                 </div>
               </div>
@@ -159,6 +175,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import axios from 'axios';
 
@@ -200,7 +217,8 @@ export default {
         // employerId : 0,
         // applicationJobStatus : 'pending',
         // userId : 0,
-      }
+      },
+      applyJobResponseMesage:""
     };
   },
    methods:{
@@ -210,6 +228,7 @@ export default {
        
         axios.post("api/ApplicationJobs/add", this.applicationJob)
             .then((response) => {
+              this.applyJobResponseMesage = response.data.message
               this.isClicked=true;
                 console.log(response);
                 //this.$router.linkto('employeeapplications');            
@@ -237,32 +256,32 @@ export default {
           console.log("isfavjob" + this.isFavJob);
           });
       },
-       getJobDetail() {
-        axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
+      getJobDetail() {
+      axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
+          .then((response) => {
+              this.jobData = response.data;
+              this.applicationJob = this.jobData
+              this.applicationJob.userId = this.$store.state.userData.id
+              this.applicationJob.applicationJobStatus=  'Pending'
+              
+              this.companyId = response.data.companyId;
+            // this.companyId = 36;
+              axios.get('api/companies/getbycompanyid?id=' + this.companyId)
             .then((response) => {
-                this.jobData = response.data;
-                this.applicationJob = this.jobData
-                this.applicationJob.userId = this.$store.state.userData.id
-                this.applicationJob.applicationJobStatus=  'pending'
-                
-               this.companyId = response.data.companyId;
-              // this.companyId = 36;
-                axios.get('api/companies/getbycompanyid?id=' + this.companyId)
-              .then((response) => {
-                  this.companyData = response.data;
-                  console.log("companydata" + this.companyData);
-              })
+                this.companyData = response.data;
+                console.log("companydata" + this.companyData);
             })
-        },
-        getEmployerDetail() {
-        axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
-            .then((response) => {
-                this.applicationJob.employerId = response.data.employerId;
-                this.favoriteJobs.employerId = response.data.employerId;
-                this.favoriteJobs.jobId = this.$route.params.jobId;
-            })
-        },
-     },
+          })
+      },
+      getEmployerDetail() {
+      axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
+          .then((response) => {
+              this.applicationJob.employerId = response.data.employerId;
+              this.favoriteJobs.employerId = response.data.employerId;
+              this.favoriteJobs.jobId = this.$route.params.jobId;
+          })
+      },
+   },
     created(){
       this.getJobDetail();
       this.getEmployerDetail();
