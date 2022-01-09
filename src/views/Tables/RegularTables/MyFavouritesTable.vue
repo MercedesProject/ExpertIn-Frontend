@@ -78,6 +78,16 @@
       @filtered="onFiltered"
       class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
     >
+    <template #cell(companyName)="row">
+          <div class="row " >
+          <div class="avatar avatar-sm rounded-circle mr-3">                  
+          <img alt="Image placeholder" :src="row.item.imagePath">
+          </div>
+          <div class="font-weight-600 text-sm "  >
+            {{row.item.companyName}}
+          </div>
+          </div>
+      </template>
       <template #cell(actions)="row">
         <b-button size="sm"  class="mr-1 jobDetail btn btn-default" v-on:click=commandClick(row.item)>
          <i :id="`${row.index}`" class="ni ni-curved-next"></i> Detail
@@ -149,12 +159,14 @@ import axios from 'axios'
         favJobs : [],
         fields: [
           // { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
-          { key: 'companyName', label: 'Company', sortable: true,class:"text-center" },
-          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center' },
-          { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center' },
-          { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center' },
-          { key: 'applicationJobStatus',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
-          { key: 'actions', label: 'Actions', class:"text-center", },
+          { key: 'companyName', label: 'Company', sortable: true,class:"text-center font-weight-600 text-sm" },
+          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center font-weight-600 text-sm' },
+          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center font-weight-600 text-sm' },
+          //{ key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center' },
+          { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center font-weight-600 text-sm' },
+         //{ key: 'jobSalary', label: 'Payment', sortable: true, class: 'text-center' },
+          //{ key: 'applicationJobStatus',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
+          { key: 'actions', label: 'Actions', class:"text-center font-weight-600 text-sm", },
          
         ],
         totalRows: 1,
@@ -221,6 +233,10 @@ import axios from 'axios'
             axios.post("/api/FavoriteJobs/getlistallbyemloyerid?employerId=" + this.employerId).then((response)=>{
                 this.favJobs = response.data;
                 console.log(this.favJobs);
+                for(let i=0;i<this.favJobs.length;i++){
+                console.log( this.favJobs[i].imagePath);
+                this.favJobs[i].imagePath = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/' + this.favJobs[i].imagePath);
+              }
     })
         })
        

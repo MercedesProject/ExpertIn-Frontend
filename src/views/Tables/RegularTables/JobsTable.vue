@@ -3,7 +3,7 @@
   <!-- <b-container fluid class="bv-example-row border border-success"> -->
   <b-card no-body style="border-width:1px;border-color:#7e65c2">
         <b-card-header class="border-0 border-primary" >
-            <h3 class="mb-0 text-center" style="color:#7e65c2;">Jobs</h3>
+            <h1 class="mb-0 text-center" style="color:#7e65c2; ">Jobs</h1>
         </b-card-header>  
     <!-- User Interface controls -->
     <b-row class="lg-6 mb-1">
@@ -76,9 +76,20 @@
       show-empty
       small
       @filtered="onFiltered"
-      class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
-    >
+      class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark "
       
+    >
+      <template #cell(companyName)="row">
+          <div class="row " >
+          <div class="avatar avatar-sm rounded-circle mr-3">                  
+          <img alt="Image placeholder" :src="row.item.imagePath">
+          </div>
+          <div class="font-weight-600 text-sm "  >
+            {{row.item.companyName}}
+          </div>
+          </div>
+
+      </template>
 
       <template #cell(actions)="row">
         <b-button size="sm"  class="mr-1 jobDetail btn btn-default" v-on:click=commandClick(row.item)>
@@ -161,19 +172,20 @@
             name: 'flip-list'
         },
         jobs:[],
+        images:[],
         fields: [
           // { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center text-primary"},
-          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center " },
-          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center ' },
-          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center ' },
+          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:'text-center font-weight-600 text-sm' },
+          { key: 'jobType', label: 'Type', sortable: true, class: 'font-weight-600 text-sm aligm-items-center'  },
+          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center font-weight-600 text-sm' },
           // { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center ' },
           // { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center ' },
-          { key: 'companyLocation', label: 'Location', sortable: true, class: 'text-center ' },
+          { key: 'companyLocation', label: 'Location', sortable: true, class: 'text-center font-weight-600 text-sm' },
           // { key: 'jobWeekDay', label: 'Day/Week', sortable: true, class: 'text-center ' },
-          { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center ' },
+          { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center font-weight-600 text-sm' },
           // { key: 'jobStartDate', label: 'Start Date', sortable: true, class: 'text-center ' },
           // { key: 'jobEndDate', label: 'End Date', sortable: true, class: 'text-center ' },
-          { key: 'actions', label: 'Actions', class:"text-center ", },
+          { key: 'actions', label: 'Actions', class:"text-center font-weight-600 text-sm", },
           // { key: 'status',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
         ],
         totalRows: 1,
@@ -269,6 +281,12 @@
         axios.get("/api/jobs/getall").then((response)=>{
             this.jobs = response.data;
             console.log(this.jobs);
+            for(let i=0;i<this.jobs.length;i++){
+              console.log( this.jobs[i].imagePath);
+              this.jobs[i].imagePath = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/' + this.jobs[i].imagePath);
+            }
+            
+            
         });
     },
     fav(obj){

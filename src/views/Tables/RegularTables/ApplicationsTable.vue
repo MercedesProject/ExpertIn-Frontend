@@ -79,6 +79,16 @@
       @filtered="onFiltered"
       class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
     >
+    <template #cell(companyName)="row">
+          <div class="row " >
+          <div class="avatar avatar-sm rounded-circle mr-3">                  
+          <img alt="Image placeholder" :src="row.item.imagePath">
+          </div>
+          <div class="font-weight-600 text-sm "  >
+            {{row.item.companyName}}
+          </div>
+          </div>
+      </template>
       <template #cell(actions)="row">
         <b-button size="sm"  class="mr-1 jobDetail btn btn-default" v-on:click=commandClick(row.item)>
          <i :id="`${row.index}`" class="ni ni-curved-next"></i> Detail
@@ -157,17 +167,17 @@
         },
         jobs:[],
         fields: [
-          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center " },
-          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center ' },
-          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center ' },
+          { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:"text-center font-weight-600 text-sm " },
+          { key: 'jobType', label: 'Type', sortable: true, class: 'text-center font-weight-600 text-sm' },
+          { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center font-weight-600 text-sm' },
           // { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center ' },
           // { key: 'jobSalary', label: 'Salary', sortable: true, class: 'text-center ' },
-          { key: 'companyLocation', label: 'Location', sortable: true, class: 'text-center ' },
+          { key: 'companyLocation', label: 'Location', sortable: true, class: 'text-center font-weight-600 text-sm' },
           // { key: 'jobWeekDay', label: 'Day/Week', sortable: true, class: 'text-center ' },
-          { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center ' },
+          { key: 'jobApplyLastDate', label: 'Last Apply Date', sortable: true, class: 'text-center font-weight-600 text-sm' },
           // { key: 'jobStartDate', label: 'Start Date', sortable: true, class: 'text-center ' },
           // { key: 'jobEndDate', label: 'End Date', sortable: true, class: 'text-center ' },
-          { key: 'applicationJobStatus',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-center",},
+          { key: 'applicationJobStatus',label: 'Status',sortable: true,sortByFormatted: true,filterByFormatted: true,class:"text-centerfont-weight-600 text-sm",},
           { key: 'actions', label: 'Actions', class:"text-center ", },
         ],
         totalRows: 1,
@@ -234,6 +244,7 @@
         else{
           obj.class ="danger"
         }
+        
         });
         
         return null;
@@ -266,6 +277,10 @@
     getApplicationJobs() {
           axios.get("/api/ApplicationJobs/getjobdetails?userId=" + this.$store.state.userData.id).then((response)=>{
             this.jobs = response.data;
+            for(let i=0;i<this.jobs.length;i++){
+              console.log( this.jobs[i].imagePath);
+              this.jobs[i].imagePath = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/' + this.jobs[i].imagePath);
+            }
         });
         },
   },
