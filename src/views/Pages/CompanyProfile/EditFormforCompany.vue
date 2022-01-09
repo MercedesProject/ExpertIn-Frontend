@@ -116,10 +116,9 @@
                         <base-input
                             type="select"
                             label="Sector"
-                            v-model="sector"
                             required
                             id="Sector">
-                            <select class="form-control">
+                            <select v-model="sector" class="form-control">
                               <option></option>
                               <option>Internet</option>
                               <option>Technology</option>
