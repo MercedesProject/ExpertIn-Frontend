@@ -93,7 +93,7 @@
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-6 h5 mt-4">
-                    <label ><b>Job:</b></label>
+                    <label ><b>Job Title:</b></label>
                         <base-input
                             type="text"
                             v-model="model.jobName" 
@@ -115,7 +115,7 @@
                         </base-input>
                   </div>
                   <div class="col-lg-6 h5 mt-4">
-                  <label><b>Salary:</b></label>
+                  <label><b>Payment:</b></label>
                        <base-input 
                             type="number"
                             v-model="model.jobSalary"

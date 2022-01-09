@@ -8,7 +8,7 @@
           <router-link to="/employeedashboard">
           <stats-card title="Jobs"
                       type="gradient-orange"
-                      sub-title="2,356"
+                      sub-title="20"
                       icon="ni ni-single-copy-04"
                       class="mb-4">
             <template slot="footer">
@@ -20,7 +20,7 @@
           <router-link to="/employeeapplications">
           <stats-card title="My Applications"
                       type="gradient-green"
-                      sub-title="3"
+                      sub-title="5"
                       icon="ni ni-active-40"
                       class="mb-4">
 
@@ -34,7 +34,7 @@
           <router-link to="/employeefavourites">
           <stats-card title="My Favourites"
                       type="gradient-red"
-                      sub-title="4"
+                      sub-title="3"
                       icon="ni ni-favourite-28"
                       class="mb-4">
 
@@ -47,7 +47,7 @@
           <router-link to="/employeemessages">
           <stats-card title="Messages"
                       type="gradient-info"
-                      sub-title="5"
+                      sub-title="2"
                       icon="ni ni-chat-round"
                       class="mb-4">
 

@@ -224,6 +224,7 @@ export default {
       model:[],
       userPhoto: "img/user.png",
       user: {
+        companyId:null,
         userId: this.$store.state.userData.id,
         UserTypeId: 2,
         SectorId:1,
@@ -233,7 +234,7 @@ export default {
         companyCountry: '',
         companyLocation: '',
         companyWebsite:'',
-        companyPhoneNumber:654365,
+        companyPhoneNumber: 0,
         companyDescription: '',
         companyPhoto:'',
       },
@@ -246,19 +247,28 @@ export default {
       //alert('Your data: ' + JSON.stringify(this.user));
     },
     saveData(){
-      axios.post("/api/companies/update",this.user).then((response)=>{
-            if(response.status==200){
-              console.log(this.user);
-              
-              this.$router.push('companyprofile');
-            }
-        });
+      axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
+            .then((response) => {
+                console.log(response);
+                this.model = response.data;
+                this.user.companyId =this.model.companyId;
+                axios.post("/api/companies/update",this.user).then((response)=>{
+                    if(response.status==200){
+                      console.log(this.user);
+                      
+                      this.$router.push('companyprofile');
+                    }
+                });
+            })
+
+      
     },
     getUserInformation(){
       axios.get('api/companies/getbyid?id=' + this.$store.state.userData.id)
             .then((response) => {
                 console.log(response);
                 this.model = response.data;
+
             })
             .catch(function (error) {
                 alert(error);

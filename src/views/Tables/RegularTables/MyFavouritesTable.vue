@@ -160,6 +160,7 @@ import axios from 'axios'
         fields: [
           // { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center"},
           { key: 'companyName', label: 'Company', sortable: true,class:"text-center font-weight-600 text-sm" },
+          { key: 'jobName', label: 'Title', sortable: true, class: 'text-center font-weight-600 text-sm' },
           { key: 'jobType', label: 'Type', sortable: true, class: 'text-center font-weight-600 text-sm' },
           { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center font-weight-600 text-sm' },
           //{ key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center' },
@@ -208,6 +209,9 @@ import axios from 'axios'
 
     },
     methods: {
+      commandClick: function(args) {
+      this.$router.push({name:'JobDetail', params: { jobId: args.jobId}});
+      },
       onFiltered(filteredItems) {
         this.totalRows = filteredItems.length
         this.currentPage = 1

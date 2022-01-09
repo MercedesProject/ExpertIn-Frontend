@@ -176,6 +176,7 @@
         fields: [
           // { key: 'favourites', label: 'Favourite',sortable: true, class:"text-center text-primary"},
           { key: 'companyName', label: 'Company', sortable: true, sortDirection: 'desc',class:'text-center font-weight-600 text-sm' },
+          { key: 'jobName', label: 'Title', sortable: true, class: 'text-center font-weight-600 text-sm' },
           { key: 'jobType', label: 'Type', sortable: true, class: 'font-weight-600 text-sm aligm-items-center'  },
           { key: 'jobForm', label: 'Form', sortable: true, class: 'text-center font-weight-600 text-sm' },
           // { key: 'jobDescription', label: 'Description', sortable: true, class: 'text-center ' },
