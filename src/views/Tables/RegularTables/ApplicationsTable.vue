@@ -3,7 +3,7 @@
   <!-- <b-container fluid class="bv-example-row border border-success"> -->
   <b-card no-body style="border-width:1px;border-color:#7e65c2">
         <b-card-header class="border-0 border-primary" >
-            <h3 class="mb-0 text-center" style="color:#7e65c2;">My Applications</h3>
+            <h2 class="mb-0 text-center" style="color:#7e65c2;">My Applications</h2>
         </b-card-header>  
     <!-- User Interface controls -->
     <b-row class="lg-6 mb-1">
