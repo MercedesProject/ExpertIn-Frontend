@@ -8,17 +8,17 @@
                   header-row-class-name="thead-light"
                   :data="applicants">
             <el-table-column label="Applicant "
-                             min-width="280px"
+                             min-width="230px"
                              prop="name">
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
                         <a href="" class="avatar rounded-circle mr-3">
                             
-                            <img alt="Image placeholder" :src="row.employerTitle">
+                            <img alt="Image placeholder" :src="row.imagePath">
                             
                         </a>
                         <b-media-body>
-                            <span class="font-weight-600 name mb-0 text-sm">{{row.employerName}} {{row.employerSurname}}</span>
+                            <span class="font-weight-600 name mb-0 text-sm">{{row.employerName}} {{row.employerSurName}}</span>
                         </b-media-body>
                     </b-media>
                 </template>
@@ -30,16 +30,17 @@
             -->
            
 
-            <el-table-column label="Action" min-width="100px">
+            <el-table-column label="Action" min-width="350px">
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
                         
                         <b-media-body>
-                            <a href="#!"  @click="commandClick(row.userId)">
-                                <base-button size="m" type="default" class="float-right" >Review</base-button>
-                                <a href="#!" class="order-2 btn btn-info" @click="publish(row)">Accept</a>
-                                <button   class="btn btn-sm btn-danger saveJob">Decline</button>
-                            </a>  
+                            
+                                <button size="m" class="float-right btn btn-default" @click="commandClick(row.userId)">Review</button> 
+                            
+                            <button size="m" class="btn btn-info" @click="publish(row)">Accept</button>
+                            <button  size="m" class="btn btn-danger saveJob">Decline</button>
+
                         </b-media-body>
                     </b-media>
                 </template>
@@ -108,7 +109,12 @@
                 .then((response) => {
                     console.log(response.data);
                     this.applicants = response.data;
-
+                    for(let i=0;i<this.applicants.length;i++){
+                        console.log(response.data[i].imagePath);
+                        this.applicants[i].imagePath = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/' + response.data[i].imagePath);
+                        console.log(this.applicants[i].imagePath);
+                    }
+                    
                 
                 })
         },
