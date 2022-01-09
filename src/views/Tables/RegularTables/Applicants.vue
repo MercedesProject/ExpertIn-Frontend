@@ -38,7 +38,7 @@
                             
                                 <button size="m" class="float-right btn btn-default" @click="commandClick(row.userId)">Review</button> 
                             
-                            <button size="m" class="btn btn-info" @click="accept()">Accept</button>
+                            <button size="m" class="btn btn-info" @click="accept(row.userId)">Accept</button>
                             <button  size="m" class="btn btn-danger saveJob" @click="decline(row.userId)" >Decline</button>
 
                         </b-media-body>
@@ -131,10 +131,24 @@
         console.log(args);
         this.$router.push({name:'EmployeeProfil', params: {userId: args }});
       },
-      accept(){
-          axios.post('api/applicationjobs/accepted', this.application[0])
+      accept(id){
+          
+          axios.post('api/applicationjobs/getallbyuserid?id='+ id)
                 .then((response) => {
                     console.log(response.data);
+                    this.applicationJob = response.data;
+                    for(let i=0;i<this.applicationJob.length;i++){
+                        console.log("Job details :"+this.applicationJob[i].jobId);
+                        if(this.applicationJob[i].jobId ==this.$route.params.jobId ){
+                        console.log("Job details :"+this.applicationJob[i]);
+                        axios.post('api/applicationjobs/accepted', this.application[i])
+                        .then((response) => {
+                            console.log(response.data);
+                        })
+                    }
+                    }
+                    
+                    
                 })
       },
       decline(id){
