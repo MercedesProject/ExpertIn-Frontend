@@ -79,10 +79,6 @@
       @filtered="onFiltered"
       class="table-responsive table b-table table-hover table-sticky-header table-bordered thead-dark"
     >
-      <template #cell(companyName)="row">
-        {{ row.value.first }} {{ row.value.last }}
-      </template>
-
       <template #cell(actions)="row">
         <b-button size="sm"  class="mr-1 jobDetail btn btn-default" v-on:click=commandClick(row.item)>
          <i :id="`${row.index}`" class="ni ni-curved-next"></i> Detail
