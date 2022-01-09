@@ -186,9 +186,19 @@
                       </base-input>
                   </div>
                  
-                  <div class="offset-md-10 col-md-2 text-right">
-                     <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=draftJob() class="btn btn-sm btn-primary">Draft</button> </router-link>
-                    <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=addJob() class="btn btn-sm btn-success">Publish</button></router-link>
+                  <div class="offset-md-7  text-left">
+                    <div class="d-flex justify-content-between">
+                        <div class="col-lg-8">
+                          <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=draftJob() class="btn  btn-default" size="m">Save as Draft</button> </router-link>
+                        </div>
+                        <div class="col-lg-4">
+                            <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=addJob() class="btn  btn-info " size="m">Publish</button></router-link>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                     
                   </div>
                   
                   

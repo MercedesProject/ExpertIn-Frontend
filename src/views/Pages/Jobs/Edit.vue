@@ -187,10 +187,26 @@
                            
                         </base-input>
                   </div>
-                  <div class="offset-md-10 col-md-2 text-right">
-                    <button   class="btn btn-sm btn-danger saveJob">Delete</button>
-                    <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=editJob() class="btn btn-sm btn-primary saveJob">Save</button></router-link>
-                    <router-link :to="{ name: 'companydashboard', params: {  }}"><button  @click=publishJob() class="btn btn-sm btn-primary saveJob">Publish</button></router-link>
+                  <div class="offset-md-6  ">
+                    <div class="d-flex justify-content-between">
+                      <div class="row">
+                        <div class="col-lg-3">
+                        <router-link :to="{ name: 'companydashboard', params: { }}"><button size="m" @click="publishJob()" class="btn   btn-info saveJob">Publish</button></router-link>
+                        </div>
+                        <div class="col-lg-3">
+                        <router-link :to="{ name: 'companydashboard', params: {  }}"><button size="m" @click="deleteDraftJob()" class="btn  btn-danger saveJob">Delete</button></router-link>
+                        </div>
+                        <div class="col-lg-6">
+                        <router-link :to="{ name: 'companydashboard', params: {  }}"><button size="m"  @click="editJob()" class="btn  btn-default saveJob">Save as Draft</button></router-link>
+                        </div>
+                      
+                      
+                      </div>
+                      
+                    </div>
+                    
+                    
+                    
                   </div>
                   
                 </div>
@@ -215,10 +231,16 @@ export default {
         companyId:null,
       },
       jobData:[],
+      jobId:this.$route.params.jobId,
     };
   },
    methods:{
-    
+    deleteDraftJob(){
+      axios.post('api/draftjobs/delete', this.jobId)
+          .then((response) => {
+            console.log("Draftjob Silindi.");
+          })
+    },
      publishJob(){
        axios.post('api/jobs/add',this.jobData)
           .then((response) => {
@@ -226,7 +248,7 @@ export default {
           })
      },
        getJobDetail() {
-        axios.get('api/draftjobs/getbyid?id=' + this.$route.params.jobId)
+        axios.get('api/draftjobs/getbyid?id=' + this.jobId)
             .then((response) => {
                 this.jobData = response.data;
                console.log(this.jobData);
