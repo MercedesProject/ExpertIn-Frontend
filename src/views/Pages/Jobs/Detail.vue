@@ -256,6 +256,10 @@ export default {
           console.log("isfavjob" + this.isFavJob);
           });
       },
+      resetInfoModal() {
+        this.infoModal.title = ''
+        this.infoModal.content = ''
+      },
       getJobDetail() {
       axios.get('api/jobs/getbyid?id=' + this.$route.params.jobId)
           .then((response) => {

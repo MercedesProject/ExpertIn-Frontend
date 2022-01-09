@@ -34,18 +34,31 @@
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
                         
-                        <b-media-body>
-                            
-                                <button size="m" class="float-right btn btn-default" @click="commandClick(row.userId)">Review</button> 
-                            
-                            <button size="m" class="btn btn-info" @click="accept(row.userId)">Accept</button>
-                            <button  size="m" class="btn btn-danger saveJob" @click="decline(row.userId)" >Decline</button>
-
+                        <b-media-body  >
+                            <!-- <button v-b-modal.jobModal size="m" class="btn btn-info" @click="accept(row.userId)">Accept</button>
+                            <button v-b-modal.jobModal  size="m" class="btn btn-danger saveJob" @click="decline(row.userId)" >Decline</button>-->
+                             <button v-b-modal.acceptModal size="m" @click="sendUserId(row.userId)"  class="btn btn-info">Accept</button>
+                            <button v-b-modal.declineModal  size="m" @click="sendUserId(row.userId)"  class="btn btn-danger saveJob" >Decline</button> 
+                            <button  size="m" class=" btn btn-default" @click="commandClick(row.userId)">Review</button> 
                         </b-media-body>
                     </b-media>
                 </template>
-
-                
+                  <b-modal id="acceptModal" ref="acceptModal"  title="Accept" hide-footer button-size="sm">
+                        <pre>Are you sure you want to accept this applicant?</pre>
+                        <div class="float-right">
+                        <b-button class="btn btn-success" @click="accept(selectedUserId)">Accept</b-button>
+                        <b-button  class="btn btn-primary" @click="toggleAcceptModal">Close</b-button>
+                        </div>
+                        
+                    </b-modal>
+                    <b-modal id="declineModal" ref="declineModal" title="Decline" hide-footer  button-size="sm">
+                    <pre>Are you sure you want to decline this applicant?</pre>
+                    <div class="float-right">
+                        <b-button class="btn btn-danger"  @click="decline(selectedUserId)">Decline</b-button>
+                        <b-button class="btn btn-primary" @click="toggleDeclineModal" >Cancel</b-button>
+                    </div>
+                        
+                    </b-modal>  
                 
             </el-table-column>
 
@@ -101,9 +114,20 @@
         applicationJob:[],
         application:[],
         applicants:[],
+        selectedUserId:0,
       };
     },
     methods: {
+        sendUserId(id) {
+        this.selectedUserId = id;
+        console.log("selectedUserId"+this.selectedUserId)
+        },
+        toggleAcceptModal() {
+        this.$refs['acceptModal'].hide()
+        },
+        toggleDeclineModal() {
+        this.$refs['declineModal'].hide()
+        },
         getJobDetail() {
             console.log(this.$route.params.jobId);
             axios.get('api/applicationjobs/getallbyjobid?id=' + this.$route.params.jobId)
@@ -131,8 +155,11 @@
         console.log(args);
         this.$router.push({name:'EmployeeProfil', params: {userId: args }});
       },
+      resetInfoModal() {
+        this.acceptModal.title = ''
+        this.infoModal.content = ''
+      },
       accept(id){
-          
           axios.post('api/applicationjobs/getallbyuserid?id='+ id)
                 .then((response) => {
                     console.log(response.data);
@@ -147,8 +174,6 @@
                         })
                     }
                     }
-                    
-                    
                 })
       },
       decline(id){
