@@ -69,7 +69,7 @@
       
 	  <div class="chatbox__popupMenu" v-show="showOptions">
         <button @click="darkMode = !darkMode">Dark mode {{ darkMode ? 'Off' : 'On' }}</button>
-        <button @click.stop.prevent="showColorPalette = true; showOptions = false">Change channel color</button>
+     <!--<button @click.stop.prevent="showColorPalette = true; showOptions = false">Change channel color</button>  -->
         <button @click="deleteCurrentChannel()" :disabled="selectedContact.selectedChannelIndex === 0">Delete current channel</button>
       </div>
       
@@ -160,7 +160,7 @@ export default {
 		selectedContactIndex: 0,
 		contacts: [
 			{
-				name: "Adam Bush",
+				name: "Mercedes",
 				profileImage: "https://randomuser.me/api/portraits/men/85.jpg",
 				userId: "umYHX3R",
 				newChannelInput: "",
@@ -168,122 +168,91 @@ export default {
 				makeNewChannel: false,
 				selectedChannelIndex: 0,
 				channels: [
-					{
-						name: "MAIN",
+										{
+						name: "Current projects",
 						color: "#09f",
 						messages: [
 							{
 								content: "Hi, how are you?",
-								date: "2019-02-13",
+								date: "2021-12-13",
 								time: "12:34",
 								authorId: "umYHX3R"
 							},
 							{
-								content: "Welcome to the chat app with channels!",
-								date: "2019-02-13",
-								time: "12:35",
-								authorId: "umYHX3R"
-							},
-							{
-								content: "channels?",
-								date: "2019-02-13",
+								content: "Thank you. How are you?",
+								date: "2021-12-13",
 								time: "12:38",
 								authorId: "FExpl9n"
 							},
 							{
 								content:
-									"yup! Sometimes when you chat with someone you'd like to talk about different topics simultaneously or save important notes or links somewhere - it's super easy with the channels",
-								date: "2019-02-13",
+								"Thanks. We are excited for our new job with you :)",
+								date: "2021-12-13",
 								time: "12:39",
 								authorId: "umYHX3R"
 							},
 							{
-								content: "sounds cool",
-								date: "2019-02-13",
+								content: "I am excited too! :) I need some information for Project Mock-Up. I sent you an e-mail.",
+								date: "2021-12-13",
 								time: "12:40",
 								authorId: "FExpl9n"
 							},
 							{
-								content: "it might be really useful",
-								date: "2019-02-13",
-								time: "12:40",
-								authorId: "FExpl9n"
-							},
-							{
-								content: "let's try them out",
-								date: "2019-02-13",
+								content: "Yeah. That's why I got back to you. Along with the details we talked about, another page was planned. I sent it to e-mail.",
+								date: "2021-12-13",
 								time: "12:41",
-								authorId: "FExpl9n"
+								authorId: "umYHX3R"
 							},
 							{
-								content: "try to switch channels - click 'trip to Greece' ^",
-								date: "2019-02-13",
+								content: "We are waiting for you to come back :) Good luck!",
+								date: "2021-12-13",
+								time: "12:41",
+								authorId: "umYHX3R"
+							},
+							{
+								content: "Thanks have a good day.",
+								date: "2021-12-13",
 								time: "12:45",
-								authorId: "umYHX3R"
+								authorId: "FExpl9n"
 							}
 						]
 					},
 					{
-						name: "trip to Greece",
-						color: "#ff0f80",
-						messages: [
-							{
-								content:
-									"Why would we spam our main chat, when we can plan our trip here?",
-								date: "2019-02-09",
-								time: "23:34",
-								authorId: "umYHX3R"
-							},
-							{
-								content: "yeah, the channels are excellent!",
-								date: "2019-02-10",
-								time: "06:15",
-								authorId: "FExpl9n"
-							},
-							{
-								content: "I've found a lovely Airbnb on Crete",
-								date: "2019-02-10",
-								time: "06:15",
-								authorId: "FExpl9n"
-							},
-							{
-								content: "link?",
-								date: "2019-02-10",
-								time: "06:23",
-								authorId: "umYHX3R"
-							}
-						]
-					},
-					{
-						name: "homework",
+						name: "Schedule",
 						color: "rgb(36, 123, 160)",
 						messages: [
 							{
-								content: "what do we have to do for tommorow?",
-								date: "2019-02-13",
-								time: "17:34",
+								content: "Is Wednesday 9 am suitable for the next meet?",
+								date: "2022-01-07",
+								time: "13:40",
 								authorId: "umYHX3R"
 							},
 							{
 								content:
-									"maths - exercises 2.314, 2.316 abc, 2.317 d | physics - read about centripetal force",
-								date: "2019-02-13",
-								time: "17:55",
+								"Of course. I even saved it in my calendar :)",
+								date: "2022-01-07",
+								time: "13:55",
 								authorId: "FExpl9n"
 							},
 							{
-								content: "thanks!",
-								date: "2019-02-13",
-								time: "18:23",
+								content: "Great :) See you at the meeting. Have a nice day.",
+								date: "2022-01-07",
+								time: "14:13",
 								authorId: "umYHX3R"
+							},
+							{
+								content: "Great :) See you at the meeting. Have a nice day.",
+								date: "2022-01-07",
+								time: "14:23",
+								authorId: "FExpl9n"
 							}
 						]
 					},
-					{ name: "dank memes", color: "rgb(241, 154, 62)", messages: [] }
+					//{ name: "dank memes", color: "rgb(241, 154, 62)", messages: [] }
 				]
 			},
 			{
-				name: "Lucy Smith",
+				name: "Doguş Group",
 				userId: "jY0ty9S",
 				newChannelInput: "",
 				messageInput: "",
@@ -296,51 +265,33 @@ export default {
 						color: "#09f",
 						messages: [
 							{
-								content: "Heey ;)",
-								date: "2019-02-06",
+								content: "Hi. I want to do internship in this company, can I send my CV to you?",
+								date: "2021-02-06",
 								time: "17:19",
-								authorId: "jY0ty9S"
-							}
-						]
-					},
-					{
-						name: "random talks",
-						color: "#09f",
-						messages: [
-							{
-								content: "I like dinosaurs",
-								date: "2019-02-09",
-								time: "23:34",
-								authorId: "jY0ty9S"
+								authorId: "FExpl9n"
 							},
 							{
-								content: "me too!",
-								date: "2019-02-09",
-								time: "23:35",
-								authorId: "FExpl9n"
+								content: "For internship purchases, please contact the relevant department.",
+								date: "2022-01-09",
+								time: "16:23",
+								authorId: "jY0ty9S"
 							}
 						]
 					},
 					{
-						name: "channel3",
+						name: "Past projects",
 						color: "#09f",
 						messages: [
 							{
-								content: "what are we gonna use this channel for?",
-								date: "2019-02-07",
+								content: "Hello, I have sent you the final version of the project. Thank you.",
+								date: "2021-02-07",
 								time: "14:34",
-								authorId: "jY0ty9S"
-							},
-							{
-								content: "dunno",
-								date: "2019-02-07",
-								time: "14:35",
 								authorId: "FExpl9n"
 							},
 							{
-								content: "hmm let's leave it empty",
-								date: "2019-02-07",
-								time: "18:56",
+								content: "Thanks",
+								date: "2021-02-07",
+								time: "14:35",
 								authorId: "jY0ty9S"
 							}
 						]
@@ -348,37 +299,37 @@ export default {
 				]
 			},
 			{
-				name: "Natasha Brown",
+				name: "NatCod",
 				userId: "adf8iOc",
 				newChannelInput: "",
 				messageInput: "",
 				makeNewChannel: false,
-				profileImage: "https://randomuser.me/api/portraits/women/43.jpg",
+				profileImage: "https://randomuser.me/api/portraits/women/65.jpg",
 				selectedChannelIndex: 0,
 				channels: [
 					{
-						name: "MAIN",
+						name: "New",
 						color: "#09f",
 						messages: [
 							{
 								content:
-									"Lorem Ipsum dolor sit amet oh my god I have no idea what should I write here lol",
-								date: "2018-09-12",
+								"Hi. I want to do internship in this company, can I send my CV to you?",
+								date: "2022-01-09",
 								time: "12:45",
-								authorId: "adf8iOc"
+								authorId: "FExpl9n"
 							},
 							{
-								content: "making fake messages might be really boring",
-								date: "2018-09-13",
-								time: "08:23",
-								authorId: "FExpl9n"
+								content: "For internship purchases, please contact the relevant department.",
+								date: "2022-01-09",
+								time: "16:23",
+								authorId: "adf8iOc"
 							}
 						]
 					}
 				]
 			},
 			{
-				name: "Charles Spruce",
+				name: "XXX CODE",
 				newChannelInput: "",
 				makeNewChannel: false,
 				messageInput: "",
@@ -392,105 +343,51 @@ export default {
 						messages: [
 							{
 								content:
-									"Hi!  I'm the author of this chat app. If you like it, please hit the 💖 button ^ thanks!",
+								"Hi. I want to do internship in this company, can I send my CV to you?",
 								date: "2020-03-12",
 								time: "00:00",
-								authorId: "thearchitect"
+								authorId: "FExpl9n"
+							},
+							{
+								content: "For internship purchases, please contact the relevant department.",
+								date: "2022-01-09",
+								time: "16:23",
+								authorId: "adf8iOc"
 							}
 						]
 					}
 				]
 			},
 			{
-				name: "babür aclan",
+				name: "CodingHome",
 				profileImage: "https://randomuser.me/api/portraits/med/men/18.jpg",
 				userId: null,
 				newChannelInput: "",
 				messageInput: "",
 				makeNewChannel: false,
 				selectedChannelIndex: 0,
-				channels: [{ name: "MAIN", color: "#09f", messages: [] }]
+				channels: [
+					{
+						name: "MAIN",
+						color: "#09f",
+						messages: [
+							{
+								content:
+								"Hi. I want to do internship in this company, can I send my CV to you?",
+								date: "2022-03-12",
+								time: "10:00",
+								authorId: "FExpl9n"
+							},
+							{
+								content: "For internship purchases, please contact the relevant department.",
+								date: "2022-03-12",
+								time: "16:23",
+								authorId: "adf8iOc"
+							}
+						]
+					}
+				]
 			},
-			{
-				name: "vicky brady",
-				profileImage: "https://randomuser.me/api/portraits/med/women/91.jpg",
-				userId: "6981389T",
-				newChannelInput: "",
-				messageInput: "",
-				makeNewChannel: false,
-				selectedChannelIndex: 0,
-				channels: [{ name: "MAIN", color: "#09f", messages: [] }]
-			},
-			{
-				name: "enver gottschlich",
-				profileImage: "https://randomuser.me/api/portraits/med/men/22.jpg",
-				userId: null,
-				newChannelInput: "",
-				messageInput: "",
-				makeNewChannel: false,
-				selectedChannelIndex: 0,
-				channels: [{ name: "MAIN", color: "#09f", messages: [] }]
-			},
-			{
-				name: "abbie richardson",
-				profileImage: "https://randomuser.me/api/portraits/med/women/58.jpg",
-				userId: "ES 63 66 39 F",
-				newChannelInput: "",
-				messageInput: "",
-				makeNewChannel: false,
-				selectedChannelIndex: 0,
-				channels: [{ name: "MAIN", color: "#09f", messages: [] }]
-			},
-			{
-				name: "debra foster",
-				profileImage: "https://randomuser.me/api/portraits/med/women/84.jpg",
-				userId: "EW 54 98 10 P",
-				newChannelInput: "",
-				messageInput: "",
-				makeNewChannel: false,
-				selectedChannelIndex: 0,
-				channels: [{ name: "MAIN", color: "#09f", messages: [] }]
-			},
-			{
-				name: "rena beer",
-				profileImage: "https://randomuser.me/api/portraits/med/women/12.jpg",
-				userId: null,
-				newChannelInput: "",
-				messageInput: "",
-				makeNewChannel: false,
-				selectedChannelIndex: 0,
-				channels: [{ name: "MAIN", color: "#09f", messages: [] }]
-			},
-			{
-				name: "nicklas netland",
-				profileImage: "https://randomuser.me/api/portraits/med/men/4.jpg",
-				userId: "02105748674",
-				newChannelInput: "",
-				messageInput: "",
-				makeNewChannel: false,
-				selectedChannelIndex: 0,
-				channels: [{ name: "MAIN", color: "#09f", messages: [] }]
-			},
-			{
-				name: "alma moller",
-				profileImage: "https://randomuser.me/api/portraits/med/women/45.jpg",
-				userId: "953147-1893",
-				newChannelInput: "",
-				messageInput: "",
-				makeNewChannel: false,
-				selectedChannelIndex: 0,
-				channels: [{ name: "MAIN", color: "#09f", messages: [] }]
-			},
-			{
-				name: "paige fox",
-				profileImage: "https://randomuser.me/api/portraits/med/women/5.jpg",
-				userId: "4371535T",
-				newChannelInput: "",
-				messageInput: "",
-				makeNewChannel: false,
-				selectedChannelIndex: 0,
-				channels: [{ name: "MAIN", color: "#09f", messages: [] }]
-			}
 		]
     }
 	},
