@@ -16,7 +16,7 @@
                 <template v-slot="{row}">
                     <b-media no-body class="align-items-center">
                         <b-media-body>
-                            <a href="#!"  v-on:click=commandClick(row.jobId)>
+                            <a  v-on:click=commandClick(row.jobId)>
                                 <span class="font-weight-600 name mb-0 text-sm">{{row.jobName}}</span>
                             </a>
                                 

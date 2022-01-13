@@ -73,6 +73,7 @@
                               <input class="input" type="file"  @change="filesChange" id="file"/>                      
                               <div style="padding-left:15px;">
                                 <base-button outline type="default" @click="onUpload" >Upload</base-button>
+                                
                               </div>
                             </div>
 
@@ -307,7 +308,8 @@
                     <div class="pl-lg-4" style="padding-top:10px">
                     <b-row>
                       <div class="col-lg-6">
-                        <base-button @click="addEducation" size="sm" type="default"> Add Education</base-button>
+                        <base-button @click="addEducation" size="m" type="default"> Add Education</base-button>
+                        <base-button @click="updateEducation" size="m" type="default"> Update</base-button>
                       </div>
 
                     </b-row>
@@ -385,7 +387,8 @@
                     <div class="pl-lg-4" style="padding-top:10px">
                     <b-row>
                       <div class="col-lg-6">
-                        <base-button @click="addExperience" size="sm" type="default"> Add Experience</base-button>
+                        <base-button @click="addExperience" size="m" type="default"> Add Experience</base-button>
+                        <base-button @click="updateExperience" size="m" type="default"> Update</base-button>
                       </div>
 
                     </b-row>
@@ -470,29 +473,18 @@
                     <div class="pl-lg-4" style="padding-top:10px">
                     <b-row>
                       <div class="col-lg-6">
-                        <base-button size="sm" type="default" @click="addProject()" > Add Project</base-button>
+                        <base-button size="m" type="default" @click="addProject()" > Add Project</base-button>
+                        <base-button size="m" type="default" @click="updateProject()" > Update</base-button>
                       </div>
 
                     </b-row>
                     
                   </div>
-                    
-                  </div>
-                  <hr class="my-4">
-                        <!-- Certificate -->
-                  <h6 class="heading-small text-muted mb-4">Certificate</h6>
-
-                  <div class="pl-lg-4">
-                    <b-row>
-                      <div class="col-lg-6">
-                        <base-button outline type="default">Upload Certificate</base-button>
-                      </div>
-
-                    </b-row>
                     
                   </div>
                   
-                  <h6 class="heading-small text-muted mb-4"></h6>
+                        <!-- Certificate -->
+                  
                   
                   
 
@@ -667,78 +659,53 @@ export default {
     },
 
     addEducation(){
-      //böyle bi education varsa güncelle
-      console.log(this.education[0].employerId);
-      console.log(this.Education.employerId);
-      console.log(this.education[0].educationId);
-      if(this.education[0].employerId == this.Education.employerId){
-        axios.post("/api/educations/update",this.Education).then((response)=>{
-            if(response.status==200){
-              console.log("Güncellendi:"+ this.Education);
-              // this.$router.push('employeeprofile');
-            }
-        });
-      }
-      //böyle bi education yoksa ekle
-      else{
         axios.post("/api/educations/add",this.Education).then((response)=>{
           if(response.status==200){
             console.log("Yeni education eklendi:"+this.Education);
 
           }
         });
-      }
-
-
     },
-    addExperience(){
-      //böyle bi experience varsa güncelle
-      console.log(this.experiences[0].employerId);
-      console.log(this.Experience.employerId);
-      console.log(this.experiences[0].experienceId);
-      if(this.experiences[0].employerId == this.Experience.employerId){
-        axios.post("/api/experiences/update",this.Experience).then((response)=>{
+    updateEducation(){
+      axios.post("/api/educations/update",this.Education).then((response)=>{
             if(response.status==200){
-              console.log("Experience Güncellendi:"+ this.Experience);
+              console.log("Güncellendi:"+ this.Education);
               // this.$router.push('employeeprofile');
             }
         });
-      }
-      //böyle bi experience yoksa ekle
-      else{
+    },
+    addExperience(){
         axios.post("/api/experiences/add",this.Experience).then((response)=>{
           if(response.status==200){
             console.log("Yeni experience eklendi:"+this.Experience);
 
           }
         });
-      }
-
-
     },
-    addProject(){
-      //böyle bi experience varsa güncelle
-      console.log(this.projects[0].employerId);
-      console.log(this.project.employerId);
-      if(this.projects[0].employerId == this.project.employerId){
-        axios.post("/api/projects/update",this.project).then((response)=>{
+    updateExperience(){
+        axios.post("/api/experiences/update",this.Experience).then((response)=>{
             if(response.status==200){
-              console.log("Project Güncellendi:"+ this.Experience);
+              console.log("Experience Güncellendi:"+ this.Experience);
               // this.$router.push('employeeprofile');
             }
         });
-      }
-      //böyle bi project yoksa ekle
-      else{
+    },
+    addProject(){
         axios.post("/api/projects/add",this.project).then((response)=>{
           if(response.status==200){
             console.log("Yeni project eklendi:"+this.project);
 
           }
         });
-      }
-
-      
+    },
+    updateProject(){
+        axios.post("/api/projects/update",this.project).then((response)=>{
+            if(response.status==200){
+              console.log("Project Güncellendi:"+ this.Experience);
+              // this.$router.push('employeeprofile');
+            }
+        });
+ 
     },
     //Dosya işlemleri
     filesChange(event) {
@@ -755,6 +722,15 @@ export default {
            this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+ response.data.data[0].imagePath);
        
         });
+              
+        });
+
+     
+    },
+    removeImage(){
+
+      axios.post("/api/images/add?UserId="+this.$store.state.userData.id).then((response)=>{
+            console.log(response);
               
         });
 

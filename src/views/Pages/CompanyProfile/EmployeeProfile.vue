@@ -40,7 +40,7 @@
             >
               <div class="d-flex justify-content-between">
                 
-                <base-button  @click="sendMessage()" size="sm" type="default" class="float-right" v-if="userType==2"
+                <base-button  @click="sendMessage(this.$route.params.userId)" size="sm" type="default" class="float-right" v-if="userType==2"
                   >Send Message</base-button
                 >
                 <base-button @click="downloadCV()" size="sm" type="primary" class="float-right" v-if="userType==2"
@@ -324,8 +324,9 @@ export default {
     };
   },
   methods: {
-    sendMessage(){
-      this.$router.push('companydashboard');
+    sendMessage: function(args){
+      console.log(args);
+      this.$router.push({name:'CompanyMessages', params: {userId: args }});
     },
     isExistUserPhoto(){
       axios.get("/api/images/getimagesbyuserid?id="+this.$route.params.userId).then((response)=>{
@@ -402,7 +403,7 @@ export default {
                      
                      var docUrl = document.createElement('a');
                      docUrl.href = FILE;
-                     docUrl.setAttribute('download', 'file.pdf');
+                     docUrl.setAttribute('download', 'Resume.pdf');
                      document.body.appendChild(docUrl);
                      docUrl.click();
                 });

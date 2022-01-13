@@ -90,8 +90,8 @@ const routes = [{
                     import ('../views/CompanyDashboard.vue')
             },
             {
-                path: '/companymessages',
-                name: '',
+                path: '/companymessages/:userId',
+                name: 'CompanyMessages',
                 component: () =>
                     import ('../views/Pages/CompanyProfile/CompanyMessages.vue')
             },

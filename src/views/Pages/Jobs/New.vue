@@ -177,7 +177,7 @@
                     <label><b>Description:</b></label>
                      <base-input>
                             <textarea class="form-control" 
-                            rows="3"
+                            rows="4"
                             v-model="model.jobDescription"
                             required
                             id="description"

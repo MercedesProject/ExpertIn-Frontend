@@ -20,7 +20,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                     <img
-                      src="img/user.png"
+                      :src="this.userPhoto"
                       class="rounded-circle"
                     />
                 </div>
@@ -161,9 +161,9 @@
                     <label><b>Job End Date:</b></label>
                      <b-form-text class="form-control">{{jobData.jobEndDate}}</b-form-text>
                   </div>
-                  <div class="col-lg-12 h5 mt-4">
+                  <div class="col-xl-12 h5 mt-4">
                     <label><b>Description:</b></label>
-                    <b-form-text class="form-control">{{jobData.jobDescription}}</b-form-text>
+                    <b-form-text class="form-control" >{{jobData.jobDescription}}</b-form-text>
                   </div>
                 </div>
               </div>
@@ -184,6 +184,7 @@ export default {
   data() {
     return {
       isClicked:false,
+      userPhoto:'',
       model: {
         username: "1",
         email: "2",
@@ -274,6 +275,13 @@ export default {
             .then((response) => {
                 this.companyData = response.data;
                 console.log("companydata" + this.companyData);
+                axios.get("/api/images/getimagesbyuserid?id="+this.companyData.userId).then((response)=>{
+                  console.log(response.data.data[0]);
+                if(response.data.data[0] != null){   
+                  this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+ response.data.data[0].imagePath);
+                }
+                
+              });
             })
           })
       },
@@ -285,6 +293,9 @@ export default {
               this.favoriteJobs.jobId = this.$route.params.jobId;
           })
       },
+      isExistUserPhoto(){
+      
+    },
    },
     created(){
       this.getJobDetail();

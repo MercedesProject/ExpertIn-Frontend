@@ -1,14 +1,14 @@
 <template>
 <div>
   <!--NavBar-->  
-  <div class="navbar-main ml-auto">
+  <div class="navbar-main ml-auto bg-gradient-success">
     <base-nav
       v-model="showMenu"
       :transparent="true"
       menu-classes="justify-content-end"
       class="navbar-horizontal navbar-main navbar-top navbar-dark"
       expand="lg"  
-      style="background:linear-gradient(135deg, #0B8F8812,  #7E65C2)" 
+      
      >
   
    <div slot="brand" class="navbar-wrapper">
@@ -18,7 +18,7 @@
    </div>
 
      <template>  
-       <div class="navbar-collapse-header" style="background:linear-gradient(135deg, #0B8F8812,  #7E65C2);">
+       <div class="navbar-collapse-header" >
          <b-row>
            <b-col cols="6" class="collapse-brand">
              <router-link to="/">
@@ -40,7 +40,6 @@
               <span class="nav-link-inner--text" style=
                 "font-size: 18px; 
                  font-weight: bold;
-                 font-family: Nucleolcons; 
                  text-transform:capitalize; 
                  text-shadow: 0px 1px 1px #0B8F8812; 
                  border-bottom: 1px solid #e5e0f2; 
@@ -56,7 +55,7 @@
               <span class="nav-link-inner--text" style=
                 "font-size: 18px; 
                  font-weight: bold;
-                 font-family: Nucleolcons; 
+
                  text-transform:capitalize; 
                  text-shadow: 0px 1px 1px #0B8F8812; 
                  border-bottom: 1px solid #e5e0f2; 
@@ -73,7 +72,7 @@
   </div>
  
     <!-- Page content -->
-      <div class="container-fluid px-lg-5" style="background:linear-gradient(135deg, #0B8F8812,  #7E65C2)">
+      <div class="container-fluid px-lg-5 bg-gradient-success"  >
         <b-container class="mt-mx-auto" >
           <b-row class="justify-content">
             <div class="container-fluid" 
@@ -84,7 +83,7 @@
             background-attachment: fixed;
             background-size: cover; 
             background-position: center center;
-            background-image: url(img/brand/bg19.png)"
+            "
           >  
 <!--
           <div class="row justify-content-center text-center pt-7 pb-4">  
@@ -102,25 +101,28 @@
             <div class="row justify-content-center text-center">
  --> 
             <div class="row justify-content-center text-center pt-8 pb-3"> 
+              
                 <h1 style=
-                "font-size: 72px; 
-                font-family: Nucleolcons;  
-                text-shadow: 1px 2px 10px #d8d0ec;
+                "font-size: 70px; 
+                  
+                text-shadow: 1px 20px 20px #311474;
                 font-weight: bold; 
-                color: #191426; 
+                color: #000000; 
                 position: relative;
                 border-color: #7e65c2"
-                > Finding a job is just a click away</h1>  
+                > Finding a job is just a click away </h1> 
+                
+                
             </div>
 
             <div class="container-fluid">
-              <div class="row justify-content-center text-center pt-5"> 
+              <div class="row justify-content-center text-center pt-1"> 
                   <router-link to="/register">
                   <base-button style=
                   "font-size: 26px; 
                   font-weight: bold; 
                   background:linear-gradient(180deg, #0B8F8812,  #7E65C2); 
-                  font-family: Nucleolcons;
+                  
                   text-shadow: 0px 0px 5px #ffffff; 
                   border: 1.8px solid #f2eff8; 
                   border-radius: 10px;
@@ -139,26 +141,7 @@
         </b-container>
       </div>
  
-    <!--Footer-->
-    <div class="footer bg-gradient-busra" 
-    style="background:linear-gradient(135deg, #0B8F8812,  #7E65C2)">
-      <div class="container-fluid">
-        <div class="row text-center">
-            <div class="col-12" style="color: #191426">© 2021 - TDU </div>
-        </div>
-        <div class="row justify-content-center text-center">
-            <div class="col-12 col-md-2">
-                <a href="/" style="color: #32284d">Terms and conditions</a>
-            </div>                        
-            <div class="col-12 col-md-2">
-                <a href="/" style="color: #32284d">Privacy policy</a>
-            </div>                        
-            <div class="col-12 col-md-1">
-                <a href="/" style="color: #32284d">Careers</a>
-            </div>
-        </div>
-      </div>        
-    </div>
+
 </div>
 </template>
 <script></script>

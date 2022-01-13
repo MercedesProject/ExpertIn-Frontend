@@ -18,7 +18,7 @@
                             
                         </a>
                         <b-media-body>
-                            <span class="font-weight-600 name mb-0 text-sm">{{row.employerName}} {{row.employerSurName}}</span>
+                            <span class="font-weight-600 name mb-0 text-sm"> {{row.employerName}} {{row.employerSurName}}</span>
                         </b-media-body>
                     </b-media>
                 </template>
@@ -130,16 +130,15 @@
         },
         getJobDetail() {
             console.log(this.$route.params.jobId);
-            axios.get('api/applicationjobs/getallbyjobid?id=' + this.$route.params.jobId)
-                .then((response) => {
-                    console.log(response.data);
-                    this.application= response.data;
-                    
-                
-                })
+            
             axios.get('api/applicationjobs/getallemployerandphoto?JobId=' + this.$route.params.jobId)
                 .then((response) => {
                     console.log(response.data);
+                    // for(let j=0;j<response.data.length;j++){
+                    //         if(!(response.data.applicationJobStatus == "Declined")){
+                                
+                    //         }
+                    //     }
                     this.applicants = response.data;
                     for(let i=0;i<this.applicants.length;i++){
                         console.log(response.data[i].imagePath);
@@ -166,9 +165,10 @@
                     this.applicationJob = response.data;
                     for(let i=0;i<this.applicationJob.length;i++){
                         console.log("Job details :"+this.applicationJob[i].jobId);
-                        if(this.applicationJob[i].jobId ==this.$route.params.jobId ){
-                        console.log("Job details :"+this.applicationJob[i]);
-                        axios.post('api/applicationjobs/accepted', this.application[i])
+                        console.log("Job details :"+this.applicationJob[i].userId);
+                        if(this.applicationJob[i].jobId ==this.$route.params.jobId &&  this.applicationJob[i].userId == id){
+                        console.log("Job details2222 :"+this.applicationJob[i]);
+                        axios.post('api/applicationjobs/accepted', this.applicationJob[i])
                         .then((response) => {
                             console.log(response.data);
                         })
@@ -188,11 +188,11 @@
                         axios.post('api/applicationjobs/declined', this.applicationJob[i])
                         .then((response) => {
                             console.log(response.data);
-                            axios.post('api/applicationjobs/delete', this.applicationJob[i])
-                            .then((response) => {
-                                console.log(response.data);
+                            // axios.post('api/applicationjobs/delete', this.applicationJob[i])
+                            // .then((response) => {
+                            //     console.log(response.data);
                                 
-                            })
+                            // })
                         })
                     }
                     }

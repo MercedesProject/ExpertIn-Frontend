@@ -20,7 +20,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                     <img
-                      src="img/user.png"
+                      :src="this.userPhoto"
                       class="rounded-circle"
                     />
                 </div>
@@ -232,6 +232,7 @@ export default {
       },
       jobData:[],
       jobId:this.$route.params.jobId,
+      userPhoto:'',
     };
   },
    methods:{
@@ -273,10 +274,21 @@ export default {
                   this.model.companyId = this.company.companyId;
               })
         },
+        isExistUserPhoto(){
+          axios.get("/api/images/getimagesbyuserid?id="+this.$store.state.userData.id).then((response)=>{
+                console.log(response.data.data[0]);
+              if(response.data.data[0] != null){   
+                this.userPhoto = require('../../../../../Projects/Expert-In-Backend-Release/WebApplication1/wwwroot/Uploads/Images/'+ response.data.data[0].imagePath);
+              }
+              
+            });
+        },
      },
+     
     created(){
       this.getJobDetail();
       this.getCompanyInformation();
+      this.isExistUserPhoto();
     },
 };
 </script>

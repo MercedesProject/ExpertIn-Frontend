@@ -37,7 +37,7 @@
                               :rules="{required: true, email: true}"
                               prepend-icon="ni ni-email-83"
                               placeholder="  Company Email"
-                              v-model="staticUser.email">
+                              v-model="model.email">
                   </base-input>
 
                   <base-input alternative
@@ -47,7 +47,7 @@
                               prepend-icon="ni ni-lock-circle-open"
                               type="Password"
                               placeholder="  Password"
-                              v-model="staticUser.password" style="background-color:#8A78C8;"> 
+                              v-model="model.password" style="background-color:#8A78C8;"> 
                   </base-input>
                <b-row  class="justify-content-end">
               <router-link to="/forgotpasswordcompany" class="text-dark"><small>Forgot password?</small></router-link>
@@ -74,7 +74,7 @@ import axios from 'axios';
     data() {
       return {
         model: {
-          userTypeId:2,
+          userTypesId:2,
           email: '',
           password: '',
           rememberMe: false
@@ -93,7 +93,7 @@ import axios from 'axios';
         // this will be called only after form is valid. You can do api call here to login
       },
       loginUser(){
-        axios.post("/api/auth/login",this.staticUser).then((response)=>{
+        axios.post("/api/auth/login",this.model).then((response)=>{
             if(response.status==200){
                 this.$store.commit("setUser", response.data);
                 console.log(this.$store.state.userData);

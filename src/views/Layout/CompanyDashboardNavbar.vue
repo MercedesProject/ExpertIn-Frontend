@@ -21,7 +21,7 @@
                <i class="ni ni-single-02"></i>
                <span class="nav-link-inner--text"> Company Profile </span>
            </b-nav-item>
-            <b-nav-item to="/companymessages">
+            <b-nav-item to="/companymessages/userId">
                <i class="ni ni-email-83"></i>
                <span class="nav-link-inner--text"> Messages </span>
            </b-nav-item>
