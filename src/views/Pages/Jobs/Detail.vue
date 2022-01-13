@@ -246,7 +246,7 @@ export default {
           });
       },
       isFavTableExist(){
-        axios.get("/api/favoriteJobs/getbyjobid?id=" + this.$route.params.jobId).then((response)=>{
+        axios.get("/api/favoriteJobs/getbyjobid?id=" + this.$route.params.jobId +"&employerId=9" ).then((response)=>{
           if(response.data.favoriteJobId != null){
             this.isFavJob = true;
           }
@@ -289,6 +289,7 @@ export default {
     created(){
       this.getJobDetail();
       this.getEmployerDetail();
+       this.isFavTableExist();
     },
     mounted(){
       this.isFavTableExist();
