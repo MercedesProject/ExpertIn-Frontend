@@ -8,7 +8,7 @@
           <router-link to="/employeedashboard">
           <stats-card title="Jobs"
                       type="gradient-orange"
-                      sub-title="20"
+                      :sub-title= "totalJobs"
                       icon="ni ni-single-copy-04"
                       class="mb-4">
             <template slot="footer">
@@ -20,7 +20,7 @@
           <router-link to="/employeeapplications">
           <stats-card title="My Applications"
                       type="gradient-green"
-                      sub-title="5"
+                      :sub-title= "totalApplications"
                       icon="ni ni-active-40"
                       class="mb-4">
 
@@ -34,7 +34,7 @@
           <router-link to="/employeefavourites">
           <stats-card title="My Favourites"
                       type="gradient-red"
-                      sub-title="3"
+                      :sub-title= "totalFav"
                       icon="ni ni-favourite-28"
                       class="mb-4">
 
@@ -91,7 +91,7 @@
   import JobTable from './Tables/RegularTables/JobsTable.vue';
   import LightTable from './Tables/RegularTables/LightTable.vue';
   import ApplicationTable from './Tables/RegularTables/ApplicationTable.vue';
- 
+  import axios from 'axios'
 
   export default {
     components: {
@@ -133,7 +133,10 @@
             }]
           },
           extraOptions: chartConfigs.blueChartOptions
-        }
+        },
+        totalJobs : "0" ,
+        totalApplications : "0" ,
+        totalFav : "0",
       };
     },
     methods: {
@@ -149,7 +152,29 @@
         };
         this.bigLineChart.chartData = chartData;
         this.bigLineChart.activeIndex = index;
-      }
+      },
+      employersDetail(){
+         axios.get('api/employers/getbyid?id=' + this.$store.state.userData.id)
+          .then((response) => {
+              this.employerId=response.data.employerId;
+           axios.get('api/FavoriteJobs/counter?EmployerId='+ this.employerId)
+            .then((response) => {
+              this.totalFav = response.data
+            })
+            axios.get('api/ApplicationJobs/counter?id='+  this.$store.state.userData.id)
+            .then((response) => {
+              console.log(response);
+              this.totalApplications = response.data
+            })
+            axios.get('api/jobs/counter')
+            .then((response) => {
+              this.totalJobs = response.data;
+            })
+             })
+    },
+    },
+    created(){
+    this.employersDetail();
     },
     mounted() {
       this.initBigChart(0);
