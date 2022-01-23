@@ -198,7 +198,7 @@
                     }
                     }
                 })
-                this.toggleAcceptModal();
+                this.toggleDeclineModal();
       },
     
   },
