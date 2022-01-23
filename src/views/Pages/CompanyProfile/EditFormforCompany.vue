@@ -123,6 +123,7 @@
                               <option>Internet</option>
                               <option>Technology</option>
                               <option>Media</option>
+                              <option>Automotive</option>
                             </select>
                         </base-input>
                         
@@ -227,7 +228,7 @@ export default {
         companyId:null,
         userId: this.$store.state.userData.id,
         UserTypeId: 2,
-        SectorId:1,
+        SectorId:3,
         companyName: this.$store.state.userData.firstName,
         companyEmail: this.$store.state.userData.email,
         companyCity: '',
@@ -254,7 +255,7 @@ export default {
                 this.user.companyId =this.model.companyId;
                 axios.post("/api/companies/update",this.user).then((response)=>{
                     if(response.status==200){
-                      console.log(this.user);
+                      console.log("guncel:"+this.user);
                       
                       this.$router.push('companyprofile');
                     }

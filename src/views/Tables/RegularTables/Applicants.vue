@@ -175,6 +175,7 @@
                     }
                     }
                 })
+            this.toggleAcceptModal();
       },
       decline(id){
           axios.post('api/applicationjobs/getallbyuserid?id='+ id)
@@ -196,9 +197,8 @@
                         })
                     }
                     }
-                    
-                    
                 })
+                this.toggleAcceptModal();
       },
     
   },
