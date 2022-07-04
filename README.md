@@ -8,3 +8,4 @@
 |Full Stack Developer   : Yağmur Can|
 |Backend Developer    : Tuğba Öğünçmert| 
 |Business Analyst       : Elif Sinem Aydın |
+UI/UX DEMO URL:https://www.youtube.com/watch?v=Sxwu0quF84s&t=6s
